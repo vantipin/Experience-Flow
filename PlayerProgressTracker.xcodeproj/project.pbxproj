@@ -1,0 +1,692 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */; };
+		DF24B1241871EC9A00B57855 /* PlayerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1231871EC9A00B57855 /* PlayerCellView.m */; };
+		DF24B1281874B46C00B57855 /* CharacterStatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1271874B46C00B57855 /* CharacterStatListViewController.m */; };
+		DF24B1341877377900B57855 /* StatView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1331877377900B57855 /* StatView.m */; };
+		DF24B137187B684800B57855 /* StatSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B136187B684800B57855 /* StatSet.m */; };
+		DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */; };
+		DF2A96D818982CBD00A6EB45 /* Skill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2A96D718982CBD00A6EB45 /* Skill.m */; };
+		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
+		DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED101186309B40039D17B /* CoreGraphics.framework */; };
+		DFAED104186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
+		DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFAED108186309B40039D17B /* InfoPlist.strings */; };
+		DFAED10C186309B40039D17B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED10B186309B40039D17B /* main.m */; };
+		DFAED110186309B40039D17B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED10F186309B40039D17B /* AppDelegate.m */; };
+		DFAED113186309B40039D17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFAED111186309B40039D17B /* Main.storyboard */; };
+		DFAED116186309B40039D17B /* PlayerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED115186309B40039D17B /* PlayerListViewController.m */; };
+		DFAED118186309B40039D17B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFAED117186309B40039D17B /* Images.xcassets */; };
+		DFAED11F186309B40039D17B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED11E186309B40039D17B /* XCTest.framework */; };
+		DFAED120186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
+		DFAED121186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
+		DFAED129186309B40039D17B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFAED127186309B40039D17B /* InfoPlist.strings */; };
+		DFAED12B186309B40039D17B /* PlayerProgressTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */; };
+		DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13518630A540039D17B /* Model.xcdatamodeld */; };
+		DFAED13A186331790039D17B /* CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED139186331790039D17B /* CoreDataClass.m */; };
+		DFAED13D1863329B0039D17B /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13C1863329B0039D17B /* AppSettings.m */; };
+		DFAED140186333000039D17B /* ViewControllerWithCoreDataMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13F186333000039D17B /* ViewControllerWithCoreDataMethods.m */; };
+		DFAED1441863334D0039D17B /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED1431863334D0039D17B /* NSStringAdditions.m */; };
+		DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED1611864D4C10039D17B /* DropDownViewController.m */; };
+		DFB07C03187EFA2400FF0EF7 /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB07BFF187EFA2400FF0EF7 /* noImage.png */; };
+		DFB07C04187EFA2400FF0EF7 /* noImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB07C00187EFA2400FF0EF7 /* noImage@2x.png */; };
+		DFB07C07187F0AEE00FF0EF7 /* StatSetDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */; };
+		DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C0918815C9B00FF0EF7 /* Item.m */; };
+		DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1218815C9C00FF0EF7 /* Insanity.m */; };
+		DFB07C1618815C9C00FF0EF7 /* CharacterConditionAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1518815C9C00FF0EF7 /* CharacterConditionAttributes.m */; };
+		DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */; };
+		DFB07C1F18815C9C00FF0EF7 /* WeaponRanged.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1E18815C9C00FF0EF7 /* WeaponRanged.m */; };
+		DFB07C2618815EE800FF0EF7 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C2118815EE800FF0EF7 /* Character.m */; };
+		DFB07C2718815EE800FF0EF7 /* Pic.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C2318815EE800FF0EF7 /* Pic.m */; };
+		DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */; };
+		DFC3B9B718884ABD0026C0A4 /* CustomXpRaisingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */; };
+		DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */; };
+		DFC88CAC186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC88CAB186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFAED122186309B40039D17B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFAED0F4186309B40039D17B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFAED0FB186309B40039D17B;
+			remoteInfo = PlayerProgressTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DF24B11F1871DF0C00B57855 /* NewCharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCharacterViewController.h; sourceTree = "<group>"; };
+		DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCharacterViewController.m; sourceTree = "<group>"; };
+		DF24B1221871EC9A00B57855 /* PlayerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCellView.h; sourceTree = "<group>"; };
+		DF24B1231871EC9A00B57855 /* PlayerCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCellView.m; sourceTree = "<group>"; };
+		DF24B1261874B46C00B57855 /* CharacterStatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterStatListViewController.h; sourceTree = "<group>"; };
+		DF24B1271874B46C00B57855 /* CharacterStatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterStatListViewController.m; sourceTree = "<group>"; };
+		DF24B1291874B75900B57855 /* ColorConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
+		DF24B1321877377900B57855 /* StatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatView.h; sourceTree = "<group>"; };
+		DF24B1331877377900B57855 /* StatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatView.m; sourceTree = "<group>"; };
+		DF24B135187B684800B57855 /* StatSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatSet.h; sourceTree = "<group>"; };
+		DF24B136187B684800B57855 /* StatSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatSet.m; sourceTree = "<group>"; };
+		DF2A96D318982CBD00A6EB45 /* SkillTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTemplate.h; sourceTree = "<group>"; };
+		DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTemplate.m; sourceTree = "<group>"; };
+		DF2A96D618982CBD00A6EB45 /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
+		DF2A96D718982CBD00A6EB45 /* Skill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skill.m; sourceTree = "<group>"; };
+		DFAED0FC186309B40039D17B /* PlayerProgressTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerProgressTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DFAED103186309B40039D17B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DFAED107186309B40039D17B /* PlayerProgressTracker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlayerProgressTracker-Info.plist"; sourceTree = "<group>"; };
+		DFAED109186309B40039D17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DFAED10B186309B40039D17B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DFAED10D186309B40039D17B /* PlayerProgressTracker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlayerProgressTracker-Prefix.pch"; sourceTree = "<group>"; };
+		DFAED10E186309B40039D17B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DFAED10F186309B40039D17B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DFAED112186309B40039D17B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DFAED114186309B40039D17B /* PlayerListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerListViewController.h; sourceTree = "<group>"; };
+		DFAED115186309B40039D17B /* PlayerListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerListViewController.m; sourceTree = "<group>"; };
+		DFAED117186309B40039D17B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DFAED11D186309B40039D17B /* PlayerProgressTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayerProgressTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFAED11E186309B40039D17B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DFAED126186309B40039D17B /* PlayerProgressTrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlayerProgressTrackerTests-Info.plist"; sourceTree = "<group>"; };
+		DFAED128186309B40039D17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerProgressTrackerTests.m; sourceTree = "<group>"; };
+		DFAED13618630A540039D17B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DFAED138186331790039D17B /* CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataClass.h; sourceTree = "<group>"; };
+		DFAED139186331790039D17B /* CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataClass.m; sourceTree = "<group>"; };
+		DFAED13B1863329B0039D17B /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
+		DFAED13C1863329B0039D17B /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
+		DFAED13E186333000039D17B /* ViewControllerWithCoreDataMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerWithCoreDataMethods.h; sourceTree = "<group>"; };
+		DFAED13F186333000039D17B /* ViewControllerWithCoreDataMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerWithCoreDataMethods.m; sourceTree = "<group>"; };
+		DFAED1421863334D0039D17B /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
+		DFAED1431863334D0039D17B /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		DFAED1601864D4C10039D17B /* DropDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownViewController.h; sourceTree = "<group>"; };
+		DFAED1611864D4C10039D17B /* DropDownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownViewController.m; sourceTree = "<group>"; };
+		DFB07BFF187EFA2400FF0EF7 /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage.png; sourceTree = "<group>"; };
+		DFB07C00187EFA2400FF0EF7 /* noImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noImage@2x.png"; sourceTree = "<group>"; };
+		DFB07C05187F0AEE00FF0EF7 /* StatSetDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatSetDropDown.h; sourceTree = "<group>"; };
+		DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatSetDropDown.m; sourceTree = "<group>"; };
+		DFB07C0818815C9B00FF0EF7 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		DFB07C0918815C9B00FF0EF7 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		DFB07C1118815C9C00FF0EF7 /* Insanity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Insanity.h; sourceTree = "<group>"; };
+		DFB07C1218815C9C00FF0EF7 /* Insanity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Insanity.m; sourceTree = "<group>"; };
+		DFB07C1418815C9C00FF0EF7 /* CharacterConditionAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterConditionAttributes.h; sourceTree = "<group>"; };
+		DFB07C1518815C9C00FF0EF7 /* CharacterConditionAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterConditionAttributes.m; sourceTree = "<group>"; };
+		DFB07C1718815C9C00FF0EF7 /* WeaponMelee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeaponMelee.h; sourceTree = "<group>"; };
+		DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeaponMelee.m; sourceTree = "<group>"; };
+		DFB07C1D18815C9C00FF0EF7 /* WeaponRanged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeaponRanged.h; sourceTree = "<group>"; };
+		DFB07C1E18815C9C00FF0EF7 /* WeaponRanged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeaponRanged.m; sourceTree = "<group>"; };
+		DFB07C2018815EE800FF0EF7 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		DFB07C2118815EE800FF0EF7 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
+		DFB07C2218815EE800FF0EF7 /* Pic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pic.h; sourceTree = "<group>"; };
+		DFB07C2318815EE800FF0EF7 /* Pic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pic.m; sourceTree = "<group>"; };
+		DFC3B9B2188849E00026C0A4 /* SkillViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillViewCell.h; sourceTree = "<group>"; };
+		DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillViewCell.m; sourceTree = "<group>"; };
+		DFC3B9B518884ABD0026C0A4 /* CustomXpRaisingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomXpRaisingButton.h; sourceTree = "<group>"; };
+		DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomXpRaisingButton.m; sourceTree = "<group>"; };
+		DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTableViewController.h; sourceTree = "<group>"; };
+		DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTableViewController.m; sourceTree = "<group>"; };
+		DFC88CAA186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = warhammerDefaultSkillSetManager.h; sourceTree = "<group>"; };
+		DFC88CAB186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = warhammerDefaultSkillSetManager.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DFAED0F9186309B40039D17B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */,
+				DFAED104186309B40039D17B /* UIKit.framework in Frameworks */,
+				DFAED100186309B40039D17B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFAED11A186309B40039D17B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFAED11F186309B40039D17B /* XCTest.framework in Frameworks */,
+				DFAED121186309B40039D17B /* UIKit.framework in Frameworks */,
+				DFAED120186309B40039D17B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DF24B1251871ECA400B57855 /* View classes */ = {
+			isa = PBXGroup;
+			children = (
+				DF24B1221871EC9A00B57855 /* PlayerCellView.h */,
+				DF24B1231871EC9A00B57855 /* PlayerCellView.m */,
+				DF24B1321877377900B57855 /* StatView.h */,
+				DF24B1331877377900B57855 /* StatView.m */,
+				DFC3B9B2188849E00026C0A4 /* SkillViewCell.h */,
+				DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */,
+				DFC3B9B518884ABD0026C0A4 /* CustomXpRaisingButton.h */,
+				DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */,
+			);
+			name = "View classes";
+			sourceTree = "<group>";
+		};
+		DFAED0F3186309B40039D17B = {
+			isa = PBXGroup;
+			children = (
+				DFAED13418630A350039D17B /* Model */,
+				DFAED105186309B40039D17B /* PlayerProgressTracker */,
+				DFAED124186309B40039D17B /* PlayerProgressTrackerTests */,
+				DFAED0FE186309B40039D17B /* Frameworks */,
+				DFAED0FD186309B40039D17B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DFAED0FD186309B40039D17B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED0FC186309B40039D17B /* PlayerProgressTracker.app */,
+				DFAED11D186309B40039D17B /* PlayerProgressTrackerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DFAED0FE186309B40039D17B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED0FF186309B40039D17B /* Foundation.framework */,
+				DFAED101186309B40039D17B /* CoreGraphics.framework */,
+				DFAED103186309B40039D17B /* UIKit.framework */,
+				DFAED11E186309B40039D17B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
+			isa = PBXGroup;
+			children = (
+				DFB07BFC187EFA1700FF0EF7 /* Resourses */,
+				DF24B1291874B75900B57855 /* ColorConstants.h */,
+				DF24B1251871ECA400B57855 /* View classes */,
+				DFAED13E186333000039D17B /* ViewControllerWithCoreDataMethods.h */,
+				DFAED13F186333000039D17B /* ViewControllerWithCoreDataMethods.m */,
+				DFAED1601864D4C10039D17B /* DropDownViewController.h */,
+				DFAED1611864D4C10039D17B /* DropDownViewController.m */,
+				DFB07C05187F0AEE00FF0EF7 /* StatSetDropDown.h */,
+				DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */,
+				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
+				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
+				DFAED10E186309B40039D17B /* AppDelegate.h */,
+				DFAED10F186309B40039D17B /* AppDelegate.m */,
+				DFAED111186309B40039D17B /* Main.storyboard */,
+				DFAED114186309B40039D17B /* PlayerListViewController.h */,
+				DFAED115186309B40039D17B /* PlayerListViewController.m */,
+				DF24B11F1871DF0C00B57855 /* NewCharacterViewController.h */,
+				DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */,
+				DF24B1261874B46C00B57855 /* CharacterStatListViewController.h */,
+				DF24B1271874B46C00B57855 /* CharacterStatListViewController.m */,
+				DFAED117186309B40039D17B /* Images.xcassets */,
+				DFAED106186309B40039D17B /* Supporting Files */,
+			);
+			path = PlayerProgressTracker;
+			sourceTree = "<group>";
+		};
+		DFAED106186309B40039D17B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED107186309B40039D17B /* PlayerProgressTracker-Info.plist */,
+				DFAED108186309B40039D17B /* InfoPlist.strings */,
+				DFAED10B186309B40039D17B /* main.m */,
+				DFAED10D186309B40039D17B /* PlayerProgressTracker-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DFAED124186309B40039D17B /* PlayerProgressTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */,
+				DFAED125186309B40039D17B /* Supporting Files */,
+			);
+			path = PlayerProgressTrackerTests;
+			sourceTree = "<group>";
+		};
+		DFAED125186309B40039D17B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED126186309B40039D17B /* PlayerProgressTrackerTests-Info.plist */,
+				DFAED127186309B40039D17B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DFAED13418630A350039D17B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED145186334500039D17B /* HashBuilder */,
+				DFAED141186333140039D17B /* CoreData */,
+				DFC88CAA186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.h */,
+				DFC88CAB186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m */,
+				DFAED13B1863329B0039D17B /* AppSettings.h */,
+				DFAED13C1863329B0039D17B /* AppSettings.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DFAED141186333140039D17B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED138186331790039D17B /* CoreDataClass.h */,
+				DFAED139186331790039D17B /* CoreDataClass.m */,
+				DFAED13518630A540039D17B /* Model.xcdatamodeld */,
+				DF24B135187B684800B57855 /* StatSet.h */,
+				DF24B136187B684800B57855 /* StatSet.m */,
+				DFB07C2218815EE800FF0EF7 /* Pic.h */,
+				DFB07C2318815EE800FF0EF7 /* Pic.m */,
+				DFB07C2018815EE800FF0EF7 /* Character.h */,
+				DFB07C2118815EE800FF0EF7 /* Character.m */,
+				DFB07C1418815C9C00FF0EF7 /* CharacterConditionAttributes.h */,
+				DFB07C1518815C9C00FF0EF7 /* CharacterConditionAttributes.m */,
+				DFB07C0818815C9B00FF0EF7 /* Item.h */,
+				DFB07C0918815C9B00FF0EF7 /* Item.m */,
+				DFB07C1718815C9C00FF0EF7 /* WeaponMelee.h */,
+				DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */,
+				DFB07C1D18815C9C00FF0EF7 /* WeaponRanged.h */,
+				DFB07C1E18815C9C00FF0EF7 /* WeaponRanged.m */,
+				DFB07C1118815C9C00FF0EF7 /* Insanity.h */,
+				DFB07C1218815C9C00FF0EF7 /* Insanity.m */,
+				DF2A96D618982CBD00A6EB45 /* Skill.h */,
+				DF2A96D718982CBD00A6EB45 /* Skill.m */,
+				DF2A96D318982CBD00A6EB45 /* SkillTemplate.h */,
+				DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		DFAED145186334500039D17B /* HashBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED1421863334D0039D17B /* NSStringAdditions.h */,
+				DFAED1431863334D0039D17B /* NSStringAdditions.m */,
+			);
+			name = HashBuilder;
+			sourceTree = "<group>";
+		};
+		DFB07BFC187EFA1700FF0EF7 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				DFB07BFF187EFA2400FF0EF7 /* noImage.png */,
+				DFB07C00187EFA2400FF0EF7 /* noImage@2x.png */,
+			);
+			name = Resourses;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DFAED0FB186309B40039D17B /* PlayerProgressTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFAED12E186309B40039D17B /* Build configuration list for PBXNativeTarget "PlayerProgressTracker" */;
+			buildPhases = (
+				DFAED0F8186309B40039D17B /* Sources */,
+				DFAED0F9186309B40039D17B /* Frameworks */,
+				DFAED0FA186309B40039D17B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PlayerProgressTracker;
+			productName = PlayerProgressTracker;
+			productReference = DFAED0FC186309B40039D17B /* PlayerProgressTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DFAED11C186309B40039D17B /* PlayerProgressTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFAED131186309B40039D17B /* Build configuration list for PBXNativeTarget "PlayerProgressTrackerTests" */;
+			buildPhases = (
+				DFAED119186309B40039D17B /* Sources */,
+				DFAED11A186309B40039D17B /* Frameworks */,
+				DFAED11B186309B40039D17B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFAED123186309B40039D17B /* PBXTargetDependency */,
+			);
+			name = PlayerProgressTrackerTests;
+			productName = PlayerProgressTrackerTests;
+			productReference = DFAED11D186309B40039D17B /* PlayerProgressTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DFAED0F4186309B40039D17B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = WierdMasks;
+				TargetAttributes = {
+					DFAED11C186309B40039D17B = {
+						TestTargetID = DFAED0FB186309B40039D17B;
+					};
+				};
+			};
+			buildConfigurationList = DFAED0F7186309B40039D17B /* Build configuration list for PBXProject "PlayerProgressTracker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DFAED0F3186309B40039D17B;
+			productRefGroup = DFAED0FD186309B40039D17B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DFAED0FB186309B40039D17B /* PlayerProgressTracker */,
+				DFAED11C186309B40039D17B /* PlayerProgressTrackerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DFAED0FA186309B40039D17B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
+				DFB07C04187EFA2400FF0EF7 /* noImage@2x.png in Resources */,
+				DFB07C03187EFA2400FF0EF7 /* noImage.png in Resources */,
+				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
+				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFAED11B186309B40039D17B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFAED129186309B40039D17B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DFAED0F8186309B40039D17B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF24B1281874B46C00B57855 /* CharacterStatListViewController.m in Sources */,
+				DF24B1241871EC9A00B57855 /* PlayerCellView.m in Sources */,
+				DFB07C1618815C9C00FF0EF7 /* CharacterConditionAttributes.m in Sources */,
+				DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */,
+				DFB07C1F18815C9C00FF0EF7 /* WeaponRanged.m in Sources */,
+				DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */,
+				DF24B1341877377900B57855 /* StatView.m in Sources */,
+				DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */,
+				DFC88CAC186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m in Sources */,
+				DF2A96D818982CBD00A6EB45 /* Skill.m in Sources */,
+				DFAED116186309B40039D17B /* PlayerListViewController.m in Sources */,
+				DF24B137187B684800B57855 /* StatSet.m in Sources */,
+				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
+				DFAED13D1863329B0039D17B /* AppSettings.m in Sources */,
+				DFAED10C186309B40039D17B /* main.m in Sources */,
+				DFC3B9B718884ABD0026C0A4 /* CustomXpRaisingButton.m in Sources */,
+				DFAED140186333000039D17B /* ViewControllerWithCoreDataMethods.m in Sources */,
+				DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */,
+				DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */,
+				DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */,
+				DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */,
+				DFB07C07187F0AEE00FF0EF7 /* StatSetDropDown.m in Sources */,
+				DFAED1441863334D0039D17B /* NSStringAdditions.m in Sources */,
+				DFAED13A186331790039D17B /* CoreDataClass.m in Sources */,
+				DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */,
+				DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */,
+				DFB07C2718815EE800FF0EF7 /* Pic.m in Sources */,
+				DFB07C2618815EE800FF0EF7 /* Character.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFAED119186309B40039D17B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFAED12B186309B40039D17B /* PlayerProgressTrackerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DFAED123186309B40039D17B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFAED0FB186309B40039D17B /* PlayerProgressTracker */;
+			targetProxy = DFAED122186309B40039D17B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DFAED108186309B40039D17B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFAED109186309B40039D17B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DFAED111186309B40039D17B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFAED112186309B40039D17B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DFAED127186309B40039D17B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFAED128186309B40039D17B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DFAED12C186309B40039D17B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		DFAED12D186309B40039D17B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DFAED12F186309B40039D17B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
+				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DFAED130186309B40039D17B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
+				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DFAED132186309B40039D17B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PlayerProgressTracker.app/PlayerProgressTracker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PlayerProgressTrackerTests/PlayerProgressTrackerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		DFAED133186309B40039D17B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PlayerProgressTracker.app/PlayerProgressTracker";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
+				INFOPLIST_FILE = "PlayerProgressTrackerTests/PlayerProgressTrackerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DFAED0F7186309B40039D17B /* Build configuration list for PBXProject "PlayerProgressTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFAED12C186309B40039D17B /* Debug */,
+				DFAED12D186309B40039D17B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFAED12E186309B40039D17B /* Build configuration list for PBXNativeTarget "PlayerProgressTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFAED12F186309B40039D17B /* Debug */,
+				DFAED130186309B40039D17B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFAED131186309B40039D17B /* Build configuration list for PBXNativeTarget "PlayerProgressTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFAED132186309B40039D17B /* Debug */,
+				DFAED133186309B40039D17B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DFAED13518630A540039D17B /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DFAED13618630A540039D17B /* Model.xcdatamodel */,
+			);
+			currentVersion = DFAED13618630A540039D17B /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DFAED0F4186309B40039D17B /* Project object */;
+}
