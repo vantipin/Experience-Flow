@@ -61,6 +61,36 @@
 
 
 -(NSArray *)allDefault
+{
+    NSArray *allDefaultSkills;
+    
+    allDefaultSkills = @[self.movement,
+                         self.weaponSkill,
+                         self.ballisticSkill,
+                         self.strenght,
+                         self.toughness,
+                         self.initiative,
+                         self.leadesShip,
+                         
+                         self.unarmed,
+                         self.ordinary,
+                         self.dagger,
+                         self.flail,
+                         self.greatWeapon,
+                         self.polearm,
+                         self.cavalry,
+                         self.fencing,
+                         self.staff,
+                         self.spear,
+                         
+                         self.athletics,
+                         self.stealth,
+                         self.resilience,
+                         self.discipline,
+                         self.perception];
+    
+    return allDefaultSkills;
+}
 
 #pragma mark -
 #pragma mark basic skills
