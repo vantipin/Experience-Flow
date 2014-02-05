@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 WierdMasks. All rights reserved.
 //
 
-#import "warhammerDefaultSkillSetManager.h"
+#import "WarhammerDefaultSkillSetManager.h"
 
-@implementation warhammerDefaultSkillSetManager
+static WarhammerDefaultSkillSetManager *instance = nil;
+
+@implementation WarhammerDefaultSkillSetManager
 
 //basic
 @synthesize movement = _movement;
@@ -60,7 +62,21 @@
  */
 
 
--(NSArray *)allDefault
++ (WarhammerDefaultSkillSetManager *)sharedInstance {
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        
+        if (!instance) {
+            instance = [[WarhammerDefaultSkillSetManager alloc] init];
+            //atexit(deallocSingleton);
+        }
+    });
+    
+    return instance;
+}
+
+-(NSArray *)allSystemDefaultSkillTemplates
 {
     NSArray *allDefaultSkills;
     
@@ -91,6 +107,22 @@
     
     return allDefaultSkills;
 }
+
+-(NSArray *)allCharacterDefaultSkillTemplates
+{
+    NSArray *allCharacterSkills;
+    
+    allCharacterSkills = @[self.movement,
+                           self.weaponSkill,
+                           self.ballisticSkill,
+                           self.strenght,
+                           self.toughness,
+                           self.initiative,
+                           self.leadesShip];
+    
+    return allCharacterSkills;
+}
+
 
 #pragma mark -
 #pragma mark basic skills

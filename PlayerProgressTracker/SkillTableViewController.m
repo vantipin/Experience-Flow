@@ -7,6 +7,7 @@
 //
 
 #import "SkillTableViewController.h"
+#import "SkillTemplate.h"
 
 @interface SkillTableViewController ()
 @property (nonatomic) NSMutableArray *skillsDataSource;
@@ -90,6 +91,16 @@
     self = [super init];
     if (self) {
         self.characterId = characterId;
+    }
+    return self;
+}
+
+-(id)initWithCharacter:(Character *)character
+{
+    self = [super init];
+    if (self) {
+        self.character = character;
+        self.characterId = character.characterId;
     }
     return self;
 }

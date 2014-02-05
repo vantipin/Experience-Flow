@@ -42,10 +42,17 @@
                   withSkillLvL:(short)skillLvL
                 withBasicSkill:(Skill *)basicSkill
            withCurrentXpPoints:(float)curentPoints
-                  withPlayerId:(NSString *)playerId
-                   withContext:(NSManagedObjectContext *)context;
+                   withContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
+
++(NSArray *)newSetOfCoreSkillsWithContext:(NSManagedObjectContext *)context;
 
 //update
++(Skill *)addSolidLvls:(int)levels
+         toSkillWithId:(NSString *)skillId
+           withContext:(NSManagedObjectContext *)context;
++(Skill *)removeSolidLvls:(int)levels
+            toSkillWithId:(NSString *)skillId
+              withContext:(NSManagedObjectContext *)context;
 +(Skill *)addXpPoints:(float)xpPoints
         toSkillWithId:(NSString *)skillId
           withContext:(NSManagedObjectContext *)context;

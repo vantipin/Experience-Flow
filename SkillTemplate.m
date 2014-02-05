@@ -10,7 +10,9 @@
 #import "Skill.h"
 #import "SkillTemplate.h"
 #import "Pic.h"
+#import "WarhammerDefaultSkillSetManager.h"
 
+static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 
 @implementation SkillTemplate
 
@@ -23,7 +25,6 @@
 @dynamic basicSkillTemplate;
 @dynamic subSkillsTemplate;
 @dynamic icon;
-
 
 +(SkillTemplate *)newSkilTemplateWithUniqName:(NSString *)name
                               withDescription:(NSString *)skillDescription
@@ -62,7 +63,8 @@
         }
         
         [SkillTemplate saveContext:context];
-        
+    
+        NSLog(@"Created template with name: %@",name);
         return skillTemplate;
     }
     
@@ -116,12 +118,64 @@
 
 +(NSArray *)fetchAllSkillTemplatesWithContext:(NSManagedObjectContext *)context
 {
+    BOOL needDefaultSkillsChecking = [[NSUserDefaults standardUserDefaults] boolForKey:needDefaultSkillsCheckKey];
+    if (needDefaultSkillsChecking)
+    {
+        [SkillTemplate checkDefaultSkillsAndCreateIfMissingWithContext:context];
+    }
     return [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:nil withContext:context];
 }
 
++(SkillTemplate *)newSkillTemplateWithTemplate:(NSDictionary *)templateDictionary withContext:(NSManagedObjectContext *)context
+{
+    SkillTemplate *skillTemplate;
+    
+    if (templateDictionary && ([templateDictionary isKindOfClass:[NSDictionary class]] || [templateDictionary isKindOfClass:[NSMutableDictionary class]]))
+    {
+        /*
+         @{@"name": @"",
+         @"skillDescription": @"",
+         @"thisBasicBarrier": @"",
+         @"thisSkillProgression": @"",
+         @"basicSkillGrowthGoes": @"",
+         @"basicSkill": @"",
+         @"icon": @""};
+         */
+        
+        NSString *name = [templateDictionary valueForKey:@"name"];
+        NSString *skillDescription = [templateDictionary valueForKey:@"skillDescription"];
+        UIImage *icon = [UIImage imageNamed:[templateDictionary valueForKey:@"icon"]];
+        int basicBarrier = [[templateDictionary valueForKey:@"thisBasicBarrier"] intValue];
+        float skillProgression = [[templateDictionary valueForKey:@"thisSkillProgression"] floatValue];
+        int basicSkillGrowthGoes = [[templateDictionary valueForKey:@"basicSkillGrowthGoes"] intValue];
+        
+        NSDictionary *basicSkillTemplateDictionary = [templateDictionary valueForKey:@"basicSkill"];
+        SkillTemplate *basicSkillTemplate = [SkillTemplate newSkillTemplateWithTemplate:basicSkillTemplateDictionary withContext:context];
+        
+        skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:name withDescription:skillDescription withSkillIcon:icon withBasicXpBarrier:basicBarrier withSkillProgression:skillProgression withBasicSkillGrowthGoes:basicSkillGrowthGoes withParentSkillTemplate:basicSkillTemplate withContext:context];
+    }
+
+    return skillTemplate;
+}
+
++(void)checkDefaultSkillsAndCreateIfMissingWithContext:(NSManagedObjectContext *)context
+{
+    WarhammerDefaultSkillSetManager *defaultSkills = [WarhammerDefaultSkillSetManager sharedInstance];
+    NSArray *allDefaultSkills = [defaultSkills allSystemDefaultSkillTemplates];
+    for (NSDictionary *template in allDefaultSkills)
+    {
+        NSString *name = [template valueForKey:@"name"];
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",name] withContext:context];
+        if (existingSkillsTemplateWithThisName && existingSkillsTemplateWithThisName.count!=0)
+        {
+            [SkillTemplate newSkillTemplateWithTemplate:template withContext:context];
+        }
+    }
+}
 
 +(BOOL)deleteSkillTemplateWithName:(NSString *)skillTemplateName withContext:(NSManagedObjectContext *)context
 {
+    [[NSUserDefaults standardUserDefaults] setBool:true forKey:needDefaultSkillsCheckKey];
     return [SkillTemplate clearEntityForNameWithObjName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",skillTemplateName] withGivenContext:context];
 }
 

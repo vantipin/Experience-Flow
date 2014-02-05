@@ -127,7 +127,7 @@
     [self.statView.w  setText:[NSString stringWithFormat:@"%i",statSet.w]];
     [self.statView.ld setText:[NSString stringWithFormat:@"%i",statSet.ld]];
     
-    int Hp = [warhammerDefaultSkillSetManager countHpWithStatSet:statSet];
+    int Hp = [WarhammerDefaultSkillSetManager countHpWithStatSet:statSet];
     [self.statView.currentHp setText:[NSString stringWithFormat:@"%i",Hp]];
     [self.statView.maxHp     setText:[NSString stringWithFormat:@"%i",Hp]];
 }

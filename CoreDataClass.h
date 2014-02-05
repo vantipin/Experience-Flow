@@ -13,7 +13,7 @@
 
 + (NSArray *)fetchRequestForObjectName:(NSString *)objName withPredicate:(NSPredicate *)predicate withContext:(NSManagedObjectContext *)context;
 + (BOOL)clearEntityForNameWithObjName:(NSString *)name withPredicate:(NSPredicate *)predicate withGivenContext:(NSManagedObjectContext *)context;
-+ (void)saveContext:(NSManagedObjectContext *)context;
++ (BOOL)saveContext:(NSManagedObjectContext *)context;
 
 +(NSString *)standartDateFormat:(NSDate *)date;
 @end

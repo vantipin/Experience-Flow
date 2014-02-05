@@ -40,6 +40,11 @@
                       withSkillSet:(NSSet *)skillSet
                        withContext:(NSManagedObjectContext *)context;
 
+//methodes for smart creating new character
++(Character *)newEmptyCharacterWithContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
++(NSString *)newIdFromName:(NSString *)name;
++(BOOL)saveCharacter:(Character *)character withContext:(NSManagedObjectContext *)context;
+
 //update
 +(Character *)addNewSkill:(Skill *)skill
         toCharacterWithId:(NSString *)characterId

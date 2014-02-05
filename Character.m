@@ -32,7 +32,7 @@
 {
     if (name&&skillSet) //character cannot be created without name or skills
     {
-        NSString *characterId = [NSString base64StringFromData:[name dataUsingEncoding:NSUTF16StringEncoding] length:10];
+        NSString *characterId = [Character newIdFromName:name];
         
         NSArray *existingCharacterWithId = [Character fetchCharacterWithId:characterId withContext:context];
         if (existingCharacterWithId && existingCharacterWithId.count!=0)
@@ -47,24 +47,66 @@
         {
             character.icon = [Pic addPicWithImage:icon];
         }
+        
         [character addSkillSet:skillSet];
         
-        character.dateCreated = [CoreDataClass standartDateFormat:[NSDate date]];
-        character.dateModifed = [NSDate date];
-        
-        
-        //add default characterContion obj
-        CharacterConditionAttributes *characterCondition = [NSEntityDescription insertNewObjectForEntityForName:@"CharacterConditionAttributes" inManagedObjectContext:context];
-        characterCondition.character = character;
-        character.characterCondition = characterCondition;
-        
-        
-        [CoreDataClass saveContext:context];
+        [Character saveCharacter:character withContext:context];
         
         return character;
     }
     
     return  nil;
+}
+
++(Character *)newEmptyCharacterWithContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context
+{
+    Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:context];
+    
+    NSArray *basicSkills = [Skill newSetOfCoreSkillsWithContext:context];
+    for (Skill *coreSkill in basicSkills)
+    {
+        [character addSkillSetObject:coreSkill];
+    }
+    
+    return character;
+}
+
++(NSString *)newIdFromName:(NSString *)name
+{
+    return [NSString base64StringFromData:[name dataUsingEncoding:NSUTF16StringEncoding] length:10];
+}
+
+
++(BOOL)saveCharacter:(Character *)character withContext:(NSManagedObjectContext *)context
+{
+    BOOL success = false;
+    
+    if (character && character.name)
+    {
+        if (!character.characterId)
+        {
+            character.characterId = [Character newIdFromName:character.name];
+        }
+        
+        if (!character.characterCondition)
+        {
+            //add default characterContion obj
+            CharacterConditionAttributes *characterCondition = [NSEntityDescription insertNewObjectForEntityForName:@"CharacterConditionAttributes" inManagedObjectContext:context];
+            characterCondition.character = character;
+            character.characterCondition = characterCondition;
+        }
+        
+        if (!character.dateCreated)
+        {
+            character.dateCreated = [CoreDataClass standartDateFormat:[NSDate date]];
+        }
+        
+        character.dateModifed = [NSDate date];
+        
+        success = [CoreDataClass saveContext:context];
+        
+    }
+    return success;
 }
 
 +(Character *)addNewSkill:(Skill *)skill
@@ -103,7 +145,7 @@
             
             if (!(existingBasicSkills && existingBasicSkills.count!=0)) //if not exist
             {
-                Skill *newParentSkill = [Skill newSkillWithTemplate:skill.skillTemplate.basicSkillTemplate withSkillLvL:0 withBasicSkill:nil withCurrentXpPoints:0 withPlayerId:character.characterId withContext:context];
+                Skill *newParentSkill = [Skill newSkillWithTemplate:skill.skillTemplate.basicSkillTemplate withSkillLvL:0 withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:context];
                 [Character addNewSkill:newParentSkill toCharacterWithId:character.characterId withContext:context];
             }
             skill.basicSkill = [existingBasicSkills lastObject];

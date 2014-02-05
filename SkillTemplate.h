@@ -6,11 +6,6 @@
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//TODO precreated skill templates with help of "warhammerDefaultSkillSetManager.h"
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "CoreDataClass.h"
@@ -50,6 +45,8 @@
                      withBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
                       withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
                                   withContext:(NSManagedObjectContext *)context;
+
++(SkillTemplate *)newSkillTemplateWithTemplate:(NSDictionary *)templateDictionary withContext:(NSManagedObjectContext *)context;
 
 +(SkillTemplate *)editSkillTemplateWithName:(NSString *)name
                          withNewDescription:(NSString *)skillDescription

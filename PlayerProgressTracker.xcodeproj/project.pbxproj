@@ -47,7 +47,8 @@
 		DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */; };
 		DFC3B9B718884ABD0026C0A4 /* CustomXpRaisingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */; };
 		DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */; };
-		DFC88CAC186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC88CAB186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m */; };
+		DFC886A618A2F19100955B04 /* RRFactorial.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC886A418A2F19100955B04 /* RRFactorial.m */; };
+		DFC88CAC186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC88CAB186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,8 +131,10 @@
 		DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomXpRaisingButton.m; sourceTree = "<group>"; };
 		DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTableViewController.h; sourceTree = "<group>"; };
 		DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTableViewController.m; sourceTree = "<group>"; };
-		DFC88CAA186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = warhammerDefaultSkillSetManager.h; sourceTree = "<group>"; };
-		DFC88CAB186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = warhammerDefaultSkillSetManager.m; sourceTree = "<group>"; };
+		DFC886A418A2F19100955B04 /* RRFactorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRFactorial.m; sourceTree = "<group>"; };
+		DFC886A518A2F19100955B04 /* RRFactorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRFactorial.h; sourceTree = "<group>"; };
+		DFC88CAA186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarhammerDefaultSkillSetManager.h; sourceTree = "<group>"; };
+		DFC88CAB186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarhammerDefaultSkillSetManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,17 +210,10 @@
 		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DFC886A318A2C74A00955B04 /* SubControllers */,
 				DFB07BFC187EFA1700FF0EF7 /* Resourses */,
-				DF24B1291874B75900B57855 /* ColorConstants.h */,
 				DF24B1251871ECA400B57855 /* View classes */,
-				DFAED13E186333000039D17B /* ViewControllerWithCoreDataMethods.h */,
-				DFAED13F186333000039D17B /* ViewControllerWithCoreDataMethods.m */,
-				DFAED1601864D4C10039D17B /* DropDownViewController.h */,
-				DFAED1611864D4C10039D17B /* DropDownViewController.m */,
-				DFB07C05187F0AEE00FF0EF7 /* StatSetDropDown.h */,
-				DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */,
-				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
-				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
+				DF24B1291874B75900B57855 /* ColorConstants.h */,
 				DFAED10E186309B40039D17B /* AppDelegate.h */,
 				DFAED10F186309B40039D17B /* AppDelegate.m */,
 				DFAED111186309B40039D17B /* Main.storyboard */,
@@ -265,10 +261,12 @@
 		DFAED13418630A350039D17B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DFC886A518A2F19100955B04 /* RRFactorial.h */,
+				DFC886A418A2F19100955B04 /* RRFactorial.m */,
 				DFAED145186334500039D17B /* HashBuilder */,
 				DFAED141186333140039D17B /* CoreData */,
-				DFC88CAA186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.h */,
-				DFC88CAB186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m */,
+				DFC88CAA186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.h */,
+				DFC88CAB186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m */,
 				DFAED13B1863329B0039D17B /* AppSettings.h */,
 				DFAED13C1863329B0039D17B /* AppSettings.m */,
 			);
@@ -321,6 +319,21 @@
 				DFB07C00187EFA2400FF0EF7 /* noImage@2x.png */,
 			);
 			name = Resourses;
+			sourceTree = "<group>";
+		};
+		DFC886A318A2C74A00955B04 /* SubControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
+				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
+				DFAED13E186333000039D17B /* ViewControllerWithCoreDataMethods.h */,
+				DFAED13F186333000039D17B /* ViewControllerWithCoreDataMethods.m */,
+				DFAED1601864D4C10039D17B /* DropDownViewController.h */,
+				DFAED1611864D4C10039D17B /* DropDownViewController.m */,
+				DFB07C05187F0AEE00FF0EF7 /* StatSetDropDown.h */,
+				DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */,
+			);
+			name = SubControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,7 +443,7 @@
 				DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */,
 				DF24B1341877377900B57855 /* StatView.m in Sources */,
 				DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */,
-				DFC88CAC186B0EA6007E4D90 /* warhammerDefaultSkillSetManager.m in Sources */,
+				DFC88CAC186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m in Sources */,
 				DF2A96D818982CBD00A6EB45 /* Skill.m in Sources */,
 				DFAED116186309B40039D17B /* PlayerListViewController.m in Sources */,
 				DF24B137187B684800B57855 /* StatSet.m in Sources */,
@@ -446,6 +459,7 @@
 				DFB07C07187F0AEE00FF0EF7 /* StatSetDropDown.m in Sources */,
 				DFAED1441863334D0039D17B /* NSStringAdditions.m in Sources */,
 				DFAED13A186331790039D17B /* CoreDataClass.m in Sources */,
+				DFC886A618A2F19100955B04 /* RRFactorial.m in Sources */,
 				DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */,
 				DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */,
 				DFB07C2718815EE800FF0EF7 /* Pic.m in Sources */,

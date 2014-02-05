@@ -30,6 +30,7 @@
 @property (nonatomic) UIColor *backgroundColor;
 
 -(id)initWithCharacterName:(NSString *)characterId;
+-(id)initWithCharacter:(Character *)character;
 
 
 @end

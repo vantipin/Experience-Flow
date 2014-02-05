@@ -13,7 +13,7 @@
 
 //TODO core data
 
-@interface warhammerDefaultSkillSetManager : NSObject
+@interface WarhammerDefaultSkillSetManager : NSObject
 
 @property (nonatomic) NSDictionary *movement;
 @property (nonatomic) NSDictionary *weaponSkill;    //sub WS
@@ -46,9 +46,13 @@
 @property (nonatomic) NSDictionary *discipline;
 @property (nonatomic) NSDictionary *perception;
 
++ (WarhammerDefaultSkillSetManager *)sharedInstance;
 
 +(int)countHpWithStatSet:(StatSet *)statSet;
 +(int)countHpWithCharacter:(Character *)character;
+
+-(NSArray *)allSystemDefaultSkillTemplates;
+-(NSArray *)allCharacterDefaultSkillTemplates;
 
 -(NSArray *)getStandartSkillSetExcludingCharacterSkills:(Character *)character;
 
