@@ -8,19 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomXpRaisingButton.h"
+#import "Skill.h"
 
-@interface SkillViewCell : UITableViewCell
+@interface SkillViewCell : UITableViewCell <UITextFieldDelegate>
 
-@property (nonatomic) IBOutlet UILabel *skillNameLabel;
-
-@property (nonatomic) IBOutlet UITextView *skillUsableLvlTextView;
-
+@property (nonatomic) IBOutlet UIButton *skillNameButton;
+@property (nonatomic) IBOutlet UITextField *skillUsableLvlTextField;
 @property (nonatomic) IBOutlet UIView *xpView;
 @property (nonatomic) IBOutlet CustomXpRaisingButton *xpRaisingBtn;
 @property (nonatomic) IBOutlet UILabel *currentXpLabel;
 @property (nonatomic) IBOutlet UILabel *maxXpLabel;
-
 @property (nonatomic) IBOutlet UIView *skillLvlView;
 @property (nonatomic) IBOutlet UILabel *unusableSkillLvlLabel;
+
+@property (nonatomic,strong) Skill *skill;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withSkill:(Skill *)skill forCreatingCharacter:(BOOL)willCreateCharacter;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withSkill:(Skill *)skill;
+- (void)initFields;
+
+-(IBAction)skillNameTaped:(id)sender;
 
 @end

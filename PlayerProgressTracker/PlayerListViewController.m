@@ -44,7 +44,7 @@
 -(void)updateDataSource
 {
     //CoreDataClass *coreData;
-    NSArray *characters = [CoreDataClass fetchRequestForObjectName:@"Character" withPredicate:nil withContext:self.managedObjectContext];
+    NSArray *characters = [Character fetchFinishedCharacterWithContext:self.managedObjectContext];
     [self.dataSource removeAllObjects];
     [self.dataSource addObjectsFromArray:characters];
     

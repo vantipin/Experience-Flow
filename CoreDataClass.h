@@ -15,5 +15,5 @@
 + (BOOL)clearEntityForNameWithObjName:(NSString *)name withPredicate:(NSPredicate *)predicate withGivenContext:(NSManagedObjectContext *)context;
 + (BOOL)saveContext:(NSManagedObjectContext *)context;
 
-+(NSString *)standartDateFormat:(NSDate *)date;
++ (NSString *)standartDateFormat:(NSTimeInterval)date;
 @end

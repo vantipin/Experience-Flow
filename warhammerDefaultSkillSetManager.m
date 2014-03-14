@@ -21,6 +21,9 @@ static WarhammerDefaultSkillSetManager *instance = nil;
 @synthesize initiative = _initiative;
 @synthesize leadesShip = _leadesShip;
 
+@synthesize wounds = _wounds;
+@synthesize attacks = _attacks;
+
 //sub WS
 @synthesize unarmed = _unarmed;
 @synthesize ordinary = _ordinary;
@@ -87,6 +90,8 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                          self.toughness,
                          self.initiative,
                          self.leadesShip,
+                         self.wounds,
+                         self.attacks,
                          
                          self.unarmed,
                          self.ordinary,
@@ -202,6 +207,28 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                         @"thisSkillProgression": @"2"};
     }
     return _leadesShip;
+}
+
+-(NSDictionary *)wounds
+{
+    if (!_wounds){
+        _wounds = @{@"name": @"W",
+                        @"skillDescription": @"Wounds. Basic value.",
+                        @"thisBasicBarrier": @"99999",
+                        @"thisSkillProgression": @"0"};
+    }
+    return _wounds;
+}
+
+-(NSDictionary *)attacks
+{
+    if (!_attacks){
+        _attacks = @{@"name": @"A",
+                    @"skillDescription": @"Attacks. Basic value.",
+                    @"thisBasicBarrier": @"99999",
+                    @"thisSkillProgression": @"0"};
+    }
+    return _attacks;
 }
 
 #pragma mark -

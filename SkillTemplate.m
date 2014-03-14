@@ -61,8 +61,6 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
             skillTemplate.basicSkillTemplate = basicSkillTemplate;
             skillTemplate.basicSkillGrowthGoes = basicSkillGrowthGoes;
         }
-        
-        [SkillTemplate saveContext:context];
     
         NSLog(@"Created template with name: %@",name);
         return skillTemplate;
@@ -105,8 +103,6 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
                 skillTemplate.basicSkillTemplate = basicSkillTemplate;
                 skillTemplate.basicSkillGrowthGoes = basicSkillGrowthGoes;
             }
-            
-            [SkillTemplate saveContext:context];
             
             return skillTemplate;
         }

@@ -91,22 +91,31 @@
         {
             Skill *skill = [skillArray lastObject];
             
-            
-            for (int i = 0; i < levels; i++)
+            //For basic skill
+            if (skill.basicSkill)
             {
-                //xp needed to gain next lvl
-                int nextLvlXpWithoutBasicSkill = skill.thisLvl * skill.skillTemplate.thisSkillProgression + skill.skillTemplate.thisBasicBarrier;
-                BOOL hasValidBasicSkill = (skill.skillTemplate.basicSkillGrowthGoes !=0 && skill.basicSkill);
-                int nextLvlXp = hasValidBasicSkill ? nextLvlXpWithoutBasicSkill * skill.skillTemplate.basicSkillGrowthGoes : nextLvlXpWithoutBasicSkill;
+                int totalXpPoints = 0;
                 
-                [Skill addXpPoints:nextLvlXp toSkillWithId:skillId  withContext:context];
+                for (int i = skill.thisLvl; i <= levels + skill.thisLvl; i++)
+                {
+                    totalXpPoints += i * skill.skillTemplate.thisSkillProgression + skill.skillTemplate.thisBasicBarrier;
+                }
+                
+                totalXpPoints += totalXpPoints/skill.skillTemplate.basicSkillGrowthGoes - skill.thisLvlCurrentProgress;
+                
+                [Skill addXpPoints:totalXpPoints toSkillWithId:skill.skillId withContext:context];
             }
-            [Skill saveContext:context];
+            else
+            {
+                skill.thisLvl = skill.thisLvl + levels;
+            }
             return skill;
         }
     }
     return nil;
 }
+
+
 
 +(Skill *)removeSolidLvls:(int)levels
             toSkillWithId:(NSString *)skillId
@@ -129,7 +138,6 @@
                 
                 [Skill removeXpPoints:thisLvlXp fromSkillWithId:skillId withContext:context];
             }
-            [Skill saveContext:context];
             return skill;
         }
     }
@@ -168,7 +176,6 @@
             
             skill = [Skill calculateAddingXpPointsToSkill:skill withContext:context];
             skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
-            [Skill saveContext:context];
             return skill;
         }
     }
@@ -231,7 +238,6 @@
             
             skill = [Skill calculateRemovingXpPointsFromSkill:skill withContext:context];
             skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
-            [Skill saveContext:context];
             return skill;
         }
     }
@@ -281,7 +287,6 @@
             Skill *skill = [skillArray lastObject];
             skill.skillTemplate.name = name;
             skill.skillTemplate.skillDescription=description;
-            [Skill saveContext:context];
             return skill;
         }
     }
@@ -307,7 +312,6 @@ withGrowthBlockWithBasicBarrier:(int)xpBarrier
                 skill.thisLvlCurrentProgress = currentPoints;
             }
             skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
-            [Skill saveContext:context];
             return skill;
         }
     }

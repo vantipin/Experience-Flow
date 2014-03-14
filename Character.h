@@ -2,8 +2,8 @@
 //  Character.h
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 23.12.13.
-//  Copyright (c) 2013 WierdMasks. All rights reserved.
+//  Created by Vlad Antipin on 20.02.14.
+//  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,17 +11,18 @@
 #import "CharacterConditionAttributes.h"
 #import "CoreDataClass.h"
 
-@class Pic, Skill ,CharacterConditionAttributes;
+@class CharacterConditionAttributes, Pic, Skill;
 
 @interface Character : CoreDataClass
 
-@property (nonatomic, retain) NSString * dateCreated;
-@property (nonatomic, retain) NSDate * dateModifed;
+@property (nonatomic) BOOL characterFinished;
 @property (nonatomic, retain) NSString * characterId;
+@property (nonatomic, retain) NSString * dateCreated;
+@property (nonatomic) NSTimeInterval dateModifed;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) CharacterConditionAttributes *characterCondition;
 @property (nonatomic, retain) Pic *icon;
 @property (nonatomic, retain) NSSet *skillSet;
-@property (nonatomic, retain) CharacterConditionAttributes *characterCondition;
 @end
 
 @interface Character (CoreDataGeneratedAccessors)
@@ -57,9 +58,10 @@
 
 //fetch
 +(NSArray *)fetchCharacterWithId:(NSString *)characterId withContext:(NSManagedObjectContext *)context;
++(NSArray *)fetchFinishedCharacterWithContext:(NSManagedObjectContext *)context;
++(NSArray *)fetchUnfinishedCharacterWithContext:(NSManagedObjectContext *)context;
 
 //delete
 +(BOOL)deleteCharacterWithId:(NSString *)characterId withContext:(NSManagedObjectContext *)context;
-
 
 @end

@@ -74,11 +74,11 @@
 }
 
 
-+ (NSString *)standartDateFormat:(NSDate *)date
++ (NSString *)standartDateFormat:(NSTimeInterval)date
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"dd.MM.YYYY hh:mm"];
-    NSString *dateString = [dateFormatter stringFromDate:date];
+    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    //[dateFormatter setDateFormat:@"dd.MM.YYYY hh:mm"];
+    NSString *dateString = [NSString stringWithFormat:@"%f",date];//[dateFormatter stringFromDate:date];
     
     return dateString;
 }

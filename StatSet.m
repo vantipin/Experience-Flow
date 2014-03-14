@@ -39,9 +39,6 @@
         statSet.a = A;
         statSet.w = W;
         statSet.ld = LD;
-        
-        [StatSet saveContext:context];
-    
     }
     return statSet;
 }

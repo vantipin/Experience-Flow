@@ -8,10 +8,15 @@
 
 #import "SkillTableViewController.h"
 #import "SkillTemplate.h"
+#import "ColorConstants.h"
+#import "ViewControllerWithCoreDataMethods.h"
+#import "SkillViewCell.h"
+#import "Character.h"
+#import "Skill.h"
+#import "SkillViewCell.h"
 
 @interface SkillTableViewController ()
 @property (nonatomic) NSMutableArray *skillsDataSource;
-@property (nonatomic) Character *character;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) UIButton *addSkillButton;
 
@@ -19,7 +24,6 @@
 
 @implementation SkillTableViewController
 
-@synthesize characterId = _characterId;
 @synthesize skillsDataSource = _skillsDataSource;
 @synthesize character = _character;
 @synthesize addSkillButton = _addSkillButton;
@@ -59,7 +63,7 @@
     {
         if (self.character)
         {
-            _skillsDataSource = [NSMutableArray arrayWithArray:[self.character.skillSet allObjects]]; //copy character skills
+            _skillsDataSource = [NSMutableArray arrayWithArray:[self.character.skillSet allObjects]];
         }
         else
         {
@@ -69,38 +73,11 @@
     return _skillsDataSource;
 }
 
--(Character *)character
-{
-    if (_character)
-    {
-        if (self.characterId)
-        {
-            NSArray *characterArray = [Character fetchCharacterWithId:self.characterId withContext:self.managedObjectContext];
-            if (characterArray.count!=0&&characterArray)
-            {
-                _character = [characterArray lastObject];
-            }
-        }
-    }
-    
-    return _character;
-}
-
-- (id)initWithCharacterName:(NSString *)characterId
-{
-    self = [super init];
-    if (self) {
-        self.characterId = characterId;
-    }
-    return self;
-}
-
 -(id)initWithCharacter:(Character *)character
 {
     self = [super init];
     if (self) {
         self.character = character;
-        self.characterId = character.characterId;
     }
     return self;
 }
@@ -124,6 +101,9 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,22 +114,37 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 0;
+}*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.skillsDataSource.count + 1; //there is always add skill btn
+    return self.skillsDataSource.count;// + 1; //there is always add skill btn
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"SkillViewCell";
+    SkillViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    // Configure the cell...
+    Skill *currentSkill = self.skillsDataSource[indexPath.row];
+    
+    if (!cell)
+    {
+        cell = [[SkillViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier withSkill:currentSkill];
+    }
+    else
+    {
+        cell.skill = currentSkill;
+        [cell initFields];
+    }
     
     return cell;
 }
@@ -157,7 +152,7 @@
 
 - (void)addNewSkill
 {
-    
+    NSLog(@"add newSkill btn pressed");
 }
 /*
 // Override to support conditional editing of the table view.

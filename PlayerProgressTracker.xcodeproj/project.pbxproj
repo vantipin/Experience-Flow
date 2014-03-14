@@ -14,6 +14,8 @@
 		DF24B137187B684800B57855 /* StatSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B136187B684800B57855 /* StatSet.m */; };
 		DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */; };
 		DF2A96D818982CBD00A6EB45 /* Skill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2A96D718982CBD00A6EB45 /* Skill.m */; };
+		DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6E927B18D33F18000967F5 /* SkillViewCell.xib */; };
+		DF78AEC818B66C6C009DB90B /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = DF78AEC718B66C6C009DB90B /* Character.m */; };
 		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
 		DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED101186309B40039D17B /* CoreGraphics.framework */; };
 		DFAED104186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
@@ -42,7 +44,6 @@
 		DFB07C1618815C9C00FF0EF7 /* CharacterConditionAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1518815C9C00FF0EF7 /* CharacterConditionAttributes.m */; };
 		DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */; };
 		DFB07C1F18815C9C00FF0EF7 /* WeaponRanged.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1E18815C9C00FF0EF7 /* WeaponRanged.m */; };
-		DFB07C2618815EE800FF0EF7 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C2118815EE800FF0EF7 /* Character.m */; };
 		DFB07C2718815EE800FF0EF7 /* Pic.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C2318815EE800FF0EF7 /* Pic.m */; };
 		DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */; };
 		DFC3B9B718884ABD0026C0A4 /* CustomXpRaisingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */; };
@@ -77,6 +78,9 @@
 		DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTemplate.m; sourceTree = "<group>"; };
 		DF2A96D618982CBD00A6EB45 /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
 		DF2A96D718982CBD00A6EB45 /* Skill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skill.m; sourceTree = "<group>"; };
+		DF6E927B18D33F18000967F5 /* SkillViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SkillViewCell.xib; path = Views/SkillViewCell.xib; sourceTree = "<group>"; };
+		DF78AEC618B66C6C009DB90B /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		DF78AEC718B66C6C009DB90B /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* PlayerProgressTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerProgressTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -121,8 +125,6 @@
 		DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeaponMelee.m; sourceTree = "<group>"; };
 		DFB07C1D18815C9C00FF0EF7 /* WeaponRanged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeaponRanged.h; sourceTree = "<group>"; };
 		DFB07C1E18815C9C00FF0EF7 /* WeaponRanged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeaponRanged.m; sourceTree = "<group>"; };
-		DFB07C2018815EE800FF0EF7 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
-		DFB07C2118815EE800FF0EF7 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		DFB07C2218815EE800FF0EF7 /* Pic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pic.h; sourceTree = "<group>"; };
 		DFB07C2318815EE800FF0EF7 /* Pic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pic.m; sourceTree = "<group>"; };
 		DFC3B9B2188849E00026C0A4 /* SkillViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillViewCell.h; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				DF24B1331877377900B57855 /* StatView.m */,
 				DFC3B9B2188849E00026C0A4 /* SkillViewCell.h */,
 				DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */,
+				DF6E927B18D33F18000967F5 /* SkillViewCell.xib */,
 				DFC3B9B518884ABD0026C0A4 /* CustomXpRaisingButton.h */,
 				DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */,
 			);
@@ -283,8 +286,6 @@
 				DF24B136187B684800B57855 /* StatSet.m */,
 				DFB07C2218815EE800FF0EF7 /* Pic.h */,
 				DFB07C2318815EE800FF0EF7 /* Pic.m */,
-				DFB07C2018815EE800FF0EF7 /* Character.h */,
-				DFB07C2118815EE800FF0EF7 /* Character.m */,
 				DFB07C1418815C9C00FF0EF7 /* CharacterConditionAttributes.h */,
 				DFB07C1518815C9C00FF0EF7 /* CharacterConditionAttributes.m */,
 				DFB07C0818815C9B00FF0EF7 /* Item.h */,
@@ -299,6 +300,8 @@
 				DF2A96D718982CBD00A6EB45 /* Skill.m */,
 				DF2A96D318982CBD00A6EB45 /* SkillTemplate.h */,
 				DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */,
+				DF78AEC618B66C6C009DB90B /* Character.h */,
+				DF78AEC718B66C6C009DB90B /* Character.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
 				DFB07C04187EFA2400FF0EF7 /* noImage@2x.png in Resources */,
 				DFB07C03187EFA2400FF0EF7 /* noImage.png in Resources */,
+				DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
 			);
@@ -449,6 +453,7 @@
 				DF24B137187B684800B57855 /* StatSet.m in Sources */,
 				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
 				DFAED13D1863329B0039D17B /* AppSettings.m in Sources */,
+				DF78AEC818B66C6C009DB90B /* Character.m in Sources */,
 				DFAED10C186309B40039D17B /* main.m in Sources */,
 				DFC3B9B718884ABD0026C0A4 /* CustomXpRaisingButton.m in Sources */,
 				DFAED140186333000039D17B /* ViewControllerWithCoreDataMethods.m in Sources */,
@@ -463,7 +468,6 @@
 				DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */,
 				DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */,
 				DFB07C2718815EE800FF0EF7 /* Pic.m in Sources */,
-				DFB07C2618815EE800FF0EF7 /* Character.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

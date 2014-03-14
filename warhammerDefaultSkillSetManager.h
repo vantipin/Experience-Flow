@@ -21,7 +21,10 @@
 @property (nonatomic) NSDictionary *strenght;       //-> athletics,Intimidate
 @property (nonatomic) NSDictionary *toughness;      //-> Resilience
 @property (nonatomic) NSDictionary *initiative;     //-> perception, Stealth
-@property (nonatomic) NSDictionary *leadesShip;     //-> discipline                
+@property (nonatomic) NSDictionary *leadesShip;     //-> discipline
+
+@property (nonatomic) NSDictionary *wounds;         //basic ungrowing value
+@property (nonatomic) NSDictionary *attacks;        //basic ungrowing value
 
 
 //sub WS

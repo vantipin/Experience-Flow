@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ColorConstants.h"
-#import "ViewControllerWithCoreDataMethods.h"
-#import "SkillViewCell.h"
-#import "Character.h"
-#import "Skill.h"
+
+@class Character;
 
 @protocol SkillTableViewControllerDelegate <NSObject>
 
@@ -22,14 +19,12 @@
 
 @interface SkillTableViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic) NSString *characterId;
-
 @property (nonatomic) CGFloat tableWith;
 @property (nonatomic) CGFloat tableHeight;
+@property (nonatomic) Character *character;
 
 @property (nonatomic) UIColor *backgroundColor;
 
--(id)initWithCharacterName:(NSString *)characterId;
 -(id)initWithCharacter:(Character *)character;
 
 

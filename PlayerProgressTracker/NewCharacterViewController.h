@@ -28,6 +28,4 @@
 
 @property (nonatomic) IBOutlet UIView *additionalSkillContainerView;
 
-
-
 @end

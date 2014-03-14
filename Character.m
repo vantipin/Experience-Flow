@@ -2,11 +2,12 @@
 //  Character.m
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 23.12.13.
-//  Copyright (c) 2013 WierdMasks. All rights reserved.
+//  Created by Vlad Antipin on 20.02.14.
+//  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
 #import "Character.h"
+#import "CharacterConditionAttributes.h"
 #import "Pic.h"
 #import "Skill.h"
 #import "SkillTemplate.h"
@@ -14,14 +15,14 @@
 
 @implementation Character
 
+@dynamic characterFinished;
+@dynamic characterId;
 @dynamic dateCreated;
 @dynamic dateModifed;
-@dynamic characterId;
 @dynamic name;
+@dynamic characterCondition;
 @dynamic icon;
 @dynamic skillSet;
-@dynamic characterCondition;
-
 
 //create/update
 
@@ -40,7 +41,7 @@
             return [existingCharacterWithId lastObject];
         }
         
-        Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:context];
+        Character *character = [Character newEmptyCharacterWithContextToHoldItUntilContextSaved:context];
         
         character.characterId = characterId;
         if (icon)
@@ -98,12 +99,12 @@
         
         if (!character.dateCreated)
         {
-            character.dateCreated = [CoreDataClass standartDateFormat:[NSDate date]];
+            character.dateCreated = [CoreDataClass standartDateFormat:[[NSDate date] timeIntervalSince1970]];
         }
         
-        character.dateModifed = [NSDate date];
+        character.dateModifed = [[NSDate date] timeIntervalSince1970];
         
-        success = [CoreDataClass saveContext:context];
+        success = true;
         
     }
     return success;
@@ -115,7 +116,7 @@
 {
     if (skill)
     {
-
+        
         NSArray *characterArray = [Character fetchCharacterWithId:characterId withContext:context];
         if (characterArray.count!=0&&characterArray)
         {
@@ -152,8 +153,7 @@
         }
         
         [character addSkillSetObject:skill];
-        character.dateModifed = [NSDate date];
-        [Character saveContext:context];
+        character.dateModifed = [[NSDate date] timeIntervalSince1970];
         return character;
     }
     return nil;
@@ -165,7 +165,7 @@
                        withSkillSet:(NSSet *)skillSet          //can be nil
                         withContext:(NSManagedObjectContext *)context
 {
-
+    
     NSArray *characterArray = [Character fetchCharacterWithId:characterId withContext:context];
     if (characterArray.count!=0&&characterArray)
     {
@@ -184,8 +184,7 @@
         [character addSkillSet:skillSet];
     }
     
-    character.dateModifed = [NSDate date];
-    [Character saveContext:context];
+    character.dateModifed = [[NSDate date] timeIntervalSince1970];
     return character;
 }
 
@@ -193,14 +192,31 @@
 +(NSArray *)fetchCharacterWithId:(NSString *)characterId withContext:(NSManagedObjectContext *)context
 {
     return   [Character fetchRequestForObjectName:@"Character"
-                               withPredicate:[NSPredicate predicateWithFormat:@"characterId = %@",characterId]
-                                 withContext:context];
+                                    withPredicate:[NSPredicate predicateWithFormat:@"characterId = %@",characterId]
+                                      withContext:context];
+}
+
++(NSArray *)fetchFinishedCharacterWithContext:(NSManagedObjectContext *)context
+{
+    NSArray *validCharacters = [Character fetchRequestForObjectName:@"Character"
+                                                      withPredicate:[NSPredicate predicateWithFormat:@"characterFinished = %i",1]
+                                                        withContext:context];
+    return validCharacters;
+}
+
++(NSArray *)fetchUnfinishedCharacterWithContext:(NSManagedObjectContext *)context
+{
+    return [Character fetchRequestForObjectName:@"Character"
+                           withPredicate:[NSPredicate predicateWithFormat:@"characterFinished = %i",0]
+                             withContext:context];
 }
 
 //delete
 +(BOOL)deleteCharacterWithId:(NSString *)characterId withContext:(NSManagedObjectContext *)context
 {
+    //TODO check if all depended entities being deleted
     return [Character clearEntityForNameWithObjName:@"Character" withPredicate:[NSPredicate predicateWithFormat:@"characterId = %@",characterId] withGivenContext:context];
+    
 }
 
 

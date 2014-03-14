@@ -8,11 +8,20 @@
 
 #import "NewCharacterViewController.h"
 
+#import "Character.h"
+#import "Skill.h"
+#import "SkillTemplate.h"
+#import "SkillTableViewController.h"
+
+
 @interface NewCharacterViewController ()
 
-@property (nonatomic) StatSetDropDown *raceSetDropDown;
-@property (nonatomic) NSMutableArray *raceNames;
-@property (nonatomic) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+@property (nonatomic,strong) Character *character;
+
+@property (nonatomic,strong) StatSetDropDown *raceSetDropDown;
+@property (nonatomic,strong) NSMutableArray *raceNames;
+@property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+@property (nonatomic,strong) SkillTableViewController *skillTableView;
 
 @end
 
@@ -22,6 +31,68 @@
 @synthesize raceSetDropDown = _raceSetDropDown;
 @synthesize raceNames = _raceNames;
 @synthesize alertTextField = _alertTextField;
+@synthesize skillTableView = _skillTableView;
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    //[self allFontsToConsole];
+    //[StatSet deleteStatSetWithName:@"" withContext:self.managedObjectContext];
+    
+    //self.view.autoresizesSubviews = YES;
+    //self.view.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin);
+    
+    self.raceSetDropDown.delegateDropDown = self;
+    self.raceSetDropDown.delegateDeleteStatSet = self;
+    [self.view addSubview:self.raceSetDropDown.view];
+    
+    
+    self.statView.settable = true;
+    self.statView.executer = self;
+    [self.statView initFields];
+    
+    self.name.delegate = self;
+    self.name.text = self.character.name;
+    
+    self.skillTableView.character = self.character;
+    
+    [self updateRaceButtonWithName:[self.raceNames lastObject]];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(Character *)character
+{
+    if (!_character)
+    {
+        NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.managedObjectContext];
+        if (arrayOfUnfinishedCharacters.count != 0)
+        {
+            _character = [arrayOfUnfinishedCharacters lastObject];
+        }
+        else
+        {
+            _character = [Character newEmptyCharacterWithContextToHoldItUntilContextSaved:self.managedObjectContext];
+        }
+    }
+    
+    return _character;
+}
 
 -(NSMutableArray *)raceNames
 {
@@ -45,36 +116,16 @@
     return _raceSetDropDown;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(SkillTableViewController *)skillTableView
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if (!_skillTableView)
+    {
+        _skillTableView = [SkillTableViewController new];
+        [self.additionalSkillContainerView addSubview:_skillTableView.view];
+        self.additionalSkillContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
     
-    //[StatSet deleteStatSetWithName:@"" withContext:self.managedObjectContext];
-    
-    //self.view.autoresizesSubviews = YES;
-    //self.view.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin);
-    
-    self.raceSetDropDown.delegateDropDown = self;
-    self.raceSetDropDown.delegateDeleteStatSet = self;
-    [self.view addSubview:self.raceSetDropDown.view];
-    
-
-    self.statView.settable = true;
-    self.statView.executer = self;
-    [self.statView initFields];
-    
-    self.name.delegate = self;
-    
-    [self updateRaceButtonWithName:[self.raceNames lastObject]];
+    return _skillTableView;
 }
 
 -(void)refreshRaceNames
@@ -105,15 +156,13 @@
         StatSet *statSet = [StatSet fetchStatSetWithName:currentTitle withContext:self.managedObjectContext];
         [self setStatSetWithSet:statSet];
         [self dissmissSavingNewRace];
+        
+        [self synchronizeCharacterCoreSkillsWithStatSet:statSet];
     }
     [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 -(void)setStatSetWithSet:(StatSet *)statSet
 {
@@ -175,6 +224,8 @@
                                                withLD:[self.statView.ld.text intValue]
                                           withContext:self.managedObjectContext];
     
+    [StatSet saveContext:self.managedObjectContext];
+    
     if (statset)
     {
         //set current name to recently saved one
@@ -183,6 +234,62 @@
     }
 }
 
+-(BOOL)synchronizeCharacterCoreSkillsWithStatSet:(StatSet *)statSet
+{
+    if (statSet)
+    {
+        
+        WarhammerDefaultSkillSetManager *skillManager = [WarhammerDefaultSkillSetManager sharedInstance];
+        
+        
+        //TODO not ADD but SET
+        for (Skill *skill in [self.character.skillSet allObjects])
+        {
+            if ([skill.skillTemplate.name isEqualToString:[skillManager.movement valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.m;
+            }
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.weaponSkill valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.ws;//[Skill addSolidLvls:statSet.ws toSkillWithId:skill.skillId withContext:self.managedObjectContext];
+            }
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.ballisticSkill valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.bs;
+            }
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.strenght valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.s;
+            }
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.toughness valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.t;
+            }
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.initiative valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.i;
+            }
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.attacks valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.a;
+            }
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.leadesShip valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.ld;
+            }
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.wounds valueForKey:@"name"]])
+            {
+                skill.thisLvl = statSet.w;
+            }
+        }
+        
+        [self.skillTableView.tableView reloadData];
+        
+        return true;
+    }
+    
+    return false;
+}
 
 -(IBAction)saveStatSetBtn:(id)sender
 {
@@ -276,9 +383,14 @@
 {
     if (textField)
     {
-        if (textField.text.length == 0)
+        if (textField == self.name)
         {
-            if (textField!=self.name)
+            self.character.name = textField.text;
+            [Character saveContext:self.managedObjectContext];
+        }
+        else
+        {
+            if (textField.text.length == 0)
             {
                 return false;
             }
