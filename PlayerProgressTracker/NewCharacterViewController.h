@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ViewControllerWithCoreDataMethods.h"
+#import "CoreDataViewController.h"
 #import "warhammerDefaultSkillSetManager.h"
 #import "ColorConstants.h"
 #import "StatSetDropDown.h"
 #import "StatView.h"
 #import "StatSet.h"
+#import "SkillTableViewController.h"
 
-@interface NewCharacterViewController : ViewControllerWithCoreDataMethods <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol>
+@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,SkillTableViewControllerDelegate>
 
 @property (nonatomic) IBOutlet UIButton *raceBtn;
 @property (nonatomic) IBOutlet UILabel  *raceLabel;

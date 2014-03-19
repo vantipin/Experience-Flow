@@ -46,8 +46,6 @@
                       withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
                                   withContext:(NSManagedObjectContext *)context;
 
-+(SkillTemplate *)newSkillTemplateWithTemplate:(NSDictionary *)templateDictionary withContext:(NSManagedObjectContext *)context;
-
 +(SkillTemplate *)editSkillTemplateWithName:(NSString *)name
                          withNewDescription:(NSString *)skillDescription
                            withNewSkillIcon:(UIImage *)icon

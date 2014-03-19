@@ -62,7 +62,9 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
             skillTemplate.basicSkillGrowthGoes = basicSkillGrowthGoes;
         }
     
-        NSLog(@"Created template with name: %@",name);
+        NSLog(@"Created new template with name: %@",name);
+        [SkillTemplate saveContext:context];
+        
         return skillTemplate;
     }
     
@@ -103,6 +105,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
                 skillTemplate.basicSkillTemplate = basicSkillTemplate;
                 skillTemplate.basicSkillGrowthGoes = basicSkillGrowthGoes;
             }
+            [SkillTemplate saveContext:context];
             
             return skillTemplate;
         }
@@ -122,51 +125,11 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
     return [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:nil withContext:context];
 }
 
-+(SkillTemplate *)newSkillTemplateWithTemplate:(NSDictionary *)templateDictionary withContext:(NSManagedObjectContext *)context
-{
-    SkillTemplate *skillTemplate;
-    
-    if (templateDictionary && ([templateDictionary isKindOfClass:[NSDictionary class]] || [templateDictionary isKindOfClass:[NSMutableDictionary class]]))
-    {
-        /*
-         @{@"name": @"",
-         @"skillDescription": @"",
-         @"thisBasicBarrier": @"",
-         @"thisSkillProgression": @"",
-         @"basicSkillGrowthGoes": @"",
-         @"basicSkill": @"",
-         @"icon": @""};
-         */
-        
-        NSString *name = [templateDictionary valueForKey:@"name"];
-        NSString *skillDescription = [templateDictionary valueForKey:@"skillDescription"];
-        UIImage *icon = [UIImage imageNamed:[templateDictionary valueForKey:@"icon"]];
-        int basicBarrier = [[templateDictionary valueForKey:@"thisBasicBarrier"] intValue];
-        float skillProgression = [[templateDictionary valueForKey:@"thisSkillProgression"] floatValue];
-        int basicSkillGrowthGoes = [[templateDictionary valueForKey:@"basicSkillGrowthGoes"] intValue];
-        
-        NSDictionary *basicSkillTemplateDictionary = [templateDictionary valueForKey:@"basicSkill"];
-        SkillTemplate *basicSkillTemplate = [SkillTemplate newSkillTemplateWithTemplate:basicSkillTemplateDictionary withContext:context];
-        
-        skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:name withDescription:skillDescription withSkillIcon:icon withBasicXpBarrier:basicBarrier withSkillProgression:skillProgression withBasicSkillGrowthGoes:basicSkillGrowthGoes withParentSkillTemplate:basicSkillTemplate withContext:context];
-    }
-
-    return skillTemplate;
-}
 
 +(void)checkDefaultSkillsAndCreateIfMissingWithContext:(NSManagedObjectContext *)context
 {
     WarhammerDefaultSkillSetManager *defaultSkills = [WarhammerDefaultSkillSetManager sharedInstance];
-    NSArray *allDefaultSkills = [defaultSkills allSystemDefaultSkillTemplates];
-    for (NSDictionary *template in allDefaultSkills)
-    {
-        NSString *name = [template valueForKey:@"name"];
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",name] withContext:context];
-        if (existingSkillsTemplateWithThisName && existingSkillsTemplateWithThisName.count!=0)
-        {
-            [SkillTemplate newSkillTemplateWithTemplate:template withContext:context];
-        }
-    }
+    [defaultSkills allSystemDefaultSkillTemplates]; //should create all default skill templates if missed
 }
 
 +(BOOL)deleteSkillTemplateWithName:(NSString *)skillTemplateName withContext:(NSManagedObjectContext *)context

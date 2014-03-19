@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ViewControllerWithCoreDataMethods.h"
+#import "CoreDataViewController.h"
 #import "PlayerCellView.h"
 #import "ColorConstants.h"
 
@@ -16,7 +16,7 @@
 
 #import "warhammerDefaultSkillSetManager.h"
 
-@interface PlayerListViewController : ViewControllerWithCoreDataMethods <UITableViewDataSource>
+@interface PlayerListViewController : CoreDataViewController <UITableViewDataSource>
 
 @property (nonatomic) IBOutlet UITableView *characterTableView;
 //@property (nonatomic) IBOutlet UITableViewCell *cell;

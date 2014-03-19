@@ -8,6 +8,7 @@
 
 #import "SkillViewCell.h"
 #import "SkillTemplate.h"
+#import "SkillTableViewController.h"
 
 @interface SkillViewCell()
 
@@ -73,11 +74,12 @@
         self.skillUsableLvlTextField.delegate = self;
         self.skillUsableLvlTextField.enabled = true;
     }
+    self.xpRaisingBtn.delegate = self;
     
-    [self initFields];
+    [self reloadFields];
 }
 
--(void)initFields
+-(void)reloadFields
 {
     NSString *skillTitle = self.skill.basicSkill ? [NSString stringWithFormat:@"%@(%@)",self.skill.skillTemplate.name,self.skill.basicSkill.skillTemplate.name] : self.skill.skillTemplate.name;
     [self.skillNameButton setTitle:skillTitle forState:UIControlStateNormal];
@@ -143,14 +145,14 @@
 }
 
 
--(void)raiseXpPoints
+-(void)raiseTapped
 {
-    
+    [self.skillCellDelegate raiseXpForSkill:self.skill updateCellOnIndexPath:self.indexPath withXpPoints:1];
 }
 
--(void)lowerXpPoints
+-(void)lowerTapped
 {
-    
+    [self.skillCellDelegate lowerXpForSkill:self.skill updateCellOnIndexPath:self.indexPath withXpPoints:1];
 }
 
 //Only when creating new character

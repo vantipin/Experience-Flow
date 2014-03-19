@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 #import "Character.h"
-#import "ViewControllerWithCoreDataMethods.h"
+#import "Skill.h"
+#import "CoreDataViewController.h"
 
 @implementation AppDelegate
 
@@ -37,15 +38,23 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    NSManagedObjectModel *model = [ViewControllerWithCoreDataMethods newManagedObjectModel];
-    NSPersistentStoreCoordinator *storage = [ViewControllerWithCoreDataMethods newPersistentStoreCoordinatorWithModel:model];
-    NSManagedObjectContext *context = [ViewControllerWithCoreDataMethods newManagedObjectContextWithPersistantStoreCoordinator:storage];
+    NSManagedObjectContext *context = [[CoreDataViewController sharedInstance] managedObjectContext];
     
     NSArray *unfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:context];
-    for (Character *unfinishedCharacter in unfinishedCharacters)
-    {
-        [Character deleteCharacterWithId:unfinishedCharacter.characterId withContext:context];
+    for (Character *unfinishedOne in unfinishedCharacters){
+        if (unfinishedOne == [unfinishedCharacters lastObject]){
+            break;
+        }
+        [Character deleteCharacterWithId:unfinishedOne.characterId withContext:context];
+        NSLog(@"Cleaning up unsaved characters.");
     }
+    
+    NSArray *skillsWithoutPlayer = [Skill fetchRequestForObjectName:@"Skill" withPredicate:[NSPredicate predicateWithFormat:@"player = %@",nil] withContext:context];
+    for (Skill *emptySkill in skillsWithoutPlayer) {
+        [Skill deleteSkillWithId:emptySkill.skillId withContext:context];
+        NSLog(@"Cleaning up skills without characters attached to them.");
+    }
+
     
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }

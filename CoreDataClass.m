@@ -49,6 +49,10 @@
                 
             }
         }
+        else
+        {
+            NSLog(@"Context hasn't changed");
+        }
     }
     
     return true;

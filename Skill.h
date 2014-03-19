@@ -15,15 +15,16 @@
 @interface Skill : CoreDataClass
 
 @property (nonatomic) NSTimeInterval dateXpAdded;
-@property (nonatomic, retain) NSString * skillId;
 @property (nonatomic) int16_t thisLvl;
 @property (nonatomic) float thisLvlCurrentProgress;
 @property (nonatomic, retain) Skill *basicSkill;
+@property (nonatomic, retain) NSString *skillId;
 
 @property (nonatomic, retain) WeaponMelee *items;
 @property (nonatomic, retain) Character *player;
 @property (nonatomic, retain) NSSet *subSkills;
 @property (nonatomic, retain) SkillTemplate *skillTemplate;
+
 @end
 
 @interface Skill (CoreDataGeneratedAccessors)
@@ -47,24 +48,18 @@
 +(NSArray *)newSetOfCoreSkillsWithContext:(NSManagedObjectContext *)context;
 
 //update
-+(Skill *)addSolidLvls:(int)levels
-         toSkillWithId:(NSString *)skillId
+-(Skill *)addSolidLvls:(int)levels
            withContext:(NSManagedObjectContext *)context;
-+(Skill *)removeSolidLvls:(int)levels
-            toSkillWithId:(NSString *)skillId
+-(Skill *)removeSolidLvls:(int)levels
               withContext:(NSManagedObjectContext *)context;
-+(Skill *)addXpPoints:(float)xpPoints
-        toSkillWithId:(NSString *)skillId
+-(Skill *)addXpPoints:(float)xpPoints
           withContext:(NSManagedObjectContext *)context;
-+(Skill *)removeXpPoints:(float)xpPoints
-         fromSkillWithId:(NSString *)skillId
+-(Skill *)removeXpPoints:(float)xpPoints
              withContext:(NSManagedObjectContext *)context;
-+(Skill *)editSkillMetaWithId:(NSString *)skillId
-                     withName:(NSString *)name
+-(Skill *)editSkillMetaWithName:(NSString *)name
                withDesription:(NSString *)description
                   withContext:(NSManagedObjectContext *)context;
-+(Skill *)editSkillWithId:(NSString *)skillId
-withGrowthBlockWithBasicBarrier:(int)xpBarrier
+-(Skill *)editSkillWithBasicBarrier:(int)xpBarrier
         withLvLProgration:(float)lvlProgration
       withCurrentXpPoints:(float)currentPoints
               withContext:(NSManagedObjectContext *)context;

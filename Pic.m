@@ -12,11 +12,11 @@
 
 @implementation Pic
 
-@dynamic picId;
 @dynamic pathToDisk;
 @dynamic characters;
 @dynamic skills;
 @dynamic items;
+@dynamic picId;
 
 //[UIImage imageWithContentsOfFile:url]
 

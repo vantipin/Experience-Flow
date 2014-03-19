@@ -2,28 +2,34 @@
 //  CharacterConditionAttributes.m
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 11.01.14.
+//  Created by Vlad Antipin on 19.03.14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
 #import "CharacterConditionAttributes.h"
 #import "Character.h"
 #import "Insanity.h"
+#import "WeaponMelee.h"
+#import "WeaponRanged.h"
 
 
 @implementation CharacterConditionAttributes
 
-@dynamic armorSave;
-@dynamic freeArmorSave;
 @dynamic adrenalinPoints;
-@dynamic stress;
+@dynamic armorSave;
+@dynamic favor;
+@dynamic freeArmorSave;
 @dynamic modifierA;
 @dynamic modifierHp;
 @dynamic mutationPoints;
-@dynamic favor;
+@dynamic stress;
 @dynamic character;
 @dynamic insanaties;
 @dynamic weaponMelee;
 @dynamic weaponRanged;
+@dynamic currentMeleeSkills;
+@dynamic currentRangeSkills;
+@dynamic currentMagicSkills;
+@dynamic currentPietySkills;
 
 @end

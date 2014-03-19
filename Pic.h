@@ -14,11 +14,11 @@
 
 @interface Pic : CoreDataClass
 
-@property (nonatomic, retain) NSString * picId;
 @property (nonatomic, retain) NSString * pathToDisk;
 @property (nonatomic, retain) NSSet *characters;
 @property (nonatomic, retain) NSSet *skills;
 @property (nonatomic, retain) NSSet *items;
+@property (nonatomic, retain) NSString *picId;
 @end
 
 @interface Pic (CoreDataGeneratedAccessors)

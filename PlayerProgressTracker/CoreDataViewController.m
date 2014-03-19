@@ -6,13 +6,18 @@
 //  Copyright (c) 2013 VolcanoSoft. All rights reserved.
 //
 
-#import "ViewControllerWithCoreDataMethods.h"
+#import "CoreDataViewController.h"
 
-@interface ViewControllerWithCoreDataMethods ()
+static CoreDataViewController *instance = nil;
 
+@interface CoreDataViewController ()
++ (NSManagedObjectContext *)newManagedObjectContextWithPersistantStoreCoordinator:(NSPersistentStoreCoordinator *)persistentCoordinator;
++ (NSManagedObjectModel *)newManagedObjectModel;
++ (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithModel:(NSManagedObjectModel *)managedObjectModel;
++ (NSURL *)applicationDocumentsDirectory;
 @end
 
-@implementation ViewControllerWithCoreDataMethods
+@implementation CoreDataViewController
 
 @synthesize managedObjectContext = thisManagedObjectContext;
 @synthesize managedObjectModel = thisManagedObjectModel;
@@ -39,13 +44,27 @@
     // Dispose of any resources that can be recreated.
 }
 
++ (CoreDataViewController *)sharedInstance {
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        
+        if (!instance) {
+            instance = [[CoreDataViewController alloc] init];
+            //atexit(deallocSingleton);
+        }
+    });
+    
+    return instance;
+}
+
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext
 {
     if (thisManagedObjectContext == nil)
     {
-        thisManagedObjectContext = [ViewControllerWithCoreDataMethods newManagedObjectContextWithPersistantStoreCoordinator:self.persistentStoreCoordinator];
+        thisManagedObjectContext = [CoreDataViewController newManagedObjectContextWithPersistantStoreCoordinator:self.persistentStoreCoordinator];
     }
     
     return thisManagedObjectContext;
@@ -57,7 +76,7 @@
 {
     if (thisManagedObjectModel == nil)
     {
-        thisManagedObjectModel = [ViewControllerWithCoreDataMethods newManagedObjectModel];
+        thisManagedObjectModel = [CoreDataViewController newManagedObjectModel];
     }
     return thisManagedObjectModel;
 }
@@ -67,7 +86,7 @@
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
     if (thisPersistentStoreCoordinator == nil) {
-        thisPersistentStoreCoordinator = [ViewControllerWithCoreDataMethods newPersistentStoreCoordinatorWithModel:[self managedObjectModel]];
+        thisPersistentStoreCoordinator = [CoreDataViewController newPersistentStoreCoordinatorWithModel:[self managedObjectModel]];
     }
     
     return thisPersistentStoreCoordinator;
@@ -98,7 +117,7 @@
 {
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     
-    NSURL *storeURL = [[ViewControllerWithCoreDataMethods applicationDocumentsDirectory] URLByAppendingPathComponent:@"Model.sqlite"];
+    NSURL *storeURL = [[CoreDataViewController applicationDocumentsDirectory] URLByAppendingPathComponent:@"Model.sqlite"];
     
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];

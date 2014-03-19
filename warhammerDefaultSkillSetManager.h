@@ -15,49 +15,47 @@
 
 @interface WarhammerDefaultSkillSetManager : NSObject
 
-@property (nonatomic) NSDictionary *movement;
-@property (nonatomic) NSDictionary *weaponSkill;    //sub WS
-@property (nonatomic) NSDictionary *ballisticSkill; //sub BS
-@property (nonatomic) NSDictionary *strenght;       //-> athletics,Intimidate
-@property (nonatomic) NSDictionary *toughness;      //-> Resilience
-@property (nonatomic) NSDictionary *initiative;     //-> perception, Stealth
-@property (nonatomic) NSDictionary *leadesShip;     //-> discipline
+@property (nonatomic) SkillTemplate *movement;
+@property (nonatomic) SkillTemplate *weaponSkill;    //sub WS
+@property (nonatomic) SkillTemplate *ballisticSkill; //sub BS
+@property (nonatomic) SkillTemplate *strenght;       //-> athletics,Intimidate
+@property (nonatomic) SkillTemplate *toughness;      //-> Resilience
+@property (nonatomic) SkillTemplate *initiative;     //-> perception, Stealth
+@property (nonatomic) SkillTemplate *leadesShip;     //-> discipline
 
-@property (nonatomic) NSDictionary *wounds;         //basic ungrowing value
-@property (nonatomic) NSDictionary *attacks;        //basic ungrowing value
+@property (nonatomic) SkillTemplate *attacks;        //basic ungrowing value
 
 
 //sub WS
-@property (nonatomic) NSDictionary *unarmed;
-@property (nonatomic) NSDictionary *dagger;
-@property (nonatomic) NSDictionary *ordinary;
-@property (nonatomic) NSDictionary *flail;
-@property (nonatomic) NSDictionary *greatWeapon;
-@property (nonatomic) NSDictionary *polearm;
-@property (nonatomic) NSDictionary *cavalry;
-@property (nonatomic) NSDictionary *fencing;
-@property (nonatomic) NSDictionary *staff;
-@property (nonatomic) NSDictionary *spear;
+@property (nonatomic) SkillTemplate *unarmed;
+@property (nonatomic) SkillTemplate *dagger;
+@property (nonatomic) SkillTemplate *ordinary;
+@property (nonatomic) SkillTemplate *flail;
+@property (nonatomic) SkillTemplate *greatWeapon;
+@property (nonatomic) SkillTemplate *polearm;
+@property (nonatomic) SkillTemplate *cavalry;
+@property (nonatomic) SkillTemplate *fencing;
+@property (nonatomic) SkillTemplate *staff;
+@property (nonatomic) SkillTemplate *spear;
 
 
 
 
 //advanced
-@property (nonatomic) NSDictionary *athletics;
-@property (nonatomic) NSDictionary *stealth;
-@property (nonatomic) NSDictionary *resilience;
-@property (nonatomic) NSDictionary *discipline;
-@property (nonatomic) NSDictionary *perception;
+@property (nonatomic) SkillTemplate *athletics;
+@property (nonatomic) SkillTemplate *stealth;
+@property (nonatomic) SkillTemplate *resilience;
+@property (nonatomic) SkillTemplate *discipline;
+@property (nonatomic) SkillTemplate *perception;
 
 + (WarhammerDefaultSkillSetManager *)sharedInstance;
 
-+(int)countHpWithStatSet:(StatSet *)statSet;
-+(int)countHpWithCharacter:(Character *)character;
+-(int)countHpWithStatSet:(StatSet *)statSet;
+-(int)countHpWithCharacter:(Character *)character;
+-(Skill *)checkCoreSkillWithTemplate:(SkillTemplate *)skillName withCharacter:(Character *)character;
 
 -(NSArray *)allSystemDefaultSkillTemplates;
 -(NSArray *)allCharacterDefaultSkillTemplates;
-
--(NSArray *)getStandartSkillSetExcludingCharacterSkills:(Character *)character;
 
 //Intimidate (S) Basic skill.
 /*A character’s ability to cow, unnerve, or bully someone. Also covers the ability to convey a sense of dominance or superiority over others. Often carries the implied or over threat of physical violence. Can escalate a tense situation into hostility, or possibly cause a threat to back down if properly cowed.

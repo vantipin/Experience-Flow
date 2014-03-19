@@ -13,3 +13,4 @@ build
 xcuserdata
 
 *.orig
+\.DS_Store

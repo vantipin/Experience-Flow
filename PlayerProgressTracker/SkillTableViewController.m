@@ -9,7 +9,7 @@
 #import "SkillTableViewController.h"
 #import "SkillTemplate.h"
 #import "ColorConstants.h"
-#import "ViewControllerWithCoreDataMethods.h"
+#import "CoreDataViewController.h"
 #import "SkillViewCell.h"
 #import "Character.h"
 #import "Skill.h"
@@ -17,8 +17,8 @@
 
 @interface SkillTableViewController ()
 @property (nonatomic) NSMutableArray *skillsDataSource;
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) UIButton *addSkillButton;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -27,7 +27,6 @@
 @synthesize skillsDataSource = _skillsDataSource;
 @synthesize character = _character;
 @synthesize addSkillButton = _addSkillButton;
-
 @synthesize managedObjectContext = _managedObjectContext;
 
 -(UIButton *)addSkillButton
@@ -45,28 +44,13 @@
     return _addSkillButton;
 }
 
--(NSManagedObjectContext *)managedObjectContext
-{
-    if (!_managedObjectContext)
-    {
-        NSManagedObjectModel *model = [ViewControllerWithCoreDataMethods newManagedObjectModel];
-        NSPersistentStoreCoordinator *store = [ViewControllerWithCoreDataMethods newPersistentStoreCoordinatorWithModel:model];
-        _managedObjectContext = [ViewControllerWithCoreDataMethods newManagedObjectContextWithPersistantStoreCoordinator:store];
-    }
-    
-    return _managedObjectContext;
-}
-
 -(NSMutableArray *)skillsDataSource
 {
-    if (!_skillsDataSource)
-    {
-        if (self.character)
-        {
+    if (!_skillsDataSource){
+        if (self.character){
             _skillsDataSource = [NSMutableArray arrayWithArray:[self.character.skillSet allObjects]];
         }
-        else
-        {
+        else{
             _skillsDataSource = [NSMutableArray new];
         }
     }
@@ -89,6 +73,14 @@
         // Custom initialization
     }
     return self;
+}
+
+-(NSManagedObjectContext *)managedObjectContext
+{
+    if (!_managedObjectContext){
+        _managedObjectContext = [[CoreDataViewController sharedInstance] managedObjectContext];
+    }
+    return _managedObjectContext;
 }
 
 - (void)viewDidLoad
@@ -139,16 +131,51 @@
     if (!cell)
     {
         cell = [[SkillViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier withSkill:currentSkill];
+        cell.skillCellDelegate = self;
     }
-    else
-    {
-        cell.skill = currentSkill;
-        [cell initFields];
-    }
+    cell.skill = currentSkill;
+    cell.indexPath = indexPath;
+    [cell reloadFields];
+    
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+-(void)raiseXpForSkill:(Skill *)skill updateCellOnIndexPath:(NSIndexPath *)indexPath withXpPoints:(float)xpPoints
+{
+    [self changeXpPointsToSkill:skill updateCellOnIndexPath:indexPath withXpPoints:xpPoints didRaiseXp:true];
+}
+
+-(void)lowerXpForSkill:(Skill *)skill updateCellOnIndexPath:(NSIndexPath *)indexPath withXpPoints:(float)xpPoints
+{
+    [self changeXpPointsToSkill:skill updateCellOnIndexPath:indexPath withXpPoints:xpPoints didRaiseXp:false];
+}
+
+-(void)changeXpPointsToSkill:(Skill *)skill updateCellOnIndexPath:(NSIndexPath *)indexPath withXpPoints:(float)xpPoints didRaiseXp:(BOOL)didRaise
+{
+    int prevLvl = skill.thisLvl;
+    
+    if (didRaise){
+        [skill addXpPoints:xpPoints withContext:self.managedObjectContext];
+    }
+    else{
+        [skill removeXpPoints:xpPoints withContext:self.managedObjectContext];
+    }
+    SkillViewCell *cell = (SkillViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    [self.tableView beginUpdates];
+    [cell reloadFields];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+    if (prevLvl != skill.thisLvl)
+    {
+        [self.skillTableDelegate didUpdateCharacterSkills];
+    }
+}
 
 - (void)addNewSkill
 {

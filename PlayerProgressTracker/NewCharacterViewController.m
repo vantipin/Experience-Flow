@@ -17,11 +17,12 @@
 @interface NewCharacterViewController ()
 
 @property (nonatomic,strong) Character *character;
-
 @property (nonatomic,strong) StatSetDropDown *raceSetDropDown;
 @property (nonatomic,strong) NSMutableArray *raceNames;
 @property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 @property (nonatomic,strong) SkillTableViewController *skillTableView;
+@property (nonatomic) BOOL shouldRewriteSkillsLevels; //for cases when player tap race button;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -32,6 +33,7 @@
 @synthesize raceNames = _raceNames;
 @synthesize alertTextField = _alertTextField;
 @synthesize skillTableView = _skillTableView;
+@synthesize managedObjectContext = _managedObjectContext;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -52,6 +54,9 @@
     
     //self.view.autoresizesSubviews = YES;
     //self.view.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin);
+    self.shouldRewriteSkillsLevels = false;
+    self.skillTableView.character = self.character;
+    self.skillTableView.skillTableDelegate = self;
     
     self.raceSetDropDown.delegateDropDown = self;
     self.raceSetDropDown.delegateDeleteStatSet = self;
@@ -65,8 +70,6 @@
     self.name.delegate = self;
     self.name.text = self.character.name;
     
-    self.skillTableView.character = self.character;
-    
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
 }
 
@@ -76,19 +79,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(NSManagedObjectContext *)managedObjectContext
+{
+    if (!_managedObjectContext){
+        _managedObjectContext = [[CoreDataViewController sharedInstance] managedObjectContext];
+    }
+    return _managedObjectContext;
+}
+
 -(Character *)character
 {
-    if (!_character)
-    {
+    if (!_character){
         NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.managedObjectContext];
-        if (arrayOfUnfinishedCharacters.count != 0)
-        {
+        if (arrayOfUnfinishedCharacters.count != 0){
             _character = [arrayOfUnfinishedCharacters lastObject];
         }
-        else
-        {
-            _character = [Character newEmptyCharacterWithContextToHoldItUntilContextSaved:self.managedObjectContext];
+        else{
+            _character = [Character newEmptyCharacterWithContext:self.managedObjectContext];
         }
+    }
+    else{
+        [Character saveContext:self.managedObjectContext];
     }
     
     return _character;
@@ -96,8 +107,7 @@
 
 -(NSMutableArray *)raceNames
 {
-    if (!_raceNames)
-    {
+    if (!_raceNames){
         _raceNames = [NSMutableArray new];
     }
     return  _raceNames;
@@ -105,8 +115,7 @@
 
 -(StatSetDropDown *)raceSetDropDown
 {
-    if(!_raceSetDropDown)
-    {
+    if(!_raceSetDropDown){
         _raceSetDropDown = [[StatSetDropDown alloc] initWithArrayData:self.raceNames
                                                         cellHeight:30
                                                     widthTableView:self.raceBtn.frame.size.width
@@ -118,8 +127,7 @@
 
 -(SkillTableViewController *)skillTableView
 {
-    if (!_skillTableView)
-    {
+    if (!_skillTableView){
         _skillTableView = [SkillTableViewController new];
         [self.additionalSkillContainerView addSubview:_skillTableView.view];
         self.additionalSkillContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -132,8 +140,7 @@
 {
     [self.raceNames removeAllObjects];
     NSArray *arraySet = [NSMutableArray arrayWithArray:[StatSet fetchStatSetsWithContext:self.managedObjectContext]];
-    for (StatSet *set in arraySet)
-    {
+    for (StatSet *set in arraySet){
         [_raceNames addObject:set.name];
     }
 }
@@ -141,24 +148,23 @@
 {
     [self refreshRaceNames];
     
-    if (self.raceNames.count == 0)
+    if (self.raceNames.count == 0){
         //no set is available
-    {
         currentTitle = @"";
         [self prepareViewForSavingNewRace];
     }
-    else
-    {
-        if ([self.raceNames indexOfObject:currentTitle] == NSNotFound)
-        {
+    else{
+        if ([self.raceNames indexOfObject:currentTitle] == NSNotFound){
             currentTitle = [self.raceNames lastObject];
         }
         StatSet *statSet = [StatSet fetchStatSetWithName:currentTitle withContext:self.managedObjectContext];
-        [self setStatSetWithSet:statSet];
+        
         [self dissmissSavingNewRace];
         
         [self synchronizeCharacterCoreSkillsWithStatSet:statSet];
+        [self setStatSetWithSet:statSet];
     }
+    self.shouldRewriteSkillsLevels = false;
     [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
 }
 
@@ -176,15 +182,14 @@
     [self.statView.w  setText:[NSString stringWithFormat:@"%i",statSet.w]];
     [self.statView.ld setText:[NSString stringWithFormat:@"%i",statSet.ld]];
     
-    int Hp = [WarhammerDefaultSkillSetManager countHpWithStatSet:statSet];
+    int Hp = [[WarhammerDefaultSkillSetManager sharedInstance] countHpWithCharacter:self.character];//[[WarhammerDefaultSkillSetManager sharedInstance] countHpWithStatSet:statSet];
     [self.statView.currentHp setText:[NSString stringWithFormat:@"%i",Hp]];
     [self.statView.maxHp     setText:[NSString stringWithFormat:@"%i",Hp]];
 }
 
 -(void)prepareViewForSavingNewRace
 {
-    if (self.saveSet.alpha < 1)
-    {
+    if (self.saveSet.alpha < 1){
         self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x - 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
         
         [UIView animateWithDuration:0.3 animations:^{
@@ -197,14 +202,12 @@
 
 -(void)dissmissSavingNewRace
 {
-    if (self.saveSet.alpha == 1)
-    {
+    if (self.saveSet.alpha == 1){
         [UIView animateWithDuration:0.3 animations:^{
             self.saveSet.alpha = 0;
             self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x - 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
         } completion:^(BOOL success){
-            if (success)
-            {
+            if (success){
                 self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x + 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
             }
         }];
@@ -224,11 +227,10 @@
                                                withLD:[self.statView.ld.text intValue]
                                           withContext:self.managedObjectContext];
     
-    [StatSet saveContext:self.managedObjectContext];
-    
     if (statset)
     {
         //set current name to recently saved one
+        self.shouldRewriteSkillsLevels = true;
         [self updateRaceButtonWithName:nameString];
         [self dissmissSavingNewRace];
     }
@@ -240,46 +242,64 @@
     {
         
         WarhammerDefaultSkillSetManager *skillManager = [WarhammerDefaultSkillSetManager sharedInstance];
+        self.character.wounds = statSet.w;
         
-        
-        //TODO not ADD but SET
-        for (Skill *skill in [self.character.skillSet allObjects])
-        {
-            if ([skill.skillTemplate.name isEqualToString:[skillManager.movement valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.m;
+        for (Skill *skill in [self.character.skillSet allObjects]){
+            if ([skill.skillTemplate.name isEqualToString:[skillManager.movement valueForKey:@"name"]]){
+                if (self.shouldRewriteSkillsLevels){
+                    skill.thisLvl = statSet.m;
+                }
+                else{
+                    statSet.m = skill.thisLvl;
+                }
             }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.weaponSkill valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.ws;//[Skill addSolidLvls:statSet.ws toSkillWithId:skill.skillId withContext:self.managedObjectContext];
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.weaponSkill valueForKey:@"name"]]){
+                if (self.shouldRewriteSkillsLevels){
+                    skill.thisLvl = statSet.ws;
+                }
+                else{
+                    statSet.ws = skill.thisLvl;
+                }
             }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.ballisticSkill valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.bs;
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.ballisticSkill valueForKey:@"name"]]){
+                if (self.shouldRewriteSkillsLevels){
+                    skill.thisLvl = statSet.bs;
+                }
+                else{
+                    statSet.bs = skill.thisLvl;
+                }
             }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.strenght valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.s;
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.strenght valueForKey:@"name"]]){
+                if (self.shouldRewriteSkillsLevels){
+                    skill.thisLvl = statSet.s;
+                }
+                else{
+                    statSet.s = skill.thisLvl;
+                }
             }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.toughness valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.t;
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.toughness valueForKey:@"name"]]){
+                if (self.shouldRewriteSkillsLevels){
+                    skill.thisLvl = statSet.t;
+                }
+                else{
+                    statSet.t = skill.thisLvl;
+                }
             }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.initiative valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.i;
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.initiative valueForKey:@"name"]]){
+                if (self.shouldRewriteSkillsLevels){
+                    skill.thisLvl = statSet.i;
+                }
+                else{
+                    statSet.i = skill.thisLvl;
+                }
             }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.attacks valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.a;
-            }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.leadesShip valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.ld;
-            }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.wounds valueForKey:@"name"]])
-            {
-                skill.thisLvl = statSet.w;
+            else if ([skill.skillTemplate.name isEqualToString:[skillManager.leadesShip valueForKey:@"name"]]){
+                if (self.shouldRewriteSkillsLevels){
+                    skill.thisLvl = statSet.ld;
+                }
+                else{
+                    statSet.ld = skill.thisLvl;
+                }
             }
         }
         
@@ -324,6 +344,42 @@
     }
 }
 
+#pragma mark - 
+#pragma mark skill table delegate
+-(void)didUpdateCharacterSkills
+{
+    WarhammerDefaultSkillSetManager *skillManager = [WarhammerDefaultSkillSetManager sharedInstance];
+
+    for (Skill *skill in [self.character.skillSet allObjects]){
+        if ([skill.skillTemplate.name isEqualToString:skillManager.movement.name]){
+            [self.statView.m  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:skillManager.weaponSkill.name]){
+            [self.statView.ws  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:skillManager.ballisticSkill.name]){
+            [self.statView.bs  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:skillManager.strenght.name]){
+            [self.statView.s  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:skillManager.toughness.name]){
+            [self.statView.t  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:skillManager.initiative.name]){
+            [self.statView.i  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:skillManager.leadesShip.name]){
+            [self.statView.ld  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
+        }
+    }
+    
+    int Hp = [[WarhammerDefaultSkillSetManager sharedInstance] countHpWithCharacter:self.character];//[[WarhammerDefaultSkillSetManager sharedInstance] countHpWithStatSet:statSet];
+    [self.statView.currentHp setText:[NSString stringWithFormat:@"%i",Hp]];
+    [self.statView.maxHp     setText:[NSString stringWithFormat:@"%i",Hp]];
+    [self prepareViewForSavingNewRace];
+}
+
 #pragma mark -
 #pragma mark alert delegate
 
@@ -353,6 +409,7 @@
 -(void)dropDownCellSelected:(NSInteger)returnIndex
 {
     NSString *name = self.raceNames[returnIndex];
+    self.shouldRewriteSkillsLevels = true;;
     [self updateRaceButtonWithName:name];
 
 }

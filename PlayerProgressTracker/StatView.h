@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Character;
+
 @interface StatView : UIView
 
 @property (nonatomic) IBOutlet UITextField *m;
@@ -24,6 +26,9 @@
 @property (nonatomic) IBOutlet UILabel *currentHp;
 
 @property (nonatomic) IBOutlet UIView *statContainer;
+
+@property (nonatomic) Character *character;
+@property (nonatomic) NSManagedObjectContext *context;
 
 @property (nonatomic) BOOL settable;
 

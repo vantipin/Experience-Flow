@@ -16,13 +16,15 @@
 @interface Character : CoreDataClass
 
 @property (nonatomic) BOOL characterFinished;
-@property (nonatomic, retain) NSString * characterId;
+@property (nonatomic) int16_t wounds;
 @property (nonatomic, retain) NSString * dateCreated;
 @property (nonatomic) NSTimeInterval dateModifed;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) CharacterConditionAttributes *characterCondition;
 @property (nonatomic, retain) Pic *icon;
+@property (nonatomic, retain) NSString *characterId;
 @property (nonatomic, retain) NSSet *skillSet;
+
 @end
 
 @interface Character (CoreDataGeneratedAccessors)
@@ -42,8 +44,7 @@
                        withContext:(NSManagedObjectContext *)context;
 
 //methodes for smart creating new character
-+(Character *)newEmptyCharacterWithContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
-+(NSString *)newIdFromName:(NSString *)name;
++(Character *)newEmptyCharacterWithContext:(NSManagedObjectContext *)context;
 +(BOOL)saveCharacter:(Character *)character withContext:(NSManagedObjectContext *)context;
 
 //update

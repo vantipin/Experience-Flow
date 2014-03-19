@@ -1,14 +1,14 @@
 //
-//  CustomXpRaisingButton.m
+//  CustomXpRaisingBtnView.m
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 16.01.14.
+//  Created by Vlad Antipin on 15.03.14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
-#import "CustomXpRaisingButton.h"
+#import "CustomXpRaisingBtnView.h"
 
-@implementation CustomXpRaisingButton
+@implementation CustomXpRaisingBtnView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,5 +27,15 @@
     // Drawing code
 }
 */
+
+-(IBAction)raiseTap:(id)sender
+{
+    [self.delegate raiseTapped];
+}
+
+-(IBAction)lowerTap:(id)sender
+{
+    [self.delegate lowerTapped];
+}
 
 @end

@@ -14,7 +14,19 @@
 		DF24B137187B684800B57855 /* StatSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B136187B684800B57855 /* StatSet.m */; };
 		DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */; };
 		DF2A96D818982CBD00A6EB45 /* Skill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2A96D718982CBD00A6EB45 /* Skill.m */; };
+		DF4F934E18D9D5D300C6ED26 /* CharacterConditionAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F934D18D9D5D300C6ED26 /* CharacterConditionAttributes.m */; };
+		DF4F935118D9D5D400C6ED26 /* PietySkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935018D9D5D400C6ED26 /* PietySkill.m */; };
+		DF4F935418D9D5D400C6ED26 /* MeleeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */; };
+		DF4F935718D9D5D400C6ED26 /* RangeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935618D9D5D400C6ED26 /* RangeSkill.m */; };
+		DF4F935A18D9D5D400C6ED26 /* MagicSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935918D9D5D400C6ED26 /* MagicSkill.m */; };
 		DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6E927B18D33F18000967F5 /* SkillViewCell.xib */; };
+		DF6E927F18D43076000967F5 /* CustomXpRaisingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */; };
+		DF6E928E18D43946000967F5 /* lowerXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928A18D43946000967F5 /* lowerXp.png */; };
+		DF6E928F18D43946000967F5 /* lowerXp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928B18D43946000967F5 /* lowerXp@2x.png */; };
+		DF6E929018D43946000967F5 /* raiseXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928C18D43946000967F5 /* raiseXp.png */; };
+		DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928D18D43946000967F5 /* raiseXp@2x.png */; };
+		DF6E929418D4399B000967F5 /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E929218D4399B000967F5 /* noImage.png */; };
+		DF6E929518D4399B000967F5 /* noImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E929318D4399B000967F5 /* noImage@2x.png */; };
 		DF78AEC818B66C6C009DB90B /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = DF78AEC718B66C6C009DB90B /* Character.m */; };
 		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
 		DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED101186309B40039D17B /* CoreGraphics.framework */; };
@@ -33,22 +45,16 @@
 		DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13518630A540039D17B /* Model.xcdatamodeld */; };
 		DFAED13A186331790039D17B /* CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED139186331790039D17B /* CoreDataClass.m */; };
 		DFAED13D1863329B0039D17B /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13C1863329B0039D17B /* AppSettings.m */; };
-		DFAED140186333000039D17B /* ViewControllerWithCoreDataMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13F186333000039D17B /* ViewControllerWithCoreDataMethods.m */; };
-		DFAED1441863334D0039D17B /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED1431863334D0039D17B /* NSStringAdditions.m */; };
+		DFAED140186333000039D17B /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13F186333000039D17B /* CoreDataViewController.m */; };
 		DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED1611864D4C10039D17B /* DropDownViewController.m */; };
-		DFB07C03187EFA2400FF0EF7 /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB07BFF187EFA2400FF0EF7 /* noImage.png */; };
-		DFB07C04187EFA2400FF0EF7 /* noImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFB07C00187EFA2400FF0EF7 /* noImage@2x.png */; };
 		DFB07C07187F0AEE00FF0EF7 /* StatSetDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */; };
 		DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C0918815C9B00FF0EF7 /* Item.m */; };
 		DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1218815C9C00FF0EF7 /* Insanity.m */; };
-		DFB07C1618815C9C00FF0EF7 /* CharacterConditionAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1518815C9C00FF0EF7 /* CharacterConditionAttributes.m */; };
 		DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */; };
 		DFB07C1F18815C9C00FF0EF7 /* WeaponRanged.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1E18815C9C00FF0EF7 /* WeaponRanged.m */; };
 		DFB07C2718815EE800FF0EF7 /* Pic.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C2318815EE800FF0EF7 /* Pic.m */; };
 		DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */; };
-		DFC3B9B718884ABD0026C0A4 /* CustomXpRaisingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */; };
 		DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */; };
-		DFC886A618A2F19100955B04 /* RRFactorial.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC886A418A2F19100955B04 /* RRFactorial.m */; };
 		DFC88CAC186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC88CAB186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +84,25 @@
 		DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTemplate.m; sourceTree = "<group>"; };
 		DF2A96D618982CBD00A6EB45 /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
 		DF2A96D718982CBD00A6EB45 /* Skill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skill.m; sourceTree = "<group>"; };
+		DF4F934C18D9D5D300C6ED26 /* CharacterConditionAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterConditionAttributes.h; sourceTree = "<group>"; };
+		DF4F934D18D9D5D300C6ED26 /* CharacterConditionAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterConditionAttributes.m; sourceTree = "<group>"; };
+		DF4F934F18D9D5D400C6ED26 /* PietySkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PietySkill.h; sourceTree = "<group>"; };
+		DF4F935018D9D5D400C6ED26 /* PietySkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PietySkill.m; sourceTree = "<group>"; };
+		DF4F935218D9D5D400C6ED26 /* MeleeSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeleeSkill.h; sourceTree = "<group>"; };
+		DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeleeSkill.m; sourceTree = "<group>"; };
+		DF4F935518D9D5D400C6ED26 /* RangeSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeSkill.h; sourceTree = "<group>"; };
+		DF4F935618D9D5D400C6ED26 /* RangeSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSkill.m; sourceTree = "<group>"; };
+		DF4F935818D9D5D400C6ED26 /* MagicSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicSkill.h; sourceTree = "<group>"; };
+		DF4F935918D9D5D400C6ED26 /* MagicSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicSkill.m; sourceTree = "<group>"; };
 		DF6E927B18D33F18000967F5 /* SkillViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SkillViewCell.xib; path = Views/SkillViewCell.xib; sourceTree = "<group>"; };
+		DF6E927D18D43076000967F5 /* CustomXpRaisingBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomXpRaisingBtnView.h; sourceTree = "<group>"; };
+		DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomXpRaisingBtnView.m; sourceTree = "<group>"; };
+		DF6E928A18D43946000967F5 /* lowerXp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lowerXp.png; path = Images/lowerXp.png; sourceTree = SOURCE_ROOT; };
+		DF6E928B18D43946000967F5 /* lowerXp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lowerXp@2x.png"; path = "Images/lowerXp@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF6E928C18D43946000967F5 /* raiseXp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = raiseXp.png; path = Images/raiseXp.png; sourceTree = SOURCE_ROOT; };
+		DF6E928D18D43946000967F5 /* raiseXp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "raiseXp@2x.png"; path = "Images/raiseXp@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF6E929218D4399B000967F5 /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noImage.png; path = Images/noImage.png; sourceTree = SOURCE_ROOT; };
+		DF6E929318D4399B000967F5 /* noImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noImage@2x.png"; path = "Images/noImage@2x.png"; sourceTree = SOURCE_ROOT; };
 		DF78AEC618B66C6C009DB90B /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		DF78AEC718B66C6C009DB90B /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* PlayerProgressTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerProgressTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,22 +129,16 @@
 		DFAED139186331790039D17B /* CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataClass.m; sourceTree = "<group>"; };
 		DFAED13B1863329B0039D17B /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		DFAED13C1863329B0039D17B /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
-		DFAED13E186333000039D17B /* ViewControllerWithCoreDataMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerWithCoreDataMethods.h; sourceTree = "<group>"; };
-		DFAED13F186333000039D17B /* ViewControllerWithCoreDataMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerWithCoreDataMethods.m; sourceTree = "<group>"; };
-		DFAED1421863334D0039D17B /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
-		DFAED1431863334D0039D17B /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		DFAED13E186333000039D17B /* CoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataViewController.h; sourceTree = "<group>"; };
+		DFAED13F186333000039D17B /* CoreDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataViewController.m; sourceTree = "<group>"; };
 		DFAED1601864D4C10039D17B /* DropDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownViewController.h; sourceTree = "<group>"; };
 		DFAED1611864D4C10039D17B /* DropDownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownViewController.m; sourceTree = "<group>"; };
-		DFB07BFF187EFA2400FF0EF7 /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage.png; sourceTree = "<group>"; };
-		DFB07C00187EFA2400FF0EF7 /* noImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noImage@2x.png"; sourceTree = "<group>"; };
 		DFB07C05187F0AEE00FF0EF7 /* StatSetDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatSetDropDown.h; sourceTree = "<group>"; };
 		DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatSetDropDown.m; sourceTree = "<group>"; };
 		DFB07C0818815C9B00FF0EF7 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		DFB07C0918815C9B00FF0EF7 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		DFB07C1118815C9C00FF0EF7 /* Insanity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Insanity.h; sourceTree = "<group>"; };
 		DFB07C1218815C9C00FF0EF7 /* Insanity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Insanity.m; sourceTree = "<group>"; };
-		DFB07C1418815C9C00FF0EF7 /* CharacterConditionAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterConditionAttributes.h; sourceTree = "<group>"; };
-		DFB07C1518815C9C00FF0EF7 /* CharacterConditionAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterConditionAttributes.m; sourceTree = "<group>"; };
 		DFB07C1718815C9C00FF0EF7 /* WeaponMelee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeaponMelee.h; sourceTree = "<group>"; };
 		DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeaponMelee.m; sourceTree = "<group>"; };
 		DFB07C1D18815C9C00FF0EF7 /* WeaponRanged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeaponRanged.h; sourceTree = "<group>"; };
@@ -129,12 +147,8 @@
 		DFB07C2318815EE800FF0EF7 /* Pic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pic.m; sourceTree = "<group>"; };
 		DFC3B9B2188849E00026C0A4 /* SkillViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillViewCell.h; sourceTree = "<group>"; };
 		DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillViewCell.m; sourceTree = "<group>"; };
-		DFC3B9B518884ABD0026C0A4 /* CustomXpRaisingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomXpRaisingButton.h; sourceTree = "<group>"; };
-		DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomXpRaisingButton.m; sourceTree = "<group>"; };
 		DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTableViewController.h; sourceTree = "<group>"; };
 		DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTableViewController.m; sourceTree = "<group>"; };
-		DFC886A418A2F19100955B04 /* RRFactorial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRFactorial.m; sourceTree = "<group>"; };
-		DFC886A518A2F19100955B04 /* RRFactorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRFactorial.h; sourceTree = "<group>"; };
 		DFC88CAA186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarhammerDefaultSkillSetManager.h; sourceTree = "<group>"; };
 		DFC88CAB186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarhammerDefaultSkillSetManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,10 +187,57 @@
 				DFC3B9B2188849E00026C0A4 /* SkillViewCell.h */,
 				DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */,
 				DF6E927B18D33F18000967F5 /* SkillViewCell.xib */,
-				DFC3B9B518884ABD0026C0A4 /* CustomXpRaisingButton.h */,
-				DFC3B9B618884ABD0026C0A4 /* CustomXpRaisingButton.m */,
+				DF6E927D18D43076000967F5 /* CustomXpRaisingBtnView.h */,
+				DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */,
 			);
 			name = "View classes";
+			sourceTree = "<group>";
+		};
+		DF4F935B18D9D64B00C6ED26 /* Skills */ = {
+			isa = PBXGroup;
+			children = (
+				DF2A96D618982CBD00A6EB45 /* Skill.h */,
+				DF2A96D718982CBD00A6EB45 /* Skill.m */,
+				DF2A96D318982CBD00A6EB45 /* SkillTemplate.h */,
+				DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */,
+				DF4F935818D9D5D400C6ED26 /* MagicSkill.h */,
+				DF4F935918D9D5D400C6ED26 /* MagicSkill.m */,
+				DF4F935518D9D5D400C6ED26 /* RangeSkill.h */,
+				DF4F935618D9D5D400C6ED26 /* RangeSkill.m */,
+				DF4F935218D9D5D400C6ED26 /* MeleeSkill.h */,
+				DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */,
+				DF4F934F18D9D5D400C6ED26 /* PietySkill.h */,
+				DF4F935018D9D5D400C6ED26 /* PietySkill.m */,
+			);
+			name = Skills;
+			sourceTree = "<group>";
+		};
+		DF4F935C18D9D66300C6ED26 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				DF78AEC618B66C6C009DB90B /* Character.h */,
+				DF78AEC718B66C6C009DB90B /* Character.m */,
+				DF4F934C18D9D5D300C6ED26 /* CharacterConditionAttributes.h */,
+				DF4F934D18D9D5D300C6ED26 /* CharacterConditionAttributes.m */,
+				DF24B135187B684800B57855 /* StatSet.h */,
+				DF24B136187B684800B57855 /* StatSet.m */,
+				DFB07C1118815C9C00FF0EF7 /* Insanity.h */,
+				DFB07C1218815C9C00FF0EF7 /* Insanity.m */,
+			);
+			name = Character;
+			sourceTree = "<group>";
+		};
+		DF4F935D18D9D68200C6ED26 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				DFB07C0818815C9B00FF0EF7 /* Item.h */,
+				DFB07C0918815C9B00FF0EF7 /* Item.m */,
+				DFB07C1718815C9C00FF0EF7 /* WeaponMelee.h */,
+				DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */,
+				DFB07C1D18815C9C00FF0EF7 /* WeaponRanged.h */,
+				DFB07C1E18815C9C00FF0EF7 /* WeaponRanged.m */,
+			);
+			name = Items;
 			sourceTree = "<group>";
 		};
 		DFAED0F3186309B40039D17B = {
@@ -264,9 +325,6 @@
 		DFAED13418630A350039D17B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DFC886A518A2F19100955B04 /* RRFactorial.h */,
-				DFC886A418A2F19100955B04 /* RRFactorial.m */,
-				DFAED145186334500039D17B /* HashBuilder */,
 				DFAED141186333140039D17B /* CoreData */,
 				DFC88CAA186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.h */,
 				DFC88CAB186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m */,
@@ -279,47 +337,27 @@
 		DFAED141186333140039D17B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				DF4F935D18D9D68200C6ED26 /* Items */,
+				DF4F935C18D9D66300C6ED26 /* Character */,
+				DF4F935B18D9D64B00C6ED26 /* Skills */,
 				DFAED138186331790039D17B /* CoreDataClass.h */,
 				DFAED139186331790039D17B /* CoreDataClass.m */,
 				DFAED13518630A540039D17B /* Model.xcdatamodeld */,
-				DF24B135187B684800B57855 /* StatSet.h */,
-				DF24B136187B684800B57855 /* StatSet.m */,
 				DFB07C2218815EE800FF0EF7 /* Pic.h */,
 				DFB07C2318815EE800FF0EF7 /* Pic.m */,
-				DFB07C1418815C9C00FF0EF7 /* CharacterConditionAttributes.h */,
-				DFB07C1518815C9C00FF0EF7 /* CharacterConditionAttributes.m */,
-				DFB07C0818815C9B00FF0EF7 /* Item.h */,
-				DFB07C0918815C9B00FF0EF7 /* Item.m */,
-				DFB07C1718815C9C00FF0EF7 /* WeaponMelee.h */,
-				DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */,
-				DFB07C1D18815C9C00FF0EF7 /* WeaponRanged.h */,
-				DFB07C1E18815C9C00FF0EF7 /* WeaponRanged.m */,
-				DFB07C1118815C9C00FF0EF7 /* Insanity.h */,
-				DFB07C1218815C9C00FF0EF7 /* Insanity.m */,
-				DF2A96D618982CBD00A6EB45 /* Skill.h */,
-				DF2A96D718982CBD00A6EB45 /* Skill.m */,
-				DF2A96D318982CBD00A6EB45 /* SkillTemplate.h */,
-				DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */,
-				DF78AEC618B66C6C009DB90B /* Character.h */,
-				DF78AEC718B66C6C009DB90B /* Character.m */,
 			);
 			name = CoreData;
-			sourceTree = "<group>";
-		};
-		DFAED145186334500039D17B /* HashBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				DFAED1421863334D0039D17B /* NSStringAdditions.h */,
-				DFAED1431863334D0039D17B /* NSStringAdditions.m */,
-			);
-			name = HashBuilder;
 			sourceTree = "<group>";
 		};
 		DFB07BFC187EFA1700FF0EF7 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				DFB07BFF187EFA2400FF0EF7 /* noImage.png */,
-				DFB07C00187EFA2400FF0EF7 /* noImage@2x.png */,
+				DF6E929218D4399B000967F5 /* noImage.png */,
+				DF6E929318D4399B000967F5 /* noImage@2x.png */,
+				DF6E928A18D43946000967F5 /* lowerXp.png */,
+				DF6E928B18D43946000967F5 /* lowerXp@2x.png */,
+				DF6E928C18D43946000967F5 /* raiseXp.png */,
+				DF6E928D18D43946000967F5 /* raiseXp@2x.png */,
 			);
 			name = Resourses;
 			sourceTree = "<group>";
@@ -327,10 +365,10 @@
 		DFC886A318A2C74A00955B04 /* SubControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DFAED13E186333000039D17B /* CoreDataViewController.h */,
+				DFAED13F186333000039D17B /* CoreDataViewController.m */,
 				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
 				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
-				DFAED13E186333000039D17B /* ViewControllerWithCoreDataMethods.h */,
-				DFAED13F186333000039D17B /* ViewControllerWithCoreDataMethods.m */,
 				DFAED1601864D4C10039D17B /* DropDownViewController.h */,
 				DFAED1611864D4C10039D17B /* DropDownViewController.m */,
 				DFB07C05187F0AEE00FF0EF7 /* StatSetDropDown.h */,
@@ -416,11 +454,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
-				DFB07C04187EFA2400FF0EF7 /* noImage@2x.png in Resources */,
-				DFB07C03187EFA2400FF0EF7 /* noImage.png in Resources */,
+				DF6E928F18D43946000967F5 /* lowerXp@2x.png in Resources */,
+				DF6E929418D4399B000967F5 /* noImage.png in Resources */,
+				DF6E929018D43946000967F5 /* raiseXp.png in Resources */,
 				DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
+				DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */,
+				DF6E928E18D43946000967F5 /* lowerXp.png in Resources */,
+				DF6E929518D4399B000967F5 /* noImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,32 +481,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF4F935418D9D5D400C6ED26 /* MeleeSkill.m in Sources */,
 				DF24B1281874B46C00B57855 /* CharacterStatListViewController.m in Sources */,
 				DF24B1241871EC9A00B57855 /* PlayerCellView.m in Sources */,
-				DFB07C1618815C9C00FF0EF7 /* CharacterConditionAttributes.m in Sources */,
 				DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */,
+				DF4F935118D9D5D400C6ED26 /* PietySkill.m in Sources */,
 				DFB07C1F18815C9C00FF0EF7 /* WeaponRanged.m in Sources */,
 				DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */,
+				DF4F935A18D9D5D400C6ED26 /* MagicSkill.m in Sources */,
 				DF24B1341877377900B57855 /* StatView.m in Sources */,
 				DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */,
 				DFC88CAC186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m in Sources */,
 				DF2A96D818982CBD00A6EB45 /* Skill.m in Sources */,
+				DF6E927F18D43076000967F5 /* CustomXpRaisingBtnView.m in Sources */,
 				DFAED116186309B40039D17B /* PlayerListViewController.m in Sources */,
 				DF24B137187B684800B57855 /* StatSet.m in Sources */,
 				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
 				DFAED13D1863329B0039D17B /* AppSettings.m in Sources */,
 				DF78AEC818B66C6C009DB90B /* Character.m in Sources */,
 				DFAED10C186309B40039D17B /* main.m in Sources */,
-				DFC3B9B718884ABD0026C0A4 /* CustomXpRaisingButton.m in Sources */,
-				DFAED140186333000039D17B /* ViewControllerWithCoreDataMethods.m in Sources */,
+				DFAED140186333000039D17B /* CoreDataViewController.m in Sources */,
+				DF4F935718D9D5D400C6ED26 /* RangeSkill.m in Sources */,
 				DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */,
 				DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */,
 				DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */,
+				DF4F934E18D9D5D300C6ED26 /* CharacterConditionAttributes.m in Sources */,
 				DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */,
 				DFB07C07187F0AEE00FF0EF7 /* StatSetDropDown.m in Sources */,
-				DFAED1441863334D0039D17B /* NSStringAdditions.m in Sources */,
 				DFAED13A186331790039D17B /* CoreDataClass.m in Sources */,
-				DFC886A618A2F19100955B04 /* RRFactorial.m in Sources */,
 				DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */,
 				DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */,
 				DFB07C2718815EE800FF0EF7 /* Pic.m in Sources */,

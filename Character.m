@@ -16,13 +16,14 @@
 @implementation Character
 
 @dynamic characterFinished;
-@dynamic characterId;
 @dynamic dateCreated;
 @dynamic dateModifed;
 @dynamic name;
 @dynamic characterCondition;
 @dynamic icon;
 @dynamic skillSet;
+@dynamic wounds;
+@dynamic characterId;
 
 //create/update
 
@@ -33,17 +34,8 @@
 {
     if (name&&skillSet) //character cannot be created without name or skills
     {
-        NSString *characterId = [Character newIdFromName:name];
+        Character *character = [Character newEmptyCharacterWithContext:context];
         
-        NSArray *existingCharacterWithId = [Character fetchCharacterWithId:characterId withContext:context];
-        if (existingCharacterWithId && existingCharacterWithId.count!=0)
-        {
-            return [existingCharacterWithId lastObject];
-        }
-        
-        Character *character = [Character newEmptyCharacterWithContextToHoldItUntilContextSaved:context];
-        
-        character.characterId = characterId;
         if (icon)
         {
             character.icon = [Pic addPicWithImage:icon];
@@ -59,22 +51,22 @@
     return  nil;
 }
 
-+(Character *)newEmptyCharacterWithContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context
++(Character *)newEmptyCharacterWithContext:(NSManagedObjectContext *)context
 {
     Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:context];
+    
+    character.characterId = [NSString stringWithFormat:@"%@",character.objectID];
     
     NSArray *basicSkills = [Skill newSetOfCoreSkillsWithContext:context];
     for (Skill *coreSkill in basicSkills)
     {
+        coreSkill.player = character;
         [character addSkillSetObject:coreSkill];
     }
     
+    [Character saveCharacter:character withContext:context];
+    NSLog(@"Creating new character");
     return character;
-}
-
-+(NSString *)newIdFromName:(NSString *)name
-{
-    return [NSString base64StringFromData:[name dataUsingEncoding:NSUTF16StringEncoding] length:10];
 }
 
 
@@ -84,11 +76,6 @@
     
     if (character && character.name)
     {
-        if (!character.characterId)
-        {
-            character.characterId = [Character newIdFromName:character.name];
-        }
-        
         if (!character.characterCondition)
         {
             //add default characterContion obj
@@ -116,7 +103,6 @@
 {
     if (skill)
     {
-        
         NSArray *characterArray = [Character fetchCharacterWithId:characterId withContext:context];
         if (characterArray.count!=0&&characterArray)
         {
@@ -153,7 +139,10 @@
         }
         
         [character addSkillSetObject:skill];
-        character.dateModifed = [[NSDate date] timeIntervalSince1970];
+        //character.dateModifed = [[NSDate date] timeIntervalSince1970];
+        
+        [Character saveCharacter:character withContext:context];
+        
         return character;
     }
     return nil;
@@ -184,7 +173,8 @@
         [character addSkillSet:skillSet];
     }
     
-    character.dateModifed = [[NSDate date] timeIntervalSince1970];
+    //character.dateModifed = [[NSDate date] timeIntervalSince1970];
+    [Character saveCharacter:character withContext:context];
     return character;
 }
 
