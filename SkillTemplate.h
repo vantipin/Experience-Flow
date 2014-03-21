@@ -14,10 +14,22 @@
 
 @interface SkillTemplate : CoreDataClass;
 
+typedef enum SkillClassType : int16_t
+{
+    StandartSkillType = 0,
+    MagicSkillType = 1,
+    RangeSkillType = 2,
+    MeleeSkillType = 3,
+    PietySkillType = 4,
+    LastElementInEnum = 5,
+} SkillClassesType;
+
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * skillDescription;
 @property (nonatomic, retain) Pic *icon;
 @property (nonatomic) int16_t thisBasicBarrier;
+@property (nonatomic) int16_t skillStartingLvl;
+@property (nonatomic) SkillClassesType skillEnumType;
 @property (nonatomic) float thisSkillProgression;
 @property (nonatomic) int16_t basicSkillGrowthGoes;
 @property (nonatomic, retain) NSSet *skillsFromThisTemplate;
@@ -37,14 +49,16 @@
 - (void)addSubSkillsTemplate:(NSSet *)values;
 - (void)removeSubSkillsTemplate:(NSSet *)values;
 
-+(SkillTemplate *)newSkilTemplateWithUniqName:(NSString *)name
-                              withDescription:(NSString *)skillDescription
-                                withSkillIcon:(UIImage *)icon
-                           withBasicXpBarrier:(int)basicXpBarrier
-                         withSkillProgression:(float)skillProgression
-                     withBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
-                      withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
-                                  withContext:(NSManagedObjectContext *)context;
++(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                               withDescription:(NSString *)skillDescription
+                                 withSkillIcon:(UIImage *)icon
+                            withBasicXpBarrier:(int)basicXpBarrier
+                          withSkillProgression:(float)skillProgression
+                      withBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
+                                 withSkillType:(SkillClassesType)skillClassType
+                        withDefaultStartingLvl:(int)startingLvl
+                       withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
+                                   withContext:(NSManagedObjectContext *)context;
 
 +(SkillTemplate *)editSkillTemplateWithName:(NSString *)name
                          withNewDescription:(NSString *)skillDescription
@@ -59,4 +73,6 @@
 
 +(BOOL)deleteSkillTemplateWithName:(NSString *)skillTemplateName withContext:(NSManagedObjectContext *)context;
 
++(NSString *)entityNameForSkillTemplate:(SkillTemplate *)skillTemplate;
++(NSString *)entityNameForSkillEnum:(int16_t)skillEnum;
 @end

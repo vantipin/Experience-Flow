@@ -19,6 +19,7 @@
 		DF4F935418D9D5D400C6ED26 /* MeleeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */; };
 		DF4F935718D9D5D400C6ED26 /* RangeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935618D9D5D400C6ED26 /* RangeSkill.m */; };
 		DF4F935A18D9D5D400C6ED26 /* MagicSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935918D9D5D400C6ED26 /* MagicSkill.m */; };
+		DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4F936718DCC32300C6ED26 /* StatView.xib */; };
 		DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6E927B18D33F18000967F5 /* SkillViewCell.xib */; };
 		DF6E927F18D43076000967F5 /* CustomXpRaisingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */; };
 		DF6E928E18D43946000967F5 /* lowerXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928A18D43946000967F5 /* lowerXp.png */; };
@@ -94,6 +95,7 @@
 		DF4F935618D9D5D400C6ED26 /* RangeSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSkill.m; sourceTree = "<group>"; };
 		DF4F935818D9D5D400C6ED26 /* MagicSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicSkill.h; sourceTree = "<group>"; };
 		DF4F935918D9D5D400C6ED26 /* MagicSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicSkill.m; sourceTree = "<group>"; };
+		DF4F936718DCC32300C6ED26 /* StatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatView.xib; sourceTree = "<group>"; };
 		DF6E927B18D33F18000967F5 /* SkillViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SkillViewCell.xib; path = Views/SkillViewCell.xib; sourceTree = "<group>"; };
 		DF6E927D18D43076000967F5 /* CustomXpRaisingBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomXpRaisingBtnView.h; sourceTree = "<group>"; };
 		DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomXpRaisingBtnView.m; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 		DF6E929318D4399B000967F5 /* noImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noImage@2x.png"; path = "Images/noImage@2x.png"; sourceTree = SOURCE_ROOT; };
 		DF78AEC618B66C6C009DB90B /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		DF78AEC718B66C6C009DB90B /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
-		DFAED0FC186309B40039D17B /* PlayerProgressTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlayerProgressTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFAED0FC186309B40039D17B /* Xp Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xp Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DFAED103186309B40039D17B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -184,6 +186,7 @@
 				DF24B1231871EC9A00B57855 /* PlayerCellView.m */,
 				DF24B1321877377900B57855 /* StatView.h */,
 				DF24B1331877377900B57855 /* StatView.m */,
+				DF4F936718DCC32300C6ED26 /* StatView.xib */,
 				DFC3B9B2188849E00026C0A4 /* SkillViewCell.h */,
 				DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */,
 				DF6E927B18D33F18000967F5 /* SkillViewCell.xib */,
@@ -254,7 +257,7 @@
 		DFAED0FD186309B40039D17B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DFAED0FC186309B40039D17B /* PlayerProgressTracker.app */,
+				DFAED0FC186309B40039D17B /* Xp Tracker.app */,
 				DFAED11D186309B40039D17B /* PlayerProgressTrackerTests.xctest */,
 			);
 			name = Products;
@@ -394,7 +397,7 @@
 			);
 			name = PlayerProgressTracker;
 			productName = PlayerProgressTracker;
-			productReference = DFAED0FC186309B40039D17B /* PlayerProgressTracker.app */;
+			productReference = DFAED0FC186309B40039D17B /* Xp Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DFAED11C186309B40039D17B /* PlayerProgressTrackerTests */ = {
@@ -453,6 +456,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
 				DF6E928F18D43946000967F5 /* lowerXp@2x.png in Resources */,
 				DF6E929418D4399B000967F5 /* noImage.png in Resources */,
@@ -644,7 +648,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Xp Tracker";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -658,7 +662,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Xp Tracker";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

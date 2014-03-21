@@ -25,7 +25,7 @@
 @property (nonatomic) IBOutlet UIImageView *icon;
 @property (nonatomic) IBOutlet UITextField *name;
 
-@property (nonatomic) IBOutlet StatView *statView;
+@property (nonatomic) IBOutlet UIView *statViewContainer;
 
 @property (nonatomic) IBOutlet UIView *additionalSkillContainerView;
 

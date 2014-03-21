@@ -18,14 +18,22 @@
 @property (nonatomic) IBOutlet UITextField *s;
 @property (nonatomic) IBOutlet UITextField *t;
 @property (nonatomic) IBOutlet UITextField *i;
-@property (nonatomic) IBOutlet UITextField *a;
+@property (nonatomic) IBOutlet UITextField *aMelee;
+@property (nonatomic) IBOutlet UITextField *damageMelee;
+@property (nonatomic) IBOutlet UITextField *aRange;
+@property (nonatomic) IBOutlet UITextField *damageRange;
 @property (nonatomic) IBOutlet UITextField *ld;
 @property (nonatomic) IBOutlet UITextField *w;
+@property (nonatomic) IBOutlet UITextField *ac;
 
-@property (nonatomic) IBOutlet UILabel *maxHp;
-@property (nonatomic) IBOutlet UILabel *currentHp;
+@property (nonatomic) IBOutlet UIButton *chooseRightHandButton;
+@property (nonatomic) IBOutlet UIButton *chooseLeftHandButton;
+@property (nonatomic) IBOutlet UIButton *chooseArmorButton;
 
-@property (nonatomic) IBOutlet UIView *statContainer;
+@property (nonatomic) IBOutlet UILabel *maxHpLabel;
+@property (nonatomic) IBOutlet UILabel *currentHpLabel;
+
+@property (nonatomic) IBOutlet UIView *statContainerView;
 
 @property (nonatomic) Character *character;
 @property (nonatomic) NSManagedObjectContext *context;
@@ -36,6 +44,7 @@
 @property (nonatomic,weak) UIViewController<UITextFieldDelegate> *executer;
 
 -(void)initFields;
+-(void)updateStatsFromCharacterObject;
 -(BOOL)nonEmptyStats;
 
 @end

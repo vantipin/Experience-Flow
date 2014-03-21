@@ -40,10 +40,9 @@
 
 //name basicXpBarrier lvlPropgrassion are requierd
 +(Skill *)newSkillWithTemplate:(SkillTemplate *)skillTemplate
-                  withSkillLvL:(short)skillLvL
                 withBasicSkill:(Skill *)basicSkill
            withCurrentXpPoints:(float)curentPoints
-                   withContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
+withContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
 
 +(NSArray *)newSetOfCoreSkillsWithContext:(NSManagedObjectContext *)context;
 

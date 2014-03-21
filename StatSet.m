@@ -19,26 +19,27 @@
 @dynamic t;
 @dynamic ld;
 @dynamic i;
-@dynamic a;
+@dynamic aMelee;
+@dynamic aRange;
 @dynamic w;
 
-+(StatSet *)createStatSetWithName:(NSString *)setName withM:(int)M withWs:(int)WS withBS:(int)BS withS:(int)S withT:(int)T withI:(int)Initiative withA:(int)A withW:(int)W withLD:(int)LD withContext:(NSManagedObjectContext *)context
++(StatSet *)createStatSetWithName:(NSString *)setName
+                            withM:(int)M
+                           withWs:(int)WS
+                           withBS:(int)BS
+                            withS:(int)S
+                            withT:(int)T
+                            withI:(int)Initiative
+                            withAMelee:(int)AMelee
+                             withARange:(int)ARange
+                            withW:(int)W
+                           withLD:(int)LD
+                      withContext:(NSManagedObjectContext *)context;
 {
     StatSet *statSet = [StatSet fetchStatSetWithName:setName withContext:context];
     if (!statSet)
     {
-        statSet = [NSEntityDescription insertNewObjectForEntityForName:@"StatSet" inManagedObjectContext:context];
-        
-        statSet.name = setName;
-        statSet.m = M;
-        statSet.ws = WS;
-        statSet.bs = BS;
-        statSet.s = S;
-        statSet.t = T;
-        statSet.i = Initiative;
-        statSet.a = A;
-        statSet.w = W;
-        statSet.ld = LD;
+        statSet = [StatSet createTemporaryStatSetWithM:M withWs:WS withBS:BS withS:S withT:T withI:Initiative withAMelee:AMelee withARange:ARange withW:W withLD:LD withContext:context];
     }
     
     [StatSet saveContext:context];
@@ -46,6 +47,33 @@
     return statSet;
 }
 
++(StatSet *)createTemporaryStatSetWithM:(int)M
+                                 withWs:(int)WS
+                                 withBS:(int)BS
+                                  withS:(int)S
+                                  withT:(int)T
+                                  withI:(int)Initiative
+                                  withAMelee:(int)AMelee
+                                   withARange:(int)ARange
+                                  withW:(int)W
+                                 withLD:(int)LD
+                            withContext:(NSManagedObjectContext *)context
+{
+    StatSet* statSet = [NSEntityDescription insertNewObjectForEntityForName:@"StatSet" inManagedObjectContext:context];
+    
+    statSet.m = M;
+    statSet.ws = WS;
+    statSet.bs = BS;
+    statSet.s = S;
+    statSet.t = T;
+    statSet.i = Initiative;
+    statSet.aMelee = AMelee;
+    statSet.aRange = ARange;
+    statSet.w = W;
+    statSet.ld = LD;
+    
+    return statSet;
+}
 
 +(NSArray *)fetchStatSetsWithContext:(NSManagedObjectContext *)context
 {

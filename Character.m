@@ -74,7 +74,7 @@
 {
     BOOL success = false;
     
-    if (character && character.name)
+    if (character)
     {
         if (!character.characterCondition)
         {
@@ -128,11 +128,11 @@
         {
             //NSDictionary *complexPredicateDictionary = @{@"player":character,@"skillTemplate.name":skill.skillTemplate.basicSkillTemplate.name};
             NSPredicate *predicateTemplate = [NSComparisonPredicate predicateWithFormat:@"(player = %@) AND (skillTemplate.name = %@)",character,skill.skillTemplate.basicSkillTemplate.name];
-            NSArray *existingBasicSkills = [Character fetchRequestForObjectName:@"Skill" withPredicate:predicateTemplate withContext:context];
+            NSArray *existingBasicSkills = [Character fetchRequestForObjectName:[SkillTemplate entityNameForSkillTemplate:skill.skillTemplate.basicSkillTemplate] withPredicate:predicateTemplate withContext:context];
             
             if (!(existingBasicSkills && existingBasicSkills.count!=0)) //if not exist
             {
-                Skill *newParentSkill = [Skill newSkillWithTemplate:skill.skillTemplate.basicSkillTemplate withSkillLvL:0 withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:context];
+                Skill *newParentSkill = [Skill newSkillWithTemplate:skill.skillTemplate.basicSkillTemplate withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:context];
                 [Character addNewSkill:newParentSkill toCharacterWithId:character.characterId withContext:context];
             }
             skill.basicSkill = [existingBasicSkills lastObject];

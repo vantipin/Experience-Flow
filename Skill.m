@@ -7,9 +7,12 @@
 //
 
 #import "Skill.h"
+#import "MagicSkill.h"
+#import "RangeSkill.h"
+#import "MeleeSkill.h"
+#import "PietySkill.h"
 #import "Character.h"
 #import "Pic.h"
-#import "Skill.h"
 #import "SkillTemplate.h"
 #import "WeaponMelee.h"
 #import "WarhammerDefaultSkillSetManager.h"
@@ -28,16 +31,16 @@
 @dynamic skillId;
 
 //create
-+(Skill *)newSkillWithTemplate:(SkillTemplate *)skillTemplate          
-                  withSkillLvL:(short)skillLvL
++(Skill *)newSkillWithTemplate:(SkillTemplate *)skillTemplate
                 withBasicSkill:(Skill *)basicSkill
            withCurrentXpPoints:(float)curentPoints
                    withContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
 {
     if (skillTemplate)
     {
-        
-        Skill *skill = [NSEntityDescription insertNewObjectForEntityForName:@"Skill" inManagedObjectContext:context];
+        NSString *entityName = [SkillTemplate entityNameForSkillTemplate:skillTemplate];
+
+        Skill *skill = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
         skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
         
         if (basicSkill && skillTemplate.basicSkillTemplate == basicSkill.skillTemplate)
@@ -47,7 +50,7 @@
 
         skill.skillId = [NSString stringWithFormat:@"%@",skill.objectID];
         
-        skill.thisLvl = skillLvL ? skillLvL : 0;
+        skill.thisLvl = skillTemplate.skillStartingLvl;
         skill.thisLvlCurrentProgress = curentPoints ? curentPoints : 0.0;
         skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
         skill.skillTemplate = skillTemplate;
@@ -68,7 +71,7 @@
     NSArray *skillsDictionaryTemplates = [[WarhammerDefaultSkillSetManager sharedInstance] allCharacterDefaultSkillTemplates];
     for (SkillTemplate *skillTemplate in skillsDictionaryTemplates)
     {
-        Skill *coreSkill = [Skill newSkillWithTemplate:skillTemplate withSkillLvL:0 withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:context];
+        Skill *coreSkill = [Skill newSkillWithTemplate:skillTemplate withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:context];
         
         if (coreSkill)
         {
@@ -309,13 +312,24 @@
 //fetch
 +(NSArray *)fetchSkillWithId:(NSString *)skillId withContext:(NSManagedObjectContext *)context
 {
-    return [Skill fetchRequestForObjectName:@"Skill" withPredicate:[NSPredicate predicateWithFormat:@"skillId = %@",skillId] withContext:context];
+    for (int16_t i = StandartSkillType; i < LastElementInEnum; i++) {
+        NSArray *allSkillsArray = [Skill fetchRequestForObjectName:[SkillTemplate entityNameForSkillEnum:i] withPredicate:[NSPredicate predicateWithFormat:@"skillId = %@",skillId] withContext:context];
+        if (allSkillsArray && allSkillsArray.count != 0) {
+            return allSkillsArray;
+        }
+    }
+    return nil;
 }
 
 //delete
 +(BOOL)deleteSkillWithId:(NSString *)skillId withContext:(NSManagedObjectContext *)context
 {
-    return [Skill clearEntityForNameWithObjName:@"Skill" withPredicate:[NSPredicate predicateWithFormat:@"skillId = %@",skillId] withGivenContext:context];
+    BOOL result = false;
+    for (int16_t i = StandartSkillType; i < LastElementInEnum; i++) {
+        BOOL temp = [Skill clearEntityForNameWithObjName:[SkillTemplate entityNameForSkillEnum:i] withPredicate:[NSPredicate predicateWithFormat:@"skillId = %@",skillId] withGivenContext:context];
+        result = temp ? temp : result;
+    }
+    return result;
 }
 
 

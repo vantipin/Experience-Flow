@@ -21,7 +21,8 @@
 @property (nonatomic) int16_t t;
 @property (nonatomic) int16_t ld;
 @property (nonatomic) int16_t i;
-@property (nonatomic) int16_t a;
+@property (nonatomic) int16_t aMelee;
+@property (nonatomic) int16_t aRange;
 @property (nonatomic) int16_t w;
 
 //create
@@ -32,10 +33,23 @@
                             withS:(int)S
                             withT:(int)T
                             withI:(int)Initiative
-                            withA:(int)A
+                            withAMelee:(int)AMelee
+                             withARange:(int)ARange
                             withW:(int)W
                            withLD:(int)LD
                       withContext:(NSManagedObjectContext *)context;
+
++(StatSet *)createTemporaryStatSetWithM:(int)M
+                                 withWs:(int)WS
+                                 withBS:(int)BS
+                                  withS:(int)S
+                                  withT:(int)T
+                                  withI:(int)Initiative
+                                  withAMelee:(int)AMelee
+                                   withARange:(int)ARange
+                                  withW:(int)W
+                                 withLD:(int)LD
+                            withContext:(NSManagedObjectContext *)context;
 
 //fetch
 +(NSArray *)fetchStatSetsWithContext:(NSManagedObjectContext *)context;

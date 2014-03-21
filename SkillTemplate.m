@@ -17,7 +17,9 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 @implementation SkillTemplate
 
 @dynamic name;
+@dynamic skillEnumType;
 @dynamic skillDescription;
+@dynamic skillStartingLvl;
 @dynamic thisBasicBarrier;
 @dynamic thisSkillProgression;
 @dynamic basicSkillGrowthGoes;
@@ -26,14 +28,16 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 @dynamic subSkillsTemplate;
 @dynamic icon;
 
-+(SkillTemplate *)newSkilTemplateWithUniqName:(NSString *)name
-                              withDescription:(NSString *)skillDescription
-                                withSkillIcon:(UIImage *)icon
-                           withBasicXpBarrier:(int)basicXpBarrier
-                         withSkillProgression:(float)skillProgression
-                     withBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
-                      withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
-                                  withContext:(NSManagedObjectContext *)context;
++(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                               withDescription:(NSString *)skillDescription
+                                 withSkillIcon:(UIImage *)icon
+                            withBasicXpBarrier:(int)basicXpBarrier
+                          withSkillProgression:(float)skillProgression
+                      withBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
+                                 withSkillType:(SkillClassesType)skillClassType
+                        withDefaultStartingLvl:(int)startingLvl
+                       withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
+                                   withContext:(NSManagedObjectContext *)context;
 {
     if (name && (basicXpBarrier || skillProgression))
     {
@@ -50,6 +54,8 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
         skillTemplate.skillDescription = skillDescription;
         skillTemplate.thisBasicBarrier = basicXpBarrier;
         skillTemplate.thisSkillProgression = skillProgression;
+        skillTemplate.skillEnumType = skillClassType;
+        skillTemplate.skillStartingLvl = startingLvl;
         
         if (icon)
         {
@@ -114,6 +120,36 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
     return nil;
 }
 
++(NSString *)entityNameForSkillEnum:(int16_t)skillEnum
+{
+    NSString *entityName;
+    switch (skillEnum) {
+        case 0:
+            entityName = @"Skill";
+            break;
+        case 1:
+            entityName = @"MagicSkill";
+            break;
+        case 2:
+            entityName = @"RangeSkill";
+            break;
+        case 3:
+            entityName = @"MeleeSkill";
+            break;
+        case 4:
+            entityName = @"PietySkill";
+            break;
+        default:
+            entityName = @"Skill";
+            break;
+    }
+    return entityName;
+}
+
++(NSString *)entityNameForSkillTemplate:(SkillTemplate *)skillTemplate
+{
+    return [SkillTemplate entityNameForSkillEnum:skillTemplate.skillEnumType];
+}
 
 +(NSArray *)fetchAllSkillTemplatesWithContext:(NSManagedObjectContext *)context
 {

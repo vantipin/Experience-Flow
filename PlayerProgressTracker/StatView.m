@@ -9,6 +9,7 @@
 #import "StatView.h"
 #import "Character.h"
 #import "Skill.h"
+#import "SkillTemplate.h"
 #import "WarhammerDefaultSkillSetManager.h"
 
 @interface StatView()
@@ -31,6 +32,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"StatView" owner:nil options:nil];
+        self = [views firstObject];
         // Initialization code
     }
     return self;
@@ -40,7 +43,7 @@
 {
     if (character){
         _character = character;
-        [self updateStats];
+        [self updateStatsFromCharacterObject];
     }
 }
 
@@ -55,57 +58,72 @@
 
 -(Skill *)mSkill
 {
-    _mSkill = [self.skillManager checkCoreSkillWithTemplate:self.skillManager.movement withCharacter:self.character];
+    _mSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.movement withCharacter:self.character];
     return _mSkill;
 }
 
 -(Skill *)wsSkill
 {
-    _wsSkill = [self.skillManager checkCoreSkillWithTemplate:self.skillManager.weaponSkill withCharacter:self.character];
+    _wsSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.weaponSkill withCharacter:self.character];
     return _wsSkill;
 }
 
 -(Skill *)bsSkill
 {
-    _bsSkill = [self.skillManager checkCoreSkillWithTemplate:self.skillManager.ballisticSkill withCharacter:self.character];
+    _bsSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.ballisticSkill withCharacter:self.character];
     return _bsSkill;
 }
 
 -(Skill *)sSkill
 {
-    _sSkill = [self.skillManager checkCoreSkillWithTemplate:self.skillManager.strenght withCharacter:self.character];
+    _sSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.strenght withCharacter:self.character];
     return _sSkill;
 }
 
 -(Skill *)tSkill
 {
-    _tSkill = [self.skillManager checkCoreSkillWithTemplate:self.skillManager.toughness withCharacter:self.character];
+    _tSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.toughness withCharacter:self.character];
     return _tSkill;
 }
 
 -(Skill *)iSkill
 {
-    _iSkill = [self.skillManager checkCoreSkillWithTemplate:self.skillManager.initiative withCharacter:self.character];
+    _iSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.initiative withCharacter:self.character];
     return _iSkill;
 }
 
 -(Skill *)ldSkill
 {
-    _ldSkill = [self.skillManager checkCoreSkillWithTemplate:self.skillManager.toughness withCharacter:self.character];
+    _ldSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.toughness withCharacter:self.character];
     return _ldSkill;
 }
 
--(void)updateStats
+-(void)updateStatsFromCharacterObject
 {
+    //TODO adrenalin and stress points influence
+    int hp = [[WarhammerDefaultSkillSetManager sharedInstance] countHpWithCharacter:self.character];
+    self.maxHpLabel.text = [NSString stringWithFormat:@"%d",hp];
+    self.currentHpLabel.text = [NSString stringWithFormat:@"%d",hp];
+    
     self.m.text = [NSString stringWithFormat:@"%d",self.mSkill.thisLvl];
-    self.ws.text = [NSString stringWithFormat:@"%d",self.wsSkill.thisLvl];
-    self.bs.text = [NSString stringWithFormat:@"%d",self.bsSkill.thisLvl];
     self.s.text = [NSString stringWithFormat:@"%d",self.sSkill.thisLvl];
     self.t.text = [NSString stringWithFormat:@"%d",self.tSkill.thisLvl];
     self.i.text = [NSString stringWithFormat:@"%d",self.iSkill.thisLvl];
     self.ld.text = [NSString stringWithFormat:@"%d",self.ldSkill.thisLvl];
     self.w.text = [NSString stringWithFormat:@"%d",self.character.wounds];
-    self.a.enabled = false; //TODO smart count
+    
+    int weaponSkill = [[WarhammerDefaultSkillSetManager sharedInstance] countWSforMeleeSkill:self.character.characterCondition.currentMeleeSkills];
+    self.ws.text = [NSString stringWithFormat:@"%d",weaponSkill];
+    int ballisticSkill = [[WarhammerDefaultSkillSetManager sharedInstance] countBSforRangeSkill:[[self.character.characterCondition.currentMeleeSkills allObjects] lastObject]];
+    self.bs.text = [NSString stringWithFormat:@"%d",ballisticSkill];
+    
+    int attackMelee = ([[WarhammerDefaultSkillSetManager sharedInstance] countAttacksForMeleeSkill:self.character.characterCondition.currentMeleeSkills] + self.character.characterCondition.modifierAMelee);
+    self.aMelee.text = [NSString stringWithFormat:@"%d",attackMelee];
+    int attacksRange = ([[WarhammerDefaultSkillSetManager sharedInstance] countAttacksForRangeSkill:[[self.character.characterCondition.currentRangeSkills allObjects] lastObject]] + self.character.characterCondition.modifierARange);
+    self.aRange.text = [NSString stringWithFormat:@"%d",attacksRange];
+    
+    int damageBonusRange = [[WarhammerDefaultSkillSetManager sharedInstance] countDCBonusForRangeSkill:[[self.character.characterCondition.currentRangeSkills allObjects] lastObject]];
+    self.damageRange.text = [NSString stringWithFormat:@"+%d",damageBonusRange];
 }
 
 -(void)initFields
@@ -119,7 +137,8 @@
         self.t.enabled = false;
         self.i.enabled = false;
         self.w.enabled = false;
-        self.a.enabled = false;
+        self.aMelee.enabled = false;
+        self.aRange.enabled = false;
         self.ld.enabled = false;
         
         self.m.backgroundColor = [UIColor clearColor];
@@ -129,7 +148,8 @@
         self.t.backgroundColor = [UIColor clearColor];
         self.i.backgroundColor = [UIColor clearColor];
         self.w.backgroundColor = [UIColor clearColor];
-        self.a.backgroundColor = [UIColor clearColor];
+        self.aMelee.backgroundColor = [UIColor clearColor];
+        self.aRange.backgroundColor = [UIColor clearColor];
         self.ld.backgroundColor = [UIColor clearColor];
     }
     else{
@@ -140,7 +160,8 @@
         self.t.delegate = _executer;
         self.i.delegate = _executer;
         self.w.delegate = _executer;
-        self.a.delegate = _executer;
+        self.aMelee.delegate = _executer;
+        self.aRange.delegate = _executer;
         self.ld.delegate = _executer;
         
         self.m.enabled = true;
@@ -150,7 +171,8 @@
         self.t.enabled = true;
         self.i.enabled = true;
         self.w.enabled = true;
-        self.a.enabled = true;
+        self.aMelee.enabled = true;
+        self.aRange.enabled = true;
         self.ld.enabled = true;
         
         self.m.backgroundColor = [UIColor whiteColor];
@@ -160,7 +182,8 @@
         self.t.backgroundColor = [UIColor whiteColor];
         self.i.backgroundColor = [UIColor whiteColor];
         self.w.backgroundColor = [UIColor whiteColor];
-        self.a.backgroundColor = [UIColor whiteColor];
+        self.aMelee.backgroundColor = [UIColor whiteColor];
+        self.aRange.backgroundColor = [UIColor whiteColor];
         self.ld.backgroundColor = [UIColor whiteColor];
     }
 }
@@ -168,7 +191,8 @@
 
 -(BOOL)nonEmptyStats
 {
-    if (self.m.text.length == 0 || self.ws.text.length == 0 || self.bs.text.length == 0 || self.s.text.length == 0 || self.t.text.length == 0 || self.i.text.length == 0 || self.w.text.length == 0 || self.a.text.length == 0 || self.ld.text.length == 0){
+    BOOL emptyStats = self.m.text.length == 0 || self.ws.text.length == 0 || self.bs.text.length == 0 || self.s.text.length == 0 || self.t.text.length == 0 || self.i.text.length == 0 || self.w.text.length == 0 || self.aMelee.text.length == 0 || self.aRange.text.length == 0 || self.ld.text.length == 0;
+    if (emptyStats){
         return false;
     }
     

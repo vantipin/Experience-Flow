@@ -60,8 +60,6 @@ static WarhammerDefaultSkillSetManager *instance = nil;
 @synthesize initiative = _initiative;
 @synthesize leadesShip = _leadesShip;
 
-@synthesize attacks = _attacks;
-
 //sub WS
 @synthesize unarmed = _unarmed;
 @synthesize ordinary = _ordinary;
@@ -137,7 +135,6 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                          self.toughness,
                          self.initiative,
                          self.leadesShip,
-                         self.attacks,
                          
                          self.unarmed,
                          self.ordinary,
@@ -174,6 +171,16 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     return allCharacterSkills;
 }
 
+-(NSArray *)allMeleeCombatSkills
+{
+    NSArray *allCharacterSkills;
+    
+    allCharacterSkills = @[self.ordinary,
+                           self.unarmed,
+                           self.dagger];
+    
+    return allCharacterSkills;
+}
 
 #pragma mark -
 #pragma mark basic skills
@@ -184,14 +191,16 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",movementName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:movementName
-                                                       withDescription:@"Movement. Basic skill. Shows how far character is able to move from his initial position in one turn."
-                                                         withSkillIcon:nil
-                                                    withBasicXpBarrier:0
-                                                  withSkillProgression:7
-                                              withBasicSkillGrowthGoes:0
-                                               withParentSkillTemplate:nil
-                                                           withContext:self.context];
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:movementName
+                                                        withDescription:@"Movement. Basic skill. Shows how far character is able to move from his initial position in one turn."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:0
+                                                   withSkillProgression:7
+                                               withBasicSkillGrowthGoes:0
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:4
+                                                withParentSkillTemplate:nil
+                                                            withContext:self.context];
         }
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
@@ -209,14 +218,16 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",weaponSkillName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:weaponSkillName
-                                                       withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of a variety of melee weapons. Weapon skill is a broad category and governs fighting unarmed to using small weapons like knives or clubs to larger weapons like two-handed swords, great axes or halberds. The ability to parry with an equipped melee weapon is also based on a character’s Weapon Skill."
-                                                         withSkillIcon:nil
-                                                    withBasicXpBarrier:0
-                                                  withSkillProgression:8
-                                              withBasicSkillGrowthGoes:0
-                                               withParentSkillTemplate:nil
-                                                           withContext:self.context];
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:weaponSkillName
+                                                        withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of a variety of melee weapons. Weapon skill is a broad category and governs fighting unarmed to using small weapons like knives or clubs to larger weapons like two-handed swords, great axes or halberds. The ability to parry with an equipped melee weapon is also based on a character’s Weapon Skill."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:0
+                                                   withSkillProgression:8
+                                               withBasicSkillGrowthGoes:0
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:1
+                                                withParentSkillTemplate:nil
+                                                            withContext:self.context];
         }
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
@@ -234,14 +245,16 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",ballisticSkillName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:ballisticSkillName
-                                                       withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of ranged weapons. This includes thrown weapons like balanced knives and javelins, as well as bows, crossbows, and slings. Also covers the basics of blackpowder weapon care and operation. It is a combination of hand-eye coordination, accuracy, and training with ranged items."
-                                                         withSkillIcon:nil
-                                                    withBasicXpBarrier:0
-                                                  withSkillProgression:7
-                                              withBasicSkillGrowthGoes:0
-                                               withParentSkillTemplate:nil
-                                                           withContext:self.context];
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ballisticSkillName
+                                                        withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of ranged weapons. This includes thrown weapons like balanced knives and javelins, as well as bows, crossbows, and slings. Also covers the basics of blackpowder weapon care and operation. It is a combination of hand-eye coordination, accuracy, and training with ranged items."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:0
+                                                   withSkillProgression:7
+                                               withBasicSkillGrowthGoes:0
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:nil
+                                                            withContext:self.context];
         }
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
@@ -259,14 +272,16 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",strenghtName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:strenghtName
-                                                       withDescription:@"Strenght. Basic skill."
-                                                         withSkillIcon:nil
-                                                    withBasicXpBarrier:0
-                                                  withSkillProgression:10
-                                              withBasicSkillGrowthGoes:0
-                                               withParentSkillTemplate:nil
-                                                           withContext:self.context];
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:strenghtName
+                                                        withDescription:@"Strenght. Basic skill."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:0
+                                                   withSkillProgression:10
+                                               withBasicSkillGrowthGoes:0
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:1
+                                                withParentSkillTemplate:nil
+                                                            withContext:self.context];
         }
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
@@ -284,12 +299,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",toughnessName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:toughnessName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:toughnessName
                                                        withDescription:@"Toughness. Basic skill."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:0
                                                   withSkillProgression:10
-                                              withBasicSkillGrowthGoes:0
+                                               withBasicSkillGrowthGoes:0
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:1
                                                withParentSkillTemplate:nil
                                                            withContext:self.context];
         }
@@ -309,12 +326,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",initiativeName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:initiativeName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:initiativeName
                                                        withDescription:@"Initiative. Basic skill."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:0
                                                   withSkillProgression:10
-                                              withBasicSkillGrowthGoes:0
+                                               withBasicSkillGrowthGoes:0
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:2
                                                withParentSkillTemplate:nil
                                                            withContext:self.context];
         }
@@ -334,12 +353,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",leadesShipName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:leadesShipName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:leadesShipName
                                                        withDescription:@"Leadership. Basic skill."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:0
                                                   withSkillProgression:3
-                                              withBasicSkillGrowthGoes:0
+                                               withBasicSkillGrowthGoes:0
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:2
                                                withParentSkillTemplate:nil
                                                            withContext:self.context];
         }
@@ -353,30 +374,6 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     return _leadesShip;
 }
 
--(SkillTemplate *)attacks
-{
-    if (!_attacks){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",attacksName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:attacksName
-                                                       withDescription:@"Attacks. Basic skill."
-                                                         withSkillIcon:nil
-                                                    withBasicXpBarrier:0
-                                                  withSkillProgression:50
-                                              withBasicSkillGrowthGoes:0
-                                               withParentSkillTemplate:nil
-                                                           withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        
-        _attacks = skillTemplate;
-    }
-    return _attacks;
-}
-
 #pragma mark -
 #pragma mark advanced skills
 //athletics
@@ -385,12 +382,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",athleticsName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:athleticsName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:athleticsName
                                                        withDescription:@"Advanced skill. Covers general physical prowess and applying strength and conditioning to a task. This skill is used when trying to perform tasks relying on physical conditioning and athleticism, such as climbing, swimming, or jumping. It reflects a combination of fitness and the training to apply strength in a precise manner. Specialisation options: Climbing, swimming, jumping, rowing, running, lifting."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:8
                                                   withSkillProgression:5
-                                              withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:2
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.strenght
                                                            withContext:self.context];
         }
@@ -409,12 +408,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",stealthName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:stealthName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:stealthName
                                                        withDescription:@"Advanced skill. The ability to keep from being seen or heard, this skill combines hiding with being quiet. Use this skill to move quietly or remain silent and unobserved. Oftentimes, Stealth is opposed by an opponent’s Observation skill. When trying to remain silent and hidden, performing manoeuvres costs 1 stress in addition to any other costs. Specialisation options: Silent movement: rural, silent movement: wilderness, hide, ambush."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:8
                                                   withSkillProgression:5
-                                              withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:2
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.initiative
                                                            withContext:self.context];
         }
@@ -433,12 +434,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",resilienceName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:resilienceName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:resilienceName
                                                        withDescription:@"Advanced skill. A character’s fitness, vigour, and ability to bounce back from strain and damage. Also covers use of a shield to bear the brunt of an attack and absorb the punishment. Resilience is often used to recover from wounds or fatigue over time, such as after bed rest. Specialisation options: Block, recover fatigue, resist disease, resist poison, resist starvation."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:8
                                                   withSkillProgression:5
-                                              withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:2
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.toughness
                                                            withContext:self.context];
         }
@@ -457,12 +460,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",disciplineName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:disciplineName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:disciplineName
                                                        withDescription:@"Advanced skill. This skill is used to resist the startling effects of surprising events, show resolve in the face of danger, and maintain composure when confronted by supernatural or terrify- ing situations. Discipline is also the ability to maintain one’s state of mind and resist the rigours of stress or attempts to manipulate one’s thoughts or feelings. Specialisation options: Resist charm, resist guile, resist intimidation, resist fear, resist terror, resist torture."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:5
                                                   withSkillProgression:4
-                                              withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:2
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.leadesShip
                                                            withContext:self.context];
         }
@@ -480,12 +485,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",perceptionName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:perceptionName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:perceptionName
                                                        withDescription:@"Advanced skill. Using your senses to perceive your surroundings. Use this skill to notice small details that others might miss and to pick up on subtle clues. It can also be used to spot traps, pitfalls, and other physical dangers. Observation op- poses other characters’ attempts at Stealth, or to otherwise avoid detection. Specialisation options: Eavesdropping, tracking, keen vision, minute details."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:8
                                                   withSkillProgression:5
-                                              withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:2
+                                                          withSkillType:StandartSkillType
+                                                 withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.initiative
                                                            withContext:self.context];
         }
@@ -505,12 +512,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",unarmedName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:unarmedName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:unarmedName
                                                        withDescription:@"Advanced skill. Better fight bare handed and with battle gantlet."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:4
                                                   withSkillProgression:3
-                                              withBasicSkillGrowthGoes:3
+                                               withBasicSkillGrowthGoes:3
+                                                          withSkillType:MeleeSkillType
+                                                 withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.weaponSkill
                                                            withContext:self.context];
         }
@@ -528,12 +537,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",daggerName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:daggerName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:daggerName
                                                        withDescription:@"Advanced skill. Better fight with knifes and daggers."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:4
                                                   withSkillProgression:3
-                                              withBasicSkillGrowthGoes:3
+                                               withBasicSkillGrowthGoes:3
+                                                          withSkillType:MeleeSkillType
+                                                 withDefaultStartingLvl:1
                                                withParentSkillTemplate:self.weaponSkill
                                                            withContext:self.context];
         }
@@ -551,12 +562,14 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",ordinaryName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkilTemplateWithUniqName:ordinaryName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ordinaryName
                                                        withDescription:@"Advanced skill. Better fight with one-handed axes, swords, clubs, hammers."
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:4
                                                   withSkillProgression:3
-                                              withBasicSkillGrowthGoes:3
+                                               withBasicSkillGrowthGoes:3
+                                                          withSkillType:MeleeSkillType
+                                                 withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.weaponSkill
                                                            withContext:self.context];
         }
@@ -598,7 +611,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
 
 -(int)hitpointsForSkillWithName:(NSString *)name withSkillLevel:(int)skillLevel
 {
-    int Hp = 0;
+    NSInteger Hp = 0;
     
     NSDictionary *dict = @{self.movement.name:@4,
                            self.weaponSkill.name:@2,
@@ -608,7 +621,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                            self.initiative.name:@3,
                            self.leadesShip.name:@6};
     
-    int value = [[dict valueForKey:name] integerValue];
+    NSInteger value = [[dict valueForKey:name] integerValue];
     if (value && (value < skillLevel)){
         if ([name isEqualToString:[self.toughness valueForKey:@"name"]]){
             Hp = 10 * (skillLevel - value);
@@ -619,7 +632,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         
     }
     
-    return Hp;
+    return (int)Hp;
 }
 
 -(int)countHpWithCharacter:(Character *)character
@@ -642,7 +655,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         NSArray *skillsTemplates = [[WarhammerDefaultSkillSetManager sharedInstance] allCharacterDefaultSkillTemplates];
         for (SkillTemplate *template in skillsTemplates)
         {
-            Skill *skill = [self checkCoreSkillWithTemplate:template withCharacter:character];
+            Skill *skill = [self coreSkillWithTemplate:template withCharacter:character];
             
             Hp += [self hitpointsForSkillWithName:template.name withSkillLevel:skill.thisLvl];
         }
@@ -651,24 +664,183 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     return Hp;
 }
 
--(Skill *)checkCoreSkillWithTemplate:(SkillTemplate *)skillTemplate withCharacter:(Character *)character
+-(Skill *)coreSkillWithTemplate:(SkillTemplate *)skillTemplate withCharacter:(Character *)character
 {
    
     Skill *skill;
     NSString *skillName = skillTemplate.name;
-    NSArray *objects = [Skill fetchRequestForObjectName:@"Skill" withPredicate:[NSPredicate predicateWithFormat:@"(skillTemplate.name == %@) AND (player == %@)",skillName,character] withContext:self.context];
+    NSArray *objects = [Skill fetchRequestForObjectName:[SkillTemplate entityNameForSkillTemplate:skillTemplate] withPredicate:[NSPredicate predicateWithFormat:@"(skillTemplate.name == %@) AND (player == %@)",skillName,character] withContext:self.context];
     skill = [objects lastObject];
     
     if (!skill)
     {
         NSLog(@"Warning! Core skill with name ""%@"" missed!",character.name);
         SkillTemplate *coreSkillTemplate = skillTemplate;
-        Skill *coreSkill = [Skill newSkillWithTemplate:coreSkillTemplate withSkillLvL:0 withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:self.context];
+        Skill *coreSkill = [Skill newSkillWithTemplate:coreSkillTemplate withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:self.context];
         [character addSkillSetObject:coreSkill];
         skill = coreSkill;
     }
     
     return skill;
+}
+
+
+-(int)countAttacksForMeleeSkill:(NSSet *)skills
+{
+    int bonus = 0;
+    
+    if (skills) {
+        NSArray *skillsArray = [skills allObjects];
+        int tempWs = 0;
+        int tempWsCount = 0;
+        for (Skill *skill in skillsArray) {
+            int skillLvl = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);
+            if (skillLvl > 3) {
+                tempWs += skillLvl - 3;
+                tempWsCount ++;
+            }
+        }
+        tempWs = tempWs / tempWsCount;
+        bonus = tempWs / 2;
+    }
+        
+    return bonus;
+}
+
+-(int)countAttacksForRangeSkill:(Skill *)skill;
+{
+    int bonus = 0;
+    
+    if (skill) {
+        int skillLvl = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);
+        if (skillLvl > 3) {
+            int temp = skillLvl- 3;
+            bonus = temp / 3;
+        }
+    }
+    
+    return bonus;
+}
+
+-(int)countWSforMeleeSkill:(NSSet *)skills
+{
+    int ws = 0;// = skill.thisLvl;
+    
+    if (skills) {
+        NSArray *skillsArray = [skills allObjects];
+        int wsPenalty = 0;
+        int wsPenaltiesCount = 0;
+        for (Skill *skill in skillsArray) {
+            int skillLvl = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);
+            ws += skillLvl;
+            if (skillLvl > 3) {
+                int tempSkill = skillLvl;
+                if (tempSkill % 2) {
+                    tempSkill --; //odd
+                }
+                wsPenalty += tempSkill / 3;
+                wsPenaltiesCount ++;
+            }
+        }
+        wsPenalty = wsPenalty / wsPenaltiesCount;
+        ws = ws / skillsArray.count;
+        ws -= wsPenalty;
+    }
+    
+    return ws;
+}
+
+-(int)countBSforRangeSkill:(Skill *)skill
+{
+    int bs = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);;
+    
+    if (skill) {
+        if (bs > 3) {
+            int tempSkill = bs;
+            if (tempSkill % 2) {
+                tempSkill --; //odd
+            }
+            bs -= tempSkill / 3;
+        }
+    }
+    
+    return bs;
+}
+
+-(int)countDCBonusForRangeSkill:(Skill *)skill
+{
+    int bonus = 0;
+    
+    if (skill) {
+        int skillLvl = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);
+        if (skillLvl > 3) {
+            int temp = skillLvl - 3;
+            bonus = temp / 2;
+        }
+    }
+    
+    return bonus;
+}
+
+-(StatSet *)statSetFromCharacterSkills:(Character *)character
+{
+    StatSet *statSet = [StatSet createTemporaryStatSetWithM:[[self coreSkillWithTemplate:self.movement withCharacter:character] thisLvl]
+                                                     withWs:[[self coreSkillWithTemplate:self.weaponSkill withCharacter:character] thisLvl]
+                                                     withBS:[[self coreSkillWithTemplate:self.ballisticSkill withCharacter:character] thisLvl]
+                                                      withS:[[self coreSkillWithTemplate:self.strenght withCharacter:character] thisLvl]
+                                                      withT:[[self coreSkillWithTemplate:self.toughness withCharacter:character] thisLvl]
+                                                      withI:[[self coreSkillWithTemplate:self.initiative withCharacter:character] thisLvl]
+                                                 withAMelee:character.characterCondition.modifierAMelee
+                                                 withARange:character.characterCondition.modifierARange
+                                                      withW:character.wounds
+                                                     withLD:[[self coreSkillWithTemplate:self.leadesShip withCharacter:character] thisLvl]
+                                                withContext:self.context];
+    
+    return statSet;
+}
+
+-(void)setCharacterSkills:(Character *)character withStatSet:(StatSet *)statset
+{
+    Skill *m = [self coreSkillWithTemplate:self.movement withCharacter:character];
+    m.thisLvl = statset.m;
+    m.thisLvlCurrentProgress = 0;
+    
+    Skill *ws = [self coreSkillWithTemplate:self.weaponSkill withCharacter:character];
+    ws.thisLvl = statset.ws;
+    ws.thisLvlCurrentProgress = 0;
+    
+    Skill *bs = [self coreSkillWithTemplate:self.ballisticSkill withCharacter:character];
+    bs.thisLvl = statset.bs;
+    bs.thisLvlCurrentProgress = 0;
+    
+    Skill *s = [self coreSkillWithTemplate:self.strenght withCharacter:character];
+    s.thisLvl = statset.s;
+    s.thisLvlCurrentProgress = 0;
+    
+    Skill *t = [self coreSkillWithTemplate:self.toughness withCharacter:character];
+    t.thisLvl = statset.ws;
+    t.thisLvlCurrentProgress = 0;
+    
+    Skill *i = [self coreSkillWithTemplate:self.initiative withCharacter:character];
+    i.thisLvl = statset.i;
+    i.thisLvlCurrentProgress = 0;
+    
+    Skill *ld = [self coreSkillWithTemplate:self.leadesShip withCharacter:character];
+    ld.thisLvl = statset.ws;
+    ld.thisLvlCurrentProgress = 0;
+    
+    character.wounds = statset.w;
+    
+    character.characterCondition.modifierAMelee = statset.aMelee;
+    character.characterCondition.modifierARange = statset.aRange;
+}
+
+-(void)checkAllCharacterCoreSkills:(Character *)character
+{
+    NSArray *coreSkillTemplates = self.allCharacterDefaultSkillTemplates;
+    for (SkillTemplate *skillTemplate in coreSkillTemplates) {
+        [self coreSkillWithTemplate:skillTemplate withCharacter:character];
+    }
 }
 
 @end

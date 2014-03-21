@@ -12,6 +12,7 @@
 #import "Skill.h"
 #import "SkillTemplate.h"
 #import "SkillTableViewController.h"
+#import "CharacterConditionAttributes.h"
 
 
 @interface NewCharacterViewController ()
@@ -23,6 +24,7 @@
 @property (nonatomic,strong) SkillTableViewController *skillTableView;
 @property (nonatomic) BOOL shouldRewriteSkillsLevels; //for cases when player tap race button;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) StatView *statView;
 
 @end
 
@@ -65,7 +67,9 @@
     
     self.statView.settable = true;
     self.statView.executer = self;
+    self.statView.character = self.character;
     [self.statView initFields];
+    [self.statView updateStatsFromCharacterObject];
     
     self.name.delegate = self;
     self.name.text = self.character.name;
@@ -77,6 +81,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(StatView *)statView
+{
+    if (!_statView) {
+        _statView = [[StatView alloc] initWithFrame:self.statViewContainer.bounds];
+        [self.statViewContainer addSubview:_statView];
+    }
+    return _statView;
 }
 
 -(NSManagedObjectContext *)managedObjectContext
@@ -93,9 +106,17 @@
         NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.managedObjectContext];
         if (arrayOfUnfinishedCharacters.count != 0){
             _character = [arrayOfUnfinishedCharacters lastObject];
+            [[WarhammerDefaultSkillSetManager sharedInstance] checkAllCharacterCoreSkills:_character];
         }
         else{
             _character = [Character newEmptyCharacterWithContext:self.managedObjectContext];
+            //TODO
+            Skill *wsSkill = [[WarhammerDefaultSkillSetManager sharedInstance] coreSkillWithTemplate:[[WarhammerDefaultSkillSetManager sharedInstance] weaponSkill] withCharacter:self.character];
+            Skill *bsSkill = [[WarhammerDefaultSkillSetManager sharedInstance] coreSkillWithTemplate:[[WarhammerDefaultSkillSetManager sharedInstance] ballisticSkill] withCharacter:self.character];
+            
+            [_character.characterCondition addCurrentMeleeSkillsObject:wsSkill];
+            [_character.characterCondition addCurrentRangeSkillsObject:bsSkill];
+            //[Character saveContext:self.managedObjectContext];
         }
     }
     else{
@@ -148,8 +169,9 @@
 {
     [self refreshRaceNames];
     
-    if (self.raceNames.count == 0){
-        //no set is available
+    if (self.raceNames.count == 0 || !self.shouldRewriteSkillsLevels){
+        //no statSet is available or character's skills set statSet
+        [self.statView updateStatsFromCharacterObject];
         currentTitle = @"";
         [self prepareViewForSavingNewRace];
     }
@@ -161,30 +183,12 @@
         
         [self dissmissSavingNewRace];
         
-        [self synchronizeCharacterCoreSkillsWithStatSet:statSet];
-        [self setStatSetWithSet:statSet];
+        [[WarhammerDefaultSkillSetManager sharedInstance] setCharacterSkills:self.character withStatSet:statSet];
+        [self.skillTableView.tableView reloadData];
+        self.shouldRewriteSkillsLevels = false;
     }
-    self.shouldRewriteSkillsLevels = false;
-    [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
-}
-
-
-
--(void)setStatSetWithSet:(StatSet *)statSet
-{
-    [self.statView.m  setText:[NSString stringWithFormat:@"%i",statSet.m]];
-    [self.statView.ws setText:[NSString stringWithFormat:@"%i",statSet.ws]];
-    [self.statView.bs setText:[NSString stringWithFormat:@"%i",statSet.bs]];
-    [self.statView.s  setText:[NSString stringWithFormat:@"%i",statSet.s]];
-    [self.statView.t  setText:[NSString stringWithFormat:@"%i",statSet.t]];
-    [self.statView.i  setText:[NSString stringWithFormat:@"%i",statSet.i]];
-    [self.statView.a  setText:[NSString stringWithFormat:@"%i",statSet.a]];
-    [self.statView.w  setText:[NSString stringWithFormat:@"%i",statSet.w]];
-    [self.statView.ld setText:[NSString stringWithFormat:@"%i",statSet.ld]];
     
-    int Hp = [[WarhammerDefaultSkillSetManager sharedInstance] countHpWithCharacter:self.character];//[[WarhammerDefaultSkillSetManager sharedInstance] countHpWithStatSet:statSet];
-    [self.statView.currentHp setText:[NSString stringWithFormat:@"%i",Hp]];
-    [self.statView.maxHp     setText:[NSString stringWithFormat:@"%i",Hp]];
+    [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
 }
 
 -(void)prepareViewForSavingNewRace
@@ -222,7 +226,8 @@
                                                 withS:[self.statView.s.text intValue]
                                                 withT:[self.statView.t.text intValue]
                                                 withI:[self.statView.i.text intValue]
-                                                withA:[self.statView.a.text intValue]
+                                           withAMelee:[self.statView.aMelee.text intValue]
+                                           withARange:[self.statView.aRange.text intValue]
                                                 withW:[self.statView.w.text intValue]
                                                withLD:[self.statView.ld.text intValue]
                                           withContext:self.managedObjectContext];
@@ -234,81 +239,6 @@
         [self updateRaceButtonWithName:nameString];
         [self dissmissSavingNewRace];
     }
-}
-
--(BOOL)synchronizeCharacterCoreSkillsWithStatSet:(StatSet *)statSet
-{
-    if (statSet)
-    {
-        
-        WarhammerDefaultSkillSetManager *skillManager = [WarhammerDefaultSkillSetManager sharedInstance];
-        self.character.wounds = statSet.w;
-        
-        for (Skill *skill in [self.character.skillSet allObjects]){
-            if ([skill.skillTemplate.name isEqualToString:[skillManager.movement valueForKey:@"name"]]){
-                if (self.shouldRewriteSkillsLevels){
-                    skill.thisLvl = statSet.m;
-                }
-                else{
-                    statSet.m = skill.thisLvl;
-                }
-            }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.weaponSkill valueForKey:@"name"]]){
-                if (self.shouldRewriteSkillsLevels){
-                    skill.thisLvl = statSet.ws;
-                }
-                else{
-                    statSet.ws = skill.thisLvl;
-                }
-            }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.ballisticSkill valueForKey:@"name"]]){
-                if (self.shouldRewriteSkillsLevels){
-                    skill.thisLvl = statSet.bs;
-                }
-                else{
-                    statSet.bs = skill.thisLvl;
-                }
-            }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.strenght valueForKey:@"name"]]){
-                if (self.shouldRewriteSkillsLevels){
-                    skill.thisLvl = statSet.s;
-                }
-                else{
-                    statSet.s = skill.thisLvl;
-                }
-            }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.toughness valueForKey:@"name"]]){
-                if (self.shouldRewriteSkillsLevels){
-                    skill.thisLvl = statSet.t;
-                }
-                else{
-                    statSet.t = skill.thisLvl;
-                }
-            }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.initiative valueForKey:@"name"]]){
-                if (self.shouldRewriteSkillsLevels){
-                    skill.thisLvl = statSet.i;
-                }
-                else{
-                    statSet.i = skill.thisLvl;
-                }
-            }
-            else if ([skill.skillTemplate.name isEqualToString:[skillManager.leadesShip valueForKey:@"name"]]){
-                if (self.shouldRewriteSkillsLevels){
-                    skill.thisLvl = statSet.ld;
-                }
-                else{
-                    statSet.ld = skill.thisLvl;
-                }
-            }
-        }
-        
-        [self.skillTableView.tableView reloadData];
-        
-        return true;
-    }
-    
-    return false;
 }
 
 -(IBAction)saveStatSetBtn:(id)sender
@@ -348,36 +278,8 @@
 #pragma mark skill table delegate
 -(void)didUpdateCharacterSkills
 {
-    WarhammerDefaultSkillSetManager *skillManager = [WarhammerDefaultSkillSetManager sharedInstance];
-
-    for (Skill *skill in [self.character.skillSet allObjects]){
-        if ([skill.skillTemplate.name isEqualToString:skillManager.movement.name]){
-            [self.statView.m  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
-        }
-        else if ([skill.skillTemplate.name isEqualToString:skillManager.weaponSkill.name]){
-            [self.statView.ws  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
-        }
-        else if ([skill.skillTemplate.name isEqualToString:skillManager.ballisticSkill.name]){
-            [self.statView.bs  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
-        }
-        else if ([skill.skillTemplate.name isEqualToString:skillManager.strenght.name]){
-            [self.statView.s  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
-        }
-        else if ([skill.skillTemplate.name isEqualToString:skillManager.toughness.name]){
-            [self.statView.t  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
-        }
-        else if ([skill.skillTemplate.name isEqualToString:skillManager.initiative.name]){
-            [self.statView.i  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
-        }
-        else if ([skill.skillTemplate.name isEqualToString:skillManager.leadesShip.name]){
-            [self.statView.ld  setText:[NSString stringWithFormat:@"%i",skill.thisLvl]];
-        }
-    }
-    
-    int Hp = [[WarhammerDefaultSkillSetManager sharedInstance] countHpWithCharacter:self.character];//[[WarhammerDefaultSkillSetManager sharedInstance] countHpWithStatSet:statSet];
-    [self.statView.currentHp setText:[NSString stringWithFormat:@"%i",Hp]];
-    [self.statView.maxHp     setText:[NSString stringWithFormat:@"%i",Hp]];
-    [self prepareViewForSavingNewRace];
+    self.shouldRewriteSkillsLevels = false;
+    [self updateRaceButtonWithName:nil];
 }
 
 #pragma mark -
@@ -459,7 +361,7 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
-    if ([self.statView.statContainer.subviews containsObject:textField])
+    if ([self.statView.statContainerView.subviews containsObject:textField])
     {
         //from here filter stat input. Only number. Max 2 numbers
         NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];

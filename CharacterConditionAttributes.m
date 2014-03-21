@@ -19,7 +19,8 @@
 @dynamic armorSave;
 @dynamic favor;
 @dynamic freeArmorSave;
-@dynamic modifierA;
+@dynamic modifierAMelee;
+@dynamic modifierARange;
 @dynamic modifierHp;
 @dynamic mutationPoints;
 @dynamic stress;

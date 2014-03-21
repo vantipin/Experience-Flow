@@ -23,9 +23,6 @@
 @property (nonatomic) SkillTemplate *initiative;     //-> perception, Stealth
 @property (nonatomic) SkillTemplate *leadesShip;     //-> discipline
 
-@property (nonatomic) SkillTemplate *attacks;        //basic ungrowing value
-
-
 //sub WS
 @property (nonatomic) SkillTemplate *unarmed;
 @property (nonatomic) SkillTemplate *dagger;
@@ -50,12 +47,26 @@
 
 + (WarhammerDefaultSkillSetManager *)sharedInstance;
 
+
 -(int)countHpWithStatSet:(StatSet *)statSet;
 -(int)countHpWithCharacter:(Character *)character;
--(Skill *)checkCoreSkillWithTemplate:(SkillTemplate *)skillName withCharacter:(Character *)character;
+
+-(int)countAttacksForMeleeSkill:(NSSet *)skills;
+-(int)countAttacksForRangeSkill:(Skill *)skill;
+-(int)countWSforMeleeSkill:(NSSet *)skill;
+-(int)countBSforRangeSkill:(Skill *)skill;
+-(int)countDCBonusForRangeSkill:(Skill *)skill;
+
+-(Skill *)coreSkillWithTemplate:(SkillTemplate *)skillName withCharacter:(Character *)character;
+
+-(void)checkAllCharacterCoreSkills:(Character *)character;
+-(void)setCharacterSkills:(Character *)character withStatSet:(StatSet *)statset;
+-(StatSet *)statSetFromCharacterSkills:(Character *)character;
+
+-(NSArray *)allCharacterDefaultSkillTemplates;
+-(NSArray *)allMeleeCombatSkills;
 
 -(NSArray *)allSystemDefaultSkillTemplates;
--(NSArray *)allCharacterDefaultSkillTemplates;
 
 //Intimidate (S) Basic skill.
 /*A character’s ability to cow, unnerve, or bully someone. Also covers the ability to convey a sense of dominance or superiority over others. Often carries the implied or over threat of physical violence. Can escalate a tense situation into hostility, or possibly cause a threat to back down if properly cowed.

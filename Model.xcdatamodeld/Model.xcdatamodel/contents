@@ -13,10 +13,11 @@
     </entity>
     <entity name="CharacterConditionAttributes" representedClassName="CharacterConditionAttributes" syncable="YES">
         <attribute name="adrenalinPoints" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="armorSave" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="favor" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="armorSave" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="favor" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="freeArmorSave" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="modifierA" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="modifierAMelee" optional="YES" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
+        <attribute name="modifierARange" optional="YES" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
         <attribute name="modifierHp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="mutationPoints" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="stress" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
@@ -75,6 +76,8 @@
         <attribute name="basicSkillGrowthGoes" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="skillDescription" optional="YES" attributeType="String" defaultValueString="No description" syncable="YES"/>
+        <attribute name="skillEnumType" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="skillStartingLvl" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="thisBasicBarrier" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="thisSkillProgression" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="basicSkillTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="subSkillsTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
@@ -83,7 +86,8 @@
         <relationship name="subSkillsTemplate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="basicSkillTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
     </entity>
     <entity name="StatSet" representedClassName="StatSet" syncable="YES">
-        <attribute name="a" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="aMelee" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="aRange" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="bs" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="i" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="ld" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
@@ -107,13 +111,13 @@
     </entity>
     <elements>
         <element name="Character" positionX="-335" positionY="-387" width="128" height="178"/>
-        <element name="CharacterConditionAttributes" positionX="16" positionY="-396" width="128" height="283"/>
+        <element name="CharacterConditionAttributes" positionX="16" positionY="-396" width="128" height="298"/>
         <element name="Insanity" positionX="232" positionY="-144" width="128" height="75"/>
         <element name="Item" positionX="-200" positionY="189" width="128" height="133"/>
         <element name="Pic" positionX="-407" positionY="348" width="128" height="118"/>
         <element name="Skill" positionX="-614" positionY="-387" width="128" height="178"/>
-        <element name="SkillTemplate" positionX="-875" positionY="-387" width="128" height="178"/>
-        <element name="StatSet" positionX="-639" positionY="63" width="128" height="195"/>
+        <element name="SkillTemplate" positionX="-875" positionY="-387" width="128" height="208"/>
+        <element name="StatSet" positionX="-639" positionY="63" width="128" height="208"/>
         <element name="WeaponMelee" positionX="18" positionY="198" width="128" height="120"/>
         <element name="WeaponRanged" positionX="225" positionY="222" width="128" height="75"/>
         <element name="MeleeSkill" positionX="-477" positionY="-576" width="128" height="58"/>
