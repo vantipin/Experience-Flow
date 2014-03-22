@@ -42,9 +42,7 @@
 +(Skill *)newSkillWithTemplate:(SkillTemplate *)skillTemplate
                 withBasicSkill:(Skill *)basicSkill
            withCurrentXpPoints:(float)curentPoints
-withContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
-
-+(NSArray *)newSetOfCoreSkillsWithContext:(NSManagedObjectContext *)context;
+                   withContext:(NSManagedObjectContext *)context;
 
 //update
 -(Skill *)addSolidLvls:(int)levels
@@ -55,13 +53,6 @@ withContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
           withContext:(NSManagedObjectContext *)context;
 -(Skill *)removeXpPoints:(float)xpPoints
              withContext:(NSManagedObjectContext *)context;
--(Skill *)editSkillMetaWithName:(NSString *)name
-               withDesription:(NSString *)description
-                  withContext:(NSManagedObjectContext *)context;
--(Skill *)editSkillWithBasicBarrier:(int)xpBarrier
-        withLvLProgration:(float)lvlProgration
-      withCurrentXpPoints:(float)currentPoints
-              withContext:(NSManagedObjectContext *)context;
 
 
 //fetch

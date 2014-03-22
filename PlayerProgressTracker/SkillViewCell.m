@@ -86,8 +86,8 @@
     self.unusableSkillLvlLabel.text = [NSString stringWithFormat:@"%i",self.skill.thisLvl];
     self.skillUsableLvlTextField.text = [NSString stringWithFormat:@"%d",self.skill.basicSkill ? self.skill.basicSkill.thisLvl + self.skill.thisLvl : self.skill.thisLvl];
     self.maxXpLabel.text = [NSString stringWithFormat:@"%.0f",self.skill.thisLvl * self.skill.skillTemplate.thisSkillProgression + self.skill.skillTemplate.thisBasicBarrier];
-    self.currentXpLabel.text = [NSString stringWithFormat:@"%.0f",self.skill.thisLvlCurrentProgress];
-    
+    self.currentXpLabel.text = (fmod(self.skill.thisLvlCurrentProgress, 1.0) > 0) ? [NSString stringWithFormat:@"%.1f",self.skill.thisLvlCurrentProgress] : [NSString stringWithFormat:@"%.0f",self.skill.thisLvlCurrentProgress];
+
     [self closeTip];
 }
 
@@ -147,12 +147,12 @@
 
 -(void)raiseTapped
 {
-    [self.skillCellDelegate raiseXpForSkill:self.skill updateCellOnIndexPath:self.indexPath withXpPoints:1];
+    [self.skillCellDelegate raiseXpForSkill:self.skill withXpPoints:1];
 }
 
 -(void)lowerTapped
 {
-    [self.skillCellDelegate lowerXpForSkill:self.skill updateCellOnIndexPath:self.indexPath withXpPoints:1];
+    [self.skillCellDelegate lowerXpForSkill:self.skill withXpPoints:1];
 }
 
 //Only when creating new character

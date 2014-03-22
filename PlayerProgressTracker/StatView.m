@@ -58,43 +58,43 @@
 
 -(Skill *)mSkill
 {
-    _mSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.movement withCharacter:self.character];
+    _mSkill = [self.skillManager skillWithTemplate:self.skillManager.movement withCharacter:self.character];
     return _mSkill;
 }
 
 -(Skill *)wsSkill
 {
-    _wsSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.weaponSkill withCharacter:self.character];
+    _wsSkill = [self.skillManager skillWithTemplate:self.skillManager.weaponSkill withCharacter:self.character];
     return _wsSkill;
 }
 
 -(Skill *)bsSkill
 {
-    _bsSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.ballisticSkill withCharacter:self.character];
+    _bsSkill = [self.skillManager skillWithTemplate:self.skillManager.ballisticSkill withCharacter:self.character];
     return _bsSkill;
 }
 
 -(Skill *)sSkill
 {
-    _sSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.strenght withCharacter:self.character];
+    _sSkill = [self.skillManager skillWithTemplate:self.skillManager.strenght withCharacter:self.character];
     return _sSkill;
 }
 
 -(Skill *)tSkill
 {
-    _tSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.toughness withCharacter:self.character];
+    _tSkill = [self.skillManager skillWithTemplate:self.skillManager.toughness withCharacter:self.character];
     return _tSkill;
 }
 
 -(Skill *)iSkill
 {
-    _iSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.initiative withCharacter:self.character];
+    _iSkill = [self.skillManager skillWithTemplate:self.skillManager.initiative withCharacter:self.character];
     return _iSkill;
 }
 
 -(Skill *)ldSkill
 {
-    _ldSkill = [self.skillManager coreSkillWithTemplate:self.skillManager.toughness withCharacter:self.character];
+    _ldSkill = [self.skillManager skillWithTemplate:self.skillManager.toughness withCharacter:self.character];
     return _ldSkill;
 }
 
@@ -119,10 +119,10 @@
     
     int attackMelee = ([[WarhammerDefaultSkillSetManager sharedInstance] countAttacksForMeleeSkill:self.character.characterCondition.currentMeleeSkills] + self.character.characterCondition.modifierAMelee);
     self.aMelee.text = [NSString stringWithFormat:@"%d",attackMelee];
-    int attacksRange = ([[WarhammerDefaultSkillSetManager sharedInstance] countAttacksForRangeSkill:[[self.character.characterCondition.currentRangeSkills allObjects] lastObject]] + self.character.characterCondition.modifierARange);
+    int attacksRange = ([[WarhammerDefaultSkillSetManager sharedInstance] countAttacksForRangeSkill:self.character.characterCondition.currentRangeSkills] + self.character.characterCondition.modifierARange);
     self.aRange.text = [NSString stringWithFormat:@"%d",attacksRange];
     
-    int damageBonusRange = [[WarhammerDefaultSkillSetManager sharedInstance] countDCBonusForRangeSkill:[[self.character.characterCondition.currentRangeSkills allObjects] lastObject]];
+    int damageBonusRange = [[WarhammerDefaultSkillSetManager sharedInstance] countDCBonusForRangeSkill:self.character.characterCondition.currentRangeSkills];
     self.damageRange.text = [NSString stringWithFormat:@"+%d",damageBonusRange];
 }
 
@@ -131,31 +131,21 @@
     if (!self.settable){
         
         self.m.enabled = false;
-        self.ws.enabled = false;
-        self.bs.enabled = false;
         self.s.enabled = false;
         self.t.enabled = false;
         self.i.enabled = false;
         self.w.enabled = false;
-        self.aMelee.enabled = false;
-        self.aRange.enabled = false;
         self.ld.enabled = false;
         
         self.m.backgroundColor = [UIColor clearColor];
-        self.ws.backgroundColor = [UIColor clearColor];
-        self.bs.backgroundColor = [UIColor clearColor];
         self.s.backgroundColor = [UIColor clearColor];
         self.t.backgroundColor = [UIColor clearColor];
         self.i.backgroundColor = [UIColor clearColor];
         self.w.backgroundColor = [UIColor clearColor];
-        self.aMelee.backgroundColor = [UIColor clearColor];
-        self.aRange.backgroundColor = [UIColor clearColor];
         self.ld.backgroundColor = [UIColor clearColor];
     }
     else{
         self.m.delegate = _executer;
-        self.ws.delegate = _executer;
-        self.bs.delegate = _executer;
         self.s.delegate = _executer;
         self.t.delegate = _executer;
         self.i.delegate = _executer;
@@ -165,25 +155,17 @@
         self.ld.delegate = _executer;
         
         self.m.enabled = true;
-        self.ws.enabled = true;
-        self.bs.enabled = true;
         self.s.enabled = true;
         self.t.enabled = true;
         self.i.enabled = true;
         self.w.enabled = true;
-        self.aMelee.enabled = true;
-        self.aRange.enabled = true;
         self.ld.enabled = true;
         
         self.m.backgroundColor = [UIColor whiteColor];
-        self.ws.backgroundColor = [UIColor whiteColor];
-        self.bs.backgroundColor = [UIColor whiteColor];
         self.s.backgroundColor = [UIColor whiteColor];
         self.t.backgroundColor = [UIColor whiteColor];
         self.i.backgroundColor = [UIColor whiteColor];
         self.w.backgroundColor = [UIColor whiteColor];
-        self.aMelee.backgroundColor = [UIColor whiteColor];
-        self.aRange.backgroundColor = [UIColor whiteColor];
         self.ld.backgroundColor = [UIColor whiteColor];
     }
 }
@@ -191,7 +173,7 @@
 
 -(BOOL)nonEmptyStats
 {
-    BOOL emptyStats = self.m.text.length == 0 || self.ws.text.length == 0 || self.bs.text.length == 0 || self.s.text.length == 0 || self.t.text.length == 0 || self.i.text.length == 0 || self.w.text.length == 0 || self.aMelee.text.length == 0 || self.aRange.text.length == 0 || self.ld.text.length == 0;
+    BOOL emptyStats = self.m.text.length == 0 || self.ws.text.length == 0 || self.s.text.length == 0 || self.t.text.length == 0 || self.i.text.length == 0 || self.w.text.length == 0 || self.ld.text.length == 0;
     if (emptyStats){
         return false;
     }

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Skill.h"
 #import "StatSet.h"
 
+@class RangeSkill,MagicSkill,MeleeSkill,RegularSkill,Skill,SkillTemplate,Character,StatSet,CharacterConditionAttributes;
 
 //TODO core data
 
@@ -35,8 +35,8 @@
 @property (nonatomic) SkillTemplate *staff;
 @property (nonatomic) SkillTemplate *spear;
 
-
-
+//sub BS
+@property (nonatomic) SkillTemplate *bow;
 
 //advanced
 @property (nonatomic) SkillTemplate *athletics;
@@ -52,12 +52,12 @@
 -(int)countHpWithCharacter:(Character *)character;
 
 -(int)countAttacksForMeleeSkill:(NSSet *)skills;
--(int)countAttacksForRangeSkill:(Skill *)skill;
+-(int)countAttacksForRangeSkill:(RangeSkill *)skill;
 -(int)countWSforMeleeSkill:(NSSet *)skill;
--(int)countBSforRangeSkill:(Skill *)skill;
--(int)countDCBonusForRangeSkill:(Skill *)skill;
+-(int)countBSforRangeSkill:(RangeSkill *)skill;
+-(int)countDCBonusForRangeSkill:(RangeSkill *)skill;
 
--(Skill *)coreSkillWithTemplate:(SkillTemplate *)skillName withCharacter:(Character *)character;
+-(id)skillWithTemplate:(SkillTemplate *)skillName withCharacter:(Character *)character;
 
 -(void)checkAllCharacterCoreSkills:(Character *)character;
 -(void)setCharacterSkills:(Character *)character withStatSet:(StatSet *)statset;
@@ -65,6 +65,7 @@
 
 -(NSArray *)allCharacterDefaultSkillTemplates;
 -(NSArray *)allMeleeCombatSkills;
+-(NSArray *)allRangeCombatSkills;
 
 -(NSArray *)allSystemDefaultSkillTemplates;
 

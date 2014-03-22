@@ -14,12 +14,15 @@
 		DF24B137187B684800B57855 /* StatSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B136187B684800B57855 /* StatSet.m */; };
 		DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */; };
 		DF2A96D818982CBD00A6EB45 /* Skill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2A96D718982CBD00A6EB45 /* Skill.m */; };
-		DF4F934E18D9D5D300C6ED26 /* CharacterConditionAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F934D18D9D5D300C6ED26 /* CharacterConditionAttributes.m */; };
-		DF4F935118D9D5D400C6ED26 /* PietySkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935018D9D5D400C6ED26 /* PietySkill.m */; };
 		DF4F935418D9D5D400C6ED26 /* MeleeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */; };
-		DF4F935718D9D5D400C6ED26 /* RangeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935618D9D5D400C6ED26 /* RangeSkill.m */; };
-		DF4F935A18D9D5D400C6ED26 /* MagicSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935918D9D5D400C6ED26 /* MagicSkill.m */; };
 		DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4F936718DCC32300C6ED26 /* StatView.xib */; };
+		DF4F936B18DDABC000C6ED26 /* RegularSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F936A18DDABC000C6ED26 /* RegularSkill.m */; };
+		DF4F936E18DDB3FD00C6ED26 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4F936C18DDB3FD00C6ED26 /* AppIcon.png */; };
+		DF4F936F18DDB3FD00C6ED26 /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4F936D18DDB3FD00C6ED26 /* AppIcon@2x.png */; };
+		DF4F937218DDBF6100C6ED26 /* RangeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937118DDBF6100C6ED26 /* RangeSkill.m */; };
+		DF4F937518DDBF6100C6ED26 /* MagicSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937418DDBF6100C6ED26 /* MagicSkill.m */; };
+		DF4F937818DDBF6100C6ED26 /* PietySkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937718DDBF6100C6ED26 /* PietySkill.m */; };
+		DF4F937B18DDBFF100C6ED26 /* CharacterConditionAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937A18DDBFF100C6ED26 /* CharacterConditionAttributes.m */; };
 		DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6E927B18D33F18000967F5 /* SkillViewCell.xib */; };
 		DF6E927F18D43076000967F5 /* CustomXpRaisingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */; };
 		DF6E928E18D43946000967F5 /* lowerXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928A18D43946000967F5 /* lowerXp.png */; };
@@ -85,17 +88,21 @@
 		DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTemplate.m; sourceTree = "<group>"; };
 		DF2A96D618982CBD00A6EB45 /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
 		DF2A96D718982CBD00A6EB45 /* Skill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skill.m; sourceTree = "<group>"; };
-		DF4F934C18D9D5D300C6ED26 /* CharacterConditionAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterConditionAttributes.h; sourceTree = "<group>"; };
-		DF4F934D18D9D5D300C6ED26 /* CharacterConditionAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterConditionAttributes.m; sourceTree = "<group>"; };
-		DF4F934F18D9D5D400C6ED26 /* PietySkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PietySkill.h; sourceTree = "<group>"; };
-		DF4F935018D9D5D400C6ED26 /* PietySkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PietySkill.m; sourceTree = "<group>"; };
 		DF4F935218D9D5D400C6ED26 /* MeleeSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeleeSkill.h; sourceTree = "<group>"; };
 		DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeleeSkill.m; sourceTree = "<group>"; };
-		DF4F935518D9D5D400C6ED26 /* RangeSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeSkill.h; sourceTree = "<group>"; };
-		DF4F935618D9D5D400C6ED26 /* RangeSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSkill.m; sourceTree = "<group>"; };
-		DF4F935818D9D5D400C6ED26 /* MagicSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicSkill.h; sourceTree = "<group>"; };
-		DF4F935918D9D5D400C6ED26 /* MagicSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicSkill.m; sourceTree = "<group>"; };
 		DF4F936718DCC32300C6ED26 /* StatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatView.xib; sourceTree = "<group>"; };
+		DF4F936918DDABC000C6ED26 /* RegularSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegularSkill.h; sourceTree = "<group>"; };
+		DF4F936A18DDABC000C6ED26 /* RegularSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularSkill.m; sourceTree = "<group>"; };
+		DF4F936C18DDB3FD00C6ED26 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon.png; path = Images/AppIcon.png; sourceTree = SOURCE_ROOT; };
+		DF4F936D18DDB3FD00C6ED26 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon@2x.png"; path = "Images/AppIcon@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF4F937018DDBF6100C6ED26 /* RangeSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeSkill.h; sourceTree = "<group>"; };
+		DF4F937118DDBF6100C6ED26 /* RangeSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSkill.m; sourceTree = "<group>"; };
+		DF4F937318DDBF6100C6ED26 /* MagicSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicSkill.h; sourceTree = "<group>"; };
+		DF4F937418DDBF6100C6ED26 /* MagicSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicSkill.m; sourceTree = "<group>"; };
+		DF4F937618DDBF6100C6ED26 /* PietySkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PietySkill.h; sourceTree = "<group>"; };
+		DF4F937718DDBF6100C6ED26 /* PietySkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PietySkill.m; sourceTree = "<group>"; };
+		DF4F937918DDBFF100C6ED26 /* CharacterConditionAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterConditionAttributes.h; sourceTree = "<group>"; };
+		DF4F937A18DDBFF100C6ED26 /* CharacterConditionAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterConditionAttributes.m; sourceTree = "<group>"; };
 		DF6E927B18D33F18000967F5 /* SkillViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SkillViewCell.xib; path = Views/SkillViewCell.xib; sourceTree = "<group>"; };
 		DF6E927D18D43076000967F5 /* CustomXpRaisingBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomXpRaisingBtnView.h; sourceTree = "<group>"; };
 		DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomXpRaisingBtnView.m; sourceTree = "<group>"; };
@@ -203,14 +210,16 @@
 				DF2A96D718982CBD00A6EB45 /* Skill.m */,
 				DF2A96D318982CBD00A6EB45 /* SkillTemplate.h */,
 				DF2A96D418982CBD00A6EB45 /* SkillTemplate.m */,
-				DF4F935818D9D5D400C6ED26 /* MagicSkill.h */,
-				DF4F935918D9D5D400C6ED26 /* MagicSkill.m */,
-				DF4F935518D9D5D400C6ED26 /* RangeSkill.h */,
-				DF4F935618D9D5D400C6ED26 /* RangeSkill.m */,
 				DF4F935218D9D5D400C6ED26 /* MeleeSkill.h */,
 				DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */,
-				DF4F934F18D9D5D400C6ED26 /* PietySkill.h */,
-				DF4F935018D9D5D400C6ED26 /* PietySkill.m */,
+				DF4F936918DDABC000C6ED26 /* RegularSkill.h */,
+				DF4F936A18DDABC000C6ED26 /* RegularSkill.m */,
+				DF4F937018DDBF6100C6ED26 /* RangeSkill.h */,
+				DF4F937118DDBF6100C6ED26 /* RangeSkill.m */,
+				DF4F937318DDBF6100C6ED26 /* MagicSkill.h */,
+				DF4F937418DDBF6100C6ED26 /* MagicSkill.m */,
+				DF4F937618DDBF6100C6ED26 /* PietySkill.h */,
+				DF4F937718DDBF6100C6ED26 /* PietySkill.m */,
 			);
 			name = Skills;
 			sourceTree = "<group>";
@@ -220,12 +229,12 @@
 			children = (
 				DF78AEC618B66C6C009DB90B /* Character.h */,
 				DF78AEC718B66C6C009DB90B /* Character.m */,
-				DF4F934C18D9D5D300C6ED26 /* CharacterConditionAttributes.h */,
-				DF4F934D18D9D5D300C6ED26 /* CharacterConditionAttributes.m */,
 				DF24B135187B684800B57855 /* StatSet.h */,
 				DF24B136187B684800B57855 /* StatSet.m */,
 				DFB07C1118815C9C00FF0EF7 /* Insanity.h */,
 				DFB07C1218815C9C00FF0EF7 /* Insanity.m */,
+				DF4F937918DDBFF100C6ED26 /* CharacterConditionAttributes.h */,
+				DF4F937A18DDBFF100C6ED26 /* CharacterConditionAttributes.m */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -355,6 +364,8 @@
 		DFB07BFC187EFA1700FF0EF7 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				DF4F936C18DDB3FD00C6ED26 /* AppIcon.png */,
+				DF4F936D18DDB3FD00C6ED26 /* AppIcon@2x.png */,
 				DF6E929218D4399B000967F5 /* noImage.png */,
 				DF6E929318D4399B000967F5 /* noImage@2x.png */,
 				DF6E928A18D43946000967F5 /* lowerXp.png */,
@@ -464,6 +475,8 @@
 				DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
+				DF4F936F18DDB3FD00C6ED26 /* AppIcon@2x.png in Resources */,
+				DF4F936E18DDB3FD00C6ED26 /* AppIcon.png in Resources */,
 				DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */,
 				DF6E928E18D43946000967F5 /* lowerXp.png in Resources */,
 				DF6E929518D4399B000967F5 /* noImage@2x.png in Resources */,
@@ -489,10 +502,9 @@
 				DF24B1281874B46C00B57855 /* CharacterStatListViewController.m in Sources */,
 				DF24B1241871EC9A00B57855 /* PlayerCellView.m in Sources */,
 				DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */,
-				DF4F935118D9D5D400C6ED26 /* PietySkill.m in Sources */,
 				DFB07C1F18815C9C00FF0EF7 /* WeaponRanged.m in Sources */,
 				DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */,
-				DF4F935A18D9D5D400C6ED26 /* MagicSkill.m in Sources */,
+				DF4F937518DDBF6100C6ED26 /* MagicSkill.m in Sources */,
 				DF24B1341877377900B57855 /* StatView.m in Sources */,
 				DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */,
 				DFC88CAC186B0EA6007E4D90 /* WarhammerDefaultSkillSetManager.m in Sources */,
@@ -503,14 +515,16 @@
 				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
 				DFAED13D1863329B0039D17B /* AppSettings.m in Sources */,
 				DF78AEC818B66C6C009DB90B /* Character.m in Sources */,
+				DF4F937818DDBF6100C6ED26 /* PietySkill.m in Sources */,
 				DFAED10C186309B40039D17B /* main.m in Sources */,
+				DF4F937218DDBF6100C6ED26 /* RangeSkill.m in Sources */,
+				DF4F937B18DDBFF100C6ED26 /* CharacterConditionAttributes.m in Sources */,
 				DFAED140186333000039D17B /* CoreDataViewController.m in Sources */,
-				DF4F935718D9D5D400C6ED26 /* RangeSkill.m in Sources */,
 				DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */,
 				DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */,
 				DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */,
-				DF4F934E18D9D5D300C6ED26 /* CharacterConditionAttributes.m in Sources */,
 				DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */,
+				DF4F936B18DDABC000C6ED26 /* RegularSkill.m in Sources */,
 				DFB07C07187F0AEE00FF0EF7 /* StatSetDropDown.m in Sources */,
 				DFAED13A186331790039D17B /* CoreDataClass.m in Sources */,
 				DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */,
@@ -642,7 +656,6 @@
 		DFAED12F186309B40039D17B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -656,7 +669,6 @@
 		DFAED130186309B40039D17B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

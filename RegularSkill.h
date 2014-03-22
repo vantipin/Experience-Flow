@@ -1,5 +1,5 @@
 //
-//  MagicSkill.h
+//  RegularSkill.h
 //  PlayerProgressTracker
 //
 //  Created by Vlad Antipin on 22.03.14.
@@ -10,10 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "Skill.h"
 
-@class CharacterConditionAttributes;
 
-@interface MagicSkill : Skill
+@interface RegularSkill : Skill
 
-@property (nonatomic, retain) CharacterConditionAttributes *currentlyUsedByCharacter;
 
 @end

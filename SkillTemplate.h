@@ -27,11 +27,11 @@ typedef enum SkillClassType : int16_t
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * skillDescription;
 @property (nonatomic, retain) Pic *icon;
-@property (nonatomic) int16_t thisBasicBarrier;
+@property (nonatomic) float thisBasicBarrier;
 @property (nonatomic) int16_t skillStartingLvl;
 @property (nonatomic) SkillClassesType skillEnumType;
 @property (nonatomic) float thisSkillProgression;
-@property (nonatomic) int16_t basicSkillGrowthGoes;
+@property (nonatomic) float basicSkillGrowthGoes;
 @property (nonatomic, retain) NSSet *skillsFromThisTemplate;
 @property (nonatomic, retain) SkillTemplate *basicSkillTemplate;
 @property (nonatomic, retain) NSSet *subSkillsTemplate;
@@ -52,22 +52,13 @@ typedef enum SkillClassType : int16_t
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
                                withDescription:(NSString *)skillDescription
                                  withSkillIcon:(UIImage *)icon
-                            withBasicXpBarrier:(int)basicXpBarrier
+                            withBasicXpBarrier:(float)basicXpBarrier
                           withSkillProgression:(float)skillProgression
-                      withBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
+                      withBasicSkillGrowthGoes:(float)basicSkillGrowthGoes
                                  withSkillType:(SkillClassesType)skillClassType
                         withDefaultStartingLvl:(int)startingLvl
                        withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
                                    withContext:(NSManagedObjectContext *)context;
-
-+(SkillTemplate *)editSkillTemplateWithName:(NSString *)name
-                         withNewDescription:(NSString *)skillDescription
-                           withNewSkillIcon:(UIImage *)icon
-                      withNewBasicXpBarrier:(int)basicXpBarrier
-                    withNewSkillProgression:(float)skillProgression
-                withNewBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
-                 withNewParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
-                                withContext:(NSManagedObjectContext *)context;
 
 +(NSArray *)fetchAllSkillTemplatesWithContext:(NSManagedObjectContext *)context;
 

@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="VCd-iK-4Qg">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="431"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="390"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="PYh-Vl-wwI">
@@ -71,7 +71,7 @@
                                 <color key="backgroundColor" red="0.97262632846832275" green="0.94441133819470047" blue="0.7999796360433683" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="gek-bQ-0Gx">
-                                <rect key="frame" x="0.0" y="429" width="768" height="595"/>
+                                <rect key="frame" x="0.0" y="390" width="768" height="634"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.85714285710000004" green="0.79654630609999999" blue="0.58844582680000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>

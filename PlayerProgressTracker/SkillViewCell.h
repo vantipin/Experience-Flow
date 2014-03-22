@@ -13,8 +13,8 @@
 
 @protocol SkillViewCellDelegate <NSObject>
 
-- (void)raiseXpForSkill:(Skill *)skill updateCellOnIndexPath:(NSIndexPath *)indexPath withXpPoints:(float)xpPoints;
-- (void)lowerXpForSkill:(Skill *)skill updateCellOnIndexPath:(NSIndexPath *)indexPath withXpPoints:(float)xpPoints;
+- (void)raiseXpForSkill:(Skill *)skill withXpPoints:(float)xpPoints;
+- (void)lowerXpForSkill:(Skill *)skill withXpPoints:(float)xpPoints;
 
 @end
 
@@ -31,7 +31,6 @@
 @property (nonatomic) IBOutlet UILabel *unusableSkillLvlLabel;
 
 @property (nonatomic, strong) Skill *skill;
-@property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, assign) id<SkillViewCellDelegate> skillCellDelegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withSkill:(Skill *)skill forCreatingCharacter:(BOOL)willCreateCharacter;

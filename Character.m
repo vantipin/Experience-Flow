@@ -8,6 +8,7 @@
 
 #import "Character.h"
 #import "CharacterConditionAttributes.h"
+#import "WarhammerDefaultSkillSetManager.h"
 #import "Pic.h"
 #import "Skill.h"
 #import "SkillTemplate.h"
@@ -27,155 +28,126 @@
 
 //create/update
 
-+(Character *)newCharacterWithName:(NSString *)name
-                          withIcon:(UIImage *)icon             //can be nil
-                      withSkillSet:(NSSet *)skillSet
-                       withContext:(NSManagedObjectContext *)context
-{
-    if (name&&skillSet) //character cannot be created without name or skills
-    {
-        Character *character = [Character newEmptyCharacterWithContext:context];
-        
-        if (icon)
-        {
-            character.icon = [Pic addPicWithImage:icon];
-        }
-        
-        [character addSkillSet:skillSet];
-        
-        [Character saveCharacter:character withContext:context];
-        
-        return character;
-    }
-    
-    return  nil;
-}
-
-+(Character *)newEmptyCharacterWithContext:(NSManagedObjectContext *)context
++(Character *)newCharacterWithContext:(NSManagedObjectContext *)context
 {
     Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:context];
     
     character.characterId = [NSString stringWithFormat:@"%@",character.objectID];
     
-    NSArray *basicSkills = [Skill newSetOfCoreSkillsWithContext:context];
-    for (Skill *coreSkill in basicSkills)
-    {
-        coreSkill.player = character;
-        [character addSkillSetObject:coreSkill];
+    NSArray *defaultSkillSetTemplates = [[WarhammerDefaultSkillSetManager sharedInstance] allCharacterDefaultSkillTemplates];
+    for (SkillTemplate *skillTemplate in defaultSkillSetTemplates) {
+        [character addNewSkillWithTempate:skillTemplate withContext:context];
     }
     
-    [Character saveCharacter:character withContext:context];
+    [character saveCharacterWithContext:context];
     NSLog(@"Creating new character");
     return character;
 }
 
 
-+(BOOL)saveCharacter:(Character *)character withContext:(NSManagedObjectContext *)context
+-(BOOL)saveCharacterWithContext:(NSManagedObjectContext *)context;
 {
     BOOL success = false;
     
-    if (character)
+    if (!self.characterCondition)
     {
-        if (!character.characterCondition)
-        {
-            //add default characterContion obj
-            CharacterConditionAttributes *characterCondition = [NSEntityDescription insertNewObjectForEntityForName:@"CharacterConditionAttributes" inManagedObjectContext:context];
-            characterCondition.character = character;
-            character.characterCondition = characterCondition;
-        }
-        
-        if (!character.dateCreated)
-        {
-            character.dateCreated = [CoreDataClass standartDateFormat:[[NSDate date] timeIntervalSince1970]];
-        }
-        
-        character.dateModifed = [[NSDate date] timeIntervalSince1970];
-        
-        success = true;
-        
+        //add default characterContion obj
+        CharacterConditionAttributes *characterCondition = [NSEntityDescription insertNewObjectForEntityForName:@"CharacterConditionAttributes" inManagedObjectContext:context];
+        characterCondition.character = self;
+        self.characterCondition = characterCondition;
     }
+    
+    if (!self.dateCreated)
+    {
+        self.dateCreated = [CoreDataClass standartDateFormat:[[NSDate date] timeIntervalSince1970]];
+    }
+    
+    self.dateModifed = [[NSDate date] timeIntervalSince1970];
+    
+    success = true;
     return success;
 }
 
-+(Character *)addNewSkill:(Skill *)skill
-        toCharacterWithId:(NSString *)characterId
-              withContext:(NSManagedObjectContext *)context
+-(Skill *)addNewSkillWithTempate:(SkillTemplate *)skillTemplate
+                         withContext:(NSManagedObjectContext *)context;
 {
-    if (skill)
+    if (skillTemplate)
     {
-        NSArray *characterArray = [Character fetchCharacterWithId:characterId withContext:context];
-        if (characterArray.count!=0&&characterArray)
-        {
-            //this method only update character skill
-            return nil;
-        }
-        
-        Character *character = [characterArray lastObject];
-        
-        
         //check if skill with such name exist and deny update
-        for (Skill *characterSkill in [character.skillSet allObjects])
-        {
-            if ([skill.skillTemplate.name isEqualToString:characterSkill.skillTemplate.name])
-            {
-                return character;
-            }
+        NSString *skillType = [SkillTemplate entityNameForSkillTemplate:skillTemplate];
+        NSPredicate *predicateTemplate = [NSComparisonPredicate predicateWithFormat:@"(player = %@) AND (skillTemplate.name = %@)",self,skillTemplate.name];
+        NSArray *alreadyExist = [Skill fetchRequestForObjectName:skillType withPredicate:predicateTemplate withContext:context];
+        if (alreadyExist && alreadyExist.count!=0) {
+            return [alreadyExist lastObject];
         }
+        
+
+        Skill *skill = [Skill newSkillWithTemplate:skillTemplate withBasicSkill:nil withCurrentXpPoints:0 withContext:context];
+        [self addSkillSetObject:skill];
+        skill.player = self;
         
         //check if skill has any parent skills for this character created and link them
         //if not - in addition create parent skill
-        if (skill.skillTemplate.basicSkillTemplate)
+        if (skillTemplate.basicSkillTemplate)
         {
-            //NSDictionary *complexPredicateDictionary = @{@"player":character,@"skillTemplate.name":skill.skillTemplate.basicSkillTemplate.name};
-            NSPredicate *predicateTemplate = [NSComparisonPredicate predicateWithFormat:@"(player = %@) AND (skillTemplate.name = %@)",character,skill.skillTemplate.basicSkillTemplate.name];
-            NSArray *existingBasicSkills = [Character fetchRequestForObjectName:[SkillTemplate entityNameForSkillTemplate:skill.skillTemplate.basicSkillTemplate] withPredicate:predicateTemplate withContext:context];
-            
-            if (!(existingBasicSkills && existingBasicSkills.count!=0)) //if not exist
-            {
-                Skill *newParentSkill = [Skill newSkillWithTemplate:skill.skillTemplate.basicSkillTemplate withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:context];
-                [Character addNewSkill:newParentSkill toCharacterWithId:character.characterId withContext:context];
-            }
-            skill.basicSkill = [existingBasicSkills lastObject];
+            Skill *basicSkill = [self addNewSkillWithTempate:skillTemplate.basicSkillTemplate withContext:context];
+            skill.basicSkill = basicSkill;
+            [basicSkill addSubSkillsObject:skill];
         }
         
-        [character addSkillSetObject:skill];
-        //character.dateModifed = [[NSDate date] timeIntervalSince1970];
+        [self saveCharacterWithContext:context];
         
-        [Character saveCharacter:character withContext:context];
-        
-        return character;
+        return skill;
     }
     return nil;
 }
 
 
-+(Character *)updateCharacterWithId:(NSString *)characterId
-                           withIcon:(UIImage *)icon            //can be nil
-                       withSkillSet:(NSSet *)skillSet          //can be nil
-                        withContext:(NSManagedObjectContext *)context
+-(MeleeSkill *)addToCurrentMeleeSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
 {
-    
-    NSArray *characterArray = [Character fetchCharacterWithId:characterId withContext:context];
-    if (characterArray.count!=0&&characterArray)
-    {
-        //this method only update character skill
-        return nil;
+    MeleeSkill* skill = (MeleeSkill *)[self addNewSkillWithTempate:skillTemplate withContext:context];
+    if ([self.characterCondition.currentMeleeSkills containsObject:skill]) {
+        return skill;
     }
     
-    Character *character = [characterArray lastObject];
+    [self.characterCondition addCurrentMeleeSkillsObject:skill];
+    [self saveCharacterWithContext:context];
+    return skill;
+}
+
+
+-(MeleeSkill *)removeFromCurrentMeleeSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
+{
+    NSString *entityName = [SkillTemplate entityNameForSkillTemplate:skillTemplate];
+    MeleeSkill* skill = (MeleeSkill *)[[Character fetchRequestForObjectName:entityName withPredicate:[NSPredicate predicateWithFormat:@"currentlyUsedByCharacter = %@",self.characterCondition] withContext:context] lastObject];
+    [self.characterCondition removeCurrentMeleeSkillsObject:skill];
+    [self saveCharacterWithContext:context];
+    return skill;
+}
+
+
+-(RangeSkill *)setCurrentRangeSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
+{
+    RangeSkill *skill = (RangeSkill *)[self addNewSkillWithTempate:skillTemplate withContext:context];
+    self.characterCondition.currentRangeSkills = skill;
     
-    if (icon)
-    {
-        character.icon = [Pic addPicWithImage:icon];
-    }
-    if (skillSet)
-    {
-        [character addSkillSet:skillSet];
-    }
+    return skill;
+}
+
+-(MagicSkill *)setCurrentMagicSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
+{
+    MagicSkill *skill = (MagicSkill *)[self addNewSkillWithTempate:skillTemplate withContext:context];
+    self.characterCondition.currentMagicSkills = skill;
     
-    //character.dateModifed = [[NSDate date] timeIntervalSince1970];
-    [Character saveCharacter:character withContext:context];
-    return character;
+    return skill;
+}
+
+-(PietySkill *)setCurrentPietySkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
+{
+    PietySkill *skill = (PietySkill *)[self addNewSkillWithTempate:skillTemplate withContext:context];
+    self.characterCondition.currentPietySkills = skill;
+    
+    return skill;
 }
 
 //fetch

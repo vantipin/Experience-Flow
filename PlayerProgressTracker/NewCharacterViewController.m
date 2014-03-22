@@ -10,6 +10,8 @@
 
 #import "Character.h"
 #import "Skill.h"
+#import "MeleeSkill.h"
+#import "RangeSkill.h"
 #import "SkillTemplate.h"
 #import "SkillTableViewController.h"
 #import "CharacterConditionAttributes.h"
@@ -21,7 +23,7 @@
 @property (nonatomic,strong) StatSetDropDown *raceSetDropDown;
 @property (nonatomic,strong) NSMutableArray *raceNames;
 @property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-@property (nonatomic,strong) SkillTableViewController *skillTableView;
+@property (nonatomic,strong) SkillTableViewController *skillTableViewController;
 @property (nonatomic) BOOL shouldRewriteSkillsLevels; //for cases when player tap race button;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) StatView *statView;
@@ -34,7 +36,7 @@
 @synthesize raceSetDropDown = _raceSetDropDown;
 @synthesize raceNames = _raceNames;
 @synthesize alertTextField = _alertTextField;
-@synthesize skillTableView = _skillTableView;
+@synthesize skillTableViewController = _skillTableViewController;
 @synthesize managedObjectContext = _managedObjectContext;
 
 
@@ -57,8 +59,8 @@
     //self.view.autoresizesSubviews = YES;
     //self.view.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin);
     self.shouldRewriteSkillsLevels = false;
-    self.skillTableView.character = self.character;
-    self.skillTableView.skillTableDelegate = self;
+    self.skillTableViewController.character = self.character;
+    self.skillTableViewController.skillTableDelegate = self;
     
     self.raceSetDropDown.delegateDropDown = self;
     self.raceSetDropDown.delegateDeleteStatSet = self;
@@ -107,16 +109,13 @@
         if (arrayOfUnfinishedCharacters.count != 0){
             _character = [arrayOfUnfinishedCharacters lastObject];
             [[WarhammerDefaultSkillSetManager sharedInstance] checkAllCharacterCoreSkills:_character];
+            
+            //TODO
+            [_character addToCurrentMeleeSkillWithTempate:[[WarhammerDefaultSkillSetManager sharedInstance] ordinary] withContext:self.managedObjectContext];
+            [_character setCurrentRangeSkillWithTempate:[[WarhammerDefaultSkillSetManager sharedInstance] bow] withContext:self.managedObjectContext];
         }
         else{
-            _character = [Character newEmptyCharacterWithContext:self.managedObjectContext];
-            //TODO
-            Skill *wsSkill = [[WarhammerDefaultSkillSetManager sharedInstance] coreSkillWithTemplate:[[WarhammerDefaultSkillSetManager sharedInstance] weaponSkill] withCharacter:self.character];
-            Skill *bsSkill = [[WarhammerDefaultSkillSetManager sharedInstance] coreSkillWithTemplate:[[WarhammerDefaultSkillSetManager sharedInstance] ballisticSkill] withCharacter:self.character];
-            
-            [_character.characterCondition addCurrentMeleeSkillsObject:wsSkill];
-            [_character.characterCondition addCurrentRangeSkillsObject:bsSkill];
-            //[Character saveContext:self.managedObjectContext];
+            _character = [Character newCharacterWithContext:self.managedObjectContext];
         }
     }
     else{
@@ -146,15 +145,16 @@
     return _raceSetDropDown;
 }
 
--(SkillTableViewController *)skillTableView
+-(SkillTableViewController *)skillTableViewController
 {
-    if (!_skillTableView){
-        _skillTableView = [SkillTableViewController new];
-        [self.additionalSkillContainerView addSubview:_skillTableView.view];
+    if (!_skillTableViewController){
+        _skillTableViewController = [SkillTableViewController new];
+        [self.additionalSkillContainerView addSubview:_skillTableViewController.view];
+        _skillTableViewController.view.frame = self.additionalSkillContainerView.bounds;
         self.additionalSkillContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     
-    return _skillTableView;
+    return _skillTableViewController;
 }
 
 -(void)refreshRaceNames
@@ -162,7 +162,9 @@
     [self.raceNames removeAllObjects];
     NSArray *arraySet = [NSMutableArray arrayWithArray:[StatSet fetchStatSetsWithContext:self.managedObjectContext]];
     for (StatSet *set in arraySet){
-        [_raceNames addObject:set.name];
+        if (set.name) {
+            [_raceNames addObject:set.name];
+        }
     }
 }
 - (void)updateRaceButtonWithName:(NSString *)currentTitle
@@ -184,7 +186,7 @@
         [self dissmissSavingNewRace];
         
         [[WarhammerDefaultSkillSetManager sharedInstance] setCharacterSkills:self.character withStatSet:statSet];
-        [self.skillTableView.tableView reloadData];
+        [self.skillTableViewController.tableView reloadData];
         self.shouldRewriteSkillsLevels = false;
     }
     
@@ -220,7 +222,8 @@
 
 -(void)saveCurrentStatSetWithName:(NSString *)nameString
 {
-    StatSet *statset = [StatSet createStatSetWithName:nameString withM:[self.statView.m.text intValue]
+    StatSet *statset = [StatSet createStatSetWithName:nameString
+                                                withM:[self.statView.m.text intValue]
                                                withWs:[self.statView.ws.text intValue]
                                                withBS:[self.statView.bs.text intValue]
                                                 withS:[self.statView.s.text intValue]

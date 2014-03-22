@@ -48,7 +48,8 @@
 {
     if (!_skillsDataSource){
         if (self.character){
-            _skillsDataSource = [NSMutableArray arrayWithArray:[self.character.skillSet allObjects]];
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"dateXpAdded" ascending: NO];
+            _skillsDataSource = [NSMutableArray arrayWithArray:[[self.character.skillSet allObjects] sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
         }
         else{
             _skillsDataSource = [NSMutableArray new];
@@ -134,7 +135,6 @@
         cell.skillCellDelegate = self;
     }
     cell.skill = currentSkill;
-    cell.indexPath = indexPath;
     [cell reloadFields];
     
     
@@ -144,20 +144,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    Skill *skill = [self.skillsDataSource objectAtIndex:indexPath.row];
+    [self raiseXpForSkill:skill withXpPoints:1];
 }
 
--(void)raiseXpForSkill:(Skill *)skill updateCellOnIndexPath:(NSIndexPath *)indexPath withXpPoints:(float)xpPoints
+-(void)raiseXpForSkill:(Skill *)skill withXpPoints:(float)xpPoints
 {
-    [self changeXpPointsToSkill:skill updateCellOnIndexPath:indexPath withXpPoints:xpPoints didRaiseXp:true];
+    [self changeXpPointsToSkill:skill withXpPoints:xpPoints didRaiseXp:true];
 }
 
--(void)lowerXpForSkill:(Skill *)skill updateCellOnIndexPath:(NSIndexPath *)indexPath withXpPoints:(float)xpPoints
+-(void)lowerXpForSkill:(Skill *)skill withXpPoints:(float)xpPoints
 {
-    [self changeXpPointsToSkill:skill updateCellOnIndexPath:indexPath withXpPoints:xpPoints didRaiseXp:false];
+    [self changeXpPointsToSkill:skill withXpPoints:xpPoints didRaiseXp:false];
 }
 
--(void)changeXpPointsToSkill:(Skill *)skill updateCellOnIndexPath:(NSIndexPath *)indexPath withXpPoints:(float)xpPoints didRaiseXp:(BOOL)didRaise
+-(void)changeXpPointsToSkill:(Skill *)skill withXpPoints:(float)xpPoints didRaiseXp:(BOOL)didRaise
 {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.skillsDataSource indexOfObject:skill] inSection:0];
     int prevLvl = skill.thisLvl;
     
     if (didRaise){
@@ -167,10 +170,14 @@
         [skill removeXpPoints:xpPoints withContext:self.managedObjectContext];
     }
     SkillViewCell *cell = (SkillViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    [self.tableView beginUpdates];
     [cell reloadFields];
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"dateXpAdded" ascending: NO];
+    self.skillsDataSource = [NSMutableArray arrayWithArray:[self.skillsDataSource sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
+    [self.tableView reloadData];
+    //[self.tableView beginUpdates];
+    
+    //[self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    //[self.tableView endUpdates];
     if (prevLvl != skill.thisLvl)
     {
         [self.skillTableDelegate didUpdateCharacterSkills];

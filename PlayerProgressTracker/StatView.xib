@@ -53,21 +53,21 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b03-tp-etm">
-                    <rect key="frame" x="515" y="33" width="35" height="36"/>
+                    <rect key="frame" x="532" y="33" width="35" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="19"/>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wd-aF-tlc">
-                    <rect key="frame" x="515" y="70" width="35" height="36"/>
+                    <rect key="frame" x="532" y="70" width="35" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="19"/>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRF-6y-0Cw">
-                    <rect key="frame" x="515" y="105" width="35" height="36"/>
+                    <rect key="frame" x="532" y="105" width="35" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="19"/>
+                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bwz-oQ-LRp">
@@ -180,104 +180,64 @@
                     <color key="backgroundColor" red="1" green="0.97012811899999996" blue="0.91124716279999995" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpO-5Q-7Rp">
-                    <rect key="frame" x="599" y="1" width="41" height="35"/>
+                    <rect key="frame" x="607" y="1" width="34" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jED-BG-rTv">
-                    <rect key="frame" x="638" y="0.0" width="41" height="35"/>
+                    <rect key="frame" x="647" y="0.0" width="34" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RtC-pt-pwR">
-                    <rect key="frame" x="558" y="33" width="123" height="73"/>
+                    <rect key="frame" x="567" y="33" width="114" height="73"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7y5-Nj-aUu">
-                            <rect key="frame" x="4" y="5" width="35" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7y5-Nj-aUu">
+                            <rect key="frame" x="5" y="5" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.99598234779999995" blue="0.98392939130000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <attributedString key="attributedText">
-                                <fragment content="2">
-                                    <attributes>
-                                        <font key="NSFont" size="19" name="LucidaGrande"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4o-Nj-HuC">
-                            <rect key="frame" x="4" y="39" width="35" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4o-Nj-HuC">
+                            <rect key="frame" x="5" y="39" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.99598234779999995" blue="0.98392939130000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <attributedString key="attributedText">
-                                <fragment content="1">
-                                    <attributes>
-                                        <font key="NSFont" size="19" name="LucidaGrande"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xuG-ZY-IFg">
-                            <rect key="frame" x="44" y="5" width="35" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xuG-ZY-IFg">
+                            <rect key="frame" x="42" y="5" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.99598234779999995" blue="0.98392939130000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <attributedString key="attributedText">
-                                <fragment content="1">
-                                    <attributes>
-                                        <font key="NSFont" size="19" name="LucidaGrande"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g9m-uU-UAj">
-                            <rect key="frame" x="44" y="39" width="35" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g9m-uU-UAj">
+                            <rect key="frame" x="42" y="39" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.99598234779999995" blue="0.98392939130000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <attributedString key="attributedText">
-                                <fragment content="1">
-                                    <attributes>
-                                        <font key="NSFont" size="19" name="LucidaGrande"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a59-AS-Yw2">
-                            <rect key="frame" x="84" y="5" width="35" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a59-AS-Yw2">
+                            <rect key="frame" x="79" y="5" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration">
                                 <bool key="isElement" value="NO"/>
                             </accessibility>
-                            <attributedString key="attributedText">
-                                <fragment content="5">
-                                    <attributes>
-                                        <font key="NSFont" size="19" name="LucidaGrande"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1UA-Wi-tWa">
-                            <rect key="frame" x="84" y="39" width="35" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1UA-Wi-tWa">
+                            <rect key="frame" x="79" y="39" width="30" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <attributedString key="attributedText">
-                                <fragment content="5">
-                                    <attributes>
-                                        <font key="NSFont" size="19" name="LucidaGrande"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="15"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                         </textField>
                     </subviews>
@@ -329,20 +289,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSo-06-We0">
-                    <rect key="frame" x="558" y="107" width="40" height="34"/>
+                    <rect key="frame" x="567" y="107" width="40" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TOp-FS-WCo">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TOp-FS-WCo">
                             <rect key="frame" x="2" y="2" width="35" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <attributedString key="attributedText">
-                                <fragment content="5">
-                                    <attributes>
-                                        <font key="NSFont" size="19" name="LucidaGrande"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="19"/>
                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                         </textField>
                     </subviews>

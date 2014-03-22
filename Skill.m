@@ -34,7 +34,7 @@
 +(Skill *)newSkillWithTemplate:(SkillTemplate *)skillTemplate
                 withBasicSkill:(Skill *)basicSkill
            withCurrentXpPoints:(float)curentPoints
-                   withContextToHoldItUntilContextSaved:(NSManagedObjectContext *)context;
+                   withContext:(NSManagedObjectContext *)context;
 {
     if (skillTemplate)
     {
@@ -62,24 +62,6 @@
     }
     
     return nil;
-}
-
-+(NSArray *)newSetOfCoreSkillsWithContext:(NSManagedObjectContext *)context
-{
-    NSMutableArray *coreSkills = [NSMutableArray new];
-    
-    NSArray *skillsDictionaryTemplates = [[WarhammerDefaultSkillSetManager sharedInstance] allCharacterDefaultSkillTemplates];
-    for (SkillTemplate *skillTemplate in skillsDictionaryTemplates)
-    {
-        Skill *coreSkill = [Skill newSkillWithTemplate:skillTemplate withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:context];
-        
-        if (coreSkill)
-        {
-            [coreSkills addObject:coreSkill];
-        }
-    }
-    
-    return coreSkills;
 }
 
 //update
@@ -143,6 +125,24 @@
     return nil;
 }
 
+-(float)xpPointsForSkill:(float)xpPoints
+{
+    float resultXpPoints = xpPoints;
+    if (self.basicSkill) {
+        resultXpPoints -= [self xpPointsForBasicSkill:xpPoints];
+    }
+    return resultXpPoints;
+}
+
+-(float)xpPointsForBasicSkill:(float)xpPoints
+{
+    float resultXpPoints = 0;
+    float safeFilter = (self.skillTemplate.basicSkillGrowthGoes > 1) ? 1 : self.skillTemplate.basicSkillGrowthGoes;
+    resultXpPoints = safeFilter * xpPoints;
+    return resultXpPoints;
+}
+
+
 -(Skill *)addXpPoints:(float)xpPoints
           withContext:(NSManagedObjectContext *)context
 {
@@ -151,24 +151,12 @@
         
         Skill *skill = self;
         //calculate xp
-        float thisCurrentXp = skill.thisLvlCurrentProgress;
-        
-        if (skill.skillTemplate.basicSkillGrowthGoes!=0&&skill.basicSkill)
-        {
-            float thisCurrentBasicXp = xpPoints/skill.skillTemplate.basicSkillGrowthGoes;
-            thisCurrentXp = thisCurrentXp + xpPoints - thisCurrentBasicXp;
-            skill.thisLvlCurrentProgress = thisCurrentBasicXp;
-            
-            skill.basicSkill.thisLvlCurrentProgress = thisCurrentBasicXp + skill.basicSkill.thisLvlCurrentProgress;
-            [Skill calculateAddingXpPointsToSkill:skill.basicSkill withContext:context];
-            skill.basicSkill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
-        }
-        else
-        {
-            skill.thisLvlCurrentProgress = thisCurrentXp + xpPoints;
+        if (skill.skillTemplate.basicSkillGrowthGoes != 0 && skill.basicSkill) {
+            [skill.basicSkill addXpPoints:[self xpPointsForBasicSkill:xpPoints] withContext:context];
         }
         
-        skill = [Skill calculateAddingXpPointsToSkill:skill withContext:context];
+        skill.thisLvlCurrentProgress += [self xpPointsForSkill:xpPoints];
+        skill = [skill calculateAddingXpPointsWithContext:context];
         skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
         
         [Skill saveContext:context];
@@ -179,27 +167,17 @@
     return nil;
 }
 
-//private methode for recursive calculating xp points
-+(Skill *)calculateAddingXpPointsToSkill:(Skill *)skill withContext:(NSManagedObjectContext *)context
+-(Skill *)calculateAddingXpPointsWithContext:(NSManagedObjectContext *)context
 {
-    
-    //calculate xp
-    
-    int thisLvl = skill.thisLvl;
-    float thisPrograssion = skill.skillTemplate.thisSkillProgression;
-    int thisBasicBarrier = skill.skillTemplate.thisBasicBarrier;
-    
-    float xpNextLvl = (thisLvl)*thisPrograssion + thisBasicBarrier;
-    
-    float thisCurrentXp = skill.thisLvlCurrentProgress;
-    if (thisCurrentXp >= xpNextLvl)
-    {
-        skill.thisLvlCurrentProgress = ABS(xpNextLvl - thisCurrentXp);
-        skill.thisLvl = thisLvl + 1;
-        skill = [Skill calculateAddingXpPointsToSkill:skill withContext:context]; //check if more than 1 lvl
+    float xpNextLvl = self.thisLvl * self.skillTemplate.thisSkillProgression + self.skillTemplate.thisBasicBarrier;
+
+    if (self.thisLvlCurrentProgress >= xpNextLvl) {
+        self.thisLvlCurrentProgress -= xpNextLvl;
+        self.thisLvl ++;
+        [self calculateAddingXpPointsWithContext:context]; //check if more than 1 lvl
     }
     
-    return skill;
+    return self;
 }
 
 -(Skill *)removeXpPoints:(float)xpPoints
@@ -209,26 +187,12 @@
     {
         Skill *skill = self;
         
-        
-        float thisCurrentXp = skill.thisLvlCurrentProgress;
-        
-        if (skill.skillTemplate.basicSkillGrowthGoes!=0&&skill.basicSkill)
-        {
-            float thisCurrentBasicXp = xpPoints/skill.skillTemplate.basicSkillGrowthGoes;
-            thisCurrentXp = thisCurrentXp - xpPoints + thisCurrentBasicXp;
-            skill.thisLvlCurrentProgress = thisCurrentBasicXp;
-            
-            skill.basicSkill.thisLvlCurrentProgress = (skill.basicSkill.thisLvlCurrentProgress - thisCurrentBasicXp);
-            [Skill calculateRemovingXpPointsFromSkill:skill.basicSkill withContext:context];
-            skill.basicSkill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
-        }
-        else
-        {
-            skill.thisLvlCurrentProgress = (thisCurrentXp - xpPoints);
+        if (skill.skillTemplate.basicSkillGrowthGoes != 0 && skill.basicSkill) {
+            [skill.basicSkill removeXpPoints:[self xpPointsForBasicSkill:xpPoints] withContext:context];
         }
         
-        
-        skill = [Skill calculateRemovingXpPointsFromSkill:skill withContext:context];
+        skill.thisLvlCurrentProgress -= [self xpPointsForSkill:xpPoints];
+        skill = [skill calculateRemovingXpPointsWithContext:context];
         skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
         
         [Skill saveContext:context];
@@ -238,76 +202,21 @@
     return nil;
 }
 
-//private methode for recursive calculating xp points
-+(Skill *)calculateRemovingXpPointsFromSkill:(Skill *)skill withContext:(NSManagedObjectContext *)context
+-(Skill *)calculateRemovingXpPointsWithContext:(NSManagedObjectContext *)context
 {
-    //calculate xp
-    int thisLvl = skill.thisLvl;
-    float thisPrograssion = skill.skillTemplate.thisSkillProgression;
-    int thisBasicBarrier = skill.skillTemplate.thisBasicBarrier;
-    
-    float xpPrevLvl = (thisLvl-1)*thisPrograssion + thisBasicBarrier;
-    
-    float thisCurrentXp = skill.thisLvlCurrentProgress;
-    if (thisCurrentXp < 0)
-    {
-        if (thisLvl<=0) //xp cannt be less than zero
-        {
-            skill.thisLvlCurrentProgress = 0;
-        }
-        else
-        {
-            skill.thisLvlCurrentProgress = (xpPrevLvl - ABS(thisCurrentXp));
-            skill.thisLvl = (thisLvl - 1);
-            if (skill.thisLvlCurrentProgress < 0) //if more then 1 lvl?
-            {
-                skill = [Skill calculateRemovingXpPointsFromSkill:skill withContext:context];
-            }
-        }
+    if (self.thisLvl == 0) {
+        self.thisLvlCurrentProgress = (self.thisLvlCurrentProgress < 0) ? 0 : self.thisLvlCurrentProgress;
+        return self;
     }
-    return skill;
-}
-
--(Skill *)editSkillMetaWithName:(NSString *)name
-               withDesription:(NSString *)description
-                  withContext:(NSManagedObjectContext *)context
-{
-    if (name)
-    {
-        Skill *skill = self;
-        skill.skillTemplate.name = name;
-        skill.skillTemplate.skillDescription=description;
-        
-        [Skill saveContext:context];
-        
-        return skill;
+    if (self.thisLvlCurrentProgress < 0) {
+        self.thisLvl --;
+        float xpPrevLvl = self.thisLvl * self.skillTemplate.thisSkillProgression + self.skillTemplate.thisBasicBarrier;
+        self.thisLvlCurrentProgress += xpPrevLvl;
+        [self calculateRemovingXpPointsWithContext:context];
     }
-    return nil;
-}
 
--(Skill *)editSkillWithBasicBarrier:(int)xpBarrier
-        withLvLProgration:(float)lvlProgration
-      withCurrentXpPoints:(float)currentPoints
-              withContext:(NSManagedObjectContext *)context
-{
-    if (xpBarrier&&lvlProgration)
-    {
-        Skill *skill = self;
-        skill.skillTemplate.thisBasicBarrier = xpBarrier;
-        skill.skillTemplate.thisSkillProgression=lvlProgration;
-        if (currentPoints)
-        {
-            skill.thisLvlCurrentProgress = currentPoints;
-        }
-        skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
-        
-        [SkillTemplate saveContext:context];
-        
-        return skill;
-    }
-    return nil;
+    return self;
 }
-
 
 //fetch
 +(NSArray *)fetchSkillWithId:(NSString *)skillId withContext:(NSManagedObjectContext *)context

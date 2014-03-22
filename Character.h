@@ -11,7 +11,7 @@
 #import "CharacterConditionAttributes.h"
 #import "CoreDataClass.h"
 
-@class CharacterConditionAttributes, Pic, Skill;
+@class CharacterConditionAttributes, Pic, Skill, SkillTemplate;
 
 @interface Character : CoreDataClass
 
@@ -38,24 +38,18 @@
 //methodes for work with object
 
 //create
-+(Character *)newCharacterWithName:(NSString *)name
-                          withIcon:(UIImage *)icon             //can be nil
-                      withSkillSet:(NSSet *)skillSet
-                       withContext:(NSManagedObjectContext *)context;
-
-//methodes for smart creating new character
-+(Character *)newEmptyCharacterWithContext:(NSManagedObjectContext *)context;
-+(BOOL)saveCharacter:(Character *)character withContext:(NSManagedObjectContext *)context;
++(Character *)newCharacterWithContext:(NSManagedObjectContext *)context;
+-(BOOL)saveCharacterWithContext:(NSManagedObjectContext *)context;
 
 //update
-+(Character *)addNewSkill:(Skill *)skill
-        toCharacterWithId:(NSString *)characterId
-              withContext:(NSManagedObjectContext *)context;
+-(Skill *)addNewSkillWithTempate:(SkillTemplate *)skillTemplate
+                     withContext:(NSManagedObjectContext *)context;
 
-+(Character *)updateCharacterWithId:(NSString *)characterId
-                           withIcon:(UIImage *)icon            //can be nil
-                       withSkillSet:(NSSet *)skillSet          //can be nil
-                        withContext:(NSManagedObjectContext *)context;
+-(MeleeSkill *)addToCurrentMeleeSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
+-(MeleeSkill *)removeFromCurrentMeleeSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
+-(RangeSkill *)setCurrentRangeSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
+-(MagicSkill *)setCurrentMagicSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
+-(PietySkill *)setCurrentPietySkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
 
 //fetch
 +(NSArray *)fetchCharacterWithId:(NSString *)characterId withContext:(NSManagedObjectContext *)context;

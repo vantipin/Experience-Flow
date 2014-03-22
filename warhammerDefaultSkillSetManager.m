@@ -10,6 +10,10 @@
 #import "Character.h"
 #import "Skill.h"
 #import "SkillTemplate.h"
+#import "RangeSkill.h"
+#import "MeleeSkill.h"
+#import "MagicSkill.h"
+#import "PietySkill.h"
 #import "CoreDataViewController.h"
 
 
@@ -33,6 +37,9 @@
 #define fencingName @""
 #define staffName @""
 #define spearName @""
+
+#define bowName @"Bow"
+
 
 #define athleticsName @"Athletics"
 #define stealthName @"Stealth"
@@ -71,6 +78,9 @@ static WarhammerDefaultSkillSetManager *instance = nil;
 @synthesize fencing = _fencing;
 @synthesize staff = _staff;
 @synthesize spear = _spear;
+
+//sub BS
+@synthesize bow = _bow;
 
 //advanced
 @synthesize athletics = _athletics;
@@ -147,6 +157,8 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                          self.staff,
                          self.spear,
                          
+                         self.bow,
+                         
                          self.athletics,
                          self.stealth,
                          self.resilience,
@@ -182,6 +194,15 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     return allCharacterSkills;
 }
 
+-(NSArray *)allRangeCombatSkills
+{
+    NSArray *allCharacterSkills;
+    
+    allCharacterSkills = @[self.bow];
+    
+    return allCharacterSkills;
+}
+
 #pragma mark -
 #pragma mark basic skills
 
@@ -194,7 +215,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:movementName
                                                         withDescription:@"Movement. Basic skill. Shows how far character is able to move from his initial position in one turn."
                                                           withSkillIcon:nil
-                                                     withBasicXpBarrier:0
+                                                     withBasicXpBarrier:1
                                                    withSkillProgression:7
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:StandartSkillType
@@ -221,7 +242,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:weaponSkillName
                                                         withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of a variety of melee weapons. Weapon skill is a broad category and governs fighting unarmed to using small weapons like knives or clubs to larger weapons like two-handed swords, great axes or halberds. The ability to parry with an equipped melee weapon is also based on a character’s Weapon Skill."
                                                           withSkillIcon:nil
-                                                     withBasicXpBarrier:0
+                                                     withBasicXpBarrier:1
                                                    withSkillProgression:8
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:StandartSkillType
@@ -248,7 +269,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ballisticSkillName
                                                         withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of ranged weapons. This includes thrown weapons like balanced knives and javelins, as well as bows, crossbows, and slings. Also covers the basics of blackpowder weapon care and operation. It is a combination of hand-eye coordination, accuracy, and training with ranged items."
                                                           withSkillIcon:nil
-                                                     withBasicXpBarrier:0
+                                                     withBasicXpBarrier:1
                                                    withSkillProgression:7
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:StandartSkillType
@@ -275,7 +296,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:strenghtName
                                                         withDescription:@"Strenght. Basic skill."
                                                           withSkillIcon:nil
-                                                     withBasicXpBarrier:0
+                                                     withBasicXpBarrier:1
                                                    withSkillProgression:10
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:StandartSkillType
@@ -302,7 +323,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:toughnessName
                                                        withDescription:@"Toughness. Basic skill."
                                                          withSkillIcon:nil
-                                                    withBasicXpBarrier:0
+                                                    withBasicXpBarrier:1
                                                   withSkillProgression:10
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:StandartSkillType
@@ -329,7 +350,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:initiativeName
                                                        withDescription:@"Initiative. Basic skill."
                                                          withSkillIcon:nil
-                                                    withBasicXpBarrier:0
+                                                    withBasicXpBarrier:1
                                                   withSkillProgression:10
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:StandartSkillType
@@ -356,7 +377,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:leadesShipName
                                                        withDescription:@"Leadership. Basic skill."
                                                          withSkillIcon:nil
-                                                    withBasicXpBarrier:0
+                                                    withBasicXpBarrier:1
                                                   withSkillProgression:3
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:StandartSkillType
@@ -387,7 +408,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:8
                                                   withSkillProgression:5
-                                               withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:0.6
                                                           withSkillType:StandartSkillType
                                                  withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.strenght
@@ -413,7 +434,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:8
                                                   withSkillProgression:5
-                                               withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:0.6
                                                           withSkillType:StandartSkillType
                                                  withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.initiative
@@ -439,7 +460,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:8
                                                   withSkillProgression:5
-                                               withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:0.6
                                                           withSkillType:StandartSkillType
                                                  withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.toughness
@@ -465,7 +486,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:5
                                                   withSkillProgression:4
-                                               withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:0.6
                                                           withSkillType:StandartSkillType
                                                  withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.leadesShip
@@ -490,7 +511,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:8
                                                   withSkillProgression:5
-                                               withBasicSkillGrowthGoes:2
+                                               withBasicSkillGrowthGoes:0.5
                                                           withSkillType:StandartSkillType
                                                  withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.initiative
@@ -517,7 +538,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:4
                                                   withSkillProgression:3
-                                               withBasicSkillGrowthGoes:3
+                                               withBasicSkillGrowthGoes:0.6
                                                           withSkillType:MeleeSkillType
                                                  withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.weaponSkill
@@ -542,7 +563,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:4
                                                   withSkillProgression:3
-                                               withBasicSkillGrowthGoes:3
+                                               withBasicSkillGrowthGoes:0.6
                                                           withSkillType:MeleeSkillType
                                                  withDefaultStartingLvl:1
                                                withParentSkillTemplate:self.weaponSkill
@@ -567,7 +588,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
                                                          withSkillIcon:nil
                                                     withBasicXpBarrier:4
                                                   withSkillProgression:3
-                                               withBasicSkillGrowthGoes:3
+                                               withBasicSkillGrowthGoes:0.6
                                                           withSkillType:MeleeSkillType
                                                  withDefaultStartingLvl:0
                                                withParentSkillTemplate:self.weaponSkill
@@ -582,10 +603,30 @@ static WarhammerDefaultSkillSetManager *instance = nil;
 }
 
 #pragma mark ranged weapons skills
-
-
-#pragma mark -
-#pragma mark validate input
+//bow
+-(SkillTemplate *)bow{
+    if (!_bow){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",bowName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:bowName
+                                                        withDescription:@"Advanced skill. Better use short and long bows."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:4
+                                                   withSkillProgression:3
+                                               withBasicSkillGrowthGoes:0.6
+                                                          withSkillType:RangeSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.ballisticSkill
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        _bow = skillTemplate;
+    }
+    return _bow;
+}
 
 
 #pragma mark -
@@ -596,34 +637,26 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     
     if (statSet)
     {
-        Hp += [self hitpointsForSkillWithName:[self.movement valueForKey:@"name"] withSkillLevel:statSet.m];
-        Hp += [self hitpointsForSkillWithName:[self.weaponSkill valueForKey:@"name"] withSkillLevel:statSet.ws];
-        Hp += [self hitpointsForSkillWithName:[self.ballisticSkill valueForKey:@"name"] withSkillLevel:statSet.bs];
-        Hp += [self hitpointsForSkillWithName:[self.strenght valueForKey:@"name"] withSkillLevel:statSet.s];
-        Hp += [self hitpointsForSkillWithName:[self.toughness valueForKey:@"name"] withSkillLevel:statSet.t];
-        Hp += [self hitpointsForSkillWithName:[self.initiative valueForKey:@"name"] withSkillLevel:statSet.i];
+        Hp += [self hitpointsForSkillWithTemplate:self.movement withSkillLevel:statSet.m];
+        Hp += [self hitpointsForSkillWithTemplate:self.weaponSkill withSkillLevel:statSet.ws];
+        Hp += [self hitpointsForSkillWithTemplate:self.ballisticSkill withSkillLevel:statSet.bs];
+        Hp += [self hitpointsForSkillWithTemplate:self.strenght withSkillLevel:statSet.s];
+        Hp += [self hitpointsForSkillWithTemplate:self.toughness withSkillLevel:statSet.t];
+        Hp += [self hitpointsForSkillWithTemplate:self.initiative withSkillLevel:statSet.i];
         Hp += 25 * statSet.w;
-        Hp += [self hitpointsForSkillWithName:[self.leadesShip valueForKey:@"name"] withSkillLevel:statSet.ld];
+        Hp += [self hitpointsForSkillWithTemplate:self.leadesShip withSkillLevel:statSet.ld];
     }
     
     return Hp;
 }
 
--(int)hitpointsForSkillWithName:(NSString *)name withSkillLevel:(int)skillLevel
+-(int)hitpointsForSkillWithTemplate:(SkillTemplate *)skillTemplate withSkillLevel:(int)skillLevel
 {
     NSInteger Hp = 0;
     
-    NSDictionary *dict = @{self.movement.name:@4,
-                           self.weaponSkill.name:@2,
-                           self.ballisticSkill.name:@1,
-                           self.strenght.name:@2,
-                           self.toughness.name:@2,
-                           self.initiative.name:@3,
-                           self.leadesShip.name:@6};
-    
-    NSInteger value = [[dict valueForKey:name] integerValue];
-    if (value && (value < skillLevel)){
-        if ([name isEqualToString:[self.toughness valueForKey:@"name"]]){
+    NSInteger value = skillTemplate.skillStartingLvl;
+    if (value < skillLevel){
+        if ([skillTemplate.name isEqualToString:self.toughness.name]){
             Hp = 10 * (skillLevel - value);
         }
         else{
@@ -655,16 +688,16 @@ static WarhammerDefaultSkillSetManager *instance = nil;
         NSArray *skillsTemplates = [[WarhammerDefaultSkillSetManager sharedInstance] allCharacterDefaultSkillTemplates];
         for (SkillTemplate *template in skillsTemplates)
         {
-            Skill *skill = [self coreSkillWithTemplate:template withCharacter:character];
+            Skill *skill = [self skillWithTemplate:template withCharacter:character];
             
-            Hp += [self hitpointsForSkillWithName:template.name withSkillLevel:skill.thisLvl];
+            Hp += [self hitpointsForSkillWithTemplate:template withSkillLevel:skill.thisLvl];
         }
     }
     
     return Hp;
 }
 
--(Skill *)coreSkillWithTemplate:(SkillTemplate *)skillTemplate withCharacter:(Character *)character
+-(id)skillWithTemplate:(SkillTemplate *)skillTemplate withCharacter:(Character *)character
 {
    
     Skill *skill;
@@ -674,11 +707,8 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     
     if (!skill)
     {
-        NSLog(@"Warning! Core skill with name ""%@"" missed!",character.name);
-        SkillTemplate *coreSkillTemplate = skillTemplate;
-        Skill *coreSkill = [Skill newSkillWithTemplate:coreSkillTemplate withBasicSkill:nil withCurrentXpPoints:0 withContextToHoldItUntilContextSaved:self.context];
-        [character addSkillSetObject:coreSkill];
-        skill = coreSkill;
+        NSLog(@"Warning! Skill with name ""%@"" is missing for character with id %@!",skillTemplate.name,character.characterId);
+        skill = [character addNewSkillWithTempate:skillTemplate withContext:self.context];
     }
     
     return skill;
@@ -707,7 +737,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     return bonus;
 }
 
--(int)countAttacksForRangeSkill:(Skill *)skill;
+-(int)countAttacksForRangeSkill:(RangeSkill *)skill;
 {
     int bonus = 0;
     
@@ -750,7 +780,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     return ws;
 }
 
--(int)countBSforRangeSkill:(Skill *)skill
+-(int)countBSforRangeSkill:(RangeSkill *)skill
 {
     int bs = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);;
     
@@ -767,7 +797,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
     return bs;
 }
 
--(int)countDCBonusForRangeSkill:(Skill *)skill
+-(int)countDCBonusForRangeSkill:(RangeSkill *)skill
 {
     int bonus = 0;
     
@@ -784,16 +814,16 @@ static WarhammerDefaultSkillSetManager *instance = nil;
 
 -(StatSet *)statSetFromCharacterSkills:(Character *)character
 {
-    StatSet *statSet = [StatSet createTemporaryStatSetWithM:[[self coreSkillWithTemplate:self.movement withCharacter:character] thisLvl]
-                                                     withWs:[[self coreSkillWithTemplate:self.weaponSkill withCharacter:character] thisLvl]
-                                                     withBS:[[self coreSkillWithTemplate:self.ballisticSkill withCharacter:character] thisLvl]
-                                                      withS:[[self coreSkillWithTemplate:self.strenght withCharacter:character] thisLvl]
-                                                      withT:[[self coreSkillWithTemplate:self.toughness withCharacter:character] thisLvl]
-                                                      withI:[[self coreSkillWithTemplate:self.initiative withCharacter:character] thisLvl]
+    StatSet *statSet = [StatSet createTemporaryStatSetWithM:[[self skillWithTemplate:self.movement withCharacter:character] thisLvl]
+                                                     withWs:[[self skillWithTemplate:self.weaponSkill withCharacter:character] thisLvl]
+                                                     withBS:[[self skillWithTemplate:self.ballisticSkill withCharacter:character] thisLvl]
+                                                      withS:[[self skillWithTemplate:self.strenght withCharacter:character] thisLvl]
+                                                      withT:[[self skillWithTemplate:self.toughness withCharacter:character] thisLvl]
+                                                      withI:[[self skillWithTemplate:self.initiative withCharacter:character] thisLvl]
                                                  withAMelee:character.characterCondition.modifierAMelee
                                                  withARange:character.characterCondition.modifierARange
                                                       withW:character.wounds
-                                                     withLD:[[self coreSkillWithTemplate:self.leadesShip withCharacter:character] thisLvl]
+                                                     withLD:[[self skillWithTemplate:self.leadesShip withCharacter:character] thisLvl]
                                                 withContext:self.context];
     
     return statSet;
@@ -801,31 +831,31 @@ static WarhammerDefaultSkillSetManager *instance = nil;
 
 -(void)setCharacterSkills:(Character *)character withStatSet:(StatSet *)statset
 {
-    Skill *m = [self coreSkillWithTemplate:self.movement withCharacter:character];
+    Skill *m = [self skillWithTemplate:self.movement withCharacter:character];
     m.thisLvl = statset.m;
     m.thisLvlCurrentProgress = 0;
     
-    Skill *ws = [self coreSkillWithTemplate:self.weaponSkill withCharacter:character];
+    Skill *ws = [self skillWithTemplate:self.weaponSkill withCharacter:character];
     ws.thisLvl = statset.ws;
     ws.thisLvlCurrentProgress = 0;
     
-    Skill *bs = [self coreSkillWithTemplate:self.ballisticSkill withCharacter:character];
+    Skill *bs = [self skillWithTemplate:self.ballisticSkill withCharacter:character];
     bs.thisLvl = statset.bs;
     bs.thisLvlCurrentProgress = 0;
     
-    Skill *s = [self coreSkillWithTemplate:self.strenght withCharacter:character];
+    Skill *s = [self skillWithTemplate:self.strenght withCharacter:character];
     s.thisLvl = statset.s;
     s.thisLvlCurrentProgress = 0;
     
-    Skill *t = [self coreSkillWithTemplate:self.toughness withCharacter:character];
+    Skill *t = [self skillWithTemplate:self.toughness withCharacter:character];
     t.thisLvl = statset.ws;
     t.thisLvlCurrentProgress = 0;
     
-    Skill *i = [self coreSkillWithTemplate:self.initiative withCharacter:character];
+    Skill *i = [self skillWithTemplate:self.initiative withCharacter:character];
     i.thisLvl = statset.i;
     i.thisLvlCurrentProgress = 0;
     
-    Skill *ld = [self coreSkillWithTemplate:self.leadesShip withCharacter:character];
+    Skill *ld = [self skillWithTemplate:self.leadesShip withCharacter:character];
     ld.thisLvl = statset.ws;
     ld.thisLvlCurrentProgress = 0;
     
@@ -839,7 +869,7 @@ static WarhammerDefaultSkillSetManager *instance = nil;
 {
     NSArray *coreSkillTemplates = self.allCharacterDefaultSkillTemplates;
     for (SkillTemplate *skillTemplate in coreSkillTemplates) {
-        [self coreSkillWithTemplate:skillTemplate withCharacter:character];
+        [self skillWithTemplate:skillTemplate withCharacter:character];
     }
 }
 

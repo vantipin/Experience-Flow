@@ -22,10 +22,10 @@
         <attribute name="mutationPoints" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="stress" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Character" inverseName="characterCondition" inverseEntity="Character" syncable="YES"/>
-        <relationship name="currentMagicSkills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MagicSkill" inverseName="currentlyUsedByCharacter" inverseEntity="MagicSkill" syncable="YES"/>
+        <relationship name="currentMagicSkills" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MagicSkill" inverseName="currentlyUsedByCharacter" inverseEntity="MagicSkill" syncable="YES"/>
         <relationship name="currentMeleeSkills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MeleeSkill" inverseName="currentlyUsedByCharacter" inverseEntity="MeleeSkill" syncable="YES"/>
-        <relationship name="currentPietySkills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PietySkill" inverseName="currentlyUsedByCharacter" inverseEntity="PietySkill" syncable="YES"/>
-        <relationship name="currentRangeSkills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RangeSkill" inverseName="currentlyUsedByCharacter" inverseEntity="RangeSkill" syncable="YES"/>
+        <relationship name="currentPietySkills" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PietySkill" inverseName="currentlyUsedByCharacter" inverseEntity="PietySkill" syncable="YES"/>
+        <relationship name="currentRangeSkills" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RangeSkill" inverseName="currentlyUsedByCharacter" inverseEntity="RangeSkill" syncable="YES"/>
         <relationship name="insanaties" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Insanity" inverseName="characterConditions" inverseEntity="Insanity" syncable="YES"/>
         <relationship name="weaponMelee" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WeaponMelee" inverseName="characterConditions" inverseEntity="WeaponMelee" syncable="YES"/>
         <relationship name="weaponRanged" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WeaponRanged" inverseName="relationship" inverseEntity="WeaponRanged" syncable="YES"/>
@@ -61,7 +61,8 @@
     <entity name="RangeSkill" representedClassName="RangeSkill" parentEntity="Skill" syncable="YES">
         <relationship name="currentlyUsedByCharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="currentRangeSkills" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
     </entity>
-    <entity name="Skill" representedClassName="Skill" syncable="YES">
+    <entity name="RegularSkill" representedClassName="RegularSkill" parentEntity="Skill" syncable="YES"/>
+    <entity name="Skill" representedClassName="Skill" isAbstract="YES" syncable="YES">
         <attribute name="dateXpAdded" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="skillId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thisLvl" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -73,12 +74,12 @@
         <relationship name="subSkills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skill" inverseName="basicSkill" inverseEntity="Skill" syncable="YES"/>
     </entity>
     <entity name="SkillTemplate" representedClassName="SkillTemplate" syncable="YES">
-        <attribute name="basicSkillGrowthGoes" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="basicSkillGrowthGoes" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="skillDescription" optional="YES" attributeType="String" defaultValueString="No description" syncable="YES"/>
         <attribute name="skillEnumType" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="skillStartingLvl" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="thisBasicBarrier" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="thisBasicBarrier" optional="YES" attributeType="Float" defaultValueString="1" syncable="YES"/>
         <attribute name="thisSkillProgression" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="basicSkillTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="subSkillsTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
         <relationship name="icon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pic" inverseName="skills" inverseEntity="Pic" syncable="YES"/>
@@ -124,5 +125,6 @@
         <element name="RangeSkill" positionX="-308" positionY="-576" width="128" height="58"/>
         <element name="MagicSkill" positionX="-144" positionY="-576" width="128" height="58"/>
         <element name="PietySkill" positionX="16" positionY="-576" width="128" height="58"/>
+        <element name="RegularSkill" positionX="-648" positionY="-576" width="128" height="43"/>
     </elements>
 </model>

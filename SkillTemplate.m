@@ -31,9 +31,9 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
                                withDescription:(NSString *)skillDescription
                                  withSkillIcon:(UIImage *)icon
-                            withBasicXpBarrier:(int)basicXpBarrier
+                            withBasicXpBarrier:(float)basicXpBarrier
                           withSkillProgression:(float)skillProgression
-                      withBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
+                      withBasicSkillGrowthGoes:(float)basicSkillGrowthGoes
                                  withSkillType:(SkillClassesType)skillClassType
                         withDefaultStartingLvl:(int)startingLvl
                        withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
@@ -77,55 +77,12 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
     return nil;
 }
 
-+(SkillTemplate *)editSkillTemplateWithName:(NSString *)name
-                         withNewDescription:(NSString *)skillDescription
-                           withNewSkillIcon:(UIImage *)icon
-                      withNewBasicXpBarrier:(int)basicXpBarrier
-                    withNewSkillProgression:(float)skillProgression
-                withNewBasicSkillGrowthGoes:(int)basicSkillGrowthGoes
-                 withNewParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
-                                withContext:(NSManagedObjectContext *)context;
-{
-    if (name)
-    {
-        NSArray *existingSkillsWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",name] withContext:context];
-        if (existingSkillsWithThisName && existingSkillsWithThisName.count!=0)
-        {
-            SkillTemplate *skillTemplate = [existingSkillsWithThisName lastObject];
-            
-            skillTemplate.skillDescription = skillDescription;
-            
-            if (basicXpBarrier || skillProgression)
-            {
-                skillTemplate.thisBasicBarrier = basicXpBarrier;
-                skillTemplate.thisSkillProgression = skillProgression;
-            }
-            
-            if (icon)
-            {
-                skillTemplate.icon = [Pic addPicWithImage:icon];
-            }
-            
-            if (basicSkillTemplate)
-            {
-                skillTemplate.basicSkillTemplate = basicSkillTemplate;
-                skillTemplate.basicSkillGrowthGoes = basicSkillGrowthGoes;
-            }
-            [SkillTemplate saveContext:context];
-            
-            return skillTemplate;
-        }
-    }
-    
-    return nil;
-}
-
 +(NSString *)entityNameForSkillEnum:(int16_t)skillEnum
 {
     NSString *entityName;
     switch (skillEnum) {
         case 0:
-            entityName = @"Skill";
+            entityName = @"RegularSkill";
             break;
         case 1:
             entityName = @"MagicSkill";
@@ -140,7 +97,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
             entityName = @"PietySkill";
             break;
         default:
-            entityName = @"Skill";
+            entityName = @"RegularSkill";
             break;
     }
     return entityName;

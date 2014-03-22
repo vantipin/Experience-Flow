@@ -30,8 +30,8 @@
                             withS:(int)S
                             withT:(int)T
                             withI:(int)Initiative
-                            withAMelee:(int)AMelee
-                             withARange:(int)ARange
+                       withAMelee:(int)AMelee
+                       withARange:(int)ARange
                             withW:(int)W
                            withLD:(int)LD
                       withContext:(NSManagedObjectContext *)context;
@@ -40,10 +40,9 @@
     if (!statSet)
     {
         statSet = [StatSet createTemporaryStatSetWithM:M withWs:WS withBS:BS withS:S withT:T withI:Initiative withAMelee:AMelee withARange:ARange withW:W withLD:LD withContext:context];
+        statSet.name = setName;
+        [StatSet saveContext:context];
     }
-    
-    [StatSet saveContext:context];
-    
     return statSet;
 }
 
@@ -53,8 +52,8 @@
                                   withS:(int)S
                                   withT:(int)T
                                   withI:(int)Initiative
-                                  withAMelee:(int)AMelee
-                                   withARange:(int)ARange
+                             withAMelee:(int)AMelee
+                             withARange:(int)ARange
                                   withW:(int)W
                                  withLD:(int)LD
                             withContext:(NSManagedObjectContext *)context
