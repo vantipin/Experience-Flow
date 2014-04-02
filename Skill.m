@@ -15,7 +15,7 @@
 #import "Pic.h"
 #import "SkillTemplate.h"
 #import "WeaponMelee.h"
-#import "WarhammerDefaultSkillSetManager.h"
+#import "SkillManager.h"
 
 
 @implementation Skill

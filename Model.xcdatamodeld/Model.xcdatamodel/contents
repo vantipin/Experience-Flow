@@ -30,6 +30,7 @@
         <relationship name="weaponMelee" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WeaponMelee" inverseName="characterConditions" inverseEntity="WeaponMelee" syncable="YES"/>
         <relationship name="weaponRanged" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WeaponRanged" inverseName="relationship" inverseEntity="WeaponRanged" syncable="YES"/>
     </entity>
+    <entity name="CoreSkill" representedClassName="CoreSkill" parentEntity="Skill" syncable="YES"/>
     <entity name="Insanity" representedClassName="Insanity" syncable="YES">
         <attribute name="insanityDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="characterConditions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CharacterConditionAttributes" inverseName="insanaties" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
@@ -87,16 +88,18 @@
         <relationship name="subSkillsTemplate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="basicSkillTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
     </entity>
     <entity name="StatSet" representedClassName="StatSet" syncable="YES">
-        <attribute name="aMelee" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="ag" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="aMelee" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
         <attribute name="aRange" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="bs" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="i" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="ld" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="cha" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="intl" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
         <attribute name="m" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="s" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="t" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="str" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="to" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
         <attribute name="w" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="wp" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
         <attribute name="ws" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="WeaponMelee" representedClassName="WeaponMelee" parentEntity="Item" syncable="YES">
@@ -111,20 +114,21 @@
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="weaponRanged" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Character" positionX="-335" positionY="-387" width="128" height="178"/>
-        <element name="CharacterConditionAttributes" positionX="16" positionY="-396" width="128" height="298"/>
-        <element name="Insanity" positionX="232" positionY="-144" width="128" height="75"/>
-        <element name="Item" positionX="-200" positionY="189" width="128" height="133"/>
-        <element name="Pic" positionX="-407" positionY="348" width="128" height="118"/>
-        <element name="Skill" positionX="-614" positionY="-387" width="128" height="178"/>
-        <element name="SkillTemplate" positionX="-875" positionY="-387" width="128" height="208"/>
-        <element name="StatSet" positionX="-639" positionY="63" width="128" height="208"/>
-        <element name="WeaponMelee" positionX="18" positionY="198" width="128" height="120"/>
-        <element name="WeaponRanged" positionX="225" positionY="222" width="128" height="75"/>
-        <element name="MeleeSkill" positionX="-477" positionY="-576" width="128" height="58"/>
-        <element name="RangeSkill" positionX="-308" positionY="-576" width="128" height="58"/>
-        <element name="MagicSkill" positionX="-144" positionY="-576" width="128" height="58"/>
-        <element name="PietySkill" positionX="16" positionY="-576" width="128" height="58"/>
-        <element name="RegularSkill" positionX="-648" positionY="-576" width="128" height="43"/>
+        <element name="Character" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CharacterConditionAttributes" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CoreSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Insanity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Item" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MagicSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MeleeSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Pic" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PietySkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RangeSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RegularSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Skill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SkillTemplate" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="StatSet" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="WeaponMelee" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="WeaponRanged" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

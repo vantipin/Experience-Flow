@@ -10,7 +10,7 @@
 #import "Character.h"
 #import "Skill.h"
 #import "SkillTemplate.h"
-#import "WarhammerDefaultSkillSetManager.h"
+#import "SkillManager.h"
 
 @interface StatView()
 
@@ -18,11 +18,13 @@
 @property (nonatomic) Skill *mSkill;
 @property (nonatomic) Skill *wsSkill;
 @property (nonatomic) Skill *bsSkill;
-@property (nonatomic) Skill *sSkill;
-@property (nonatomic) Skill *tSkill;
-@property (nonatomic) Skill *iSkill;
-@property (nonatomic) Skill *ldSkill;
-@property (nonatomic) WarhammerDefaultSkillSetManager *skillManager;
+@property (nonatomic) Skill *strSkill;
+@property (nonatomic) Skill *toSkill;
+@property (nonatomic) Skill *agSkill;
+@property (nonatomic) Skill *wpSkill;
+@property (nonatomic) Skill *intlSkill;
+@property (nonatomic) Skill *chaSkill;
+@property (nonatomic) SkillManager *skillManager;
 
 @end
 
@@ -47,10 +49,10 @@
     }
 }
 
--(WarhammerDefaultSkillSetManager *)skillManager
+-(SkillManager *)skillManager
 {
     if (!_skillManager){
-        _skillManager = [WarhammerDefaultSkillSetManager sharedInstance];
+        _skillManager = [SkillManager sharedInstance];
     }
     
     return _skillManager;
@@ -74,55 +76,69 @@
     return _bsSkill;
 }
 
--(Skill *)sSkill
+-(Skill *)strSkill
 {
-    _sSkill = [self.skillManager skillWithTemplate:self.skillManager.strenght withCharacter:self.character];
-    return _sSkill;
+    _strSkill = [self.skillManager skillWithTemplate:self.skillManager.strenght withCharacter:self.character];
+    return _strSkill;
 }
 
--(Skill *)tSkill
+-(Skill *)toSkill
 {
-    _tSkill = [self.skillManager skillWithTemplate:self.skillManager.toughness withCharacter:self.character];
-    return _tSkill;
+    _toSkill = [self.skillManager skillWithTemplate:self.skillManager.toughness withCharacter:self.character];
+    return _toSkill;
 }
 
--(Skill *)iSkill
+-(Skill *)agSkill
 {
-    _iSkill = [self.skillManager skillWithTemplate:self.skillManager.initiative withCharacter:self.character];
-    return _iSkill;
+    _agSkill = [self.skillManager skillWithTemplate:self.skillManager.agility withCharacter:self.character];
+    return _agSkill;
 }
 
--(Skill *)ldSkill
+-(Skill *)wpSkill
 {
-    _ldSkill = [self.skillManager skillWithTemplate:self.skillManager.toughness withCharacter:self.character];
-    return _ldSkill;
+    _wpSkill = [self.skillManager skillWithTemplate:self.skillManager.willpower withCharacter:self.character];
+    return _wpSkill;
+}
+
+-(Skill *)intlSkill
+{
+    _intlSkill = [self.skillManager skillWithTemplate:self.skillManager.intelligence withCharacter:self.character];
+    return _intlSkill;
+}
+
+-(Skill *)chaSkill
+{
+    _chaSkill = [self.skillManager skillWithTemplate:self.skillManager.charisma withCharacter:self.character];
+    return _chaSkill;
 }
 
 -(void)updateStatsFromCharacterObject
 {
     //TODO adrenalin and stress points influence
-    int hp = [[WarhammerDefaultSkillSetManager sharedInstance] countHpWithCharacter:self.character];
+    int hp = [[SkillManager sharedInstance] countHpWithCharacter:self.character];
     self.maxHpLabel.text = [NSString stringWithFormat:@"%d",hp];
     self.currentHpLabel.text = [NSString stringWithFormat:@"%d",hp];
     
     self.m.text = [NSString stringWithFormat:@"%d",self.mSkill.thisLvl];
-    self.s.text = [NSString stringWithFormat:@"%d",self.sSkill.thisLvl];
-    self.t.text = [NSString stringWithFormat:@"%d",self.tSkill.thisLvl];
-    self.i.text = [NSString stringWithFormat:@"%d",self.iSkill.thisLvl];
-    self.ld.text = [NSString stringWithFormat:@"%d",self.ldSkill.thisLvl];
+    self.str.text = [NSString stringWithFormat:@"%d",self.strSkill.thisLvl];
+    self.to.text = [NSString stringWithFormat:@"%d",self.toSkill.thisLvl];
+    self.ag.text = [NSString stringWithFormat:@"%d",self.agSkill.thisLvl];
+    self.wp.text = [NSString stringWithFormat:@"%d",self.wpSkill.thisLvl];
+    self.intl.text = [NSString stringWithFormat:@"%d",self.intlSkill.thisLvl];
+    self.cha.text = [NSString stringWithFormat:@"%d",self.chaSkill.thisLvl];
     self.w.text = [NSString stringWithFormat:@"%d",self.character.wounds];
     
-    int weaponSkill = [[WarhammerDefaultSkillSetManager sharedInstance] countWSforMeleeSkill:self.character.characterCondition.currentMeleeSkills];
+    int weaponSkill = [[SkillManager sharedInstance] countWSforMeleeSkill:self.character.characterCondition.currentMeleeSkills];
     self.ws.text = [NSString stringWithFormat:@"%d",weaponSkill];
-    int ballisticSkill = [[WarhammerDefaultSkillSetManager sharedInstance] countBSforRangeSkill:[[self.character.characterCondition.currentMeleeSkills allObjects] lastObject]];
+    int ballisticSkill = [[SkillManager sharedInstance] countBSforRangeSkill:[[self.character.characterCondition.currentMeleeSkills allObjects] lastObject]];
     self.bs.text = [NSString stringWithFormat:@"%d",ballisticSkill];
     
-    int attackMelee = ([[WarhammerDefaultSkillSetManager sharedInstance] countAttacksForMeleeSkill:self.character.characterCondition.currentMeleeSkills] + self.character.characterCondition.modifierAMelee);
+    int attackMelee = ([[SkillManager sharedInstance] countAttacksForMeleeSkill:self.character.characterCondition.currentMeleeSkills] + self.character.characterCondition.modifierAMelee);
     self.aMelee.text = [NSString stringWithFormat:@"%d",attackMelee];
-    int attacksRange = ([[WarhammerDefaultSkillSetManager sharedInstance] countAttacksForRangeSkill:self.character.characterCondition.currentRangeSkills] + self.character.characterCondition.modifierARange);
+    int attacksRange = ([[SkillManager sharedInstance] countAttacksForRangeSkill:self.character.characterCondition.currentRangeSkills] + self.character.characterCondition.modifierARange);
     self.aRange.text = [NSString stringWithFormat:@"%d",attacksRange];
     
-    int damageBonusRange = [[WarhammerDefaultSkillSetManager sharedInstance] countDCBonusForRangeSkill:self.character.characterCondition.currentRangeSkills];
+    int damageBonusRange = [[SkillManager sharedInstance] countDCBonusForRangeSkill:self.character.characterCondition.currentRangeSkills];
     self.damageRange.text = [NSString stringWithFormat:@"+%d",damageBonusRange];
 }
 
@@ -131,49 +147,59 @@
     if (!self.settable){
         
         self.m.enabled = false;
-        self.s.enabled = false;
-        self.t.enabled = false;
-        self.i.enabled = false;
+        self.str.enabled = false;
+        self.to.enabled = false;
+        self.ag.enabled = false;
         self.w.enabled = false;
-        self.ld.enabled = false;
+        self.wp.enabled = false;
+        self.intl.enabled = false;
+        self.cha.enabled = false;
         
         self.m.backgroundColor = [UIColor clearColor];
-        self.s.backgroundColor = [UIColor clearColor];
-        self.t.backgroundColor = [UIColor clearColor];
-        self.i.backgroundColor = [UIColor clearColor];
+        self.str.backgroundColor = [UIColor clearColor];
+        self.to.backgroundColor = [UIColor clearColor];
+        self.ag.backgroundColor = [UIColor clearColor];
         self.w.backgroundColor = [UIColor clearColor];
-        self.ld.backgroundColor = [UIColor clearColor];
+        self.wp.backgroundColor = [UIColor clearColor];
+        self.intl.backgroundColor = [UIColor clearColor];
+        self.cha.backgroundColor = [UIColor clearColor];
     }
     else{
         self.m.delegate = _executer;
-        self.s.delegate = _executer;
-        self.t.delegate = _executer;
-        self.i.delegate = _executer;
+        self.str.delegate = _executer;
+        self.to.delegate = _executer;
+        self.ag.delegate = _executer;
         self.w.delegate = _executer;
         self.aMelee.delegate = _executer;
         self.aRange.delegate = _executer;
-        self.ld.delegate = _executer;
+        self.wp.delegate = _executer;
+        self.intl.delegate = _executer;
+        self.cha.delegate = _executer;
         
         self.m.enabled = true;
-        self.s.enabled = true;
-        self.t.enabled = true;
-        self.i.enabled = true;
+        self.str.enabled = true;
+        self.to.enabled = true;
+        self.ag.enabled = true;
         self.w.enabled = true;
-        self.ld.enabled = true;
+        self.wp.enabled = true;
+        self.intl.enabled = true;
+        self.cha.enabled = true;
         
         self.m.backgroundColor = [UIColor whiteColor];
-        self.s.backgroundColor = [UIColor whiteColor];
-        self.t.backgroundColor = [UIColor whiteColor];
-        self.i.backgroundColor = [UIColor whiteColor];
+        self.str.backgroundColor = [UIColor whiteColor];
+        self.to.backgroundColor = [UIColor whiteColor];
+        self.ag.backgroundColor = [UIColor whiteColor];
         self.w.backgroundColor = [UIColor whiteColor];
-        self.ld.backgroundColor = [UIColor whiteColor];
+        self.wp.backgroundColor = [UIColor whiteColor];
+        self.intl.backgroundColor = [UIColor whiteColor];
+        self.cha.backgroundColor = [UIColor whiteColor];
     }
 }
 
 
 -(BOOL)nonEmptyStats
 {
-    BOOL emptyStats = self.m.text.length == 0 || self.ws.text.length == 0 || self.s.text.length == 0 || self.t.text.length == 0 || self.i.text.length == 0 || self.w.text.length == 0 || self.ld.text.length == 0;
+    BOOL emptyStats = self.str.text.length == 0 || self.to.text.length == 0 || self.ag.text.length == 0 || self.wp.text.length == 0 || self.intl.text.length == 0 || self.cha.text.length == 0;
     if (emptyStats){
         return false;
     }

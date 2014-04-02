@@ -108,11 +108,11 @@
         NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.managedObjectContext];
         if (arrayOfUnfinishedCharacters.count != 0){
             _character = [arrayOfUnfinishedCharacters lastObject];
-            [[WarhammerDefaultSkillSetManager sharedInstance] checkAllCharacterCoreSkills:_character];
+            [[SkillManager sharedInstance] checkAllCharacterCoreSkills:_character];
             
             //TODO
-            [_character addToCurrentMeleeSkillWithTempate:[[WarhammerDefaultSkillSetManager sharedInstance] ordinary] withContext:self.managedObjectContext];
-            [_character setCurrentRangeSkillWithTempate:[[WarhammerDefaultSkillSetManager sharedInstance] bow] withContext:self.managedObjectContext];
+            [_character addToCurrentMeleeSkillWithTempate:[[SkillManager sharedInstance] ordinary] withContext:self.managedObjectContext];
+            [_character setCurrentRangeSkillWithTempate:[[SkillManager sharedInstance] bow] withContext:self.managedObjectContext];
         }
         else{
             _character = [Character newCharacterWithContext:self.managedObjectContext];
@@ -185,7 +185,7 @@
         
         [self dissmissSavingNewRace];
         
-        [[WarhammerDefaultSkillSetManager sharedInstance] setCharacterSkills:self.character withStatSet:statSet];
+        [[SkillManager sharedInstance] setCharacterSkills:self.character withStatSet:statSet];
         [self.skillTableViewController.tableView reloadData];
         self.shouldRewriteSkillsLevels = false;
     }
@@ -222,19 +222,21 @@
 
 -(void)saveCurrentStatSetWithName:(NSString *)nameString
 {
-    StatSet *statset = [StatSet createStatSetWithName:nameString
-                                                withM:[self.statView.m.text intValue]
-                                               withWs:[self.statView.ws.text intValue]
-                                               withBS:[self.statView.bs.text intValue]
-                                                withS:[self.statView.s.text intValue]
-                                                withT:[self.statView.t.text intValue]
-                                                withI:[self.statView.i.text intValue]
-                                           withAMelee:[self.statView.aMelee.text intValue]
-                                           withARange:[self.statView.aRange.text intValue]
-                                                withW:[self.statView.w.text intValue]
-                                               withLD:[self.statView.ld.text intValue]
-                                          withContext:self.managedObjectContext];
-    
+    StatSet *statset = [StatSet createTemporaryStatSetWithM:[self.statView.m.text intValue]
+                                                     withWs:[self.statView.ws.text intValue]
+                                                     withBS:[self.statView.bs.text intValue]
+                                                    withStr:[self.statView.str.text intValue]
+                                                     withTo:[self.statView.to.text intValue]
+                                                     withAg:[self.statView.ag.text intValue]
+                                                     withWp:[self.statView.wp.text intValue]
+                                                    withInt:[self.statView.intl.text intValue]
+                                                    withCha:[self.statView.cha.text intValue]
+                                                 withAMelee:[self.statView.aMelee.text intValue]
+                                                 withARange:[self.statView.aRange.text intValue]
+                                                      withW:[self.statView.w.text intValue]
+                                                withContext:self.managedObjectContext];
+    statset.name = nameString;
+    [StatSet saveContext:self.managedObjectContext];
     if (statset)
     {
         //set current name to recently saved one

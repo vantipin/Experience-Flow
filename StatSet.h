@@ -2,7 +2,7 @@
 //  StatSet.h
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 07.01.14.
+//  Created by Vlad Antipin on 02.04.14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
@@ -13,42 +13,33 @@
 
 @interface StatSet : CoreDataClass
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic) int16_t m;
-@property (nonatomic) int16_t ws;
-@property (nonatomic) int16_t bs;
-@property (nonatomic) int16_t s;
-@property (nonatomic) int16_t t;
-@property (nonatomic) int16_t ld;
-@property (nonatomic) int16_t i;
 @property (nonatomic) int16_t aMelee;
 @property (nonatomic) int16_t aRange;
+@property (nonatomic) int16_t bs;
+@property (nonatomic) int16_t ag;
+@property (nonatomic) int16_t wp;
+@property (nonatomic) int16_t m;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic) int16_t str;
+@property (nonatomic) int16_t to;
 @property (nonatomic) int16_t w;
+@property (nonatomic) int16_t ws;
+@property (nonatomic) int16_t intl;
+@property (nonatomic) int16_t cha;
 
 //create
-+(StatSet *)createStatSetWithName:(NSString *)setName
-                            withM:(int)M
-                           withWs:(int)WS
-                           withBS:(int)BS
-                            withS:(int)S
-                            withT:(int)T
-                            withI:(int)Initiative
-                            withAMelee:(int)AMelee
-                             withARange:(int)ARange
-                            withW:(int)W
-                           withLD:(int)LD
-                      withContext:(NSManagedObjectContext *)context;
-
 +(StatSet *)createTemporaryStatSetWithM:(int)M
-                                 withWs:(int)WS
-                                 withBS:(int)BS
-                                  withS:(int)S
-                                  withT:(int)T
-                                  withI:(int)Initiative
-                                  withAMelee:(int)AMelee
-                                   withARange:(int)ARange
+                                 withWs:(int)Ws
+                                 withBS:(int)Bs
+                                withStr:(int)Str
+                                 withTo:(int)To
+                                 withAg:(int)Ag
+                                 withWp:(int)Wp
+                                withInt:(int)Intl
+                                withCha:(int)Cha
+                             withAMelee:(int)AMelee
+                             withARange:(int)ARange
                                   withW:(int)W
-                                 withLD:(int)LD
                             withContext:(NSManagedObjectContext *)context;
 
 //fetch

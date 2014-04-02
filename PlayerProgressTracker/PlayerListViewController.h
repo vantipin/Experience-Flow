@@ -14,7 +14,7 @@
 #import "Character.h"
 #import "Pic.h"
 
-#import "warhammerDefaultSkillSetManager.h"
+#import "SkillManager.h"
 
 @interface PlayerListViewController : CoreDataViewController <UITableViewDataSource>
 

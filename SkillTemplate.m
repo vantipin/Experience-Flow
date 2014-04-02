@@ -10,7 +10,7 @@
 #import "Skill.h"
 #import "SkillTemplate.h"
 #import "Pic.h"
-#import "WarhammerDefaultSkillSetManager.h"
+#import "SkillManager.h"
 
 static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 
@@ -96,6 +96,9 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
         case 4:
             entityName = @"PietySkill";
             break;
+        case 5:
+            entityName = @"CoreSkill";
+            break;
         default:
             entityName = @"RegularSkill";
             break;
@@ -121,8 +124,8 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 
 +(void)checkDefaultSkillsAndCreateIfMissingWithContext:(NSManagedObjectContext *)context
 {
-    WarhammerDefaultSkillSetManager *defaultSkills = [WarhammerDefaultSkillSetManager sharedInstance];
-    [defaultSkills allSystemDefaultSkillTemplates]; //should create all default skill templates if missed
+    SkillManager *defaultSkills = [SkillManager sharedInstance];
+    [defaultSkills allNoneCoreSkillTemplates]; //should create all default skill templates if missed
 }
 
 +(BOOL)deleteSkillTemplateWithName:(NSString *)skillTemplateName withContext:(NSManagedObjectContext *)context

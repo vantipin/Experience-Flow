@@ -15,14 +15,16 @@
 @property (nonatomic) IBOutlet UITextField *m;
 @property (nonatomic) IBOutlet UITextField *ws;
 @property (nonatomic) IBOutlet UITextField *bs;
-@property (nonatomic) IBOutlet UITextField *s;
-@property (nonatomic) IBOutlet UITextField *t;
-@property (nonatomic) IBOutlet UITextField *i;
+@property (nonatomic) IBOutlet UITextField *str;
+@property (nonatomic) IBOutlet UITextField *to;
+@property (nonatomic) IBOutlet UITextField *ag;
+@property (nonatomic) IBOutlet UITextField *wp;
+@property (nonatomic) IBOutlet UITextField *intl;
+@property (nonatomic) IBOutlet UITextField *cha;
 @property (nonatomic) IBOutlet UITextField *aMelee;
 @property (nonatomic) IBOutlet UITextField *damageMelee;
 @property (nonatomic) IBOutlet UITextField *aRange;
 @property (nonatomic) IBOutlet UITextField *damageRange;
-@property (nonatomic) IBOutlet UITextField *ld;
 @property (nonatomic) IBOutlet UITextField *w;
 @property (nonatomic) IBOutlet UITextField *ac;
 

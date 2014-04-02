@@ -1,5 +1,5 @@
 //
-//  warhammerCoreSkillSetManager.h
+//  SkillManager.h
 //  PlayerProgressTracker
 //
 //  Created by Vlad Antipin on 25.12.13.
@@ -13,19 +13,20 @@
 
 //TODO core data
 
-@interface WarhammerDefaultSkillSetManager : NSObject
+@interface SkillManager : NSObject
 
 @property (nonatomic) SkillTemplate *movement;
-@property (nonatomic) SkillTemplate *weaponSkill;    //sub WS
-@property (nonatomic) SkillTemplate *ballisticSkill; //sub BS
-@property (nonatomic) SkillTemplate *strenght;       //-> athletics,Intimidate
-@property (nonatomic) SkillTemplate *toughness;      //-> Resilience
-@property (nonatomic) SkillTemplate *initiative;     //-> perception, Stealth
-@property (nonatomic) SkillTemplate *leadesShip;     //-> discipline
+@property (nonatomic) SkillTemplate *weaponSkill;
+@property (nonatomic) SkillTemplate *ballisticSkill;
+@property (nonatomic) SkillTemplate *strenght;
+@property (nonatomic) SkillTemplate *toughness;
+@property (nonatomic) SkillTemplate *agility;
+@property (nonatomic) SkillTemplate *willpower;
+@property (nonatomic) SkillTemplate *intelligence;
+@property (nonatomic) SkillTemplate *charisma;
 
 //sub WS
 @property (nonatomic) SkillTemplate *unarmed;
-@property (nonatomic) SkillTemplate *dagger;
 @property (nonatomic) SkillTemplate *ordinary;
 @property (nonatomic) SkillTemplate *flail;
 @property (nonatomic) SkillTemplate *greatWeapon;
@@ -37,6 +38,10 @@
 
 //sub BS
 @property (nonatomic) SkillTemplate *bow;
+@property (nonatomic) SkillTemplate *blackpowder;
+@property (nonatomic) SkillTemplate *crossbow;
+@property (nonatomic) SkillTemplate *thrown;
+@property (nonatomic) SkillTemplate *sling;
 
 //advanced
 @property (nonatomic) SkillTemplate *athletics;
@@ -45,7 +50,7 @@
 @property (nonatomic) SkillTemplate *discipline;
 @property (nonatomic) SkillTemplate *perception;
 
-+ (WarhammerDefaultSkillSetManager *)sharedInstance;
++ (SkillManager *)sharedInstance;
 
 
 -(int)countHpWithStatSet:(StatSet *)statSet;
@@ -59,15 +64,16 @@
 
 -(id)skillWithTemplate:(SkillTemplate *)skillName withCharacter:(Character *)character;
 
+
 -(void)checkAllCharacterCoreSkills:(Character *)character;
 -(void)setCharacterSkills:(Character *)character withStatSet:(StatSet *)statset;
 -(StatSet *)statSetFromCharacterSkills:(Character *)character;
 
--(NSArray *)allCharacterDefaultSkillTemplates;
+-(NSArray *)allCoreSkillTemplates;
 -(NSArray *)allMeleeCombatSkills;
 -(NSArray *)allRangeCombatSkills;
 
--(NSArray *)allSystemDefaultSkillTemplates;
+-(NSArray *)allNoneCoreSkillTemplates;
 
 //Intimidate (S) Basic skill.
 /*A character’s ability to cow, unnerve, or bully someone. Also covers the ability to convey a sense of dominance or superiority over others. Often carries the implied or over threat of physical violence. Can escalate a tense situation into hostility, or possibly cause a threat to back down if properly cowed.

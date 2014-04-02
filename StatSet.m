@@ -2,7 +2,7 @@
 //  StatSet.m
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 07.01.14.
+//  Created by Vlad Antipin on 02.04.14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
@@ -11,86 +11,65 @@
 
 @implementation StatSet
 
-@dynamic name;
-@dynamic m;
-@dynamic ws;
-@dynamic bs;
-@dynamic s;
-@dynamic t;
-@dynamic ld;
-@dynamic i;
 @dynamic aMelee;
 @dynamic aRange;
+@dynamic bs;
+@dynamic ag;
+@dynamic wp;
+@dynamic m;
+@dynamic name;
+@dynamic str;
+@dynamic to;
 @dynamic w;
-
-+(StatSet *)createStatSetWithName:(NSString *)setName
-                            withM:(int)M
-                           withWs:(int)WS
-                           withBS:(int)BS
-                            withS:(int)S
-                            withT:(int)T
-                            withI:(int)Initiative
-                       withAMelee:(int)AMelee
-                       withARange:(int)ARange
-                            withW:(int)W
-                           withLD:(int)LD
-                      withContext:(NSManagedObjectContext *)context;
-{
-    StatSet *statSet = [StatSet fetchStatSetWithName:setName withContext:context];
-    if (!statSet)
-    {
-        statSet = [StatSet createTemporaryStatSetWithM:M withWs:WS withBS:BS withS:S withT:T withI:Initiative withAMelee:AMelee withARange:ARange withW:W withLD:LD withContext:context];
-        statSet.name = setName;
-        [StatSet saveContext:context];
-    }
-    return statSet;
-}
+@dynamic ws;
+@dynamic intl;
+@dynamic cha;
 
 +(StatSet *)createTemporaryStatSetWithM:(int)M
-                                 withWs:(int)WS
-                                 withBS:(int)BS
-                                  withS:(int)S
-                                  withT:(int)T
-                                  withI:(int)Initiative
+                                 withWs:(int)Ws
+                                 withBS:(int)Bs
+                                  withStr:(int)Str
+                                  withTo:(int)To
+                                  withAg:(int)Ag
+                                 withWp:(int)Wp
+                                  withInt:(int)Intl
+                                 withCha:(int)Cha
                              withAMelee:(int)AMelee
                              withARange:(int)ARange
                                   withW:(int)W
-                                 withLD:(int)LD
-                            withContext:(NSManagedObjectContext *)context
+                            withContext:(NSManagedObjectContext *)context;
 {
-    StatSet* statSet = [NSEntityDescription insertNewObjectForEntityForName:@"StatSet" inManagedObjectContext:context];
-    
+    StatSet *statSet = [NSEntityDescription insertNewObjectForEntityForName:@"StatSet" inManagedObjectContext:context];
     statSet.m = M;
-    statSet.ws = WS;
-    statSet.bs = BS;
-    statSet.s = S;
-    statSet.t = T;
-    statSet.i = Initiative;
+    statSet.ws = Ws;
+    statSet.bs = Bs;
+    statSet.w = W;
     statSet.aMelee = AMelee;
     statSet.aRange = ARange;
-    statSet.w = W;
-    statSet.ld = LD;
+    statSet.str = Str;
+    statSet.to = To;
+    statSet.ag = Ag;
+    statSet.wp = Wp;
+    statSet.intl = Intl;
+    statSet.cha = Cha;
     
     return statSet;
 }
 
-+(NSArray *)fetchStatSetsWithContext:(NSManagedObjectContext *)context
++(NSArray *)fetchStatSetsWithContext:(NSManagedObjectContext *)context;
 {
-    return [StatSet fetchRequestForObjectName:@"StatSet" withPredicate:nil withContext:context];
+    NSArray *allStatSets = [StatSet fetchRequestForObjectName:@"StatSet" withPredicate:[NSPredicate predicateWithFormat:@"name != nil"] withContext:context];
+    return allStatSets;
 }
 
-+(StatSet *)fetchStatSetWithName:(NSString *)setName withContext:(NSManagedObjectContext *)context
++(StatSet *)fetchStatSetWithName:(NSString *)setName withContext:(NSManagedObjectContext *)context;
 {
-    NSArray *array = [StatSet fetchRequestForObjectName:@"StatSet"
-                                       withPredicate:[NSPredicate predicateWithFormat:@"name = %@",setName]
-                                         withContext:context];
-    StatSet *statSet = (array)?[array lastObject]:nil;
-    return statSet;
+    NSArray *allStatSets = [StatSet fetchRequestForObjectName:@"StatSet" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",setName] withContext:context];
+    return [allStatSets lastObject];
 }
 
-+(BOOL)deleteStatSetWithName:(NSString *)setName withContext:(NSManagedObjectContext *)context
++(BOOL)deleteStatSetWithName:(NSString *)setName withContext:(NSManagedObjectContext *)context;
 {
     return [StatSet clearEntityForNameWithObjName:@"StatSet" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",setName] withGivenContext:context];
 }
-
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataViewController.h"
-#import "warhammerDefaultSkillSetManager.h"
+#import "SkillManager.h"
 #import "ColorConstants.h"
 #import "StatSetDropDown.h"
 #import "StatView.h"

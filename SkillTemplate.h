@@ -21,7 +21,8 @@ typedef enum SkillClassType : int16_t
     RangeSkillType = 2,
     MeleeSkillType = 3,
     PietySkillType = 4,
-    LastElementInEnum = 5,
+    CoreSkillType = 5,
+    LastElementInEnum = 6,
 } SkillClassesType;
 
 @property (nonatomic, retain) NSString * name;

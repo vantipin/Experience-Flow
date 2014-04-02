@@ -8,7 +8,7 @@
 
 #import "Character.h"
 #import "CharacterConditionAttributes.h"
-#import "WarhammerDefaultSkillSetManager.h"
+#import "SkillManager.h"
 #import "Pic.h"
 #import "Skill.h"
 #import "SkillTemplate.h"
@@ -34,7 +34,7 @@
     
     character.characterId = [NSString stringWithFormat:@"%@",character.objectID];
     
-    NSArray *defaultSkillSetTemplates = [[WarhammerDefaultSkillSetManager sharedInstance] allCharacterDefaultSkillTemplates];
+    NSArray *defaultSkillSetTemplates = [[SkillManager sharedInstance] allCoreSkillTemplates];
     for (SkillTemplate *skillTemplate in defaultSkillSetTemplates) {
         [character addNewSkillWithTempate:skillTemplate withContext:context];
     }
