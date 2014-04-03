@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-    AlphaChange,              
+    AlphaChange,
 	HeightChange,
 	AlphaAndHeightChange
 } AnimationType;
@@ -34,6 +34,7 @@ typedef enum {
 @property (nonatomic,retain)UIView *anchorView;  //anchor view used to place dropdown under it
 @property (nonatomic) NSIndexPath *selectedCell;
 @property (nonatomic,weak) UIView *topView;      //(optional) global view used for calculating original x,y. If nil anchor view is used instead
+@property (nonatomic) UIView *cancelingView;
 
 @property (nonatomic) UIColor *textColor;
 @property (nonatomic) UIFont *font;
@@ -51,6 +52,9 @@ typedef enum {
               animation:(AnimationType)tAnimation
         backGroundColor:(UIColor *)color;
 
+-(void)customReshapeFrames;//rewrite this method in child class for additional offsets and frame changes before dropDown opens
+-(void)customActionOnClose;//rewrite this method in child class to perform changes when element just closed
+-(void)customActionOnOpen;//rewrite this method in child class to perform changes when element just opened
 -(void)closeAnimation;
 -(void)openAnimation;
 

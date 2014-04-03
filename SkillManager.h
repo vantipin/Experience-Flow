@@ -62,7 +62,7 @@
 -(int)countBSforRangeSkill:(RangeSkill *)skill;
 -(int)countDCBonusForRangeSkill:(RangeSkill *)skill;
 
--(id)skillWithTemplate:(SkillTemplate *)skillName withCharacter:(Character *)character;
+-(id)checkedSkillWithTemplate:(SkillTemplate *)skillName withCharacter:(Character *)character;
 
 
 -(void)checkAllCharacterCoreSkills:(Character *)character;

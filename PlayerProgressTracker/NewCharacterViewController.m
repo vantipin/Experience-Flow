@@ -25,7 +25,7 @@
 @property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 @property (nonatomic,strong) SkillTableViewController *skillTableViewController;
 @property (nonatomic) BOOL shouldRewriteSkillsLevels; //for cases when player tap race button;
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) StatView *statView;
 
 @end
@@ -37,7 +37,7 @@
 @synthesize raceNames = _raceNames;
 @synthesize alertTextField = _alertTextField;
 @synthesize skillTableViewController = _skillTableViewController;
-@synthesize managedObjectContext = _managedObjectContext;
+@synthesize context = _context;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -55,9 +55,6 @@
     
     //[self allFontsToConsole];
     //[StatSet deleteStatSetWithName:@"" withContext:self.managedObjectContext];
-    
-    //self.view.autoresizesSubviews = YES;
-    //self.view.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin);
     self.shouldRewriteSkillsLevels = false;
     self.skillTableViewController.character = self.character;
     self.skillTableViewController.skillTableDelegate = self;
@@ -66,16 +63,19 @@
     self.raceSetDropDown.delegateDeleteStatSet = self;
     [self.view addSubview:self.raceSetDropDown.view];
     
-    
     self.statView.settable = true;
     self.statView.executer = self;
     self.statView.character = self.character;
-    [self.statView initFields];
+    
     [self.statView updateStatsFromCharacterObject];
     
     self.name.delegate = self;
     self.name.text = self.character.name;
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.statView initFields];
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
 }
 
@@ -94,32 +94,32 @@
     return _statView;
 }
 
--(NSManagedObjectContext *)managedObjectContext
+-(NSManagedObjectContext *)context
 {
-    if (!_managedObjectContext){
-        _managedObjectContext = [[CoreDataViewController sharedInstance] managedObjectContext];
+    if (!_context){
+        _context = [[CoreDataViewController sharedInstance] managedObjectContext];
     }
-    return _managedObjectContext;
+    return _context;
 }
 
 -(Character *)character
 {
     if (!_character){
-        NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.managedObjectContext];
+        NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.context];
         if (arrayOfUnfinishedCharacters.count != 0){
             _character = [arrayOfUnfinishedCharacters lastObject];
             [[SkillManager sharedInstance] checkAllCharacterCoreSkills:_character];
             
             //TODO
-            [_character addToCurrentMeleeSkillWithTempate:[[SkillManager sharedInstance] ordinary] withContext:self.managedObjectContext];
-            [_character setCurrentRangeSkillWithTempate:[[SkillManager sharedInstance] bow] withContext:self.managedObjectContext];
+            [_character addToCurrentMeleeSkillWithTempate:[[SkillManager sharedInstance] ordinary] withContext:self.context];
+            [_character setCurrentRangeSkillWithTempate:[[SkillManager sharedInstance] bow] withContext:self.context];
         }
         else{
-            _character = [Character newCharacterWithContext:self.managedObjectContext];
+            _character = [Character newCharacterWithContext:self.context];
         }
     }
     else{
-        [Character saveContext:self.managedObjectContext];
+        [Character saveContext:self.context];
     }
     
     return _character;
@@ -160,34 +160,34 @@
 -(void)refreshRaceNames
 {
     [self.raceNames removeAllObjects];
-    NSArray *arraySet = [NSMutableArray arrayWithArray:[StatSet fetchStatSetsWithContext:self.managedObjectContext]];
+    NSArray *arraySet = [NSMutableArray arrayWithArray:[StatSet fetchStatSetsWithContext:self.context]];
     for (StatSet *set in arraySet){
-        if (set.name) {
-            [_raceNames addObject:set.name];
+        if (!set.name) {
+            set.name = @"NAMELESS";
         }
+        [_raceNames addObject:set.name];
     }
 }
 - (void)updateRaceButtonWithName:(NSString *)currentTitle
 {
     [self refreshRaceNames];
     
-    if (self.raceNames.count == 0 || !self.shouldRewriteSkillsLevels){
+    if (self.raceNames.count == 0 || !self.shouldRewriteSkillsLevels) {
         //no statSet is available or character's skills set statSet
         [self.statView updateStatsFromCharacterObject];
         currentTitle = @"";
         [self prepareViewForSavingNewRace];
     }
-    else{
-        if ([self.raceNames indexOfObject:currentTitle] == NSNotFound){
+    else {
+        if ([self.raceNames indexOfObject:currentTitle] == NSNotFound) {
             currentTitle = [self.raceNames lastObject];
         }
-        StatSet *statSet = [StatSet fetchStatSetWithName:currentTitle withContext:self.managedObjectContext];
-        
-        [self dissmissSavingNewRace];
-        
+        StatSet *statSet = [StatSet fetchStatSetWithName:currentTitle withContext:self.context];
+
         [[SkillManager sharedInstance] setCharacterSkills:self.character withStatSet:statSet];
         [self.skillTableViewController.tableView reloadData];
         self.shouldRewriteSkillsLevels = false;
+        [self dissmissSavingNewRace];
     }
     
     [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
@@ -195,7 +195,7 @@
 
 -(void)prepareViewForSavingNewRace
 {
-    if (self.saveSet.alpha < 1){
+    if (self.saveSet.alpha < 1) {
         self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x - 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
         
         [UIView animateWithDuration:0.3 animations:^{
@@ -212,7 +212,7 @@
         [UIView animateWithDuration:0.3 animations:^{
             self.saveSet.alpha = 0;
             self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x - 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
-        } completion:^(BOOL success){
+        } completion:^(BOOL success) {
             if (success){
                 self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x + 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
             }
@@ -234,22 +234,20 @@
                                                  withAMelee:[self.statView.aMelee.text intValue]
                                                  withARange:[self.statView.aRange.text intValue]
                                                       withW:[self.statView.w.text intValue]
-                                                withContext:self.managedObjectContext];
+                                                withContext:self.context];
     statset.name = nameString;
-    [StatSet saveContext:self.managedObjectContext];
-    if (statset)
-    {
-        //set current name to recently saved one
+    [StatSet saveContext:self.context];
+    if (statset) {
+        //prepare setting character skills to listed in stat set
         self.shouldRewriteSkillsLevels = true;
+        //set current name to recently saved one
         [self updateRaceButtonWithName:nameString];
-        [self dissmissSavingNewRace];
     }
 }
 
 -(IBAction)saveStatSetBtn:(id)sender
 {
-    if ([self.statView nonEmptyStats])
-    {
+    if ([self.statView nonEmptyStats]) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"New basic stat set"
                                                        message: @"Save new set with name:"
                                                       delegate: self
@@ -266,14 +264,11 @@
 
 -(IBAction)raceBtnTapped:(id)sender
 {
-    if (self.raceNames.count != 0)
-    {
-        if (self.raceSetDropDown.view.hidden)
-        {
+    if (self.raceNames.count != 0) {
+        if (self.raceSetDropDown.view.hidden) {
             [self.raceSetDropDown openAnimation];
         }
-        else
-        {
+        else {
             [self.raceSetDropDown closeAnimation];
         }
     }
@@ -292,8 +287,8 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) //save button
-    {
+    //save button
+    if (buttonIndex == 1) {
         //save
         [self saveCurrentStatSetWithName:[[alertView textFieldAtIndex:0] text]];
     }
@@ -301,12 +296,10 @@
 
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
 {
-    if (self.alertTextField.text.length != 0)
-    {
+    if (self.alertTextField.text.length != 0) {
         return true;
     }
-    else
-    {
+    else {
         return false;
     }
     
@@ -316,16 +309,16 @@
 -(void)dropDownCellSelected:(NSInteger)returnIndex
 {
     NSString *name = self.raceNames[returnIndex];
-    self.shouldRewriteSkillsLevels = true;;
+    self.shouldRewriteSkillsLevels = true;
     [self updateRaceButtonWithName:name];
 
 }
 
 -(void)deleteStatSetWithName:(NSString *)name
 {
-    if ([StatSet deleteStatSetWithName:name withContext:self.managedObjectContext])
-    {
+    if ([StatSet deleteStatSetWithName:name withContext:self.context]) {
         [self.raceSetDropDown openAnimation];
+        [self refreshRaceNames];
         [self updateRaceButtonWithName:[self.raceNames lastObject]];
     }
 }
@@ -334,8 +327,8 @@
 #pragma mark textfield delegate methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    if (textField.text.length == 0) //No empty inputs;
-    {
+    //No empty inputs;
+    if (textField.text.length == 0) {
         return true;
     }
     
@@ -345,17 +338,13 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    if (textField)
-    {
-        if (textField == self.name)
-        {
+    if (textField) {
+        if (textField == self.name) {
             self.character.name = textField.text;
-            [Character saveContext:self.managedObjectContext];
+            [Character saveContext:self.context];
         }
-        else
-        {
-            if (textField.text.length == 0)
-            {
+        else {
+            if (textField.text.length == 0) {
                 return false;
             }
         }
@@ -366,12 +355,11 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
-    if ([self.statView.statContainerView.subviews containsObject:textField])
-    {
+    if ([self.statView.statContainerView.subviews containsObject:textField]) {
         //from here filter stat input. Only number. Max 2 numbers
         NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
         NSUInteger newLength = [textField.text length] + [string length] - range.length;
-        if ([string rangeOfCharacterFromSet:set].location != NSNotFound || newLength>2) {
+        if ([string rangeOfCharacterFromSet:set].location != NSNotFound || newLength > 2) {
             [textField resignFirstResponder];
             return false;
         }
@@ -384,12 +372,10 @@
 
 -(void)allFontsToConsole
 {
-    for (NSString* family in [UIFont familyNames])
-    {
+    for (NSString* family in [UIFont familyNames]) {
         NSLog(@"%@", family);
         
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
+        for (NSString* name in [UIFont fontNamesForFamilyName: family]) {
             NSLog(@"  %@", name);
         }
     }

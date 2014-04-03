@@ -952,7 +952,7 @@ static SkillManager *instance = nil;
         NSArray *skillsTemplates = [[SkillManager sharedInstance] allCoreSkillTemplates];
         for (SkillTemplate *template in skillsTemplates)
         {
-            Skill *skill = [self skillWithTemplate:template withCharacter:character];
+            Skill *skill = [self checkedSkillWithTemplate:template withCharacter:character];
             
             Hp += [self hitpointsForSkillWithTemplate:template withSkillLevel:skill.thisLvl];
         }
@@ -961,9 +961,8 @@ static SkillManager *instance = nil;
     return Hp;
 }
 
--(id)skillWithTemplate:(SkillTemplate *)skillTemplate withCharacter:(Character *)character
+-(id)checkedSkillWithTemplate:(SkillTemplate *)skillTemplate withCharacter:(Character *)character
 {
-   
     Skill *skill;
     NSString *skillName = skillTemplate.name;
     NSArray *objects = [Skill fetchRequestForObjectName:[SkillTemplate entityNameForSkillTemplate:skillTemplate] withPredicate:[NSPredicate predicateWithFormat:@"(skillTemplate.name == %@) AND (player == %@)",skillName,character] withContext:self.context];
@@ -1079,15 +1078,15 @@ static SkillManager *instance = nil;
 -(StatSet *)statSetFromCharacterSkills:(Character *)character
 {
 
-    StatSet *statSet = [StatSet createTemporaryStatSetWithM:[[self skillWithTemplate:self.movement withCharacter:character] thisLvl]
-                                                     withWs:[[self skillWithTemplate:self.weaponSkill withCharacter:character] thisLvl]
-                                                     withBS:[[self skillWithTemplate:self.ballisticSkill withCharacter:character] thisLvl]
-                                                    withStr:[[self skillWithTemplate:self.strenght withCharacter:character] thisLvl]
-                                                     withTo:[[self skillWithTemplate:self.toughness withCharacter:character] thisLvl]
-                                                     withAg:[[self skillWithTemplate:self.agility withCharacter:character] thisLvl]
-                                                     withWp:[[self skillWithTemplate:self.willpower withCharacter:character] thisLvl]
-                                                    withInt:[[self skillWithTemplate:self.intelligence withCharacter:character] thisLvl]
-                                                    withCha:[[self skillWithTemplate:self.charisma withCharacter:character] thisLvl]
+    StatSet *statSet = [StatSet createTemporaryStatSetWithM:[[self checkedSkillWithTemplate:self.movement withCharacter:character] thisLvl]
+                                                     withWs:[[self checkedSkillWithTemplate:self.weaponSkill withCharacter:character] thisLvl]
+                                                     withBS:[[self checkedSkillWithTemplate:self.ballisticSkill withCharacter:character] thisLvl]
+                                                    withStr:[[self checkedSkillWithTemplate:self.strenght withCharacter:character] thisLvl]
+                                                     withTo:[[self checkedSkillWithTemplate:self.toughness withCharacter:character] thisLvl]
+                                                     withAg:[[self checkedSkillWithTemplate:self.agility withCharacter:character] thisLvl]
+                                                     withWp:[[self checkedSkillWithTemplate:self.willpower withCharacter:character] thisLvl]
+                                                    withInt:[[self checkedSkillWithTemplate:self.intelligence withCharacter:character] thisLvl]
+                                                    withCha:[[self checkedSkillWithTemplate:self.charisma withCharacter:character] thisLvl]
                                                  withAMelee:character.characterCondition.modifierAMelee
                                                  withARange:character.characterCondition.modifierARange
                                                       withW:character.wounds
@@ -1098,39 +1097,39 @@ static SkillManager *instance = nil;
 
 -(void)setCharacterSkills:(Character *)character withStatSet:(StatSet *)statset
 {
-    Skill *m = [self skillWithTemplate:self.movement withCharacter:character];
+    Skill *m = [self checkedSkillWithTemplate:self.movement withCharacter:character];
     m.thisLvl = statset.m;
     m.thisLvlCurrentProgress = 0;
     
-    Skill *ws = [self skillWithTemplate:self.weaponSkill withCharacter:character];
+    Skill *ws = [self checkedSkillWithTemplate:self.weaponSkill withCharacter:character];
     ws.thisLvl = statset.ws;
     ws.thisLvlCurrentProgress = 0;
     
-    Skill *bs = [self skillWithTemplate:self.ballisticSkill withCharacter:character];
+    Skill *bs = [self checkedSkillWithTemplate:self.ballisticSkill withCharacter:character];
     bs.thisLvl = statset.bs;
     bs.thisLvlCurrentProgress = 0;
     
-    Skill *str = [self skillWithTemplate:self.strenght withCharacter:character];
+    Skill *str = [self checkedSkillWithTemplate:self.strenght withCharacter:character];
     str.thisLvl = statset.str;
     str.thisLvlCurrentProgress = 0;
     
-    Skill *to = [self skillWithTemplate:self.toughness withCharacter:character];
+    Skill *to = [self checkedSkillWithTemplate:self.toughness withCharacter:character];
     to.thisLvl = statset.to;
     to.thisLvlCurrentProgress = 0;
     
-    Skill *ag = [self skillWithTemplate:self.agility withCharacter:character];
+    Skill *ag = [self checkedSkillWithTemplate:self.agility withCharacter:character];
     ag.thisLvl = statset.ag;
     ag.thisLvlCurrentProgress = 0;
     
-    Skill *wp = [self skillWithTemplate:self.willpower withCharacter:character];
+    Skill *wp = [self checkedSkillWithTemplate:self.willpower withCharacter:character];
     wp.thisLvl = statset.wp;
     wp.thisLvlCurrentProgress = 0;
     
-    Skill *intl = [self skillWithTemplate:self.intelligence withCharacter:character];
+    Skill *intl = [self checkedSkillWithTemplate:self.intelligence withCharacter:character];
     intl.thisLvl = statset.intl;
     intl.thisLvlCurrentProgress = 0;
     
-    Skill *cha = [self skillWithTemplate:self.charisma withCharacter:character];
+    Skill *cha = [self checkedSkillWithTemplate:self.charisma withCharacter:character];
     cha.thisLvl = statset.cha;
     cha.thisLvlCurrentProgress = 0;
     
@@ -1144,7 +1143,7 @@ static SkillManager *instance = nil;
 {
     NSArray *coreSkillTemplates = self.allCoreSkillTemplates;
     for (SkillTemplate *skillTemplate in coreSkillTemplates) {
-        [self skillWithTemplate:skillTemplate withCharacter:character];
+        [self checkedSkillWithTemplate:skillTemplate withCharacter:character];
     }
 }
 

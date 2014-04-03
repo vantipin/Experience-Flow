@@ -60,55 +60,55 @@
 
 -(Skill *)mSkill
 {
-    _mSkill = [self.skillManager skillWithTemplate:self.skillManager.movement withCharacter:self.character];
+    _mSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.movement withCharacter:self.character];
     return _mSkill;
 }
 
 -(Skill *)wsSkill
 {
-    _wsSkill = [self.skillManager skillWithTemplate:self.skillManager.weaponSkill withCharacter:self.character];
+    _wsSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.weaponSkill withCharacter:self.character];
     return _wsSkill;
 }
 
 -(Skill *)bsSkill
 {
-    _bsSkill = [self.skillManager skillWithTemplate:self.skillManager.ballisticSkill withCharacter:self.character];
+    _bsSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.ballisticSkill withCharacter:self.character];
     return _bsSkill;
 }
 
 -(Skill *)strSkill
 {
-    _strSkill = [self.skillManager skillWithTemplate:self.skillManager.strenght withCharacter:self.character];
+    _strSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.strenght withCharacter:self.character];
     return _strSkill;
 }
 
 -(Skill *)toSkill
 {
-    _toSkill = [self.skillManager skillWithTemplate:self.skillManager.toughness withCharacter:self.character];
+    _toSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.toughness withCharacter:self.character];
     return _toSkill;
 }
 
 -(Skill *)agSkill
 {
-    _agSkill = [self.skillManager skillWithTemplate:self.skillManager.agility withCharacter:self.character];
+    _agSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.agility withCharacter:self.character];
     return _agSkill;
 }
 
 -(Skill *)wpSkill
 {
-    _wpSkill = [self.skillManager skillWithTemplate:self.skillManager.willpower withCharacter:self.character];
+    _wpSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.willpower withCharacter:self.character];
     return _wpSkill;
 }
 
 -(Skill *)intlSkill
 {
-    _intlSkill = [self.skillManager skillWithTemplate:self.skillManager.intelligence withCharacter:self.character];
+    _intlSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.intelligence withCharacter:self.character];
     return _intlSkill;
 }
 
 -(Skill *)chaSkill
 {
-    _chaSkill = [self.skillManager skillWithTemplate:self.skillManager.charisma withCharacter:self.character];
+    _chaSkill = [self.skillManager checkedSkillWithTemplate:self.skillManager.charisma withCharacter:self.character];
     return _chaSkill;
 }
 

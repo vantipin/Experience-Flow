@@ -11,12 +11,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface DropDownViewController ()
-
-@property (nonatomic) UIView *cancelingView;
 @property (nonatomic) CGFloat openTime;
 @property (nonatomic) CGFloat closeTime;
-
-
 @end
 
 @implementation DropDownViewController
@@ -120,9 +116,9 @@
     
 	[super viewDidLoad];
 	
-    
     self.openTime = 0.15;
     self.closeTime = 0.15;
+    self.view.clipsToBounds = true;
     self.view.autoresizesSubviews = true;
     self.view.autoresizingMask = UIViewAutoresizingNone;
 	self.dropDownTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,self.widthTableView, self.heightOfCell) style:UITableViewStylePlain];
@@ -141,7 +137,7 @@
     float screenHeight = screenRect.size.height>screenRect.size.width?screenRect.size.width:screenRect.size.height;
     
 	CGRect refFrame = [self.anchorView convertRect:self.anchorView.frame toView:(self.topView)?self.topView:self.anchorView];
-    //NSLog(@"%@",NSStringFromCGRect(self.refView.frame));
+    //NSLog(@"%@",NSStringFromCGRect(self.anchorView.frame));
     //NSLog(@"%@",NSStringFromCGRect(refFrame));
     
     
@@ -167,9 +163,7 @@
         viewHeightOnScreen = originalY+self.heightTableView;
         safeHeight  = viewHeightOnScreen > screenHeight ? screenHeight - (originalY + 100) : self.heightTableView;
     }
-
     
-
     self.dropDownTableView.frame = CGRectMake(0,
                                               0,
                                               self.widthTableView,
@@ -178,7 +172,14 @@
     self.view.frame = CGRectMake(originalX,
                                  originalY,
                                  self.widthTableView,
-                                 (animationType == AlphaChange)?safeHeight:1);
+                                 safeHeight);
+    
+    [self customReshapeFrames];
+}
+
+-(void)customReshapeFrames
+{
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -194,25 +195,18 @@
     [super viewDidUnload];
 }
 
-/*
-- (void)dealloc
-{
-	
-}
- */
-
 #pragma mark -
 #pragma mark UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return self.heightOfCell;
-}	
+}
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
 	return [self.dropDownDataSource count];
-}	
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -235,7 +229,7 @@
     
     cell.backgroundColor = [UIColor clearColor];
     
-    if ([[self.dropDownDataSource lastObject] isKindOfClass:[NSString class]])  
+    if ([[self.dropDownDataSource lastObject] isKindOfClass:[NSString class]])
     {
         if (self.textColor)
         {
@@ -257,10 +251,10 @@
         subview.frame = cell.bounds;
         [cell.contentView addSubview:subview];
     }
-		
-	return cell;
+
+    return cell;
 	
-}	
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -277,13 +271,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
 	return 0;
-}	
+}
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-
+    
 	return @"";
-}	
+}
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
@@ -307,17 +301,35 @@
     //push forward dropdown anyway
     [self.view.superview bringSubviewToFront:self.view];
     
+    
+    float heightForView = self.view.frame.size.height;
+    if (animationType != AlphaChange)
+    {
+        self.view.frame = CGRectMake(self.view.frame.origin.x,
+                                     self.view.frame.origin.y,
+                                     self.view.frame.size.width,
+                                     1);
+    }
+    
     [UIView animateWithDuration:self.openTime animations:^{
-        
         if(animationType == AlphaAndHeightChange || animationType == HeightChange)
+        {
             self.view.frame = CGRectMake(self.view.frame.origin.x,
                                          self.view.frame.origin.y,
                                          self.view.frame.size.width,
-                                         self.heightTableView);
+                                         heightForView);
+        }
         
         if(animationType == AlphaAndHeightChange || animationType == AlphaChange)
             self.view.alpha = 1;
     }];
+    
+    [self customActionOnOpen];
+}
+
+-(void)customActionOnOpen
+{
+    
 }
 
 -(void)closeAnimation
@@ -327,25 +339,27 @@
     
     [UIView animateWithDuration:self.openTime animations:^{
         if(animationType == AlphaAndHeightChange || animationType == HeightChange)
+        {
             self.view.frame = CGRectMake(self.view.frame.origin.x,
-                                                self.view.frame.origin.y,
-                                                self.view.frame.size.width,
-                                                1);
-        
+                                         self.view.frame.origin.y,
+                                         self.view.frame.size.width,
+                                         1);
+        }
+
         if(animationType == AlphaAndHeightChange || animationType == AlphaChange)
             self.view.alpha = 0;
     } completion:^(BOOL finished){
-        [self hideView];
+        self.view.hidden = YES;
     }];
     
     if (self.selectedCell)
-    [self.dropDownTableView deselectRowAtIndexPath:self.selectedCell animated:NO];
+        [self.dropDownTableView deselectRowAtIndexPath:self.selectedCell animated:NO];
+    [self customActionOnClose];
 }
 
-	 
--(void)hideView
+-(void)customActionOnClose
 {
-	self.view.hidden = YES;
+    
 }
 
 @end
