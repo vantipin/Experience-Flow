@@ -12,7 +12,6 @@
 #import "ColorConstants.h"
 #import "StatSetDropDown.h"
 #import "StatView.h"
-#import "StatSet.h"
 #import "SkillTableViewController.h"
 
 @interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,SkillTableViewControllerDelegate>

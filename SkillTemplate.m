@@ -11,6 +11,7 @@
 #import "SkillTemplate.h"
 #import "Pic.h"
 #import "SkillManager.h"
+#import "DefaultSkillTemplates.h"
 
 static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 
@@ -82,7 +83,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
     NSString *entityName;
     switch (skillEnum) {
         case 0:
-            entityName = @"RegularSkill";
+            entityName = @"AdvancedSkill";
             break;
         case 1:
             entityName = @"MagicSkill";
@@ -97,10 +98,10 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
             entityName = @"PietySkill";
             break;
         case 5:
-            entityName = @"CoreSkill";
+            entityName = @"BasicSkill";
             break;
         default:
-            entityName = @"RegularSkill";
+            entityName = @"AdvancedSkill";
             break;
     }
     return entityName;
@@ -124,7 +125,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 
 +(void)checkDefaultSkillsAndCreateIfMissingWithContext:(NSManagedObjectContext *)context
 {
-    SkillManager *defaultSkills = [SkillManager sharedInstance];
+    DefaultSkillTemplates *defaultSkills = [DefaultSkillTemplates sharedInstance];
     [defaultSkills allNoneCoreSkillTemplates]; //should create all default skill templates if missed
 }
 

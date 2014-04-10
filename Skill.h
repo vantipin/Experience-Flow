@@ -2,7 +2,7 @@
 //  Skill.h
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 28.01.14.
+//  Created by Vlad Antipin on 09.04.14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
@@ -10,21 +10,19 @@
 #import <CoreData/CoreData.h>
 #import "CoreDataClass.h"
 
-@class Character, Pic, Skill, SkillTemplate, WeaponMelee;
+@class Skill, SkillTemplate, WeaponMelee;
 
 @interface Skill : CoreDataClass
 
 @property (nonatomic) NSTimeInterval dateXpAdded;
+@property (nonatomic, retain) NSString * skillId;
 @property (nonatomic) int16_t thisLvl;
 @property (nonatomic) float thisLvlCurrentProgress;
 @property (nonatomic, retain) Skill *basicSkill;
-@property (nonatomic, retain) NSString *skillId;
-
 @property (nonatomic, retain) WeaponMelee *items;
-@property (nonatomic, retain) Character *player;
-@property (nonatomic, retain) NSSet *subSkills;
+@property (nonatomic, retain) NSManagedObject *skillSet;
 @property (nonatomic, retain) SkillTemplate *skillTemplate;
-
+@property (nonatomic, retain) NSSet *subSkills;
 @end
 
 @interface Skill (CoreDataGeneratedAccessors)
@@ -34,7 +32,6 @@
 - (void)addSubSkills:(NSSet *)values;
 - (void)removeSubSkills:(NSSet *)values;
 
-//methodes for work with object
 
 //create
 
@@ -43,17 +40,6 @@
                 withBasicSkill:(Skill *)basicSkill
            withCurrentXpPoints:(float)curentPoints
                    withContext:(NSManagedObjectContext *)context;
-
-//update
--(Skill *)addSolidLvls:(int)levels
-           withContext:(NSManagedObjectContext *)context;
--(Skill *)removeSolidLvls:(int)levels
-              withContext:(NSManagedObjectContext *)context;
--(Skill *)addXpPoints:(float)xpPoints
-          withContext:(NSManagedObjectContext *)context;
--(Skill *)removeXpPoints:(float)xpPoints
-             withContext:(NSManagedObjectContext *)context;
-
 
 //fetch
 +(NSArray *)fetchSkillWithId:(NSString *)skillId withContext:(NSManagedObjectContext *)context;

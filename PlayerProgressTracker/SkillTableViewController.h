@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SkillViewCell.h"
+#import "SkillManager.h"
 
 @class Character;
 
@@ -17,16 +18,13 @@
 
 @end
 
-
-@interface SkillTableViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate,SkillViewCellDelegate>
+@interface SkillTableViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate,SkillViewCellDelegate,UITextFieldDelegate,SkillChangeProtocol>
 
 @property (nonatomic) CGFloat tableWith;
 @property (nonatomic) CGFloat tableHeight;
-@property (nonatomic) Character *character;
+@property (nonatomic) SkillSet *skillSet;
 @property (nonatomic) UIColor *backgroundColor;
 @property (nonatomic,assign) id<SkillTableViewControllerDelegate> skillTableDelegate;
-
--(id)initWithCharacter:(Character *)character;
 
 
 @end

@@ -14,25 +14,21 @@
 #import "Character.h"
 #import "Skill.h"
 #import "SkillViewCell.h"
+#import "SkillSet.h"
 
 @interface SkillTableViewController ()
-@property (nonatomic) NSMutableArray *skillsDataSource;
 @property (nonatomic) UIButton *addSkillButton;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
-
+@property (nonatomic) NSMutableArray *skillsDataSource;
+@property (nonatomic) UIView *activeTipView;
 @end
 
 @implementation SkillTableViewController
 
-@synthesize skillsDataSource = _skillsDataSource;
-@synthesize character = _character;
-@synthesize addSkillButton = _addSkillButton;
-@synthesize managedObjectContext = _managedObjectContext;
 
 -(UIButton *)addSkillButton
 {
-    if (!_addSkillButton)
-    {
+    if (!_addSkillButton) {
         UIButton *btnAddBooks = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [btnAddBooks setTitle:@"+ Add skill" forState:UIControlStateNormal];
         [btnAddBooks setTitleColor:textEditColor forState:UIControlStateNormal];
@@ -46,25 +42,22 @@
 
 -(NSMutableArray *)skillsDataSource
 {
-    if (!_skillsDataSource){
-        if (self.character){
+    if (!_skillsDataSource) {
+        if (self.skillSet) {
             NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"dateXpAdded" ascending: NO];
-            _skillsDataSource = [NSMutableArray arrayWithArray:[[self.character.skillSet allObjects] sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
+            _skillsDataSource = [NSMutableArray arrayWithArray:[[self.skillSet.skills allObjects] sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
         }
-        else{
+        else {
             _skillsDataSource = [NSMutableArray new];
         }
     }
     return _skillsDataSource;
 }
 
--(id)initWithCharacter:(Character *)character
+-(void)setSkillSet:(SkillSet *)skillSet
 {
-    self = [super init];
-    if (self) {
-        self.character = character;
-    }
-    return self;
+    self.skillsDataSource = nil;
+    _skillSet = skillSet;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -129,10 +122,13 @@
     
     Skill *currentSkill = self.skillsDataSource[indexPath.row];
     
+    [SkillManager sharedInstance].delegate = self;
+    
     if (!cell)
     {
         cell = [[SkillViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier withSkill:currentSkill];
         cell.skillCellDelegate = self;
+        cell.skillUsableLvlTextField.delegate = self;
     }
     cell.skill = currentSkill;
     [cell reloadFields];
@@ -148,6 +144,58 @@
     [self raiseXpForSkill:skill withXpPoints:1];
 }
 
+
+#pragma mark - 
+#pragma mark cell delegates methods
+
+-(void)skill:(Skill *)skill buttonTapped:(UIButton *)sender
+{
+    UIView *parentView = self.view;
+    CGRect closingAreaFrame = parentView.bounds;
+    
+    float defaultWidht = 300;
+    float defaultHeight = 10;
+    CGRect tipFrame = CGRectMake(parentView.center.x - defaultWidht/2,
+                                 parentView.center.y - 60,
+                                 defaultWidht,
+                                 defaultHeight);
+    
+    
+    UITextView *tipTextView = [[UITextView alloc] initWithFrame:tipFrame];
+    [tipTextView setText:skill.skillTemplate.skillDescription];
+    [tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
+    [tipTextView sizeToFit];
+    tipTextView.backgroundColor = [UIColor whiteColor];
+    tipTextView.editable = false;
+    tipTextView.selectable = false;
+    
+    UIView *closingAreaView = [[UIView alloc] initWithFrame:closingAreaFrame];
+    closingAreaView.opaque = false;
+    closingAreaView.backgroundColor = [UIColor clearColor];
+    
+    self.activeTipView = [[UIView alloc] initWithFrame:closingAreaFrame];
+    [self.activeTipView addSubview:closingAreaView];
+    [self.activeTipView addSubview:tipTextView];
+    [self.activeTipView bringSubviewToFront:tipTextView];
+    [self.activeTipView setBackgroundColor:kRGB(220, 220, 220, 0.7)];
+    
+    UITapGestureRecognizer *tapRecognizer;
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeTip)];
+    [self.activeTipView addGestureRecognizer:tapRecognizer];
+    UIPanGestureRecognizer *panRecognizer;
+    panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(closeTip)];
+    [self.activeTipView addGestureRecognizer:panRecognizer];
+    
+    self.activeTipView.alpha = 0;
+    [parentView addSubview:self.activeTipView];
+    [parentView bringSubviewToFront:self.activeTipView];
+    
+    [UIView animateWithDuration:0.15 animations:^{
+        self.activeTipView.alpha = 1;
+    }];
+
+}
+
 -(void)raiseXpForSkill:(Skill *)skill withXpPoints:(float)xpPoints
 {
     [self changeXpPointsToSkill:skill withXpPoints:xpPoints didRaiseXp:true];
@@ -158,16 +206,30 @@
     [self changeXpPointsToSkill:skill withXpPoints:xpPoints didRaiseXp:false];
 }
 
+#pragma mark - 
+
+-(void)closeTip
+{
+    
+    if (self.activeTipView) {
+        [UIView animateWithDuration:0.15 animations:^{
+            self.activeTipView.alpha = 0;
+        }];
+        
+        [self.activeTipView removeFromSuperview];
+        self.activeTipView = nil;
+    }
+}
+
 -(void)changeXpPointsToSkill:(Skill *)skill withXpPoints:(float)xpPoints didRaiseXp:(BOOL)didRaise
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.skillsDataSource indexOfObject:skill] inSection:0];
-    int prevLvl = skill.thisLvl;
     
     if (didRaise){
-        [skill addXpPoints:xpPoints withContext:self.managedObjectContext];
+        [[SkillManager sharedInstance] addXpPoints:xpPoints toSkill:skill withContext:self.managedObjectContext];
     }
     else{
-        [skill removeXpPoints:xpPoints withContext:self.managedObjectContext];
+        [[SkillManager sharedInstance] removeXpPoints:xpPoints toSkill:skill withContext:self.managedObjectContext];
     }
     SkillViewCell *cell = (SkillViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     [cell reloadFields];
@@ -178,65 +240,21 @@
     
     //[self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     //[self.tableView endUpdates];
-    if (prevLvl != skill.thisLvl)
-    {
-        [self.skillTableDelegate didUpdateCharacterSkills];
-    }
+}
+
+-(void)didChangeSkillLevel
+{
+    [self.skillTableDelegate didUpdateCharacterSkills];
 }
 
 - (void)addNewSkill
 {
     NSLog(@"add newSkill btn pressed");
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+#pragma mark -
+#pragma mark text field delegate methods
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

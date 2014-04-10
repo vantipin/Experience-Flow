@@ -11,10 +11,7 @@
 static CoreDataViewController *instance = nil;
 
 @interface CoreDataViewController ()
-+ (NSManagedObjectContext *)newManagedObjectContextWithPersistantStoreCoordinator:(NSPersistentStoreCoordinator *)persistentCoordinator;
-+ (NSManagedObjectModel *)newManagedObjectModel;
-+ (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithModel:(NSManagedObjectModel *)managedObjectModel;
-+ (NSURL *)applicationDocumentsDirectory;
+
 @end
 
 @implementation CoreDataViewController
@@ -62,8 +59,7 @@ static CoreDataViewController *instance = nil;
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (thisManagedObjectContext == nil)
-    {
+    if (thisManagedObjectContext == nil) {
         thisManagedObjectContext = [CoreDataViewController newManagedObjectContextWithPersistantStoreCoordinator:self.persistentStoreCoordinator];
     }
     
@@ -74,8 +70,7 @@ static CoreDataViewController *instance = nil;
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (thisManagedObjectModel == nil)
-    {
+    if (thisManagedObjectModel == nil) {
         thisManagedObjectModel = [CoreDataViewController newManagedObjectModel];
     }
     return thisManagedObjectModel;

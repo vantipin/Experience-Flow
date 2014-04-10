@@ -18,4 +18,9 @@
 
 +(CoreDataViewController *)sharedInstance;
 
++ (NSManagedObjectContext *)newManagedObjectContextWithPersistantStoreCoordinator:(NSPersistentStoreCoordinator *)persistentCoordinator;
++ (NSManagedObjectModel *)newManagedObjectModel;
++ (NSPersistentStoreCoordinator *)newPersistentStoreCoordinatorWithModel:(NSManagedObjectModel *)managedObjectModel;
++ (NSURL *)applicationDocumentsDirectory;
+
 @end

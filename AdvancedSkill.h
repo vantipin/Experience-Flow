@@ -1,8 +1,8 @@
 //
-//  RegularSkill.h
+//  AdvancedSkill.h
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 22.03.14.
+//  Created by Vlad Antipin on 09.04.14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 #import "Skill.h"
 
 
-@interface RegularSkill : Skill
+@interface AdvancedSkill : Skill
 
 
 @end

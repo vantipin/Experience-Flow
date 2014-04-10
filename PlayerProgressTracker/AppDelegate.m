@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Character.h"
 #import "Skill.h"
+#import "SkillSet.h"
 #import "SkillTemplate.h"
 #import "CoreDataViewController.h"
 
@@ -50,12 +51,17 @@
         NSLog(@"Cleaning up unsaved characters.");
     }
     
-    for (int16_t i = StandartSkillType; i < LastElementInEnum; i++) {
-        NSArray *skillsWithoutPlayer = [Skill fetchRequestForObjectName:[SkillTemplate entityNameForSkillEnum:i] withPredicate:[NSPredicate predicateWithFormat:@"player = %@",nil] withContext:context];
-        for (Skill *emptySkill in skillsWithoutPlayer) {
+    for (int16_t i = AdvancedSkillType; i < LastElementInEnum; i++) {
+        NSArray *skillsWithoutSet = [Skill fetchRequestForObjectName:[SkillTemplate entityNameForSkillEnum:i] withPredicate:[NSPredicate predicateWithFormat:@"skillSet = %@",nil] withContext:context];
+        for (Skill *emptySkill in skillsWithoutSet) {
             [Skill deleteSkillWithId:emptySkill.skillId withContext:context];
             NSLog(@"Cleaning up skills without characters attached to them.");
         }
+    }
+    NSArray *unusambleSkillSets = [SkillSet fetchNamelessAndCharacterlessSkillSetsWithContext:context];
+    for (SkillSet *skillSet in unusambleSkillSets) {
+        [SkillSet deleteSkillSet:skillSet withContext:context];
+        NSLog(@"Cleaning up skillSets without characters or name.");
     }
 
     

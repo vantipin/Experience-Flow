@@ -15,7 +15,7 @@
 
 - (void)raiseXpForSkill:(Skill *)skill withXpPoints:(float)xpPoints;
 - (void)lowerXpForSkill:(Skill *)skill withXpPoints:(float)xpPoints;
-
+- (void)skill:(Skill *)skill buttonTapped:(UIButton *)sender;
 @end
 
 

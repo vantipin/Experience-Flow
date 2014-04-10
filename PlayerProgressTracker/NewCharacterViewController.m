@@ -15,6 +15,8 @@
 #import "SkillTemplate.h"
 #import "SkillTableViewController.h"
 #import "CharacterConditionAttributes.h"
+#import "SkillSet.h"
+#import "DefaultSkillTemplates.h"
 
 
 @interface NewCharacterViewController ()
@@ -28,17 +30,11 @@
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) StatView *statView;
 
+//TODO canceling view for keyboard needed!!!
+
 @end
 
 @implementation NewCharacterViewController
-
-@synthesize name = _name;
-@synthesize raceSetDropDown = _raceSetDropDown;
-@synthesize raceNames = _raceNames;
-@synthesize alertTextField = _alertTextField;
-@synthesize skillTableViewController = _skillTableViewController;
-@synthesize context = _context;
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,8 +51,8 @@
     
     //[self allFontsToConsole];
     //[StatSet deleteStatSetWithName:@"" withContext:self.managedObjectContext];
-    self.shouldRewriteSkillsLevels = false;
-    self.skillTableViewController.character = self.character;
+    self.shouldRewriteSkillsLevels = true;
+    self.skillTableViewController.skillSet =  self.character.skillSet;
     self.skillTableViewController.skillTableDelegate = self;
     
     self.raceSetDropDown.delegateDropDown = self;
@@ -65,9 +61,6 @@
     
     self.statView.settable = true;
     self.statView.executer = self;
-    self.statView.character = self.character;
-    
-    [self.statView updateStatsFromCharacterObject];
     
     self.name.delegate = self;
     self.name.text = self.character.name;
@@ -76,7 +69,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.statView initFields];
+    self.statView.character = self.character;//setter will update interface
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
+//    //TODO
+//    [_character addToCurrentMeleeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] ordinary] withContext:self.context];
+//    [_character setCurrentRangeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] bow] withContext:self.context];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,10 +106,6 @@
         if (arrayOfUnfinishedCharacters.count != 0){
             _character = [arrayOfUnfinishedCharacters lastObject];
             [[SkillManager sharedInstance] checkAllCharacterCoreSkills:_character];
-            
-            //TODO
-            [_character addToCurrentMeleeSkillWithTempate:[[SkillManager sharedInstance] ordinary] withContext:self.context];
-            [_character setCurrentRangeSkillWithTempate:[[SkillManager sharedInstance] bow] withContext:self.context];
         }
         else{
             _character = [Character newCharacterWithContext:self.context];
@@ -160,8 +153,8 @@
 -(void)refreshRaceNames
 {
     [self.raceNames removeAllObjects];
-    NSArray *arraySet = [NSMutableArray arrayWithArray:[StatSet fetchStatSetsWithContext:self.context]];
-    for (StatSet *set in arraySet){
+    NSArray *arraySet = [NSMutableArray arrayWithArray:[SkillSet fetchCharacterlessSkillSetsWithContext:self.context]];
+    for (SkillSet *set in arraySet){
         if (!set.name) {
             set.name = @"NAMELESS";
         }
@@ -174,27 +167,40 @@
     
     if (self.raceNames.count == 0 || !self.shouldRewriteSkillsLevels) {
         //no statSet is available or character's skills set statSet
-        [self.statView updateStatsFromCharacterObject];
-        currentTitle = @"";
+        [self.statView setViewFromSkillSet];
         [self prepareViewForSavingNewRace];
     }
     else {
         if ([self.raceNames indexOfObject:currentTitle] == NSNotFound) {
             currentTitle = [self.raceNames lastObject];
         }
-        StatSet *statSet = [StatSet fetchStatSetWithName:currentTitle withContext:self.context];
-
-        [[SkillManager sharedInstance] setCharacterSkills:self.character withStatSet:statSet];
+        
+        SkillSet *statSet = [[SkillSet fetchSkillSetWithName:currentTitle withContext:self.context] lastObject];
+        SkillSet *formerSet = self.statView.character.skillSet;
+        self.statView.character.skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:statSet];
+        [SkillSet deleteSkillSet:formerSet withContext:self.context];
+        
+        [self.character saveCharacterWithContext:self.context];
+        
+        self.skillTableViewController.skillSet =  self.character.skillSet;
         [self.skillTableViewController.tableView reloadData];
+        [self.statView setViewFromSkillSet];
+        
         self.shouldRewriteSkillsLevels = false;
         [self dissmissSavingNewRace];
     }
     
+    if (!currentTitle) {
+        currentTitle = @"";
+    }
     [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
 }
 
 -(void)prepareViewForSavingNewRace
 {
+    //prepare setting character skills to listed in stat set
+    self.shouldRewriteSkillsLevels = true;
+    
     if (self.saveSet.alpha < 1) {
         self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x - 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
         
@@ -222,27 +228,19 @@
 
 -(void)saveCurrentStatSetWithName:(NSString *)nameString
 {
-    StatSet *statset = [StatSet createTemporaryStatSetWithM:[self.statView.m.text intValue]
-                                                     withWs:[self.statView.ws.text intValue]
-                                                     withBS:[self.statView.bs.text intValue]
-                                                    withStr:[self.statView.str.text intValue]
-                                                     withTo:[self.statView.to.text intValue]
-                                                     withAg:[self.statView.ag.text intValue]
-                                                     withWp:[self.statView.wp.text intValue]
-                                                    withInt:[self.statView.intl.text intValue]
-                                                    withCha:[self.statView.cha.text intValue]
-                                                 withAMelee:[self.statView.aMelee.text intValue]
-                                                 withARange:[self.statView.aRange.text intValue]
-                                                      withW:[self.statView.w.text intValue]
-                                                withContext:self.context];
-    statset.name = nameString;
-    [StatSet saveContext:self.context];
-    if (statset) {
-        //prepare setting character skills to listed in stat set
-        self.shouldRewriteSkillsLevels = true;
-        //set current name to recently saved one
-        [self updateRaceButtonWithName:nameString];
+    SkillSet *skillSet;
+    NSArray *array = [SkillSet fetchSkillSetWithName:nameString withContext:self.context];
+    if (array && array.count != 0) {
+        SkillSet *existingSkillSet = [array lastObject];
+        [SkillSet deleteSkillSet:existingSkillSet withContext:self.context];
     }
+    
+    skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:self.character.skillSet];
+    skillSet.name = nameString;
+    
+    [SkillSet saveContext:self.context];
+    //set current name to recently saved one
+    [self updateRaceButtonWithName:nameString];
 }
 
 -(IBAction)saveStatSetBtn:(id)sender
@@ -264,6 +262,7 @@
 
 -(IBAction)raceBtnTapped:(id)sender
 {
+    [self.statView resignFirstResponder];
     if (self.raceNames.count != 0) {
         if (self.raceSetDropDown.view.hidden) {
             [self.raceSetDropDown openAnimation];
@@ -274,12 +273,13 @@
     }
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark skill table delegate
 -(void)didUpdateCharacterSkills
 {
     self.shouldRewriteSkillsLevels = false;
     [self updateRaceButtonWithName:nil];
+    [self.statView setViewFromSkillSet];
 }
 
 #pragma mark -
@@ -316,7 +316,7 @@
 
 -(void)deleteStatSetWithName:(NSString *)name
 {
-    if ([StatSet deleteStatSetWithName:name withContext:self.context]) {
+    if ([SkillSet deleteSkillSetWithName:name withContext:self.context]) {
         [self.raceSetDropDown openAnimation];
         [self refreshRaceNames];
         [self updateRaceButtonWithName:[self.raceNames lastObject]];
@@ -343,11 +343,14 @@
             self.character.name = textField.text;
             [Character saveContext:self.context];
         }
-        else {
-            if (textField.text.length == 0) {
+        else if (textField.text.length == 0) {
                 return false;
-            }
         }
+        else if ([self.statView isTextFieldInStatView:textField]) {
+            [self.statView setSkillSetFromView];
+            [self.skillTableViewController.tableView reloadData];
+        }
+        return true;
     }
     [textField resignFirstResponder];
     return true;
@@ -355,7 +358,7 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
-    if ([self.statView.statContainerView.subviews containsObject:textField]) {
+    if ([self.statView isTextFieldInStatView:textField]) {
         //from here filter stat input. Only number. Max 2 numbers
         NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
         NSUInteger newLength = [textField.text length] + [string length] - range.length;

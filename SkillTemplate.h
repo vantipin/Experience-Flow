@@ -16,12 +16,12 @@
 
 typedef enum SkillClassType : int16_t
 {
-    StandartSkillType = 0,
+    AdvancedSkillType = 0,
     MagicSkillType = 1,
     RangeSkillType = 2,
     MeleeSkillType = 3,
     PietySkillType = 4,
-    CoreSkillType = 5,
+    BasicSkillType = 5,
     LastElementInEnum = 6,
 } SkillClassesType;
 

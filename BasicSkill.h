@@ -1,15 +1,17 @@
 //
-//  CoreSkill.m
+//  CoreSkill.h
 //  PlayerProgressTracker
 //
 //  Created by Vlad Antipin on 28.03.14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
-#import "CoreSkill.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import "Skill.h"
 
 
-@implementation CoreSkill
+@interface BasicSkill : Skill
 
 
 @end

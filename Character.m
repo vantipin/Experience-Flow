@@ -2,41 +2,42 @@
 //  Character.m
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 20.02.14.
+//  Created by Vlad Antipin on 09.04.14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
 #import "Character.h"
 #import "CharacterConditionAttributes.h"
-#import "SkillManager.h"
 #import "Pic.h"
-#import "Skill.h"
+#import "SkillSet.h"
+#import "DefaultSkillTemplates.h"
 #import "SkillTemplate.h"
 
 
 @implementation Character
 
 @dynamic characterFinished;
+@dynamic characterId;
 @dynamic dateCreated;
 @dynamic dateModifed;
 @dynamic name;
+@dynamic wounds;
 @dynamic characterCondition;
 @dynamic icon;
 @dynamic skillSet;
-@dynamic wounds;
-@dynamic characterId;
 
 //create/update
 
 +(Character *)newCharacterWithContext:(NSManagedObjectContext *)context
 {
     Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:context];
-    
     character.characterId = [NSString stringWithFormat:@"%@",character.objectID];
+    SkillSet *skillSet = [NSEntityDescription insertNewObjectForEntityForName:@"SkillSet" inManagedObjectContext:context];
+    character.skillSet = skillSet;
     
-    NSArray *defaultSkillSetTemplates = [[SkillManager sharedInstance] allCoreSkillTemplates];
+    NSArray *defaultSkillSetTemplates = [[DefaultSkillTemplates sharedInstance] allCoreSkillTemplates];
     for (SkillTemplate *skillTemplate in defaultSkillSetTemplates) {
-        [character addNewSkillWithTempate:skillTemplate withContext:context];
+        [[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:character.skillSet withContext:context];
     }
     
     [character saveCharacterWithContext:context];
@@ -68,44 +69,9 @@
     return success;
 }
 
--(Skill *)addNewSkillWithTempate:(SkillTemplate *)skillTemplate
-                         withContext:(NSManagedObjectContext *)context;
-{
-    if (skillTemplate)
-    {
-        //check if skill with such name exist and deny update
-        NSString *skillType = [SkillTemplate entityNameForSkillTemplate:skillTemplate];
-        NSPredicate *predicateTemplate = [NSComparisonPredicate predicateWithFormat:@"(player = %@) AND (skillTemplate.name = %@)",self,skillTemplate.name];
-        NSArray *alreadyExist = [Skill fetchRequestForObjectName:skillType withPredicate:predicateTemplate withContext:context];
-        if (alreadyExist && alreadyExist.count!=0) {
-            return [alreadyExist lastObject];
-        }
-        
-
-        Skill *skill = [Skill newSkillWithTemplate:skillTemplate withBasicSkill:nil withCurrentXpPoints:0 withContext:context];
-        [self addSkillSetObject:skill];
-        skill.player = self;
-        
-        //check if skill has any parent skills for this character created and link them
-        //if not - in addition create parent skill
-        if (skillTemplate.basicSkillTemplate)
-        {
-            Skill *basicSkill = [self addNewSkillWithTempate:skillTemplate.basicSkillTemplate withContext:context];
-            skill.basicSkill = basicSkill;
-            [basicSkill addSubSkillsObject:skill];
-        }
-        
-        [self saveCharacterWithContext:context];
-        
-        return skill;
-    }
-    return nil;
-}
-
-
 -(MeleeSkill *)addToCurrentMeleeSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
 {
-    MeleeSkill* skill = (MeleeSkill *)[self addNewSkillWithTempate:skillTemplate withContext:context];
+    MeleeSkill* skill = (MeleeSkill *)[[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:self.skillSet withContext:context];
     if ([self.characterCondition.currentMeleeSkills containsObject:skill]) {
         return skill;
     }
@@ -128,7 +94,7 @@
 
 -(RangeSkill *)setCurrentRangeSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
 {
-    RangeSkill *skill = (RangeSkill *)[self addNewSkillWithTempate:skillTemplate withContext:context];
+    RangeSkill *skill = (RangeSkill *)[[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:self.skillSet withContext:context];
     self.characterCondition.currentRangeSkills = skill;
     
     return skill;
@@ -136,7 +102,7 @@
 
 -(MagicSkill *)setCurrentMagicSkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
 {
-    MagicSkill *skill = (MagicSkill *)[self addNewSkillWithTempate:skillTemplate withContext:context];
+    MagicSkill *skill = (MagicSkill *)[[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:self.skillSet withContext:context];
     self.characterCondition.currentMagicSkills = skill;
     
     return skill;
@@ -144,7 +110,7 @@
 
 -(PietySkill *)setCurrentPietySkillWithTempate:(SkillTemplate *)skillTemplate withContext:(NSManagedObjectContext *)context;
 {
-    PietySkill *skill = (PietySkill *)[self addNewSkillWithTempate:skillTemplate withContext:context];
+    PietySkill *skill = (PietySkill *)[[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:self.skillSet withContext:context];
     self.characterCondition.currentPietySkills = skill;
     
     return skill;
@@ -169,8 +135,8 @@
 +(NSArray *)fetchUnfinishedCharacterWithContext:(NSManagedObjectContext *)context
 {
     return [Character fetchRequestForObjectName:@"Character"
-                           withPredicate:[NSPredicate predicateWithFormat:@"characterFinished = %i",0]
-                             withContext:context];
+                                  withPredicate:[NSPredicate predicateWithFormat:@"characterFinished = %i",0]
+                                    withContext:context];
 }
 
 //delete
@@ -180,6 +146,5 @@
     return [Character clearEntityForNameWithObjName:@"Character" withPredicate:[NSPredicate predicateWithFormat:@"characterId = %@",characterId] withGivenContext:context];
     
 }
-
 
 @end

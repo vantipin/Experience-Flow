@@ -7,7 +7,6 @@
 //
 
 #import "DropDownViewController.h"
-#import "StatSet.h"
 
 @protocol DeleteStatSetProtocol <NSObject>
 
