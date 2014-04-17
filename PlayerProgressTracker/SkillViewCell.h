@@ -22,7 +22,7 @@
 @interface SkillViewCell : UITableViewCell <UITextFieldDelegate, raisingButtonProtocol>
 
 @property (nonatomic) IBOutlet UIButton *skillNameButton;
-@property (nonatomic) IBOutlet UITextField *skillUsableLvlTextField;
+@property (nonatomic) IBOutlet UITextField *usableSkillLvlTextField;
 @property (nonatomic) IBOutlet UIView *xpView;
 @property (nonatomic) IBOutlet CustomXpRaisingBtnView *xpRaisingBtn;
 @property (nonatomic) IBOutlet UILabel *currentXpLabel;

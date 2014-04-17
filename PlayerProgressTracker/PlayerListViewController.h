@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CoreDataViewController.h"
+#import "MainContextObject.h"
 #import "PlayerCellView.h"
 #import "ColorConstants.h"
 
@@ -16,7 +16,7 @@
 
 #import "SkillManager.h"
 
-@interface PlayerListViewController : CoreDataViewController <UITableViewDataSource>
+@interface PlayerListViewController : UIViewController <UITableViewDataSource>
 
 @property (nonatomic) IBOutlet UITableView *characterTableView;
 //@property (nonatomic) IBOutlet UITableViewCell *cell;

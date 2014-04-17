@@ -34,8 +34,6 @@
 
 
 //create
-
-//name basicXpBarrier lvlPropgrassion are requierd
 +(Skill *)newSkillWithTemplate:(SkillTemplate *)skillTemplate
                 withBasicSkill:(Skill *)basicSkill
            withCurrentXpPoints:(float)curentPoints

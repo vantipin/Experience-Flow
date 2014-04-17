@@ -71,12 +71,23 @@
                                 <color key="backgroundColor" red="0.97262632846832275" green="0.94441133819470047" blue="0.7999796360433683" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="gek-bQ-0Gx">
-                                <rect key="frame" x="0.0" y="541" width="768" height="483"/>
+                                <rect key="frame" x="0.0" y="579" width="768" height="445"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.85714285710000004" green="0.79654630609999999" blue="0.58844582680000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nMf-mB-212">
+                                <rect key="frame" x="619" y="541" width="149" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="15"/>
+                                <state key="normal" title="+ Add New Skill">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addNewSkillTapped:" destination="egf-Ha-RKD" eventType="touchUpInside" id="4eg-yK-KT8"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.85714285710000004" green="0.79654630609999999" blue="0.58844582680000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="New character" id="5AX-tp-3LM">
                         <barButtonItem key="rightBarButtonItem" style="done" id="7lu-wg-Fay">
@@ -99,6 +110,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="addNewSkillButton" destination="nMf-mB-212" id="3VP-JM-43q"/>
                         <outlet property="additionalSkillContainerView" destination="gek-bQ-0Gx" id="hVY-XC-RRD"/>
                         <outlet property="icon" destination="PYh-Vl-wwI" id="aI8-hm-JHR"/>
                         <outlet property="name" destination="9fq-Uk-yyf" id="ehc-wJ-K53"/>

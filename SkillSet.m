@@ -14,7 +14,8 @@
 @implementation SkillSet
 
 @dynamic name;
-@dynamic wounds;
+@dynamic bulk;
+@dynamic pace;
 @dynamic modifierArmorSave;
 @dynamic modifierAMelee;
 @dynamic modifierARange;

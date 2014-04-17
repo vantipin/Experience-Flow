@@ -10,28 +10,14 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+static const float maxEdgeOffset = 0.96;
+
 @interface DropDownViewController ()
 @property (nonatomic) CGFloat openTime;
 @property (nonatomic) CGFloat closeTime;
 @end
 
 @implementation DropDownViewController
-
-@synthesize dropDownTableView = _dropDownTableView;
-@synthesize dropDownDataSource = _dropDownDataSource;
-@synthesize anchorView = _anchorView;
-@synthesize heightOfCell = _heightOfCell;
-@synthesize openTime = _openTime;
-@synthesize closeTime = _closeTime;
-@synthesize heightTableView = _heightTableView;
-@synthesize widthTableView = _widthTableView;
-@synthesize selectedCell = _selectedCell;
-@synthesize textColor = _textColor;
-@synthesize font = _font;
-@synthesize topView = _topView;
-
-@synthesize cancelingView = _cancelingView;
-
 
 -(UIView *)cancelingView
 {
@@ -134,9 +120,20 @@
 - (void)rebuildFramesAccordingToPositionOnScreen
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    float screenHeight = screenRect.size.height>screenRect.size.width?screenRect.size.width:screenRect.size.height;
     
-	CGRect refFrame = [self.anchorView convertRect:self.anchorView.frame toView:(self.topView)?self.topView:self.anchorView];
+    float screenHeight;
+    float screenWidth;
+    if ([[UIDevice currentDevice] orientation] != UIDeviceOrientationPortrait && [[UIDevice currentDevice] orientation] != UIDeviceOrientationPortraitUpsideDown) {
+        screenHeight = screenRect.size.height;
+        screenWidth = screenRect.size.width;
+    }
+    else {
+        screenHeight = screenRect.size.width;
+        screenWidth = screenRect.size.height;
+    }
+    
+    
+	CGRect refFrame = [self.anchorView convertRect:self.anchorView.frame toView:(self.topView) ? self.topView:self.anchorView];
     //NSLog(@"%@",NSStringFromCGRect(self.anchorView.frame));
     //NSLog(@"%@",NSStringFromCGRect(refFrame));
     
@@ -151,18 +148,33 @@
     float safeHeight;
     
     //decide if dropdown should go up or drop down according to giving position on screen AND check for popup to not go out of screen
-    if (originalY > screenHeight*0.6)
-    {
+    if (originalY > screenHeight * 0.6) {
         //go up
         viewHeightOnScreen = (screenHeight - originalY) + self.heightTableView;
-        safeHeight = viewHeightOnScreen > screenHeight ? screenHeight - (screenHeight - originalY) + 100 : self.heightTableView;
+        safeHeight = viewHeightOnScreen > screenHeight ? screenHeight - (screenHeight * maxEdgeOffset - originalY) : self.heightTableView;
     }
-    else
-    {
+    else {
         //drop down
         viewHeightOnScreen = originalY+self.heightTableView;
-        safeHeight  = viewHeightOnScreen > screenHeight ? screenHeight - (originalY + 100) : self.heightTableView;
+        safeHeight  = viewHeightOnScreen > screenHeight ? screenHeight * maxEdgeOffset - (originalY) : self.heightTableView;
     }
+    
+    if (originalX > screenWidth * maxEdgeOffset) {
+        originalX = screenWidth * maxEdgeOffset - self.widthTableView;
+    }
+    if (originalX < screenWidth * (1 - maxEdgeOffset)) {
+        originalX = screenWidth * (1- maxEdgeOffset);
+    }
+    if (originalX + self.widthTableView > screenWidth * maxEdgeOffset) {
+        if (self.widthTableView > screenWidth * 1 - (maxEdgeOffset - (1 - maxEdgeOffset))) {
+            self.widthTableView = screenWidth * 1 - (maxEdgeOffset - (1 - maxEdgeOffset));
+        }
+        else {
+            originalX = screenWidth * maxEdgeOffset - self.widthTableView;
+        }
+        
+    }
+    
     
     self.dropDownTableView.frame = CGRectMake(0,
                                               0,
@@ -170,9 +182,10 @@
                                               safeHeight);
     
     self.view.frame = CGRectMake(originalX,
-                                 originalY,
+                                 originalY + 2,
                                  self.widthTableView,
                                  safeHeight);
+    
     
     [self customReshapeFrames];
 }
@@ -259,7 +272,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedCell = indexPath;
-	[self.delegateDropDown dropDownCellSelected:indexPath.row];
+	[self.delegateDropDown dropDownController:self cellSelected:indexPath.row];
 	[self closeAnimation];
 }
 

@@ -15,7 +15,8 @@
 @interface SkillSet : CoreDataClass
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic) int16_t wounds;
+@property (nonatomic) int16_t bulk;
+@property (nonatomic) int16_t pace;
 @property (nonatomic) int16_t modifierArmorSave;
 @property (nonatomic) int16_t modifierAMelee;
 @property (nonatomic) int16_t modifierARange;

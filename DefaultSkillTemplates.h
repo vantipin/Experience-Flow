@@ -12,16 +12,36 @@
 
 @interface DefaultSkillTemplates : NSObject
 
-@property (nonatomic) SkillTemplate *movement;
-@property (nonatomic) SkillTemplate *weaponSkill;
-@property (nonatomic) SkillTemplate *ballisticSkill;
-@property (nonatomic) SkillTemplate *strenght;
+@property (nonatomic) SkillTemplate *physique;
+@property (nonatomic) SkillTemplate *mentality;
+
+//advanced
+@property (nonatomic) SkillTemplate *strength;
 @property (nonatomic) SkillTemplate *toughness;
 @property (nonatomic) SkillTemplate *agility;
-@property (nonatomic) SkillTemplate *willpower;
+
 @property (nonatomic) SkillTemplate *intelligence;
+@property (nonatomic) SkillTemplate *discipline;
 @property (nonatomic) SkillTemplate *charisma;
 
+@property (nonatomic) SkillTemplate *bearingCapacity;
+@property (nonatomic) SkillTemplate *swimming;
+@property (nonatomic) SkillTemplate *climb;
+
+@property (nonatomic) SkillTemplate *stealth;
+@property (nonatomic) SkillTemplate *ride;
+@property (nonatomic) SkillTemplate *knavery;
+@property (nonatomic) SkillTemplate *hackDevice;
+
+@property (nonatomic) SkillTemplate *animalHandling;
+
+@property (nonatomic) SkillTemplate *perception;
+@property (nonatomic) SkillTemplate *education;
+
+
+
+
+@property (nonatomic) SkillTemplate *weaponSkill;
 //sub WS
 @property (nonatomic) SkillTemplate *unarmed;
 @property (nonatomic) SkillTemplate *ordinary;
@@ -33,19 +53,14 @@
 @property (nonatomic) SkillTemplate *staff;
 @property (nonatomic) SkillTemplate *spear;
 
+
+@property (nonatomic) SkillTemplate *ballisticSkill;
 //sub BS
 @property (nonatomic) SkillTemplate *bow;
 @property (nonatomic) SkillTemplate *blackpowder;
 @property (nonatomic) SkillTemplate *crossbow;
 @property (nonatomic) SkillTemplate *thrown;
 @property (nonatomic) SkillTemplate *sling;
-
-//advanced
-@property (nonatomic) SkillTemplate *athletics;
-@property (nonatomic) SkillTemplate *stealth;
-@property (nonatomic) SkillTemplate *resilience;
-@property (nonatomic) SkillTemplate *discipline;
-@property (nonatomic) SkillTemplate *perception;
 
 
 //Intimidate (S) Basic skill.
@@ -56,21 +71,6 @@
 /*
  Advanced skill. Reflects a character’s ability to successfully harness the Winds of Magic to glean power to fuel arcane spells. The arcane equivalent of the divine skill Piety.
  Specialisation options: Below capacity, overchannelling, conserva- tive, reckless, by college order
- //*/
-
-//Charm (?)
-/*Basic skill. Charisma and interaction on a friendly level. Charm can be used to manipulate others, create a favourable impression or interact good-naturedly with others. Charm can also be used to change the minds of individuals and small groups, to cajole, flatter, and gossip to glean information. Charm also includes seduction. Checks that involve convincing someone to do some- thing unusual or against his nature are generally opposed by the target’s Discipline.
- Specialisation options: Etiquette, gossip, diplomacy, haggling, seduction
- //*/
-
-//Coordination (?)
-/*Basic skill. Applying one’s manual dexterity and fine motor skills to specific tasks. Use this skill to perform feats of acrobatics, balance along narrow surfaces, or slip from bonds. It also reflects delicacy and precision while manipulating objects.
- Specialisation options: Dodge, balance, acrobatics, juggling, dance, knots & ropework
- //*/
-
-//Education (?) Advanced skill.
-/*This skill is a broad category covering a variety of knowledges and disciplines. Training in education confers basic literacy. This skill is used to recall facts about specific topics, rely on book-learned knowledge, or show appreciation and understanding of various schools of thought or philosophies.
- Specialisation options: History, geography, reason, language skills, philosophy
  //*/
 
 //First Aid (?) Basic skill.
@@ -121,16 +121,6 @@
 //Piety (?) Advanced skill.
 /*blend of knowledge and intuition on what will be pleasing and appropriate to the gods. Also reflects a character’s ability to successfully curry favour with his chosen god, generating the favour needed to fuel divine blessings. The divine equivalent of the arcane skill channelling.
  Specialisation options: Below capacity, conservative, reckless, urgent need
- */
-
-//Ride (?) Basic skill.
-/*Defines a character’s ability to ride or care for a horse or other common mount, as well as drive and manage a wagon or carriage, and provide maintenance and care for the equipment associated with horses, mules and other riding or team animals. This skill also covers the ability to manage such animals and keep them calm under duress or spur them to greater action.
- Specialisation options: Horsemanship, trick riding, wagons, mount- ed combat, long distance travel
- */
-
-//Skulduggery (?) Basic skill.
-/*Covers thieving and a variety of illicit, underhanded skills. Use this skill to subtly pry open a door, pick a lock, set or disable a trap, pick someone’s target, or perform some comparable act of thievery or burglary. Depending on the application, Skullduggery checks may be opposed by a target’s Observation or Intuition.
- Specialisation options: Pick pockets, pick locks, set traps, disable traps, palm objects
  */
 
 //Spellcraft (?) Advanced skill.

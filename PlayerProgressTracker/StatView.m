@@ -12,17 +12,18 @@
 #import "SkillTemplate.h"
 #import "SkillManager.h"
 #import "SkillSet.h"
-#import "CoreDataViewController.h"
+#import "MainContextObject.h"
 #import "CharacterConditionAttributes.h"
 #import "DefaultSkillTemplates.h"
 
 @interface StatView()
 
 //direct links on characters core skills
-@property (nonatomic) Skill *mSkill;
-
 @property (nonatomic) Skill *wsSkill;
 @property (nonatomic) Skill *bsSkill;
+
+@property (nonatomic) Skill *physiqueSkill;
+@property (nonatomic) Skill *mentalitySkill;
 
 @property (nonatomic) Skill *strSkill;
 @property (nonatomic) Skill *toSkill;
@@ -54,91 +55,101 @@
     }
 }
 
--(Skill *)mSkill
+
+-(Skill *)physiqueSkill
 {
-    _mSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].movement withCharacter:self.character];
-    return _mSkill;
+    _physiqueSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].physique withCharacter:self.character];
+    return _physiqueSkill;
 }
+
+-(Skill *)mentalitySkill
+{
+    _mentalitySkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].mentality withCharacter:self.character];
+    return _mentalitySkill;
+}
+
 
 -(Skill *)wsSkill
 {
-    _wsSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].weaponSkill withCharacter:self.character];
+    _wsSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].weaponSkill withCharacter:self.character];
     return _wsSkill;
 }
 
 -(Skill *)bsSkill
 {
-    _bsSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].ballisticSkill withCharacter:self.character];
+    _bsSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].ballisticSkill withCharacter:self.character];
     return _bsSkill;
 }
 
 -(Skill *)strSkill
 {
-    _strSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].strenght withCharacter:self.character];
+    _strSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].strength withCharacter:self.character];
     return _strSkill;
 }
 
 -(Skill *)toSkill
 {
-    _toSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].toughness withCharacter:self.character];
+    _toSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].toughness withCharacter:self.character];
     return _toSkill;
 }
 
 -(Skill *)agSkill
 {
-    _agSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].agility withCharacter:self.character];
+    _agSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].agility withCharacter:self.character];
     return _agSkill;
 }
 
 -(Skill *)wpSkill
 {
-    _wpSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].willpower withCharacter:self.character];
+    _wpSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].discipline withCharacter:self.character];
     return _wpSkill;
 }
 
 -(Skill *)intlSkill
 {
-    _intlSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].intelligence withCharacter:self.character];
+    _intlSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].intelligence withCharacter:self.character];
     return _intlSkill;
 }
 
 -(Skill *)chaSkill
 {
-    _chaSkill = [[SkillManager sharedInstance] checkedSkillWithTemplate:[DefaultSkillTemplates sharedInstance].charisma withCharacter:self.character];
+    _chaSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].charisma withCharacter:self.character];
     return _chaSkill;
 }
 
 -(void)setSkillSetFromView
 {
-    self.mSkill.thisLvl = self.m.text.integerValue;
-    self.character.skillSet.wounds = self.bonusWounds.text.integerValue;
-    self.character.skillSet.modifierAMelee = self.bonusAMelee.text.integerValue;
-    self.character.skillSet.modifierARange = self.bonusARange.text.integerValue;
-    self.character.skillSet.modifierArmorSave = self.ac.text.intValue;
+    self.character.skillSet.pace = self.bonusPaceTextField.text.integerValue;
+    self.character.skillSet.bulk = self.bonusBulkTextField.text.integerValue;
+    self.character.skillSet.modifierAMelee = self.bonusAMeleeTextField.text.integerValue;
+    self.character.skillSet.modifierARange = self.bonusARangeTextField.text.integerValue;
+    self.character.skillSet.modifierArmorSave = self.armorTextField.text.intValue;
     
-    self.strSkill.thisLvl = self.str.text.integerValue;
-    self.toSkill.thisLvl = self.to.text.integerValue;
-    self.agSkill.thisLvl = self.ag.text.integerValue;
-    self.wpSkill.thisLvl = self.wp.text.integerValue;
-    self.intlSkill.thisLvl = self.intl.text.integerValue;
-    self.chaSkill.thisLvl = self.cha.text.integerValue;
+//    self.strSkill.thisLvl = self.strTextField.text.integerValue;
+//    self.toSkill.thisLvl = self.toTextField.text.integerValue;
+//    self.agSkill.thisLvl = self.agTextField.text.integerValue;
+//    self.wpSkill.thisLvl = self.wpTextField.text.integerValue;
+//    self.intlSkill.thisLvl = self.intlTextField.text.integerValue;
+//    self.chaSkill.thisLvl = self.chaTextField.text.integerValue;
 
     [self resetUneditableStats];
 }
 
 -(void)setViewFromSkillSet
 {
-    self.m.text = [NSString stringWithFormat:@"%d",self.mSkill.thisLvl];
-    self.str.text = [NSString stringWithFormat:@"%d",self.strSkill.thisLvl];
-    self.to.text = [NSString stringWithFormat:@"%d",self.toSkill.thisLvl];
-    self.ag.text = [NSString stringWithFormat:@"%d",self.agSkill.thisLvl];
-    self.wp.text = [NSString stringWithFormat:@"%d",self.wpSkill.thisLvl];
-    self.intl.text = [NSString stringWithFormat:@"%d",self.intlSkill.thisLvl];
-    self.cha.text = [NSString stringWithFormat:@"%d",self.chaSkill.thisLvl];
-    self.bonusWounds.text = [NSString stringWithFormat:@"%d",self.character.skillSet.wounds];
-    self.bonusAMelee.text = [NSString stringWithFormat:@"%d",self.character.skillSet.modifierAMelee];
-    self.bonusARange.text = [NSString stringWithFormat:@"%d",self.character.skillSet.modifierARange];
-    self.ac.text = [NSString stringWithFormat:@"%d",self.character.skillSet.modifierArmorSave];
+    self.strTextField.text = [NSString stringWithFormat:@"%d",self.strSkill.thisLvl];
+    self.toTextField.text = [NSString stringWithFormat:@"%d",self.toSkill.thisLvl];
+    self.agTextField.text = [NSString stringWithFormat:@"%d",self.agSkill.thisLvl];
+    self.wpTextField.text = [NSString stringWithFormat:@"%d",self.wpSkill.thisLvl];
+    self.intlTextField.text = [NSString stringWithFormat:@"%d",self.intlSkill.thisLvl];
+    self.chaTextField.text = [NSString stringWithFormat:@"%d",self.chaSkill.thisLvl];
+    
+    self.bonusBulkTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.bulk];
+    self.bonusAMeleeTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.modifierAMelee];
+    self.bonusARangeTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.modifierARange];
+    self.armorTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.modifierArmorSave];
+    self.bonusPaceTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.pace];
+    
     
     [self resetUneditableStats];
 }
@@ -147,6 +158,11 @@
 {
     //TODO adrenalin and stress points influence
     
+    self.physiqueTextField.text = [NSString stringWithFormat:@"%d",self.physiqueSkill.thisLvl];
+    self.mentalityTextField.text = [NSString stringWithFormat:@"%d",self.mentalitySkill.thisLvl];
+    
+    self.bulkTextField.text = self.bonusBulkTextField.text;
+    self.movementTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.pace + self.physiqueSkill.thisLvl];
     int hp = [[SkillManager sharedInstance] countHpWithCharacter:self.character];
     self.maxHpLabel.text = [NSString stringWithFormat:@"%d",hp];
     self.currentHpLabel.text = [NSString stringWithFormat:@"%d",hp];
@@ -158,78 +174,78 @@
     int damageBonusRange = [[SkillManager sharedInstance] countDCBonusForRangeSkill:self.character.characterCondition.currentRangeSkills];
     
     
-    self.ws.text = [NSString stringWithFormat:@"%d",weaponSkill];
-    self.bs.text = [NSString stringWithFormat:@"%d",ballisticSkill];
+    self.wsTextField.text = [NSString stringWithFormat:@"%d",weaponSkill];
+    self.bsTextField.text = [NSString stringWithFormat:@"%d",ballisticSkill];
     
-    self.aMelee.text = [NSString stringWithFormat:@"%d",attackMelee];
-    self.aRange.text = [NSString stringWithFormat:@"%d",attacksRange];
+    self.aMeleeTextField.text = [NSString stringWithFormat:@"%d",attackMelee];
+    self.aRangeTextField.text = [NSString stringWithFormat:@"%d",attacksRange];
     
-    self.damageRange.text = [NSString stringWithFormat:@"+%d",damageBonusRange];
+    self.damageRangeTextField.text = [NSString stringWithFormat:@"+%d",damageBonusRange];
 }
 
 -(void)initFields
 {
     if (!self.settable){
         
-        self.m.enabled = false;
-        self.str.enabled = false;
-        self.to.enabled = false;
-        self.ag.enabled = false;
-        self.wp.enabled = false;
-        self.intl.enabled = false;
-        self.cha.enabled = false;
-        self.bonusWounds.enabled = false;
-        self.bonusAMelee.enabled = false;
-        self.bonusARange.enabled = false;
+        self.bonusPaceTextField.enabled = false;
+        self.strTextField.enabled = false;
+        self.toTextField.enabled = false;
+        self.agTextField.enabled = false;
+        self.wpTextField.enabled = false;
+        self.intlTextField.enabled = false;
+        self.chaTextField.enabled = false;
+        self.bonusBulkTextField.enabled = false;
+        self.bonusAMeleeTextField.enabled = false;
+        self.bonusARangeTextField.enabled = false;
         
-        self.m.backgroundColor = [UIColor clearColor];
-        self.str.backgroundColor = [UIColor clearColor];
-        self.to.backgroundColor = [UIColor clearColor];
-        self.ag.backgroundColor = [UIColor clearColor];
-        self.wp.backgroundColor = [UIColor clearColor];
-        self.intl.backgroundColor = [UIColor clearColor];
-        self.cha.backgroundColor = [UIColor clearColor];
-        self.bonusWounds.backgroundColor = [UIColor clearColor];
-        self.bonusAMelee.backgroundColor = [UIColor clearColor];
-        self.bonusARange.backgroundColor = [UIColor clearColor];
+        self.bonusPaceTextField.backgroundColor = [UIColor clearColor];
+        self.strTextField.backgroundColor = [UIColor clearColor];
+        self.toTextField.backgroundColor = [UIColor clearColor];
+        self.agTextField.backgroundColor = [UIColor clearColor];
+        self.wpTextField.backgroundColor = [UIColor clearColor];
+        self.intlTextField.backgroundColor = [UIColor clearColor];
+        self.chaTextField.backgroundColor = [UIColor clearColor];
+        self.bonusBulkTextField.backgroundColor = [UIColor clearColor];
+        self.bonusAMeleeTextField.backgroundColor = [UIColor clearColor];
+        self.bonusARangeTextField.backgroundColor = [UIColor clearColor];
         
         self.bonusView.alpha = 0;
     }
     else{
-        self.m.delegate = _executer;
-        self.str.delegate = _executer;
-        self.to.delegate = _executer;
-        self.ag.delegate = _executer;
-        self.wp.delegate = _executer;
-        self.intl.delegate = _executer;
-        self.cha.delegate = _executer;
-        self.bonusWounds.delegate = _executer;
-        self.bonusAMelee.delegate = _executer;
-        self.bonusARange.delegate = _executer;
-        self.ac.delegate = _executer;
+        self.bonusPaceTextField.delegate = _executer;
+//        self.strTextField.delegate = _executer;
+//        self.toTextField.delegate = _executer;
+//        self.agTextField.delegate = _executer;
+//        self.wpTextField.delegate = _executer;
+//        self.intlTextField.delegate = _executer;
+//        self.chaTextField.delegate = _executer;
+        self.bonusBulkTextField.delegate = _executer;
+        self.bonusAMeleeTextField.delegate = _executer;
+        self.bonusARangeTextField.delegate = _executer;
+        self.armorTextField.delegate = _executer;
         
         
-        self.m.enabled = true;
-        self.str.enabled = true;
-        self.to.enabled = true;
-        self.ag.enabled = true;
-        self.wp.enabled = true;
-        self.intl.enabled = true;
-        self.cha.enabled = true;
-        self.bonusWounds.enabled = true;
-        self.bonusAMelee.enabled = true;
-        self.bonusARange.enabled = true;
+        self.bonusPaceTextField.enabled = true;
+//        self.strTextField.enabled = true;
+//        self.toTextField.enabled = true;
+//        self.agTextField.enabled = true;
+//        self.wpTextField.enabled = true;
+//        self.intlTextField.enabled = true;
+//        self.chaTextField.enabled = true;
+        self.bonusBulkTextField.enabled = true;
+        self.bonusAMeleeTextField.enabled = true;
+        self.bonusARangeTextField.enabled = true;
         
-        self.m.backgroundColor = [UIColor whiteColor];
-        self.str.backgroundColor = [UIColor whiteColor];
-        self.to.backgroundColor = [UIColor whiteColor];
-        self.ag.backgroundColor = [UIColor whiteColor];
-        self.wp.backgroundColor = [UIColor whiteColor];
-        self.intl.backgroundColor = [UIColor whiteColor];
-        self.cha.backgroundColor = [UIColor whiteColor];
-        self.bonusWounds.backgroundColor = [UIColor whiteColor];
-        self.bonusAMelee.backgroundColor = [UIColor whiteColor];
-        self.bonusARange.backgroundColor = [UIColor whiteColor];
+        self.bonusPaceTextField.backgroundColor = [UIColor whiteColor];
+//        self.strTextField.backgroundColor = [UIColor whiteColor];
+//        self.toTextField.backgroundColor = [UIColor whiteColor];
+//        self.agTextField.backgroundColor = [UIColor whiteColor];
+//        self.wpTextField.backgroundColor = [UIColor whiteColor];
+//        self.intlTextField.backgroundColor = [UIColor whiteColor];
+//        self.chaTextField.backgroundColor = [UIColor whiteColor];
+        self.bonusBulkTextField.backgroundColor = [UIColor whiteColor];
+        self.bonusAMeleeTextField.backgroundColor = [UIColor whiteColor];
+        self.bonusARangeTextField.backgroundColor = [UIColor whiteColor];
         
         self.bonusView.alpha = 1;
     }
@@ -238,27 +254,32 @@
 
 -(BOOL)nonEmptyStats
 {
-    BOOL emptyStats = self.str.text.length == 0 || self.to.text.length == 0 || self.ag.text.length == 0 || self.wp.text.length == 0 || self.intl.text.length == 0 || self.cha.text.length == 0;
-    if (emptyStats){
-        return false;
-    }
+//    BOOL emptyStats = (self.strTextField.text.length == 0 ||
+//                       self.toTextField.text.length == 0 ||
+//                       self.agTextField.text.length == 0 ||
+//                       self.wpTextField.text.length == 0 ||
+//                       self.intlTextField.text.length == 0 ||
+//                       self.chaTextField.text.length == 0);
+//    if (emptyStats){
+//        return false;
+//    }
     
     return true;
 }
 
 -(BOOL)isTextFieldInStatView:(UITextField *)textField
 {
-    if (textField == self.m ||
-        textField == self.str ||
-        textField == self.to ||
-        textField == self.ag ||
-        textField == self.wp ||
-        textField == self.intl ||
-        textField == self.cha ||
-        textField == self.bonusAMelee ||
-        textField == self.bonusARange ||
-        textField == self.bonusWounds ||
-        textField == self.ac) {
+    if (textField == self.bonusPaceTextField ||
+//        textField == self.strTextField ||
+//        textField == self.toTextField ||
+//        textField == self.agTextField ||
+//        textField == self.wpTextField ||
+//        textField == self.intlTextField ||
+//        textField == self.chaTextField ||
+        textField == self.bonusAMeleeTextField ||
+        textField == self.bonusARangeTextField ||
+        textField == self.bonusBulkTextField ||
+        textField == self.armorTextField) {
         return true;
     }
     

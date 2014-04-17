@@ -120,8 +120,8 @@
                 <outlet property="maxXpLabel" destination="r2V-tA-d0U" id="SY5-48-TK9"/>
                 <outlet property="skillLvlView" destination="2ep-SY-hV7" id="TBg-m8-qeZ"/>
                 <outlet property="skillNameButton" destination="Rcu-yP-eTt" id="C6B-EG-aiv"/>
-                <outlet property="skillUsableLvlTextField" destination="vCC-Fz-RCx" id="0Ng-y6-L4S"/>
                 <outlet property="unusableSkillLvlLabel" destination="SSS-ld-Yur" id="Qv6-tf-GMa"/>
+                <outlet property="usableSkillLvlTextField" destination="vCC-Fz-RCx" id="JWU-8x-tn4"/>
                 <outlet property="xpRaisingBtn" destination="r2h-dB-cyY" id="uga-5j-1pD"/>
                 <outlet property="xpView" destination="5BS-bH-EYc" id="6D5-D5-aVf"/>
             </connections>

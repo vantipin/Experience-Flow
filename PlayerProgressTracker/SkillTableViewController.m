@@ -9,7 +9,7 @@
 #import "SkillTableViewController.h"
 #import "SkillTemplate.h"
 #import "ColorConstants.h"
-#import "CoreDataViewController.h"
+#import "MainContextObject.h"
 #import "SkillViewCell.h"
 #import "Character.h"
 #import "Skill.h"
@@ -17,27 +17,30 @@
 #import "SkillSet.h"
 
 @interface SkillTableViewController ()
-@property (nonatomic) UIButton *addSkillButton;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSMutableArray *skillsDataSource;
-@property (nonatomic) UIView *activeTipView;
+//@property (nonatomic) UIView *activeTipView;
 @end
 
 @implementation SkillTableViewController
 
 
--(UIButton *)addSkillButton
+- (void)viewDidLoad
 {
-    if (!_addSkillButton) {
-        UIButton *btnAddBooks = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [btnAddBooks setTitle:@"+ Add skill" forState:UIControlStateNormal];
-        [btnAddBooks setTitleColor:textEditColor forState:UIControlStateNormal];
-        [btnAddBooks.titleLabel setFont:[UIFont fontWithName:@"Noteworthy-Bold" size:30]];
-        btnAddBooks.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 90);
-        btnAddBooks.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-        [btnAddBooks addTarget:self action:@selector(addNewSkill) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _addSkillButton;
+    [super viewDidLoad];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(NSMutableArray *)skillsDataSource
@@ -45,7 +48,7 @@
     if (!_skillsDataSource) {
         if (self.skillSet) {
             NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"dateXpAdded" ascending: NO];
-            _skillsDataSource = [NSMutableArray arrayWithArray:[[self.skillSet.skills allObjects] sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
+            _skillsDataSource = [NSMutableArray arrayWithArray:[[[SkillManager sharedInstance] fetchAllNoneBasicSkillsForSkillSet:self.skillSet] sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
         }
         else {
             _skillsDataSource = [NSMutableArray new];
@@ -72,30 +75,9 @@
 -(NSManagedObjectContext *)managedObjectContext
 {
     if (!_managedObjectContext){
-        _managedObjectContext = [[CoreDataViewController sharedInstance] managedObjectContext];
+        _managedObjectContext = [[MainContextObject sharedInstance] managedObjectContext];
     }
     return _managedObjectContext;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -112,7 +94,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.skillsDataSource.count;// + 1; //there is always add skill btn
+    return self.skillsDataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,13 +104,13 @@
     
     Skill *currentSkill = self.skillsDataSource[indexPath.row];
     
-    [SkillManager sharedInstance].delegate = self;
+    [SkillManager sharedInstance].delegateSkillChange = self;
     
     if (!cell)
     {
         cell = [[SkillViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier withSkill:currentSkill];
         cell.skillCellDelegate = self;
-        cell.skillUsableLvlTextField.delegate = self;
+        cell.usableSkillLvlTextField.delegate = self;
     }
     cell.skill = currentSkill;
     [cell reloadFields];
@@ -151,48 +133,8 @@
 -(void)skill:(Skill *)skill buttonTapped:(UIButton *)sender
 {
     UIView *parentView = self.view;
-    CGRect closingAreaFrame = parentView.bounds;
-    
-    float defaultWidht = 300;
-    float defaultHeight = 10;
-    CGRect tipFrame = CGRectMake(parentView.center.x - defaultWidht/2,
-                                 parentView.center.y - 60,
-                                 defaultWidht,
-                                 defaultHeight);
-    
-    
-    UITextView *tipTextView = [[UITextView alloc] initWithFrame:tipFrame];
-    [tipTextView setText:skill.skillTemplate.skillDescription];
-    [tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
-    [tipTextView sizeToFit];
-    tipTextView.backgroundColor = [UIColor whiteColor];
-    tipTextView.editable = false;
-    tipTextView.selectable = false;
-    
-    UIView *closingAreaView = [[UIView alloc] initWithFrame:closingAreaFrame];
-    closingAreaView.opaque = false;
-    closingAreaView.backgroundColor = [UIColor clearColor];
-    
-    self.activeTipView = [[UIView alloc] initWithFrame:closingAreaFrame];
-    [self.activeTipView addSubview:closingAreaView];
-    [self.activeTipView addSubview:tipTextView];
-    [self.activeTipView bringSubviewToFront:tipTextView];
-    [self.activeTipView setBackgroundColor:kRGB(220, 220, 220, 0.7)];
-    
-    UITapGestureRecognizer *tapRecognizer;
-    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeTip)];
-    [self.activeTipView addGestureRecognizer:tapRecognizer];
-    UIPanGestureRecognizer *panRecognizer;
-    panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(closeTip)];
-    [self.activeTipView addGestureRecognizer:panRecognizer];
-    
-    self.activeTipView.alpha = 0;
-    [parentView addSubview:self.activeTipView];
-    [parentView bringSubviewToFront:self.activeTipView];
-    
-    [UIView animateWithDuration:0.15 animations:^{
-        self.activeTipView.alpha = 1;
-    }];
+
+    [[SkillManager sharedInstance] showDescriptionForSkillTemplate:skill.skillTemplate inView:parentView];
 
 }
 
@@ -208,18 +150,18 @@
 
 #pragma mark - 
 
--(void)closeTip
-{
-    
-    if (self.activeTipView) {
-        [UIView animateWithDuration:0.15 animations:^{
-            self.activeTipView.alpha = 0;
-        }];
-        
-        [self.activeTipView removeFromSuperview];
-        self.activeTipView = nil;
-    }
-}
+//-(void)closeTip
+//{
+//    
+//    if (self.activeTipView) {
+//        [UIView animateWithDuration:0.15 animations:^{
+//            self.activeTipView.alpha = 0;
+//        }];
+//        
+//        [self.activeTipView removeFromSuperview];
+//        self.activeTipView = nil;
+//    }
+//}
 
 -(void)changeXpPointsToSkill:(Skill *)skill withXpPoints:(float)xpPoints didRaiseXp:(BOOL)didRaise
 {
@@ -247,9 +189,11 @@
     [self.skillTableDelegate didUpdateCharacterSkills];
 }
 
-- (void)addNewSkill
+-(void)addNewSkill:(Skill *)skill
 {
-    NSLog(@"add newSkill btn pressed");
+//    [self.addToListMenuController.dropDownTableView beginUpdates];
+//    [self.addToListMenuController.dropDownTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:returnIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+//    [self.addToListMenuController.dropDownTableView endUpdates];
 }
 
 #pragma mark -

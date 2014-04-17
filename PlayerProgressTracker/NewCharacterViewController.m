@@ -17,12 +17,14 @@
 #import "CharacterConditionAttributes.h"
 #import "SkillSet.h"
 #import "DefaultSkillTemplates.h"
+#import "AddSkillDropViewController.h"
 
 
 @interface NewCharacterViewController ()
 
 @property (nonatomic,strong) Character *character;
-@property (nonatomic,strong) StatSetDropDown *raceSetDropDown;
+@property (nonatomic,strong) ClassesDropViewController *classesDropController;
+@property (nonatomic) AddSkillDropViewController *addNewSkillDropController;
 @property (nonatomic,strong) NSMutableArray *raceNames;
 @property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 @property (nonatomic,strong) SkillTableViewController *skillTableViewController;
@@ -30,7 +32,8 @@
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) StatView *statView;
 
-//TODO canceling view for keyboard needed!!!
+
+@property (nonatomic) UITextField *currentlyEditingField; //for applying changes when (save) buttons tapped
 
 @end
 
@@ -54,10 +57,14 @@
     self.shouldRewriteSkillsLevels = true;
     self.skillTableViewController.skillSet =  self.character.skillSet;
     self.skillTableViewController.skillTableDelegate = self;
+    [self addChildViewController:self.skillTableViewController];
     
-    self.raceSetDropDown.delegateDropDown = self;
-    self.raceSetDropDown.delegateDeleteStatSet = self;
-    [self.view addSubview:self.raceSetDropDown.view];
+    self.classesDropController.delegateDropDown = self;
+    self.classesDropController.delegateDeleteStatSet = self;
+    [self.view addSubview:self.classesDropController.view];
+    
+    self.addNewSkillDropController.delegateDropDown = self;
+    [self.view addSubview:self.addNewSkillDropController.view];
     
     self.statView.settable = true;
     self.statView.executer = self;
@@ -93,15 +100,15 @@
 
 -(NSManagedObjectContext *)context
 {
-    if (!_context){
-        _context = [[CoreDataViewController sharedInstance] managedObjectContext];
+    if (!_context) {
+        _context = [[MainContextObject sharedInstance] managedObjectContext];
     }
     return _context;
 }
 
 -(Character *)character
 {
-    if (!_character){
+    if (!_character) {
         NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.context];
         if (arrayOfUnfinishedCharacters.count != 0){
             _character = [arrayOfUnfinishedCharacters lastObject];
@@ -112,7 +119,7 @@
         }
     }
     else{
-        [Character saveContext:self.context];
+        //[Character saveContext:self.context];
     }
     
     return _character;
@@ -120,27 +127,41 @@
 
 -(NSMutableArray *)raceNames
 {
-    if (!_raceNames){
+    if (!_raceNames) {
         _raceNames = [NSMutableArray new];
     }
     return  _raceNames;
 }
 
--(StatSetDropDown *)raceSetDropDown
+-(ClassesDropViewController *)classesDropController
 {
-    if(!_raceSetDropDown){
-        _raceSetDropDown = [[StatSetDropDown alloc] initWithArrayData:self.raceNames
+    if(!_classesDropController) {
+        _classesDropController = [[ClassesDropViewController alloc] initWithArrayData:self.raceNames
                                                         cellHeight:30
                                                     widthTableView:self.raceBtn.frame.size.width
                                                            refView:self.raceBtn animation:AlphaChange
                                                    backGroundColor:lightBodyColor];
     }
-    return _raceSetDropDown;
+    return _classesDropController;
+}
+
+-(AddSkillDropViewController *)addNewSkillDropController
+{
+    if (!_addNewSkillDropController) {
+        _addNewSkillDropController = [[AddSkillDropViewController alloc] initWithArrayData:[[DefaultSkillTemplates sharedInstance] allNoneCoreSkillTemplates]
+                                                                          withSkillSet:self.character.skillSet
+                                                                    withWidthTableView:320
+                                                                            cellHeight:48
+                                                                           withRedView:self.addNewSkillButton
+                                                                         withAnimation:AlphaChange];
+        _addNewSkillDropController.delegateAddNewSkill = self;
+    }
+    return _addNewSkillDropController;
 }
 
 -(SkillTableViewController *)skillTableViewController
 {
-    if (!_skillTableViewController){
+    if (!_skillTableViewController) {
         _skillTableViewController = [SkillTableViewController new];
         [self.additionalSkillContainerView addSubview:_skillTableViewController.view];
         _skillTableViewController.view.frame = self.additionalSkillContainerView.bounds;
@@ -168,7 +189,7 @@
     if (self.raceNames.count == 0 || !self.shouldRewriteSkillsLevels) {
         //no statSet is available or character's skills set statSet
         [self.statView setViewFromSkillSet];
-        [self prepareViewForSavingNewRace];
+        [self prepareViewForSavingNewClass];
     }
     else {
         if ([self.raceNames indexOfObject:currentTitle] == NSNotFound) {
@@ -176,15 +197,7 @@
         }
         
         SkillSet *statSet = [[SkillSet fetchSkillSetWithName:currentTitle withContext:self.context] lastObject];
-        SkillSet *formerSet = self.statView.character.skillSet;
-        self.statView.character.skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:statSet];
-        [SkillSet deleteSkillSet:formerSet withContext:self.context];
-        
-        [self.character saveCharacterWithContext:self.context];
-        
-        self.skillTableViewController.skillSet =  self.character.skillSet;
-        [self.skillTableViewController.tableView reloadData];
-        [self.statView setViewFromSkillSet];
+        [self setSkillSet:statSet forCharacter:self.character];
         
         self.shouldRewriteSkillsLevels = false;
         [self dissmissSavingNewRace];
@@ -196,7 +209,23 @@
     [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
 }
 
--(void)prepareViewForSavingNewRace
+-(void)setSkillSet:(SkillSet *)skillSet forCharacter:(Character *)character;
+{
+    SkillSet *formerSet = self.statView.character.skillSet;
+    self.statView.character.skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:skillSet];
+    [SkillSet deleteSkillSet:formerSet withContext:self.context];
+    
+    [character saveCharacterWithContext:self.context];
+    
+    self.skillTableViewController.skillSet =  character.skillSet;
+    [self.statView setViewFromSkillSet];
+    [self.skillTableViewController.tableView reloadData];
+    
+    self.addNewSkillDropController.skillSet = character.skillSet;
+}
+
+
+-(void)prepareViewForSavingNewClass
 {
     //prepare setting character skills to listed in stat set
     self.shouldRewriteSkillsLevels = true;
@@ -245,6 +274,8 @@
 
 -(IBAction)saveStatSetBtn:(id)sender
 {
+    [self resignCurrentTextFieldResponder];
+    
     if ([self.statView nonEmptyStats]) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"New basic stat set"
                                                        message: @"Save new set with name:"
@@ -262,17 +293,29 @@
 
 -(IBAction)raceBtnTapped:(id)sender
 {
-    [self.statView resignFirstResponder];
+    [self resignCurrentTextFieldResponder];
+    
     if (self.raceNames.count != 0) {
-        if (self.raceSetDropDown.view.hidden) {
-            [self.raceSetDropDown openAnimation];
+        if (self.classesDropController.view.hidden) {
+            [self.classesDropController openAnimation];
         }
         else {
-            [self.raceSetDropDown closeAnimation];
+            [self.classesDropController closeAnimation];
         }
     }
 }
 
+-(IBAction)addNewSkillTapped:(id)sender
+{
+    [self resignCurrentTextFieldResponder];
+    
+    if (self.addNewSkillDropController.view.hidden) {
+        [self.addNewSkillDropController openAnimation];
+    }
+    else {
+        [self.addNewSkillDropController closeAnimation];
+    }
+}
 #pragma mark -
 #pragma mark skill table delegate
 -(void)didUpdateCharacterSkills
@@ -306,18 +349,23 @@
 }
 
 #pragma mark dropDown methods
--(void)dropDownCellSelected:(NSInteger)returnIndex
+-(void)dropDownController:(DropDownViewController *)dropDown cellSelected:(NSInteger)returnIndex
 {
-    NSString *name = self.raceNames[returnIndex];
-    self.shouldRewriteSkillsLevels = true;
-    [self updateRaceButtonWithName:name];
-
+    if (dropDown == self.addNewSkillDropController) {
+        SkillTemplate *skillTemplate = [self.addNewSkillDropController.dropDownDataSource objectAtIndex:returnIndex];
+        NSLog(@"%@",skillTemplate.name);
+    }
+    else if (dropDown == self.classesDropController) {
+        NSString *name = self.raceNames[returnIndex];
+        self.shouldRewriteSkillsLevels = true;
+        [self updateRaceButtonWithName:name];
+    }
 }
 
 -(void)deleteStatSetWithName:(NSString *)name
 {
     if ([SkillSet deleteSkillSetWithName:name withContext:self.context]) {
-        [self.raceSetDropDown openAnimation];
+        [self.classesDropController openAnimation];
         [self refreshRaceNames];
         [self updateRaceButtonWithName:[self.raceNames lastObject]];
     }
@@ -338,15 +386,16 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
+    self.currentlyEditingField = nil;
     if (textField) {
         if (textField == self.name) {
             self.character.name = textField.text;
             [Character saveContext:self.context];
         }
-        else if (textField.text.length == 0) {
-                return false;
-        }
         else if ([self.statView isTextFieldInStatView:textField]) {
+            if (textField.text.length == 0) {
+                return false;
+            }
             [self.statView setSkillSetFromView];
             [self.skillTableViewController.tableView reloadData];
         }
@@ -367,10 +416,51 @@
             return false;
         }
         //suggest new stat set
-        [self prepareViewForSavingNewRace];
+        [self prepareViewForSavingNewClass];
         return true;
     }
     return true;
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    self.currentlyEditingField = textField;
+    return true;
+}
+
+-(void)resignCurrentTextFieldResponder;
+{
+    if (self.currentlyEditingField) {
+        [self.currentlyEditingField resignFirstResponder];
+    }
+}
+
+#pragma mark AddNewSkillControllerProtocol delegate methods
+
+-(BOOL)addNewSkillWithTemplate:(SkillTemplate *)skillTemplate
+{
+    if ([[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:self.character.skillSet withContext:self.context]) {
+        self.skillTableViewController.skillSet = self.character.skillSet;
+        [self prepareViewForSavingNewClass];
+        [self.skillTableViewController.tableView reloadData];
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+-(BOOL)deleteNewSkillWithTemplate:(SkillTemplate *)skillTemplate
+{
+    if ([[SkillManager sharedInstance] removeSkillWithTemplate:skillTemplate fromSkillSet:self.character.skillSet withContext:self.context]) {
+        self.skillTableViewController.skillSet = self.character.skillSet;
+        [self prepareViewForSavingNewClass];
+        [self.skillTableViewController.tableView reloadData];
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 -(void)allFontsToConsole

@@ -14,10 +14,11 @@ typedef enum {
 	AlphaAndHeightChange
 } AnimationType;
 
+@class DropDownViewController;
 
 @protocol DropDownViewDelegate
 @required
--(void)dropDownCellSelected:(NSInteger)returnIndex;
+-(void)dropDownController:(DropDownViewController *)dropDown cellSelected:(NSInteger)returnIndex;
 @end
 
 

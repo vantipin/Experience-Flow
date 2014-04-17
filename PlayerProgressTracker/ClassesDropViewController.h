@@ -14,7 +14,7 @@
 
 @end
 
-@interface StatSetDropDown : DropDownViewController <UIAlertViewDelegate>
+@interface ClassesDropViewController : DropDownViewController <UIAlertViewDelegate>
 
 @property (nonatomic) NSString *stateNameToDelete;
 @property (assign) id<DeleteStatSetProtocol> delegateDeleteStatSet;

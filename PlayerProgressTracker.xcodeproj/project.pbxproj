@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF010F9019001EA90064B914 /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF010F8E19001EA90064B914 /* deleteButton.png */; };
+		DF010F9119001EA90064B914 /* deleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF010F8F19001EA90064B914 /* deleteButton@2x.png */; };
 		DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */; };
 		DF24B1241871EC9A00B57855 /* PlayerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1231871EC9A00B57855 /* PlayerCellView.m */; };
 		DF24B1281874B46C00B57855 /* CharacterStatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1271874B46C00B57855 /* CharacterStatListViewController.m */; };
@@ -18,6 +20,11 @@
 		DF309A3618F5BEAB0018CE28 /* SkillSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF309A3518F5BEAB0018CE28 /* SkillSet.m */; };
 		DF309A3918F5BECB0018CE28 /* CharacterConditionAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DF309A3818F5BECB0018CE28 /* CharacterConditionAttributes.m */; };
 		DF30A00A18F714BD0018CE28 /* DefaultSkillTemplates.m in Sources */ = {isa = PBXBuildFile; fileRef = DF30A00918F714BD0018CE28 /* DefaultSkillTemplates.m */; };
+		DF30A017190001A40018CE28 /* AddSkillViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF30A016190001A40018CE28 /* AddSkillViewCellTableViewCell.xib */; };
+		DF30A01A190001FC0018CE28 /* addButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF30A018190001FC0018CE28 /* addButton.png */; };
+		DF30A01B190001FC0018CE28 /* addButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF30A019190001FC0018CE28 /* addButton@2x.png */; };
+		DF30A01E190003890018CE28 /* AddSkillViewCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF30A01D190003890018CE28 /* AddSkillViewCellTableViewCell.m */; };
+		DF30A02919000C370018CE28 /* AddSkillDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF30A02819000C370018CE28 /* AddSkillDropViewController.m */; };
 		DF49368F18E569D30058129E /* BasicSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF49368E18E569D30058129E /* BasicSkill.m */; };
 		DF4F935418D9D5D400C6ED26 /* MeleeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */; };
 		DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4F936718DCC32300C6ED26 /* StatView.xib */; };
@@ -51,9 +58,9 @@
 		DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13518630A540039D17B /* Model.xcdatamodeld */; };
 		DFAED13A186331790039D17B /* CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED139186331790039D17B /* CoreDataClass.m */; };
 		DFAED13D1863329B0039D17B /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13C1863329B0039D17B /* AppSettings.m */; };
-		DFAED140186333000039D17B /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13F186333000039D17B /* CoreDataViewController.m */; };
+		DFAED140186333000039D17B /* MainContextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13F186333000039D17B /* MainContextObject.m */; };
 		DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED1611864D4C10039D17B /* DropDownViewController.m */; };
-		DFB07C07187F0AEE00FF0EF7 /* StatSetDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */; };
+		DFB07C07187F0AEE00FF0EF7 /* ClassesDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C06187F0AEE00FF0EF7 /* ClassesDropViewController.m */; };
 		DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C0918815C9B00FF0EF7 /* Item.m */; };
 		DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1218815C9C00FF0EF7 /* Insanity.m */; };
 		DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C1818815C9C00FF0EF7 /* WeaponMelee.m */; };
@@ -75,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF010F8E19001EA90064B914 /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
+		DF010F8F19001EA90064B914 /* deleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButton@2x.png"; sourceTree = "<group>"; };
 		DF24B11F1871DF0C00B57855 /* NewCharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCharacterViewController.h; sourceTree = "<group>"; };
 		DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCharacterViewController.m; sourceTree = "<group>"; };
 		DF24B1221871EC9A00B57855 /* PlayerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCellView.h; sourceTree = "<group>"; };
@@ -98,6 +107,13 @@
 		DF309A3818F5BECB0018CE28 /* CharacterConditionAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterConditionAttributes.m; sourceTree = "<group>"; };
 		DF30A00818F714BD0018CE28 /* DefaultSkillTemplates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultSkillTemplates.h; sourceTree = "<group>"; };
 		DF30A00918F714BD0018CE28 /* DefaultSkillTemplates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultSkillTemplates.m; sourceTree = "<group>"; };
+		DF30A016190001A40018CE28 /* AddSkillViewCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddSkillViewCellTableViewCell.xib; sourceTree = "<group>"; };
+		DF30A018190001FC0018CE28 /* addButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addButton.png; sourceTree = "<group>"; };
+		DF30A019190001FC0018CE28 /* addButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addButton@2x.png"; sourceTree = "<group>"; };
+		DF30A01C190003890018CE28 /* AddSkillViewCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddSkillViewCellTableViewCell.h; path = Views/AddSkillViewCellTableViewCell.h; sourceTree = "<group>"; };
+		DF30A01D190003890018CE28 /* AddSkillViewCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddSkillViewCellTableViewCell.m; path = Views/AddSkillViewCellTableViewCell.m; sourceTree = "<group>"; };
+		DF30A02719000C370018CE28 /* AddSkillDropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSkillDropViewController.h; sourceTree = "<group>"; };
+		DF30A02819000C370018CE28 /* AddSkillDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSkillDropViewController.m; sourceTree = "<group>"; };
 		DF49368D18E569D30058129E /* BasicSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicSkill.h; sourceTree = "<group>"; };
 		DF49368E18E569D30058129E /* BasicSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicSkill.m; sourceTree = "<group>"; };
 		DF4F935218D9D5D400C6ED26 /* MeleeSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeleeSkill.h; sourceTree = "<group>"; };
@@ -144,12 +160,12 @@
 		DFAED139186331790039D17B /* CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataClass.m; sourceTree = "<group>"; };
 		DFAED13B1863329B0039D17B /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		DFAED13C1863329B0039D17B /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
-		DFAED13E186333000039D17B /* CoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataViewController.h; sourceTree = "<group>"; };
-		DFAED13F186333000039D17B /* CoreDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataViewController.m; sourceTree = "<group>"; };
+		DFAED13E186333000039D17B /* MainContextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainContextObject.h; path = PlayerProgressTracker/MainContextObject.h; sourceTree = "<group>"; };
+		DFAED13F186333000039D17B /* MainContextObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainContextObject.m; path = PlayerProgressTracker/MainContextObject.m; sourceTree = "<group>"; };
 		DFAED1601864D4C10039D17B /* DropDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownViewController.h; sourceTree = "<group>"; };
 		DFAED1611864D4C10039D17B /* DropDownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownViewController.m; sourceTree = "<group>"; };
-		DFB07C05187F0AEE00FF0EF7 /* StatSetDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatSetDropDown.h; sourceTree = "<group>"; };
-		DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatSetDropDown.m; sourceTree = "<group>"; };
+		DFB07C05187F0AEE00FF0EF7 /* ClassesDropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassesDropViewController.h; sourceTree = "<group>"; };
+		DFB07C06187F0AEE00FF0EF7 /* ClassesDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassesDropViewController.m; sourceTree = "<group>"; };
 		DFB07C0818815C9B00FF0EF7 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		DFB07C0918815C9B00FF0EF7 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		DFB07C1118815C9C00FF0EF7 /* Insanity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Insanity.h; sourceTree = "<group>"; };
@@ -205,8 +221,24 @@
 				DF6E927B18D33F18000967F5 /* SkillViewCell.xib */,
 				DF6E927D18D43076000967F5 /* CustomXpRaisingBtnView.h */,
 				DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */,
+				DF30A01C190003890018CE28 /* AddSkillViewCellTableViewCell.h */,
+				DF30A01D190003890018CE28 /* AddSkillViewCellTableViewCell.m */,
+				DF30A016190001A40018CE28 /* AddSkillViewCellTableViewCell.xib */,
 			);
 			name = "View classes";
+			sourceTree = "<group>";
+		};
+		DF30A02A19000CE70018CE28 /* DropDownControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DFAED1601864D4C10039D17B /* DropDownViewController.h */,
+				DFAED1611864D4C10039D17B /* DropDownViewController.m */,
+				DFB07C05187F0AEE00FF0EF7 /* ClassesDropViewController.h */,
+				DFB07C06187F0AEE00FF0EF7 /* ClassesDropViewController.m */,
+				DF30A02719000C370018CE28 /* AddSkillDropViewController.h */,
+				DF30A02819000C370018CE28 /* AddSkillDropViewController.m */,
+			);
+			name = DropDownControllers;
 			sourceTree = "<group>";
 		};
 		DF4F935B18D9D64B00C6ED26 /* Skills */ = {
@@ -295,7 +327,6 @@
 			isa = PBXGroup;
 			children = (
 				DFC886A318A2C74A00955B04 /* SubControllers */,
-				DFB07BFC187EFA1700FF0EF7 /* Resourses */,
 				DF24B1251871ECA400B57855 /* View classes */,
 				DF24B1291874B75900B57855 /* ColorConstants.h */,
 				DFAED10E186309B40039D17B /* AppDelegate.h */,
@@ -308,6 +339,7 @@
 				DF24B1261874B46C00B57855 /* CharacterStatListViewController.h */,
 				DF24B1271874B46C00B57855 /* CharacterStatListViewController.m */,
 				DFAED117186309B40039D17B /* Images.xcassets */,
+				DFB07BFC187EFA1700FF0EF7 /* Resourses */,
 				DFAED106186309B40039D17B /* Supporting Files */,
 			);
 			path = PlayerProgressTracker;
@@ -350,6 +382,8 @@
 				DFC88CAB186B0EA6007E4D90 /* SkillManager.m */,
 				DF30A00818F714BD0018CE28 /* DefaultSkillTemplates.h */,
 				DF30A00918F714BD0018CE28 /* DefaultSkillTemplates.m */,
+				DFAED13F186333000039D17B /* MainContextObject.m */,
+				DFAED13E186333000039D17B /* MainContextObject.h */,
 				DFAED13B1863329B0039D17B /* AppSettings.h */,
 				DFAED13C1863329B0039D17B /* AppSettings.m */,
 			);
@@ -374,6 +408,10 @@
 		DFB07BFC187EFA1700FF0EF7 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				DF010F8E19001EA90064B914 /* deleteButton.png */,
+				DF010F8F19001EA90064B914 /* deleteButton@2x.png */,
+				DF30A018190001FC0018CE28 /* addButton.png */,
+				DF30A019190001FC0018CE28 /* addButton@2x.png */,
 				DF4F936C18DDB3FD00C6ED26 /* AppIcon.png */,
 				DF4F936D18DDB3FD00C6ED26 /* AppIcon@2x.png */,
 				DF6E929218D4399B000967F5 /* noImage.png */,
@@ -389,14 +427,9 @@
 		DFC886A318A2C74A00955B04 /* SubControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DFAED13E186333000039D17B /* CoreDataViewController.h */,
-				DFAED13F186333000039D17B /* CoreDataViewController.m */,
+				DF30A02A19000CE70018CE28 /* DropDownControllers */,
 				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
 				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
-				DFAED1601864D4C10039D17B /* DropDownViewController.h */,
-				DFAED1611864D4C10039D17B /* DropDownViewController.m */,
-				DFB07C05187F0AEE00FF0EF7 /* StatSetDropDown.h */,
-				DFB07C06187F0AEE00FF0EF7 /* StatSetDropDown.m */,
 			);
 			name = SubControllers;
 			sourceTree = "<group>";
@@ -478,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */,
+				DF30A01B190001FC0018CE28 /* addButton@2x.png in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
 				DF6E928F18D43946000967F5 /* lowerXp@2x.png in Resources */,
 				DF6E929418D4399B000967F5 /* noImage.png in Resources */,
@@ -488,7 +522,11 @@
 				DF4F936F18DDB3FD00C6ED26 /* AppIcon@2x.png in Resources */,
 				DF4F936E18DDB3FD00C6ED26 /* AppIcon.png in Resources */,
 				DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */,
+				DF30A01A190001FC0018CE28 /* addButton.png in Resources */,
+				DF010F9019001EA90064B914 /* deleteButton.png in Resources */,
 				DF6E928E18D43946000967F5 /* lowerXp.png in Resources */,
+				DF010F9119001EA90064B914 /* deleteButton@2x.png in Resources */,
+				DF30A017190001A40018CE28 /* AddSkillViewCellTableViewCell.xib in Resources */,
 				DF6E929518D4399B000967F5 /* noImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +549,7 @@
 				DF4F935418D9D5D400C6ED26 /* MeleeSkill.m in Sources */,
 				DF24B1281874B46C00B57855 /* CharacterStatListViewController.m in Sources */,
 				DF24B1241871EC9A00B57855 /* PlayerCellView.m in Sources */,
+				DF30A02919000C370018CE28 /* AddSkillDropViewController.m in Sources */,
 				DF309A3318F5A0950018CE28 /* Character.m in Sources */,
 				DF309A2D18F59FBD0018CE28 /* Skill.m in Sources */,
 				DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */,
@@ -531,16 +570,17 @@
 				DF309A3918F5BECB0018CE28 /* CharacterConditionAttributes.m in Sources */,
 				DF30A00A18F714BD0018CE28 /* DefaultSkillTemplates.m in Sources */,
 				DF309A2A18F537680018CE28 /* AdvancedSkill.m in Sources */,
-				DFAED140186333000039D17B /* CoreDataViewController.m in Sources */,
+				DFAED140186333000039D17B /* MainContextObject.m in Sources */,
 				DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */,
 				DF309A3618F5BEAB0018CE28 /* SkillSet.m in Sources */,
 				DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */,
 				DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */,
 				DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */,
-				DFB07C07187F0AEE00FF0EF7 /* StatSetDropDown.m in Sources */,
+				DFB07C07187F0AEE00FF0EF7 /* ClassesDropViewController.m in Sources */,
 				DFAED13A186331790039D17B /* CoreDataClass.m in Sources */,
 				DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */,
 				DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */,
+				DF30A01E190003890018CE28 /* AddSkillViewCellTableViewCell.m in Sources */,
 				DFB07C2718815EE800FF0EF7 /* Pic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

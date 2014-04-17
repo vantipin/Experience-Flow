@@ -11,6 +11,7 @@
 @interface PlayerListViewController ()
 
 @property (nonatomic) NSMutableArray *dataSource;
+@property (nonatomic) NSManagedObjectContext *context;
 
 @end
 
@@ -20,8 +21,7 @@
 
 -(NSMutableArray *)dataSource
 {
-    if (!_dataSource)
-    {
+    if (!_dataSource) {
         _dataSource = [NSMutableArray new];
     }
     
@@ -32,19 +32,22 @@
 {
     [super viewDidLoad];
     
-    //[self printFontNames];
-    
     self.characterTableView.dataSource = self;
     [self updateDataSource];
-	// Do any additional setup after loading the view, typically from a nib.
-    //[[NSUserDefaults standardUserDefaults] synchronize];
-    //NSLog(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+}
+
+-(NSManagedObjectContext *)context
+{
+    if (!_context) {
+        _context = [[MainContextObject sharedInstance] managedObjectContext];
+    }
+    return _context;
 }
 
 -(void)updateDataSource
 {
     //CoreDataClass *coreData;
-    NSArray *characters = [Character fetchFinishedCharacterWithContext:self.managedObjectContext];
+    NSArray *characters = [Character fetchFinishedCharacterWithContext:self.context];
     [self.dataSource removeAllObjects];
     [self.dataSource addObjectsFromArray:characters];
     
@@ -74,22 +77,19 @@
 {
     static NSString *simpleTableIdentifer = @"CharactersListIdentifer";
     PlayerCellView *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifer];
-    if (!cell)
-    {
+    if (!cell) {
         cell = [[PlayerCellView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifer];
     }
     else //clean up
     {
-        for (UIView *subView in cell.contentView.subviews)
-        {
+        for (UIView *subView in cell.contentView.subviews) {
             [subView removeFromSuperview];
         }
     }
     
     cell.backgroundColor = bodyColor;
     
-    if ([self.dataSource count] == 0)
-    {
+    if ([self.dataSource count] == 0) {
         UIButton *addCharacterBtn = [UIButton new];
         [addCharacterBtn setTitle:@"+ Add new character" forState:UIControlStateNormal];
         [addCharacterBtn.titleLabel setFont:[UIFont fontWithName:@"Noteworthy-Bold" size:18]];
@@ -101,15 +101,13 @@
         addCharacterBtn.frame = cell.bounds;
         [cell.contentView addSubview:addCharacterBtn];
     }
-    else //init as usual
-    {
+    else {//init as usual
         Character *character = self.dataSource[indexPath.row];
         
         cell.playerName.text = character.name;
         cell.lastModifed.text = [Character standartDateFormat:character.dateModifed];
         
-        if (character.icon)
-        {
+        if (character.icon) {
             UIImage *image = [character.icon imageFromPic];
             [cell.playerIcon setImage: image];
         }
@@ -123,16 +121,5 @@
 {
     [self performSegueWithIdentifier:@"CharacterStatListSegue" sender:self];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
--(void)printFontNames
-{
-    for (id family in [UIFont familyNames])
-    {
-        NSLog(@"\nFamily: %@", family);
-        
-        for (id font in [UIFont fontNamesForFamilyName:family])
-            NSLog(@"\tFont: %@\n", font);
-    }
 }
 @end

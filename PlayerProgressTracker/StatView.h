@@ -12,23 +12,27 @@
 
 @interface StatView : UIView
 
-@property (nonatomic) IBOutlet UITextField *m;
-@property (nonatomic) IBOutlet UITextField *ws;
-@property (nonatomic) IBOutlet UITextField *bs;
-@property (nonatomic) IBOutlet UITextField *str;
-@property (nonatomic) IBOutlet UITextField *to;
-@property (nonatomic) IBOutlet UITextField *ag;
-@property (nonatomic) IBOutlet UITextField *wp;
-@property (nonatomic) IBOutlet UITextField *intl;
-@property (nonatomic) IBOutlet UITextField *cha;
-@property (nonatomic) IBOutlet UITextField *aMelee;
-@property (nonatomic) IBOutlet UITextField *damageMelee;
-@property (nonatomic) IBOutlet UITextField *aRange;
-@property (nonatomic) IBOutlet UITextField *damageRange;
-@property (nonatomic) IBOutlet UITextField *ac;
-@property (nonatomic) IBOutlet UITextField *bonusAMelee;
-@property (nonatomic) IBOutlet UITextField *bonusARange;
-@property (nonatomic) IBOutlet UITextField *bonusWounds;
+@property (nonatomic) IBOutlet UITextField *mentalityTextField;
+@property (nonatomic) IBOutlet UITextField *physiqueTextField;
+@property (nonatomic) IBOutlet UITextField *bulkTextField;
+@property (nonatomic) IBOutlet UITextField *movementTextField;
+@property (nonatomic) IBOutlet UITextField *wsTextField;
+@property (nonatomic) IBOutlet UITextField *bsTextField;
+@property (nonatomic) IBOutlet UITextField *strTextField;
+@property (nonatomic) IBOutlet UITextField *toTextField;
+@property (nonatomic) IBOutlet UITextField *agTextField;
+@property (nonatomic) IBOutlet UITextField *wpTextField;
+@property (nonatomic) IBOutlet UITextField *intlTextField;
+@property (nonatomic) IBOutlet UITextField *chaTextField;
+@property (nonatomic) IBOutlet UITextField *aMeleeTextField;
+@property (nonatomic) IBOutlet UITextField *damageMeleeTextField;
+@property (nonatomic) IBOutlet UITextField *aRangeTextField;
+@property (nonatomic) IBOutlet UITextField *damageRangeTextField;
+@property (nonatomic) IBOutlet UITextField *armorTextField;
+@property (nonatomic) IBOutlet UITextField *bonusAMeleeTextField;
+@property (nonatomic) IBOutlet UITextField *bonusARangeTextField;
+@property (nonatomic) IBOutlet UITextField *bonusBulkTextField;
+@property (nonatomic) IBOutlet UITextField *bonusPaceTextField;
 
 @property (nonatomic) IBOutlet UIButton *chooseRightHandButton;
 @property (nonatomic) IBOutlet UIButton *chooseLeftHandButton;

@@ -66,12 +66,12 @@
 
 -(void)prepareFieldsForUse
 {
-    self.skillUsableLvlTextField.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:36];
+    self.usableSkillLvlTextField.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:36];
     
     if (self.characterCreationMode)
     {
-        self.skillUsableLvlTextField.delegate = self;
-        self.skillUsableLvlTextField.enabled = true;
+        self.usableSkillLvlTextField.delegate = self;
+        self.usableSkillLvlTextField.enabled = true;
     }
     self.xpRaisingBtn.delegate = self;
     
@@ -83,7 +83,7 @@
     NSString *skillTitle = self.skill.basicSkill ? [NSString stringWithFormat:@"%@(%@)",self.skill.skillTemplate.name,self.skill.basicSkill.skillTemplate.name] : self.skill.skillTemplate.name;
     [self.skillNameButton setTitle:skillTitle forState:UIControlStateNormal];
     self.unusableSkillLvlLabel.text = [NSString stringWithFormat:@"%i",self.skill.thisLvl];
-    self.skillUsableLvlTextField.text = [NSString stringWithFormat:@"%d",self.skill.basicSkill ? self.skill.basicSkill.thisLvl + self.skill.thisLvl : self.skill.thisLvl];
+    self.usableSkillLvlTextField.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill]];
     self.maxXpLabel.text = [NSString stringWithFormat:@"%.0f",self.skill.thisLvl * self.skill.skillTemplate.thisSkillProgression + self.skill.skillTemplate.thisBasicBarrier];
     self.currentXpLabel.text = (fmod(self.skill.thisLvlCurrentProgress, 1.0) > 0) ? [NSString stringWithFormat:@"%.1f",self.skill.thisLvlCurrentProgress] : [NSString stringWithFormat:@"%.0f",self.skill.thisLvlCurrentProgress];
 }

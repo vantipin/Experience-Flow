@@ -26,5 +26,6 @@
 @property (nonatomic) UIColor *backgroundColor;
 @property (nonatomic,assign) id<SkillTableViewControllerDelegate> skillTableDelegate;
 
+-(void)addNewSkill:(Skill *)skill;
 
 @end

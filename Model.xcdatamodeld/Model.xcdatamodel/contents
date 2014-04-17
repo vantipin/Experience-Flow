@@ -10,7 +10,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="characterCondition" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CharacterConditionAttributes" inverseName="character" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
         <relationship name="icon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pic" inverseName="characters" inverseEntity="Pic" syncable="YES"/>
-        <relationship name="skillSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillSet" inverseName="character" inverseEntity="SkillSet" syncable="YES"/>
+        <relationship name="skillSet" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SkillSet" inverseName="character" inverseEntity="SkillSet" syncable="YES"/>
     </entity>
     <entity name="CharacterConditionAttributes" representedClassName="CharacterConditionAttributes" syncable="YES">
         <attribute name="adrenalinPoints" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
@@ -62,19 +62,20 @@
         <attribute name="skillId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thisLvl" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="thisLvlCurrentProgress" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
-        <relationship name="basicSkill" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Skill" inverseName="subSkills" inverseEntity="Skill" syncable="YES"/>
+        <relationship name="basicSkill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Skill" inverseName="subSkills" inverseEntity="Skill" syncable="YES"/>
         <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeaponMelee" inverseName="skillRequired" inverseEntity="WeaponMelee" syncable="YES"/>
-        <relationship name="skillSet" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SkillSet" inverseName="skills" inverseEntity="SkillSet" syncable="YES"/>
+        <relationship name="skillSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillSet" inverseName="skills" inverseEntity="SkillSet" syncable="YES"/>
         <relationship name="skillTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="skillsFromThisTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
         <relationship name="subSkills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skill" inverseName="basicSkill" inverseEntity="Skill" syncable="YES"/>
     </entity>
     <entity name="SkillSet" representedClassName="SkillSet" syncable="YES">
+        <attribute name="bulk" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
         <attribute name="modifierAMelee" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
         <attribute name="modifierARange" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
         <attribute name="modifierArmorSave" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="modifierHp" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="wounds" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="pace" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="skillSet" inverseEntity="Character" syncable="YES"/>
         <relationship name="skills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skill" inverseName="skillSet" inverseEntity="Skill" syncable="YES"/>
     </entity>
@@ -103,21 +104,21 @@
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="weaponRanged" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AdvancedSkill" positionX="-180" positionY="-306" width="128" height="43"/>
-        <element name="BasicSkill" positionX="-324" positionY="-306" width="128" height="43"/>
-        <element name="Character" positionX="223" positionY="-90" width="128" height="163"/>
-        <element name="CharacterConditionAttributes" positionX="439" positionY="-135" width="128" height="223"/>
-        <element name="Insanity" positionX="630" positionY="60" width="128" height="75"/>
-        <element name="Item" positionX="232" positionY="558" width="128" height="135"/>
-        <element name="MagicSkill" positionX="414" positionY="-306" width="128" height="60"/>
-        <element name="MeleeSkill" positionX="261" positionY="-306" width="128" height="60"/>
-        <element name="Pic" positionX="-290" positionY="360" width="128" height="120"/>
-        <element name="PietySkill" positionX="108" positionY="-306" width="128" height="60"/>
-        <element name="RangeSkill" positionX="-36" positionY="-306" width="128" height="60"/>
-        <element name="Skill" positionX="-128" positionY="-54" width="128" height="178"/>
-        <element name="SkillTemplate" positionX="-324" positionY="-84" width="128" height="210"/>
-        <element name="WeaponMelee" positionX="223" positionY="396" width="128" height="120"/>
-        <element name="WeaponRanged" positionX="376" positionY="393" width="128" height="75"/>
-        <element name="SkillSet" positionX="108" positionY="153" width="128" height="163"/>
+        <element name="AdvancedSkill" positionX="0" positionY="0" width="128" height="45"/>
+        <element name="BasicSkill" positionX="0" positionY="0" width="128" height="45"/>
+        <element name="Character" positionX="-9" positionY="24" width="128" height="163"/>
+        <element name="CharacterConditionAttributes" positionX="376" positionY="36" width="128" height="225"/>
+        <element name="Insanity" positionX="-146" positionY="132" width="128" height="75"/>
+        <element name="Item" positionX="61" positionY="270" width="128" height="135"/>
+        <element name="MagicSkill" positionX="214" positionY="165" width="128" height="60"/>
+        <element name="MeleeSkill" positionX="169" positionY="237" width="128" height="60"/>
+        <element name="Pic" positionX="-288" positionY="-111" width="128" height="120"/>
+        <element name="PietySkill" positionX="-180" positionY="30" width="128" height="60"/>
+        <element name="RangeSkill" positionX="-360" positionY="243" width="128" height="60"/>
+        <element name="Skill" positionX="-117" positionY="261" width="128" height="178"/>
+        <element name="SkillSet" positionX="-315" positionY="27" width="128" height="178"/>
+        <element name="SkillTemplate" positionX="313" positionY="87" width="128" height="210"/>
+        <element name="WeaponMelee" positionX="180" positionY="-63" width="128" height="120"/>
+        <element name="WeaponRanged" positionX="-173" positionY="-63" width="128" height="75"/>
     </elements>
 </model>

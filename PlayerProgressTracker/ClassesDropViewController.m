@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
-#import "StatSetDropDown.h"
+#import "ClassesDropViewController.h"
 
-@interface StatSetDropDown ()
+@interface ClassesDropViewController ()
 
 @end
 
-@implementation StatSetDropDown
+@implementation ClassesDropViewController
 
 @synthesize stateNameToDelete = _stateNameToDelete;
 

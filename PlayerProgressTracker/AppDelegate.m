@@ -11,7 +11,7 @@
 #import "Skill.h"
 #import "SkillSet.h"
 #import "SkillTemplate.h"
-#import "CoreDataViewController.h"
+#import "MainContextObject.h"
 
 @implementation AppDelegate
 
@@ -40,7 +40,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    NSManagedObjectContext *context = [[CoreDataViewController sharedInstance] managedObjectContext];
+    NSManagedObjectContext *context = [[MainContextObject sharedInstance] managedObjectContext];
     
     NSArray *unfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:context];
     for (Character *unfinishedOne in unfinishedCharacters){
