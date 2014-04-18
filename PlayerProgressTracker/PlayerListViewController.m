@@ -34,6 +34,8 @@
     
     self.characterTableView.dataSource = self;
     [self updateDataSource];
+    
+    self.view.backgroundColor = bodyColor;
 }
 
 -(NSManagedObjectContext *)context
@@ -87,7 +89,7 @@
         }
     }
     
-    cell.backgroundColor = bodyColor;
+    cell.backgroundColor = [UIColor clearColor];
     
     if ([self.dataSource count] == 0) {
         UIButton *addCharacterBtn = [UIButton new];

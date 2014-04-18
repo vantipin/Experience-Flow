@@ -66,7 +66,7 @@
 
 -(void)prepareFieldsForUse
 {
-    self.usableSkillLvlTextField.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:36];
+    //self.usableSkillLvlTextField.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:36];
     
     if (self.characterCreationMode)
     {

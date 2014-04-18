@@ -17,13 +17,15 @@
 #import "SkillSet.h"
 
 @interface SkillTableViewController ()
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+//@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSMutableArray *skillsDataSource;
-//@property (nonatomic) UIView *activeTipView;
+
+@property (nonatomic) NSMutableArray *objectsToUpdate; //collection will remember objects which need to be relocated. If objects in the end won't change their position - Relocation will be replaced with simple Reload
 @end
 
 @implementation SkillTableViewController
 
+@synthesize skillsDataSource = _skillsDataSource;
 
 - (void)viewDidLoad
 {
@@ -43,23 +45,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(NSMutableArray *)objectsToUpdate
+{
+    if (!_objectsToUpdate) {
+        _objectsToUpdate = [NSMutableArray new];
+    }
+    return _objectsToUpdate;
+}
+
 -(NSMutableArray *)skillsDataSource
 {
     if (!_skillsDataSource) {
-        if (self.skillSet) {
-            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"dateXpAdded" ascending: NO];
-            _skillsDataSource = [NSMutableArray arrayWithArray:[[[SkillManager sharedInstance] fetchAllNoneBasicSkillsForSkillSet:self.skillSet] sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
-        }
-        else {
-            _skillsDataSource = [NSMutableArray new];
-        }
+        [self reloadDataSourceFromSkillSet];
     }
     return _skillsDataSource;
 }
 
+-(void)reloadDataSourceFromSkillSet
+{
+    if (self.skillSet) {
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"dateXpAdded" ascending: NO];
+        _skillsDataSource = [NSMutableArray arrayWithArray:[[[SkillManager sharedInstance] fetchAllNoneBasicSkillsForSkillSet:self.skillSet] sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
+    }
+    else {
+        _skillsDataSource = [NSMutableArray new];
+    }
+
+}
+
 -(void)setSkillSet:(SkillSet *)skillSet
 {
-    self.skillsDataSource = nil;
+    _skillsDataSource = nil;
     _skillSet = skillSet;
 }
 
@@ -70,14 +86,6 @@
         // Custom initialization
     }
     return self;
-}
-
--(NSManagedObjectContext *)managedObjectContext
-{
-    if (!_managedObjectContext){
-        _managedObjectContext = [[MainContextObject sharedInstance] managedObjectContext];
-    }
-    return _managedObjectContext;
 }
 
 #pragma mark - Table view data source
@@ -113,9 +121,8 @@
         cell.usableSkillLvlTextField.delegate = self;
     }
     cell.skill = currentSkill;
+    cell.backgroundColor = [UIColor clearColor];
     [cell reloadFields];
-    
-    
     return cell;
 }
 
@@ -148,57 +155,146 @@
     [self changeXpPointsToSkill:skill withXpPoints:xpPoints didRaiseXp:false];
 }
 
-#pragma mark - 
-
-//-(void)closeTip
-//{
-//    
-//    if (self.activeTipView) {
-//        [UIView animateWithDuration:0.15 animations:^{
-//            self.activeTipView.alpha = 0;
-//        }];
-//        
-//        [self.activeTipView removeFromSuperview];
-//        self.activeTipView = nil;
-//    }
-//}
-
 -(void)changeXpPointsToSkill:(Skill *)skill withXpPoints:(float)xpPoints didRaiseXp:(BOOL)didRaise
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.skillsDataSource indexOfObject:skill] inSection:0];
     
+    [self.objectsToUpdate removeAllObjects];
+    
     if (didRaise){
-        [[SkillManager sharedInstance] addXpPoints:xpPoints toSkill:skill withContext:self.managedObjectContext];
+        [[SkillManager sharedInstance] addXpPoints:xpPoints toSkill:skill withContext:[[MainContextObject sharedInstance] managedObjectContext]];
     }
-    else{
-        [[SkillManager sharedInstance] removeXpPoints:xpPoints toSkill:skill withContext:self.managedObjectContext];
+    else {
+        [[SkillManager sharedInstance] removeXpPoints:xpPoints toSkill:skill withContext:[[MainContextObject sharedInstance] managedObjectContext]];
     }
     SkillViewCell *cell = (SkillViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     [cell reloadFields];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"dateXpAdded" ascending: NO];
-    self.skillsDataSource = [NSMutableArray arrayWithArray:[self.skillsDataSource sortedArrayUsingDescriptors:[NSMutableArray arrayWithObject:sortDescriptor]]];
-    [self.tableView reloadData];
-    //[self.tableView beginUpdates];
     
-    //[self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    //[self.tableView endUpdates];
-}
-
--(void)didChangeSkillLevel
-{
-    [self.skillTableDelegate didUpdateCharacterSkills];
-}
-
--(void)addNewSkill:(Skill *)skill
-{
-//    [self.addToListMenuController.dropDownTableView beginUpdates];
-//    [self.addToListMenuController.dropDownTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:returnIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-//    [self.addToListMenuController.dropDownTableView endUpdates];
 }
 
 #pragma mark -
-#pragma mark text field delegate methods
+#pragma mark SkillManager delegate methods
+-(void)didChangeSkillLevel:(Skill *)skill
+{
+    [self.skillTableDelegate didUpdateCharacterSkills];
+//    [self reloadDataSourceFromSkillSet];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.skillsDataSource indexOfObject:skill] inSection:0];
+//    if (indexPath) {
+//        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+//        
+//        [self.tableView beginUpdates];
+//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//        [self.tableView endUpdates];
+//    }
+}
+
+-(void)didChangeExperiencePointsForSkill:(Skill *)skill
+{
+    if ([self.skillsDataSource containsObject:skill]) {
+        if (![self.objectsToUpdate containsObject:skill]) {
+            [self.objectsToUpdate addObject:skill];
+        }
+    }
+}
+
+-(void)didFinishChangingExperiencePointsForSkill:(Skill *)skill
+{
+    if ([self.skillsDataSource containsObject:skill]) {
+        NSMutableArray *indexPathsWas = [NSMutableArray new];
+        for (Skill *skill in self.objectsToUpdate) {
+            NSIndexPath *indexPathWas = [NSIndexPath indexPathForRow:[self.skillsDataSource indexOfObject:skill] inSection:0];
+            if (indexPathWas) {
+                [indexPathsWas addObject:indexPathWas];
+            }
+        }
+        [self reloadDataSourceFromSkillSet];
+        NSMutableArray *indexPathsIs = [NSMutableArray new];
+        for (Skill *skill in self.objectsToUpdate) {
+            NSIndexPath *indexPathIs = [NSIndexPath indexPathForRow:[self.skillsDataSource indexOfObject:skill] inSection:0];
+            if (indexPathIs) {
+                [indexPathsIs addObject:indexPathIs];
+            }
+        }
+        
+        if (indexPathsWas.count != indexPathsIs.count) {
+            [self.tableView reloadData];
+            return;
+        }
+        
+        for (int i = 0; i < indexPathsWas.count; i++) {
+            NSIndexPath *indexPathIs = indexPathsIs[i];
+            NSIndexPath *indexPathWas = indexPathsWas[i];
+            NSInteger same = [indexPathIs compare:indexPathWas];
+            
+            
+            if (same != NSOrderedSame) {
+                [self relocateObjectsWithOldIndexPaths:indexPathsWas withNewIndexPaths:indexPathsIs];
+                return;
+            }
+        }
+        
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+        
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:indexPathsIs withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+    }
+}
 
 
+
+-(void)addedSkill:(Skill *)skill toSkillSet:(SkillSet *)skillSet
+{
+    if (self.skillSet == skillSet) {
+        [self addCellViewForNewSkill:skill];
+    }
+}
+
+-(void)deletedSkill:(Skill *)skill fromSkillSet:(SkillSet *)skillSet
+{
+    if (self.skillSet == skillSet) {
+        [self deleteCellViewForNewSkill:skill];
+    }
+}
+
+
+#pragma mark helpers
+-(void)addCellViewForNewSkill:(Skill *)skill
+{
+    [self reloadDataSourceFromSkillSet];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.skillsDataSource indexOfObject:skill] inSection:0];
+    if (indexPath) {
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+        
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView endUpdates];
+    }
+}
+
+-(void)deleteCellViewForNewSkill:(Skill *)skill
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.skillsDataSource indexOfObject:skill] inSection:0];
+    [self reloadDataSourceFromSkillSet];
+    if (indexPath) {
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+    }
+}
+
+-(void)relocateObjectsWithOldIndexPaths:(NSMutableArray *)indexPathsWas withNewIndexPaths:(NSMutableArray *)indexPathsIs
+{
+    if (indexPathsWas && indexPathsIs && (indexPathsWas.count == indexPathsIs.count)) {
+        self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
+    
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:indexPathsWas withRowAnimation:UITableViewRowAnimationTop];
+        [self.tableView insertRowsAtIndexPaths:indexPathsIs withRowAnimation:UITableViewRowAnimationLeft];
+        [self.tableView endUpdates];
+    }
+}
 
 @end

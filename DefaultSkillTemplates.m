@@ -62,22 +62,22 @@
 #define knaveryName @"Knavery"
 #define hackDeviceName @"Hack Device"
 
-static float defaultPhsAndMnsProgression = 5;
-static float defaultPhsAndMnsBasicBarrier = 8;
+static float defaultPhsAndMnsProgression = 7;
+static float defaultPhsAndMnsBasicBarrier = 11.5;
 static float defaultPhsAndMnsGrowhtGoes = 0.3;
 
 static float defaultAdvGrowhtGoesHight = 0.65;
 static float defaultAdvGrowhtGoesLow = 0.35;
-static float defaultAdvBasicBarrierHight = 3;
-static float defaultAdvBasicBarrierLow = 2;
-static float defaultAdvProgression = 3;
+static float defaultAdvBasicBarrierHight = 4;
+static float defaultAdvBasicBarrierLow = 2.5;
+static float defaultAdvProgression = 4;
 
-static float defaultMeleeWeaponProgression = 3;
-static float defaultMeleeWeaponBasicBarrier = 4;
+static float defaultMeleeWeaponProgression = 4;
+static float defaultMeleeWeaponBasicBarrier = 5.5;
 static float defaultMeleeWeaponGrowhtGoes = 0.7;
 
-static float defaultRangeWeaponProgression = 3;
-static float defaultRangeWeaponBasicBarrier = 4;
+static float defaultRangeWeaponProgression = 4;
+static float defaultRangeWeaponBasicBarrier = 5.5;
 static float defaultRangeWeaponGrowhtGoes = 0.7;
 
 static int defaultEncumbrancePenalties = 20;
@@ -216,7 +216,7 @@ static DefaultSkillTemplates *instance = nil;
                                                         withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of a variety of melee weapons. Weapon skill is a broad category and governs fighting unarmed to using small weapons like knives or clubs to larger weapons like two-handed swords, great axes or halberds. The ability to parry with an equipped melee weapon is also based on a character’s Weapon Skill."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:1
-                                                   withSkillProgression:8
+                                                   withSkillProgression:12
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:BasicSkillType
                                                  withDefaultStartingLvl:0
@@ -243,7 +243,7 @@ static DefaultSkillTemplates *instance = nil;
                                                         withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of ranged weapons. This includes thrown weapons like balanced knives and javelins, as well as bows, crossbows, and slings. Also covers the basics of blackpowder weapon care and operation. It is a combination of hand-eye coordination, accuracy, and training with ranged items."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:1
-                                                   withSkillProgression:7
+                                                   withSkillProgression:9.5
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:BasicSkillType
                                                  withDefaultStartingLvl:0
@@ -270,7 +270,7 @@ static DefaultSkillTemplates *instance = nil;
                                                         withDescription:@"Physique. Basic skill. Defines a character’s strenght, toughness and agility."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:1
-                                                   withSkillProgression:10
+                                                   withSkillProgression:15
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:BasicSkillType
                                                  withDefaultStartingLvl:1
@@ -297,7 +297,7 @@ static DefaultSkillTemplates *instance = nil;
                                                         withDescription:@"Mentality. Basic skill. Defines a character’s intelligence, willpower and sociability."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:1
-                                                   withSkillProgression:10
+                                                   withSkillProgression:15
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:BasicSkillType
                                                  withDefaultStartingLvl:1

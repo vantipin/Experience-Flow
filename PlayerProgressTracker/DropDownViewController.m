@@ -119,24 +119,17 @@ static const float maxEdgeOffset = 0.96;
 
 - (void)rebuildFramesAccordingToPositionOnScreen
 {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    // grab the window frame and adjust it for orientation
+    UIView *rootView = [[[UIApplication sharedApplication] keyWindow]
+                        rootViewController].view;
+    CGRect originalFrame = [[UIScreen mainScreen] bounds];
+    CGRect screenRect = [rootView convertRect:originalFrame fromView:nil];
     
-    float screenHeight;
-    float screenWidth;
-    if ([[UIDevice currentDevice] orientation] != UIDeviceOrientationPortrait && [[UIDevice currentDevice] orientation] != UIDeviceOrientationPortraitUpsideDown) {
-        screenHeight = screenRect.size.height;
-        screenWidth = screenRect.size.width;
-    }
-    else {
-        screenHeight = screenRect.size.width;
-        screenWidth = screenRect.size.height;
-    }
+    float screenHeight = screenRect.size.height;
+    float screenWidth = screenRect.size.width;
     
     
 	CGRect refFrame = [self.anchorView convertRect:self.anchorView.frame toView:(self.topView) ? self.topView:self.anchorView];
-    //NSLog(@"%@",NSStringFromCGRect(self.anchorView.frame));
-    //NSLog(@"%@",NSStringFromCGRect(refFrame));
-    
     
     //reset table height accordinaly
     self.heightTableView = self.dropDownDataSource.count*self.heightOfCell;

@@ -246,6 +246,8 @@ static SkillManager *instance = nil;
             [basicSkill addSubSkillsObject:skill];
         }
         
+        [self.delegateSkillChange addedSkill:skill toSkillSet:skillSet];
+        
         [CoreDataClass saveContext:context];
         
         return skill;
@@ -271,6 +273,9 @@ static SkillManager *instance = nil;
                     [self removeSkillWithTemplate:subSkill.skillTemplate fromSkillSet:skillSet withContext:context];
                 }
             }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            [skillSet removeSkillsObject:skill];
+            [self.delegateSkillChange deletedSkill:skill fromSkillSet:skillSet];
             
             [context deleteObject:skill];
             [CoreDataClass saveContext:context];
@@ -386,17 +391,27 @@ static SkillManager *instance = nil;
        withContext:(NSManagedObjectContext *)context;
 {
     if (xpPoints) {
-        //calculate xp
-        if (skill.skillTemplate.basicSkillGrowthGoes != 0 && skill.basicSkill) {
-            [self addXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill withContext:context];
-        }
-        
-        skill.thisLvlCurrentProgress += [self xpPoints:xpPoints forSkill:skill];
-        skill = [self calculateAddingXpPointsForSkill:skill WithContext:context];
-        skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
-        
+        [self changeAddXpPoints:xpPoints toSkill:skill withContext:context];
         [Skill saveContext:context];
+        [self.delegateSkillChange didFinishChangingExperiencePointsForSkill:skill];
     }
+}
+
+
+-(void)changeAddXpPoints:(float)xpPoints
+                 toSkill:(Skill *)skill
+             withContext:(NSManagedObjectContext *)context;
+{
+    //calculate xp
+    if (skill.skillTemplate.basicSkillGrowthGoes != 0 && skill.basicSkill) {
+        [self changeAddXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill withContext:context];
+    }
+    
+    skill.thisLvlCurrentProgress += [self xpPoints:xpPoints forSkill:skill];
+    skill = [self calculateAddingXpPointsForSkill:skill WithContext:context];
+    skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
+    
+    [self.delegateSkillChange didChangeExperiencePointsForSkill:skill];
 }
 
 -(Skill *)calculateAddingXpPointsForSkill:(Skill *)skill WithContext:(NSManagedObjectContext *)context
@@ -406,7 +421,7 @@ static SkillManager *instance = nil;
     if (skill.thisLvlCurrentProgress >= xpNextLvl) {
         skill.thisLvlCurrentProgress -= xpNextLvl;
         skill.thisLvl ++;
-        [self.delegateSkillChange didChangeSkillLevel];
+        [self.delegateSkillChange didChangeSkillLevel:skill];
         [self calculateAddingXpPointsForSkill:skill WithContext:context]; //check if more than 1 lvl
     }
     
@@ -419,16 +434,25 @@ static SkillManager *instance = nil;
 {
     if (xpPoints)
     {
-        if (skill.skillTemplate.basicSkillGrowthGoes != 0 && skill.basicSkill) {
-            [self removeXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill withContext:context];
-        }
-        
-        skill.thisLvlCurrentProgress -= [self xpPoints:xpPoints forSkill:skill];
-        skill = [self calculateRemovingXpPointsForSkill:skill WithContext:context];
-        skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
-        
+        [self changeRemoveXpPoints:xpPoints toSkill:skill withContext:context];
         [Skill saveContext:context];
+        [self.delegateSkillChange didFinishChangingExperiencePointsForSkill:skill];
     }
+}
+
+-(void)changeRemoveXpPoints:(float)xpPoints
+                    toSkill:(Skill *)skill
+                withContext:(NSManagedObjectContext *)context;
+{
+    if (skill.skillTemplate.basicSkillGrowthGoes != 0 && skill.basicSkill) {
+        [self changeRemoveXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill withContext:context];
+    }
+    
+    skill.thisLvlCurrentProgress -= [self xpPoints:xpPoints forSkill:skill];
+    skill = [self calculateRemovingXpPointsForSkill:skill WithContext:context];
+    skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
+    
+    [self.delegateSkillChange didChangeExperiencePointsForSkill:skill];
 }
 
 -(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill WithContext:(NSManagedObjectContext *)context
@@ -439,12 +463,12 @@ static SkillManager *instance = nil;
     }
     if (skill.thisLvlCurrentProgress < 0) {
         skill.thisLvl --;
-        [self.delegateSkillChange didChangeSkillLevel];
+        [self.delegateSkillChange didChangeSkillLevel:skill];
         float xpPrevLvl = skill.thisLvl * skill.skillTemplate.thisSkillProgression + skill.skillTemplate.thisBasicBarrier;
         skill.thisLvlCurrentProgress += xpPrevLvl;
         [self calculateRemovingXpPointsForSkill:skill WithContext:context];
     }
-    
+
     return skill;
 }
 

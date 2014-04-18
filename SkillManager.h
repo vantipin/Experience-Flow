@@ -12,7 +12,19 @@
 
 @protocol SkillChangeProtocol <NSObject>
 @optional
--(void)didChangeSkillLevel;
+-(void)didChangeSkillLevel:(Skill *)skill;
+
+/**
+ *Will be called each time some skill xp changed.
+ */
+-(void)didChangeExperiencePointsForSkill:(Skill*)skill;
+
+/**
+ *Will be called only when whole chain of changing xp points finished.
+ */
+-(void)didFinishChangingExperiencePointsForSkill:(Skill*)skill;
+-(void)addedSkill:(Skill *)skill toSkillSet:(SkillSet *)skillSet;
+-(void)deletedSkill:(Skill *)skill fromSkillSet:(SkillSet *)skillSet; //call right before deleting
 @end
 
 @interface SkillManager : NSObject

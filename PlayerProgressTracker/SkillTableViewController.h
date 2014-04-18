@@ -22,10 +22,16 @@
 
 @property (nonatomic) CGFloat tableWith;
 @property (nonatomic) CGFloat tableHeight;
-@property (nonatomic) SkillSet *skillSet;
+@property (nonatomic) SkillSet *skillSet; //setter will reset all data sourse
 @property (nonatomic) UIColor *backgroundColor;
 @property (nonatomic,assign) id<SkillTableViewControllerDelegate> skillTableDelegate;
 
--(void)addNewSkill:(Skill *)skill;
+
+/**
+ *Use this methode to add new cell view for existing skill without reloading whole datasource.
+ *
+ */
+-(void)addCellViewForNewSkill:(Skill *)skill;
+-(void)deleteCellViewForNewSkill:(Skill *)skill;
 
 @end

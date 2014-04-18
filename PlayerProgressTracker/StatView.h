@@ -41,6 +41,11 @@
 @property (nonatomic) IBOutlet UILabel *maxHpLabel;
 @property (nonatomic) IBOutlet UILabel *currentHpLabel;
 
+
+@property (nonatomic) IBOutletCollection(UIView) NSArray *lightContainerViewsArray;
+@property (nonatomic) IBOutletCollection(UIView) NSArray *bodyContainerViewsArray;
+@property (nonatomic) IBOutletCollection(UIView) NSArray *headerContainerViewsArray;
+
 @property (nonatomic) IBOutlet UIView *bonusView;
 
 @property (nonatomic) Character *character;

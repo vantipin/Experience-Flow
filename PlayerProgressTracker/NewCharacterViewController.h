@@ -23,6 +23,7 @@
 @property (nonatomic) IBOutlet UIButton *saveCharacter;
 @property (nonatomic) IBOutlet UIImageView *icon;
 @property (nonatomic) IBOutlet UITextField *name;
+@property (nonatomic) IBOutlet UIView *characterSheetView;
 @property (nonatomic) IBOutlet UIView *statViewContainer;
 @property (nonatomic) IBOutlet UIView *additionalSkillContainerView;
 @property (nonatomic) IBOutlet UIButton *addNewSkillButton;

@@ -104,7 +104,7 @@
         cell = [[AddSkillViewCellTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.delegate = self;
     }
-    
+    cell.backgroundColor = [UIColor clearColor];
     cell.skillTemplate = currentSkill;
     Skill *existingSkill = [[SkillManager sharedInstance] getSkillWithTemplate:currentSkill withSkillSet:self.skillSet];
     if (!existingSkill) {

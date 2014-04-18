@@ -71,6 +71,8 @@
     
     self.name.delegate = self;
     self.name.text = self.character.name;
+    
+    self.characterSheetView.backgroundColor = bodyColor;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -155,6 +157,7 @@
                                                                            withRedView:self.addNewSkillButton
                                                                          withAnimation:AlphaChange];
         _addNewSkillDropController.delegateAddNewSkill = self;
+        _addNewSkillDropController.view.backgroundColor = lightBodyColor;
     }
     return _addNewSkillDropController;
 }
@@ -166,6 +169,7 @@
         [self.additionalSkillContainerView addSubview:_skillTableViewController.view];
         _skillTableViewController.view.frame = self.additionalSkillContainerView.bounds;
         self.additionalSkillContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _skillTableViewController.view.backgroundColor = lightBodyColor;
     }
     
     return _skillTableViewController;
@@ -204,7 +208,7 @@
     }
     
     if (!currentTitle) {
-        currentTitle = @"";
+        currentTitle = @"Choose Set";
     }
     [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
 }
@@ -229,6 +233,7 @@
 {
     //prepare setting character skills to listed in stat set
     self.shouldRewriteSkillsLevels = true;
+    //self.raceBtn.alpha = 0;
     
     if (self.saveSet.alpha < 1) {
         self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x - 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
@@ -253,6 +258,7 @@
             }
         }];
     }
+    //self.raceBtn.alpha = 1;
 }
 
 -(void)saveCurrentStatSetWithName:(NSString *)nameString
@@ -397,7 +403,7 @@
                 return false;
             }
             [self.statView setSkillSetFromView];
-            [self.skillTableViewController.tableView reloadData];
+            //[self.skillTableViewController.tableView reloadData];
         }
         return true;
     }
@@ -439,10 +445,9 @@
 
 -(BOOL)addNewSkillWithTemplate:(SkillTemplate *)skillTemplate
 {
-    if ([[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:self.character.skillSet withContext:self.context]) {
-        self.skillTableViewController.skillSet = self.character.skillSet;
+    Skill *skill = [[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:self.character.skillSet withContext:self.context];
+    if (skill) {
         [self prepareViewForSavingNewClass];
-        [self.skillTableViewController.tableView reloadData];
         return true;
     }
     else {
@@ -452,10 +457,9 @@
 
 -(BOOL)deleteNewSkillWithTemplate:(SkillTemplate *)skillTemplate
 {
-    if ([[SkillManager sharedInstance] removeSkillWithTemplate:skillTemplate fromSkillSet:self.character.skillSet withContext:self.context]) {
-        self.skillTableViewController.skillSet = self.character.skillSet;
+    BOOL deleted = [[SkillManager sharedInstance] removeSkillWithTemplate:skillTemplate fromSkillSet:self.character.skillSet withContext:self.context];
+    if (deleted) {
         [self prepareViewForSavingNewClass];
-        [self.skillTableViewController.tableView reloadData];
         return true;
     }
     else {

@@ -15,6 +15,7 @@
 #import "MainContextObject.h"
 #import "CharacterConditionAttributes.h"
 #import "DefaultSkillTemplates.h"
+#import "ColorConstants.h"
 
 @interface StatView()
 
@@ -42,6 +43,15 @@
     if (self) {
         NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"StatView" owner:nil options:nil];
         self = [views firstObject];
+        for (UIView *view in self.headerContainerViewsArray) {
+            view.backgroundColor = darkBodyColor;
+        }
+        for (UIView *view in self.lightContainerViewsArray) {
+            view.backgroundColor = lightBodyColor;
+        }
+        for (UIView *view in self.bodyContainerViewsArray) {
+            view.backgroundColor = bodyColor;
+        }
         // Initialization code
     }
     return self;
@@ -137,12 +147,12 @@
 
 -(void)setViewFromSkillSet
 {
-    self.strTextField.text = [NSString stringWithFormat:@"%d",self.strSkill.thisLvl];
-    self.toTextField.text = [NSString stringWithFormat:@"%d",self.toSkill.thisLvl];
-    self.agTextField.text = [NSString stringWithFormat:@"%d",self.agSkill.thisLvl];
-    self.wpTextField.text = [NSString stringWithFormat:@"%d",self.wpSkill.thisLvl];
-    self.intlTextField.text = [NSString stringWithFormat:@"%d",self.intlSkill.thisLvl];
-    self.chaTextField.text = [NSString stringWithFormat:@"%d",self.chaSkill.thisLvl];
+//    self.strTextField.text = [NSString stringWithFormat:@"%d",self.strSkill.thisLvl + self.physiqueSkill.thisLvl];
+//    self.toTextField.text = [NSString stringWithFormat:@"%d",self.toSkill.thisLvl + self.physiqueSkill.thisLvl];
+//    self.agTextField.text = [NSString stringWithFormat:@"%d",self.agSkill.thisLvl + self.physiqueSkill.thisLvl];
+//    self.wpTextField.text = [NSString stringWithFormat:@"%d",self.wpSkill.thisLvl + self.mentalitySkill.thisLvl];
+//    self.intlTextField.text = [NSString stringWithFormat:@"%d",self.intlSkill.thisLvl + self.mentalitySkill.thisLvl];
+//    self.chaTextField.text = [NSString stringWithFormat:@"%d",self.chaSkill.thisLvl + self.mentalitySkill.thisLvl];
     
     self.bonusBulkTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.bulk];
     self.bonusAMeleeTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.modifierAMelee];
@@ -158,6 +168,13 @@
 {
     //TODO adrenalin and stress points influence
     
+    self.strTextField.text = [NSString stringWithFormat:@"%d",self.strSkill.thisLvl + self.physiqueSkill.thisLvl];
+    self.toTextField.text = [NSString stringWithFormat:@"%d",self.toSkill.thisLvl + self.physiqueSkill.thisLvl];
+    self.agTextField.text = [NSString stringWithFormat:@"%d",self.agSkill.thisLvl + self.physiqueSkill.thisLvl];
+    self.wpTextField.text = [NSString stringWithFormat:@"%d",self.wpSkill.thisLvl + self.mentalitySkill.thisLvl];
+    self.intlTextField.text = [NSString stringWithFormat:@"%d",self.intlSkill.thisLvl + self.mentalitySkill.thisLvl];
+    self.chaTextField.text = [NSString stringWithFormat:@"%d",self.chaSkill.thisLvl + self.mentalitySkill.thisLvl];
+
     self.physiqueTextField.text = [NSString stringWithFormat:@"%d",self.physiqueSkill.thisLvl];
     self.mentalityTextField.text = [NSString stringWithFormat:@"%d",self.mentalitySkill.thisLvl];
     
