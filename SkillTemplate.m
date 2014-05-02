@@ -21,9 +21,9 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 @dynamic skillEnumType;
 @dynamic skillDescription;
 @dynamic skillStartingLvl;
-@dynamic thisBasicBarrier;
-@dynamic thisSkillProgression;
-@dynamic basicSkillGrowthGoes;
+@dynamic levelBasicBarrier;
+@dynamic levelProgression;
+@dynamic levelGrowthGoesToBasicSkill;
 @dynamic skillsFromThisTemplate;
 @dynamic basicSkillTemplate;
 @dynamic subSkillsTemplate;
@@ -53,8 +53,8 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
         
         skillTemplate.name = name;
         skillTemplate.skillDescription = skillDescription;
-        skillTemplate.thisBasicBarrier = basicXpBarrier;
-        skillTemplate.thisSkillProgression = skillProgression;
+        skillTemplate.levelBasicBarrier = basicXpBarrier;
+        skillTemplate.levelProgression = skillProgression;
         skillTemplate.skillEnumType = skillClassType;
         skillTemplate.skillStartingLvl = startingLvl;
         
@@ -66,7 +66,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
         if (basicSkillTemplate)
         {
             skillTemplate.basicSkillTemplate = basicSkillTemplate;
-            skillTemplate.basicSkillGrowthGoes = basicSkillGrowthGoes;
+            skillTemplate.levelGrowthGoesToBasicSkill = basicSkillGrowthGoes;
         }
     
         NSLog(@"Created new template with name: %@",name);

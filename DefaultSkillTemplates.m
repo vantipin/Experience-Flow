@@ -62,22 +62,22 @@
 #define knaveryName @"Knavery"
 #define hackDeviceName @"Hack Device"
 
-static float defaultPhsAndMnsProgression = 7;
-static float defaultPhsAndMnsBasicBarrier = 11.5;
+static float defaultPhsAndMnsProgression = 16;
+static float defaultPhsAndMnsBasicBarrier = 22;
 static float defaultPhsAndMnsGrowhtGoes = 0.3;
 
-static float defaultAdvGrowhtGoesHight = 0.65;
-static float defaultAdvGrowhtGoesLow = 0.35;
-static float defaultAdvBasicBarrierHight = 4;
-static float defaultAdvBasicBarrierLow = 2.5;
-static float defaultAdvProgression = 4;
+static float defaultAdvGrowhtGoesHight = 0.7;
+static float defaultAdvGrowhtGoesLow = 0.4;
+static float defaultAdvBasicBarrierHight = 14;
+static float defaultAdvBasicBarrierLow = 7;
+static float defaultAdvProgression = 7;
 
-static float defaultMeleeWeaponProgression = 4;
-static float defaultMeleeWeaponBasicBarrier = 5.5;
+static float defaultMeleeWeaponProgression = 9;
+static float defaultMeleeWeaponBasicBarrier = 12;
 static float defaultMeleeWeaponGrowhtGoes = 0.7;
 
-static float defaultRangeWeaponProgression = 4;
-static float defaultRangeWeaponBasicBarrier = 5.5;
+static float defaultRangeWeaponProgression = 7;
+static float defaultRangeWeaponBasicBarrier = 10;
 static float defaultRangeWeaponGrowhtGoes = 0.7;
 
 static int defaultEncumbrancePenalties = 20;
@@ -116,7 +116,13 @@ static DefaultSkillTemplates *instance = nil;
 {
     NSArray *allDefaultSkills;
     
-    allDefaultSkills = @[self.unarmed,
+    allDefaultSkills = @[self.physique,
+                         self.mentality,
+                         
+                         self.weaponSkill,
+                         self.ballisticSkill,
+                         
+                         self.unarmed,
                          self.ordinary,
                          self.flail,
                          self.greatWeapon,
@@ -206,60 +212,6 @@ static DefaultSkillTemplates *instance = nil;
 #pragma mark -
 #pragma mark basic skills
 
-//weaponSkill
--(SkillTemplate *)weaponSkill{
-    if (!_weaponSkill){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",weaponSkillName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:weaponSkillName
-                                                        withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of a variety of melee weapons. Weapon skill is a broad category and governs fighting unarmed to using small weapons like knives or clubs to larger weapons like two-handed swords, great axes or halberds. The ability to parry with an equipped melee weapon is also based on a character’s Weapon Skill."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:1
-                                                   withSkillProgression:12
-                                               withBasicSkillGrowthGoes:0
-                                                          withSkillType:BasicSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:nil
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        
-        _weaponSkill = skillTemplate;
-        
-    }
-    return _weaponSkill;
-}
-
-//ballisticSkill
--(SkillTemplate *)ballisticSkill{
-    if (!_ballisticSkill){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",ballisticSkillName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ballisticSkillName
-                                                        withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of ranged weapons. This includes thrown weapons like balanced knives and javelins, as well as bows, crossbows, and slings. Also covers the basics of blackpowder weapon care and operation. It is a combination of hand-eye coordination, accuracy, and training with ranged items."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:1
-                                                   withSkillProgression:9.5
-                                               withBasicSkillGrowthGoes:0
-                                                          withSkillType:BasicSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:nil
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        
-        _ballisticSkill = skillTemplate;
-        
-    }
-    return _ballisticSkill;
-}
-
 //physique
 -(SkillTemplate *)physique{
     if (!_physique){
@@ -270,7 +222,7 @@ static DefaultSkillTemplates *instance = nil;
                                                         withDescription:@"Physique. Basic skill. Defines a character’s strenght, toughness and agility."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:1
-                                                   withSkillProgression:15
+                                                   withSkillProgression:18
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:BasicSkillType
                                                  withDefaultStartingLvl:1
@@ -297,7 +249,7 @@ static DefaultSkillTemplates *instance = nil;
                                                         withDescription:@"Mentality. Basic skill. Defines a character’s intelligence, willpower and sociability."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:1
-                                                   withSkillProgression:15
+                                                   withSkillProgression:18
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:BasicSkillType
                                                  withDefaultStartingLvl:1
@@ -314,6 +266,59 @@ static DefaultSkillTemplates *instance = nil;
     return _mentality;
 }
 
+//weaponSkill
+-(SkillTemplate *)weaponSkill{
+    if (!_weaponSkill){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",weaponSkillName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:weaponSkillName
+                                                        withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of a variety of melee weapons. Weapon skill is a broad category and governs fighting unarmed to using small weapons like knives or clubs to larger weapons like two-handed swords, great axes or halberds. The ability to parry with an equipped melee weapon is also based on a character’s Weapon Skill."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:8
+                                                   withSkillProgression:16
+                                               withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
+                                                          withSkillType:BasicSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.physique
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        
+        _weaponSkill = skillTemplate;
+        
+    }
+    return _weaponSkill;
+}
+
+//ballisticSkill
+-(SkillTemplate *)ballisticSkill{
+    if (!_ballisticSkill){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",ballisticSkillName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ballisticSkillName
+                                                        withDescription:@"Weapon skill. Basic skill. Covers the basic use, care and maintenance of ranged weapons. This includes thrown weapons like balanced knives and javelins, as well as bows, crossbows, and slings. Also covers the basics of blackpowder weapon care and operation. It is a combination of hand-eye coordination, accuracy, and training with ranged items."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:8
+                                                   withSkillProgression:16
+                                               withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
+                                                          withSkillType:BasicSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.physique
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        
+        _ballisticSkill = skillTemplate;
+        
+    }
+    return _ballisticSkill;
+}
 
 #pragma mark -
 #pragma mark advanced skills
@@ -556,7 +561,7 @@ static DefaultSkillTemplates *instance = nil;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",stealthName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:stealthName
-                                                        withDescription:[NSString stringWithFormat:@"Advanced skill. The ability to keep from being seen or heard, this skill combines hiding with being quiet. Specialisation options: Silent movement: rural, silent movement: wilderness, hide, ambush.\n\nRules:\n- For every %d points of encumbrance (counting equipment you are wearing) your stealth level decreased by 1. \n- If you trying to  sneak up someone from behind by default you'll need to pass test depending on surroundings*. If you fail opponent can make perseption check to notice you. \n- If you trying to sneak past your opponent crossing his sight of vision you need to pass test* against opponent perseption. \n\nThis skill gives you following advantages: \nLevel 1 - You know how to remain quiet for a long time, something many others will lack, even if their lives depends on it. While standing still you can be noticed only if you aren't fully hidden from the sight of opponent passes perception check against you stealth. With level you gain understanding how move very quiet and pick up a matirials to make clothes to make as little sound as possible. \n\n*Here examples of surroundings and their stats:\nLevel 1. d6 test. Normal surface/Dark room. \nLevel 2. d10 test. Noisy surface(scree, shallow or deep bog, undergrowth, dense rubble)/Poorly-lit room. \nLevel 3. d20 test. Very noisy(dense undergrowth, deep snow)/Well-lit room",defaultEncumbrancePenalties]
+                                                        withDescription:[NSString stringWithFormat:@"Advanced skill. The ability to keep from being seen or heard, this skill combines hiding with being quiet. With level you gain understanding how move very quiet and pick up a matirials to make clothes to make as little sound as possible. Specialisation options: Silent movement: rural, silent movement: wilderness, hide, ambush.\n\nRules:\n- For every %d points of encumbrance (counting equipment you are wearing) your stealth level decreased by 1. \n- If you trying to  sneak up someone from behind by default you'll need to pass test depending on surroundings*. If you fail opponent can make perseption check to notice you. \n- If you trying to sneak past your opponent crossing his sight of vision you need to pass test* against opponent perseption. \n\nThis skill gives you following advantages: \nLevel 1 - You know how to remain quiet for a long time, something many others will lack, even if their lives depends on it. While standing still you can be noticed only if you aren't fully hidden from the sight of opponent passes perception check against you stealth. \n\n*Here examples of surroundings and their stats:\nLevel 1. d6 test. Normal surface/Dark room. \nLevel 2. d10 test. Noisy surface(scree, shallow or deep bog, undergrowth, dense rubble)/Poorly-lit room. \nLevel 3. d20 test. Very noisy(dense undergrowth, deep snow)/Well-lit room",defaultEncumbrancePenalties]
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultAdvBasicBarrierLow
                                                    withSkillProgression:defaultAdvProgression

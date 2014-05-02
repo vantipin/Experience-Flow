@@ -33,6 +33,9 @@
 		DF4F937218DDBF6100C6ED26 /* RangeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937118DDBF6100C6ED26 /* RangeSkill.m */; };
 		DF4F937518DDBF6100C6ED26 /* MagicSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937418DDBF6100C6ED26 /* MagicSkill.m */; };
 		DF4F937818DDBF6100C6ED26 /* PietySkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937718DDBF6100C6ED26 /* PietySkill.m */; };
+		DF6A7ADA190EDB0D0079E71D /* CharacterDollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6A7AD9190EDB0D0079E71D /* CharacterDollViewController.m */; };
+		DF6A7ADC190EE1270079E71D /* DollStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF6A7ADB190EE1270079E71D /* DollStoryboard.storyboard */; };
+		DF6A7AF2191157390079E71D /* DollActiveSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6A7AF1191157390079E71D /* DollActiveSegment.m */; };
 		DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6E927B18D33F18000967F5 /* SkillViewCell.xib */; };
 		DF6E927F18D43076000967F5 /* CustomXpRaisingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */; };
 		DF6E928E18D43946000967F5 /* lowerXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928A18D43946000967F5 /* lowerXp.png */; };
@@ -41,6 +44,7 @@
 		DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928D18D43946000967F5 /* raiseXp@2x.png */; };
 		DF6E929418D4399B000967F5 /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E929218D4399B000967F5 /* noImage.png */; };
 		DF6E929518D4399B000967F5 /* noImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E929318D4399B000967F5 /* noImage@2x.png */; };
+		DF719B751909081A005A8A4F /* WeaponChoiceDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF719B741909081A005A8A4F /* WeaponChoiceDropViewController.m */; };
 		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
 		DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED101186309B40039D17B /* CoreGraphics.framework */; };
 		DFAED104186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
@@ -127,6 +131,11 @@
 		DF4F937418DDBF6100C6ED26 /* MagicSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicSkill.m; sourceTree = "<group>"; };
 		DF4F937618DDBF6100C6ED26 /* PietySkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PietySkill.h; sourceTree = "<group>"; };
 		DF4F937718DDBF6100C6ED26 /* PietySkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PietySkill.m; sourceTree = "<group>"; };
+		DF6A7AD8190EDB0D0079E71D /* CharacterDollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDollViewController.h; sourceTree = "<group>"; };
+		DF6A7AD9190EDB0D0079E71D /* CharacterDollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterDollViewController.m; sourceTree = "<group>"; };
+		DF6A7ADB190EE1270079E71D /* DollStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DollStoryboard.storyboard; sourceTree = "<group>"; };
+		DF6A7AF0191157390079E71D /* DollActiveSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DollActiveSegment.h; sourceTree = "<group>"; };
+		DF6A7AF1191157390079E71D /* DollActiveSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DollActiveSegment.m; sourceTree = "<group>"; };
 		DF6E927B18D33F18000967F5 /* SkillViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SkillViewCell.xib; path = Views/SkillViewCell.xib; sourceTree = "<group>"; };
 		DF6E927D18D43076000967F5 /* CustomXpRaisingBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomXpRaisingBtnView.h; sourceTree = "<group>"; };
 		DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomXpRaisingBtnView.m; sourceTree = "<group>"; };
@@ -136,6 +145,8 @@
 		DF6E928D18D43946000967F5 /* raiseXp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "raiseXp@2x.png"; path = "Images/raiseXp@2x.png"; sourceTree = SOURCE_ROOT; };
 		DF6E929218D4399B000967F5 /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noImage.png; path = Images/noImage.png; sourceTree = SOURCE_ROOT; };
 		DF6E929318D4399B000967F5 /* noImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noImage@2x.png"; path = "Images/noImage@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF719B731909081A005A8A4F /* WeaponChoiceDropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeaponChoiceDropViewController.h; sourceTree = "<group>"; };
+		DF719B741909081A005A8A4F /* WeaponChoiceDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeaponChoiceDropViewController.m; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Xp Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xp Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -237,6 +248,8 @@
 				DFB07C06187F0AEE00FF0EF7 /* ClassesDropViewController.m */,
 				DF30A02719000C370018CE28 /* AddSkillDropViewController.h */,
 				DF30A02819000C370018CE28 /* AddSkillDropViewController.m */,
+				DF719B731909081A005A8A4F /* WeaponChoiceDropViewController.h */,
+				DF719B741909081A005A8A4F /* WeaponChoiceDropViewController.m */,
 			);
 			name = DropDownControllers;
 			sourceTree = "<group>";
@@ -292,6 +305,18 @@
 			name = Items;
 			sourceTree = "<group>";
 		};
+		DF6A7AEF191156D40079E71D /* DollClasses */ = {
+			isa = PBXGroup;
+			children = (
+				DF6A7AD8190EDB0D0079E71D /* CharacterDollViewController.h */,
+				DF6A7AD9190EDB0D0079E71D /* CharacterDollViewController.m */,
+				DF6A7ADB190EE1270079E71D /* DollStoryboard.storyboard */,
+				DF6A7AF0191157390079E71D /* DollActiveSegment.h */,
+				DF6A7AF1191157390079E71D /* DollActiveSegment.m */,
+			);
+			name = DollClasses;
+			sourceTree = "<group>";
+		};
 		DFAED0F3186309B40039D17B = {
 			isa = PBXGroup;
 			children = (
@@ -326,7 +351,10 @@
 		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
 			isa = PBXGroup;
 			children = (
-				DFC886A318A2C74A00955B04 /* SubControllers */,
+				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
+				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
+				DF6A7AEF191156D40079E71D /* DollClasses */,
+				DF30A02A19000CE70018CE28 /* DropDownControllers */,
 				DF24B1251871ECA400B57855 /* View classes */,
 				DF24B1291874B75900B57855 /* ColorConstants.h */,
 				DFAED10E186309B40039D17B /* AppDelegate.h */,
@@ -424,16 +452,6 @@
 			name = Resourses;
 			sourceTree = "<group>";
 		};
-		DFC886A318A2C74A00955B04 /* SubControllers */ = {
-			isa = PBXGroup;
-			children = (
-				DF30A02A19000CE70018CE28 /* DropDownControllers */,
-				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
-				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
-			);
-			name = SubControllers;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -516,6 +534,7 @@
 				DF6E928F18D43946000967F5 /* lowerXp@2x.png in Resources */,
 				DF6E929418D4399B000967F5 /* noImage.png in Resources */,
 				DF6E929018D43946000967F5 /* raiseXp.png in Resources */,
+				DF6A7ADC190EE1270079E71D /* DollStoryboard.storyboard in Resources */,
 				DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
@@ -556,11 +575,13 @@
 				DFB07C1F18815C9C00FF0EF7 /* WeaponRanged.m in Sources */,
 				DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */,
 				DF4F937518DDBF6100C6ED26 /* MagicSkill.m in Sources */,
+				DF6A7AF2191157390079E71D /* DollActiveSegment.m in Sources */,
 				DF24B1341877377900B57855 /* StatView.m in Sources */,
 				DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */,
 				DFC88CAC186B0EA6007E4D90 /* SkillManager.m in Sources */,
 				DF6E927F18D43076000967F5 /* CustomXpRaisingBtnView.m in Sources */,
 				DFAED116186309B40039D17B /* PlayerListViewController.m in Sources */,
+				DF719B751909081A005A8A4F /* WeaponChoiceDropViewController.m in Sources */,
 				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
 				DF49368F18E569D30058129E /* BasicSkill.m in Sources */,
 				DFAED13D1863329B0039D17B /* AppSettings.m in Sources */,
@@ -568,6 +589,7 @@
 				DFAED10C186309B40039D17B /* main.m in Sources */,
 				DF4F937218DDBF6100C6ED26 /* RangeSkill.m in Sources */,
 				DF309A3918F5BECB0018CE28 /* CharacterConditionAttributes.m in Sources */,
+				DF6A7ADA190EDB0D0079E71D /* CharacterDollViewController.m in Sources */,
 				DF30A00A18F714BD0018CE28 /* DefaultSkillTemplates.m in Sources */,
 				DF309A2A18F537680018CE28 /* AdvancedSkill.m in Sources */,
 				DFAED140186333000039D17B /* MainContextObject.m in Sources */,

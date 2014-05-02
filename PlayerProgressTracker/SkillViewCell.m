@@ -82,10 +82,11 @@
 {
     NSString *skillTitle = self.skill.basicSkill ? [NSString stringWithFormat:@"%@(%@)",self.skill.skillTemplate.name,self.skill.basicSkill.skillTemplate.name] : self.skill.skillTemplate.name;
     [self.skillNameButton setTitle:skillTitle forState:UIControlStateNormal];
-    self.unusableSkillLvlLabel.text = [NSString stringWithFormat:@"%i",self.skill.thisLvl];
+    self.unusableSkillLvlLabel.text = [NSString stringWithFormat:@"%i",self.skill.currentLevel];
     self.usableSkillLvlTextField.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill]];
-    self.maxXpLabel.text = [NSString stringWithFormat:@"%.0f",self.skill.thisLvl * self.skill.skillTemplate.thisSkillProgression + self.skill.skillTemplate.thisBasicBarrier];
-    self.currentXpLabel.text = (fmod(self.skill.thisLvlCurrentProgress, 1.0) > 0) ? [NSString stringWithFormat:@"%.1f",self.skill.thisLvlCurrentProgress] : [NSString stringWithFormat:@"%.0f",self.skill.thisLvlCurrentProgress];
+    float thisLevel = self.skill.currentLevel * self.skill.skillTemplate.levelProgression + self.skill.skillTemplate.levelBasicBarrier;
+    self.maxXpLabel.text = (fmod(thisLevel, 1.0) > 0) ? [NSString stringWithFormat:@"%.1f",thisLevel] : [NSString stringWithFormat:@"%.0f",thisLevel];
+    self.currentXpLabel.text = (fmod(self.skill.currentProgress, 1.0) > 0) ? [NSString stringWithFormat:@"%.1f",self.skill.currentProgress] : [NSString stringWithFormat:@"%.0f",self.skill.currentProgress];
 }
 
 -(IBAction)skillNameTaped:(id)sender

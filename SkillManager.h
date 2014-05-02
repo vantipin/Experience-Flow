@@ -27,11 +27,18 @@
 -(void)deletedSkill:(Skill *)skill fromSkillSet:(SkillSet *)skillSet; //call right before deleting
 @end
 
-@interface SkillManager : NSObject
 
-@property (nonatomic,assign) id<SkillChangeProtocol> delegateSkillChange;
+
+
+
+@interface SkillManager : NSObject <SkillChangeProtocol>
+
+//@property (nonatomic,assign) id<SkillChangeProtocol> delegateSkillChange;
 
 + (SkillManager *)sharedInstance;
+
+-(void)subscribeForSkillsChangeNotifications:(id<SkillChangeProtocol>)objectToSubscribe;
+-(void)unsubscribeForSkillChangeNotifications:(id<SkillChangeProtocol>)objectToUnsubscribe;
 
 -(int)countHpWithCharacter:(Character *)character;
 
@@ -64,15 +71,12 @@
 /**
  Add expirience points to recieve needed level. Warning! Will reset all child skills.
  */
-//-(void)setSolidLvls:(int)levels
-//            toSkill:(Skill *)skill
-//        withContext:(NSManagedObjectContext *)context;
+-(void)setLevelOfSkill:(Skill *)skill
+               toLevel:(float)level;
 -(void)addXpPoints:(float)xpPoints
-           toSkill:(Skill *)skill
-       withContext:(NSManagedObjectContext *)context;
+           toSkill:(Skill *)skill;
 -(void)removeXpPoints:(float)xpPoints
-              toSkill:(Skill *)skill
-          withContext:(NSManagedObjectContext *)context;
+              toSkill:(Skill *)skill;
 
 
 //FETCH
@@ -80,6 +84,7 @@
 -(id)getSkillWithTemplate:(SkillTemplate *)skillTemplate withCharacter:(Character *)character;
 -(id)getSkillWithTemplate:(SkillTemplate *)skillTemplate withSkillSet:(SkillSet *)skillSet;
 -(NSArray *)fetchAllNoneBasicSkillsForSkillSet:(SkillSet *)skillSet;
+-(NSArray *)fetchAllSkillsForSkillSet:(SkillSet *)skillSet;
 
 
 /**

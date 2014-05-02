@@ -265,7 +265,7 @@ static const float maxEdgeOffset = 0.96;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedCell = indexPath;
-	[self.delegateDropDown dropDownController:self cellSelected:indexPath.row];
+	[self.delegateDropDown dropDownController:self cellSelected:indexPath];
 	[self closeAnimation];
 }
 

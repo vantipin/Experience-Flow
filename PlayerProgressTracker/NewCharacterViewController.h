@@ -14,8 +14,10 @@
 #import "StatView.h"
 #import "SkillTableViewController.h"
 #import "AddSkillDropViewController.h"
+#import "CharacterDollViewController.h"
 
-@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,SkillTableViewControllerDelegate,AddNewSkillControllerProtocol>
+
+@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,SkillTableViewControllerDelegate,AddNewSkillControllerProtocol, CharacterDollViewControllerProtocol>
 
 @property (nonatomic) IBOutlet UIButton *raceBtn;
 @property (nonatomic) IBOutlet UILabel  *raceLabel;

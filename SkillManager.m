@@ -27,8 +27,8 @@ static SkillManager *instance = nil;
 
 @interface SkillManager()
 @property (nonatomic) NSManagedObjectContext *context;
-@property (nonatomic) int currentOverallLevelValueForASkill;
 @property (nonatomic) UIView *activeTipView;
+@property (nonatomic) NSMutableArray *subscribersForSkillsChangeNotifications;
 @end
 
 
@@ -48,6 +48,15 @@ static SkillManager *instance = nil;
     return instance;
 }
 
+-(NSMutableArray *)subscribersForSkillsChangeNotifications
+{
+    if (!_subscribersForSkillsChangeNotifications) {
+        _subscribersForSkillsChangeNotifications = [NSMutableArray new];
+    }
+    
+    return _subscribersForSkillsChangeNotifications;
+}
+
 -(NSManagedObjectContext *)context
 {
     if (!_context) {
@@ -57,6 +66,68 @@ static SkillManager *instance = nil;
 }
 
 #pragma mark -
+#pragma mark subscribe methods
+-(void)subscribeForSkillsChangeNotifications:(id<SkillChangeProtocol>)objectToSubscribe
+{
+    if (![self.subscribersForSkillsChangeNotifications containsObject:objectToSubscribe]) {
+        [self.subscribersForSkillsChangeNotifications addObject:objectToSubscribe];
+    }
+}
+
+-(void)unsubscribeForSkillChangeNotifications:(id<SkillChangeProtocol>)objectToUnsubscribe {
+    if ([self.subscribersForSkillsChangeNotifications containsObject:objectToUnsubscribe]) {
+        [self.subscribersForSkillsChangeNotifications removeObject:objectToUnsubscribe];
+    }
+}
+
+-(void)didChangeSkillLevel:(Skill *)skill
+{
+    for (id object in self.subscribersForSkillsChangeNotifications) {
+        if ([object respondsToSelector:@selector(didChangeSkillLevel:)]) {
+            [object didChangeSkillLevel:skill];
+        }
+    }
+}
+
+-(void)didChangeExperiencePointsForSkill:(Skill *)skill
+{
+    for (id object in self.subscribersForSkillsChangeNotifications) {
+        if ([object respondsToSelector:@selector(didChangeExperiencePointsForSkill:)]) {
+            [object didChangeExperiencePointsForSkill:skill];
+        }
+    }
+}
+
+-(void)didFinishChangingExperiencePointsForSkill:(Skill *)skill
+{
+    for (id object in self.subscribersForSkillsChangeNotifications) {
+        if ([object respondsToSelector:@selector(didFinishChangingExperiencePointsForSkill:)]) {
+            [object didFinishChangingExperiencePointsForSkill:skill];
+        }
+    }
+}
+
+-(void)addedSkill:(Skill *)skill toSkillSet:(SkillSet *)skillSet
+{
+    for (id object in self.subscribersForSkillsChangeNotifications) {
+        if ([object respondsToSelector:@selector(addedSkill:toSkillSet:)]) {
+            [object addedSkill:skill toSkillSet:skillSet];
+        }
+    }
+}
+
+-(void)deletedSkill:(Skill *)skill fromSkillSet:(SkillSet *)skillSet
+{
+    for (id object in self.subscribersForSkillsChangeNotifications) {
+        if ([object respondsToSelector:@selector(deletedSkill:fromSkillSet:)]) {
+            [object deletedSkill:skill fromSkillSet:skillSet];
+        }
+    }
+}
+
+#pragma mark -
+
+#pragma mark game mechanics interpretation methods
 
 -(int)hitpointsForSkillWithTemplate:(SkillTemplate *)skillTemplate withSkillLevel:(int)skillLevel
 {
@@ -98,7 +169,7 @@ static SkillManager *instance = nil;
         {
             Skill *skill = [self getOrAddSkillWithTemplate:template withCharacter:character];
             
-            Hp += [self hitpointsForSkillWithTemplate:template withSkillLevel:skill.thisLvl];
+            Hp += [self hitpointsForSkillWithTemplate:template withSkillLevel:skill.currentLevel];
         }
     }
     
@@ -114,7 +185,7 @@ static SkillManager *instance = nil;
         int tempWs = 0;
         int tempWsCount = 0;
         for (Skill *skill in skillsArray) {
-            int skillLvl = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);
+            int skillLvl = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
             if (skillLvl > 3) {
                 tempWs += skillLvl - 3;
                 tempWsCount ++;
@@ -132,7 +203,7 @@ static SkillManager *instance = nil;
     int bonus = 0;
     
     if (skill) {
-        int skillLvl = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);
+        int skillLvl = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
         if (skillLvl > 3) {
             int temp = skillLvl- 3;
             bonus = temp / 3;
@@ -151,12 +222,13 @@ static SkillManager *instance = nil;
         int wsPenalty = 0;
         int wsPenaltiesCount = 0;
         for (Skill *skill in skillsArray) {
-            int skillLvl = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);
+            
+            int skillLvl = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
             ws += skillLvl;
-            if (skillLvl > 3) {
+            if (skillLvl > 4) {
                 int tempSkill = skillLvl;
-                if (tempSkill % 2) {
-                    tempSkill --; //odd
+                if (!(tempSkill % 2)) {
+                    tempSkill --; //even
                 }
                 wsPenalty += tempSkill / 3;
                 wsPenaltiesCount ++;
@@ -172,7 +244,7 @@ static SkillManager *instance = nil;
 
 -(int)countBSforRangeSkill:(RangeSkill *)skill
 {
-    int bs = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);;
+    int bs = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
     
     if (skill) {
         if (bs > 3) {
@@ -192,7 +264,7 @@ static SkillManager *instance = nil;
     int bonus = 0;
     
     if (skill) {
-        int skillLvl = skill.thisLvl + (skill.basicSkill ? skill.basicSkill.thisLvl : 0);
+        int skillLvl = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
         if (skillLvl > 3) {
             int temp = skillLvl - 3;
             bonus = temp / 2;
@@ -202,22 +274,13 @@ static SkillManager *instance = nil;
     return bonus;
 }
 
-
--(int)countUsableLevelValueForSkill:(Skill *)skill;
+-(int)countUsableLevelValueForSkill:(Skill *)skill
 {
-    self.currentOverallLevelValueForASkill = 0;
-    [self encreaseCurrentOverallSkillValueForSkill:skill];
-    return self.currentOverallLevelValueForASkill;
+    int overAllLevel = skill.currentLevel + (skill.basicSkill ? [self countUsableLevelValueForSkill:skill.basicSkill] : 0);
+    return overAllLevel;
 }
 
--(void)encreaseCurrentOverallSkillValueForSkill:(Skill *)skill
-{
-    self.currentOverallLevelValueForASkill += skill.thisLvl;
-    if (skill.basicSkill) {
-        [self encreaseCurrentOverallSkillValueForSkill:skill.basicSkill];
-    }
-}
-
+#pragma mark smart adding/removing methods
 -(Skill *)addNewSkillWithTempate:(SkillTemplate *)skillTemplate
                       toSkillSet:(SkillSet *)skillSet
                      withContext:(NSManagedObjectContext *)context;
@@ -246,7 +309,8 @@ static SkillManager *instance = nil;
             [basicSkill addSubSkillsObject:skill];
         }
         
-        [self.delegateSkillChange addedSkill:skill toSkillSet:skillSet];
+        //[self.delegateSkillChange addedSkill:skill toSkillSet:skillSet];
+        [self addedSkill:skill toSkillSet:skillSet];
         
         [CoreDataClass saveContext:context];
         
@@ -275,7 +339,8 @@ static SkillManager *instance = nil;
             }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
             [skillSet removeSkillsObject:skill];
-            [self.delegateSkillChange deletedSkill:skill fromSkillSet:skillSet];
+            //[self.delegateSkillChange deletedSkill:skill fromSkillSet:skillSet];
+            [self deletedSkill:skill fromSkillSet:skillSet];
             
             [context deleteObject:skill];
             [CoreDataClass saveContext:context];
@@ -310,8 +375,8 @@ static SkillManager *instance = nil;
         
         for (Skill *skill in skillSetToClone.skills) {
             Skill *clonedSkill = [self addNewSkillWithTempate:skill.skillTemplate toSkillSet:skillSet withContext:self.context];
-            clonedSkill.thisLvl = skill.thisLvl;
-            clonedSkill.thisLvlCurrentProgress = skill.thisLvlCurrentProgress;
+            clonedSkill.currentLevel = skill.currentLevel;
+            clonedSkill.currentProgress = skill.currentProgress;
         }
     }
     
@@ -320,153 +385,299 @@ static SkillManager *instance = nil;
 
 #pragma mark -
 #pragma mark skill raising methods
-//-(void)setSolidLvls:(int)levels
-//            toSkill:(Skill *)skill
-//        withContext:(NSManagedObjectContext *)context;
-//{
-//    for (Skill *subSkill in skill.subSkills) {
-//        [self nullifyProgressOfSubskillsWithSkill:subSkill];
-//    }
-//    
-//    float xpPointsNeeded = 0;
-//    for (int level = 0; level < skill.thisLvl; level ++) {
-//        float xpPointsForThisLevel = skill.skillTemplate.thisBasicBarrier + level * skill.skillTemplate.thisSkillProgression;
-//        if (skill.skillTemplate.basicSkillGrowthGoes != 0) {
-//            xpPointsForThisLevel = xpPointsForThisLevel / skill.skillTemplate.basicSkillGrowthGoes;
-//        }
-//        
-//        xpPointsNeeded += xpPointsForThisLevel;
-//    }
-//    [self removeXpPoints:xpPointsNeeded toSkill:skill withContext:context];
-//    
-//    // TODO the difficlt part how set the chain of skills to one value?
-//    [self encreaseValueOfSkill:skill to:levels withContext:context];
-//
-//}
-//
-//
-//-(void)encreaseValueOfSkill:(Skill *)skill to:(int)level withContext:(NSManagedObjectContext *)context {
-//    
-//    int currentLevels = [self countUsableLevelValueForSkill:skill];
-//    
-//    while (currentLevels < level) {
-//        [self addXpPoints:1 toSkill:skill withContext:context];
-//        currentLevels = [self countUsableLevelValueForSkill:skill];
-//    }
-//}
-//
-//-(void)nullifyProgressOfSubskillsWithSkill:(Skill *)skill
-//{
-//    if (skill.thisLvl != 0 || skill.thisLvlCurrentProgress != 0) {
-//        skill.thisLvlCurrentProgress = 0;
-//        skill.thisLvl = 0;
-//        
-//        for (Skill *subSkill in skill.subSkills) {
-//            [self nullifyProgressOfSubskillsWithSkill:subSkill];
-//        }
-//    }
-//}
+
+-(void)setLevelOfSkill:(Skill *)skill toLevel:(float)level;
+{
+    if (skill.basicSkill) {
+        //phase 1
+        //get statistic
+        NSMutableArray *skillsToWorkWith = [NSMutableArray new];
+        NSMutableArray *requiredLevels = [NSMutableArray new];
+        Skill *parentSkill = skill.basicSkill;
+        
+        for (Skill* subSkill in parentSkill.subSkills) {
+            BOOL isValidTriggerSkill = subSkill == skill && level != 0;
+            BOOL skillNotNil = subSkill.currentLevel || subSkill.currentProgress;
+            if (isValidTriggerSkill || skillNotNil) {
+                [skillsToWorkWith addObject:subSkill];
+                
+                float levelRequired = (skill == subSkill) ? level : subSkill.currentLevel + parentSkill.currentLevel;
+                [requiredLevels addObject:@(levelRequired)];
+            }
+        }
+        
+        //count xp for the big one to weed off unable req
+        for (int basicSkillLevel = 1; basicSkillLevel < 10; basicSkillLevel++) {
+            
+            float xpPointsForBasicSkill = 0;
+            NSMutableArray *xpPointsForEachSkill = [NSMutableArray new];
+            
+            NSMutableArray *xpForLevelsOfEachSkill = [NSMutableArray new];
+            float summOfLevelsXp = 0;
+            
+            //phase 1 (common)
+            for (int index = 0; index < skillsToWorkWith.count; index++) {
+                Skill *subSkill = skillsToWorkWith[index];
+                float subSkillLevel = [requiredLevels[index] floatValue] - basicSkillLevel;
+                //subSkillLevel = subSkillLevel < 0 ? 0 : subSkillLevel;
+                
+                float xpPointsForSkill = subSkill.skillTemplate.levelBasicBarrier * subSkillLevel + subSkill.skillTemplate.levelProgression / 2 *subSkillLevel * (subSkillLevel - 1);
+
+                
+                //counted for phase 2
+                float xpForLevelForThisSkill = subSkill.skillTemplate.levelBasicBarrier + subSkillLevel * subSkill.skillTemplate.levelProgression;
+                [xpForLevelsOfEachSkill addObject:@(xpForLevelForThisSkill)];
+                summOfLevelsXp += xpForLevelForThisSkill;
+                //
+                
+                xpPointsForBasicSkill += subSkill.skillTemplate.levelGrowthGoesToBasicSkill * xpPointsForSkill;
+                
+                //round it?
+                xpPointsForSkill = [[NSString stringWithFormat:@"%0.3f",xpPointsForSkill] floatValue];
+                [xpPointsForEachSkill addObject:@(xpPointsForSkill)];
+            }
+            
+            float indicator = xpPointsForBasicSkill - parentSkill.skillTemplate.levelBasicBarrier * basicSkillLevel - parentSkill.skillTemplate.levelProgression / 2 * basicSkillLevel * (basicSkillLevel - 1);
+            
+            
+            if (indicator < (parentSkill.skillTemplate.levelBasicBarrier + basicSkillLevel * parentSkill.skillTemplate.levelProgression)) {
+                //if solution found
+                //phase 2
+                if (indicator <= 0) {
+                    //if solution needs adjustment
+                    indicator *= -1;
+                    float modifierForBasicSkill = 0;
+                    for (int i = 0; i < xpPointsForEachSkill.count; i++) {
+
+                        float xpForSkill = [xpPointsForEachSkill[i] floatValue];
+                        
+                        float xpModifier = indicator * xpForSkill / summOfLevelsXp;
+                        //float xpModifier = indicator * xpForSkill / xpPointsForBasicSkill;
+                        Skill *subSkill = skillsToWorkWith[i];
+
+                        
+                        if (xpModifier > xpForSkill) {
+                            NSLog(@"xpModifier %f! for skill %@",xpModifier,subSkill.skillTemplate.name);
+                            return;
+                        }
+                        
+                        xpForSkill += xpModifier;
+                        xpPointsForEachSkill[i] = @(xpForSkill);
+                        
+                        modifierForBasicSkill += subSkill.skillTemplate.levelGrowthGoesToBasicSkill * xpModifier;
+                        
+                    }
+                    xpPointsForBasicSkill += modifierForBasicSkill;
+                }
+                
+                parentSkill.currentLevel = 0;
+                parentSkill.currentProgress = 0;
+                
+                
+                //process and implement current solution
+                parentSkill.currentProgress = xpPointsForBasicSkill;
+                [self calculateAddingXpPointsForSkill:parentSkill];
+                
+                //hard fix data
+                NSMutableArray *hardFix = [NSMutableArray new]; //need better solution
+                BOOL needEncreaseLevel = false;
+                BOOL needEncreaseParentSkill = true;
+                //
+                
+                for (int i = 0; i < xpPointsForEachSkill.count; i++) {
+                    Skill *subSkill = skillsToWorkWith[i];
+                    subSkill.currentLevel = 0;
+                    subSkill.currentProgress = 0;
+                    float xpPointsForSkill = [xpPointsForEachSkill[i] floatValue];
+                    if (xpPointsForSkill < 0) {
+                        NSLog(@"xpPointsForSkill %f!",xpPointsForSkill);
+                        continue;
+                    }
+                    
+                    subSkill.currentProgress = xpPointsForSkill;
+                    [self calculateAddingXpPointsForSkill:subSkill];
+                    
+                    //hard fix calculation
+                    int req = [requiredLevels[i] intValue];
+                    [hardFix addObject:@(req - (subSkill.currentLevel + parentSkill.currentLevel))];
+                    if (i) {
+                        int prev = [hardFix[i - 1] intValue];
+                        if (req) {
+                            needEncreaseLevel = true;
+                            if (prev != req) {
+                                needEncreaseParentSkill = false;
+                            }
+                        }
+                    }
+                    //
+                    
+                    if (!needEncreaseLevel) {
+                        [self didChangeExperiencePointsForSkill:subSkill];
+                    }
+                    
+                }
+                
+                if (needEncreaseLevel) {
+                    if (needEncreaseParentSkill) {
+                        int modifier = [[hardFix lastObject] intValue];
+                        parentSkill.currentLevel += modifier;
+                        NSLog(@"modify parent skill %@ by %d",parentSkill.skillTemplate.name,modifier);
+                        [self didChangeExperiencePointsForSkill:parentSkill];
+                    }
+                    else {
+                        for (int i = 0; i < hardFix.count; i++) {
+                            Skill *skill = skillsToWorkWith[i];
+                            int modifier = [hardFix[i] intValue];
+                            skill.currentLevel += modifier;
+                            NSLog(@"modify skill %@ by %d",skill.skillTemplate.name,modifier);
+                            [self didChangeExperiencePointsForSkill:skill];
+                        }
+                    }
+                }
+                
+                [Skill saveContext:self.context];
+                return;
+                
+            }
+        }
+        [Skill saveContext:self.context];
+    }
+}
+
+
+
+-(void)setSkill:(Skill *)skill toLevel:(float)level;
+{
+    float xpPoints = [self xpPointsToSetSkill:skill toLevel:level];
+    skill.currentProgress = xpPoints;
+    if (xpPoints > 0) {
+        [self calculateAddingXpPointsForSkill:skill];
+    }
+    else if (xpPoints < 0) {
+        [self calculateRemovingXpPointsForSkill:skill];
+    }
+}
+
+
+-(float)xpPointsToSetSkill:(Skill *)skill toLevel:(float)requiredLevel
+{
+    float xpPoints = 0;
+    if (skill.currentLevel != requiredLevel) {
+        int indicatorAddOrRemovePoints = (skill.currentLevel < requiredLevel) ? 1 : -1;
+        
+        BOOL isReqGreater = (skill.currentLevel < requiredLevel);
+        float eachLevelCore = isReqGreater ? skill.currentLevel : requiredLevel;
+        float diffBetweenLevels = isReqGreater ? requiredLevel - skill.currentLevel : skill.currentLevel - requiredLevel;
+        float progression = 0;
+        for (int i = 0; i < diffBetweenLevels; i++) {
+            progression += i;
+        }
+        xpPoints = (eachLevelCore * diffBetweenLevels + progression) * skill.skillTemplate.levelProgression + skill.skillTemplate.levelBasicBarrier * diffBetweenLevels;
+        xpPoints *= indicatorAddOrRemovePoints;
+    }
+    return xpPoints;
+}
 
 
 -(float)xpPoints:(float)xpPoints forSkill:(Skill *)skill
 {
-    float resultXpPoints = xpPoints;
-    if (skill.basicSkill) {
-        resultXpPoints -= [self xpPoints:xpPoints forBasicSkillOfSkill:skill];
-    }
-    return resultXpPoints;
+    return xpPoints;
 }
 
 -(float)xpPoints:(float)xpPoints forBasicSkillOfSkill:(Skill *)skill
 {
     float resultXpPoints = 0;
-    float safeFilter = (skill.skillTemplate.basicSkillGrowthGoes > 1) ? 1 : skill.skillTemplate.basicSkillGrowthGoes;
+    float safeFilter = (skill.skillTemplate.levelGrowthGoesToBasicSkill > 1) ? 1 : skill.skillTemplate.levelGrowthGoesToBasicSkill;
     resultXpPoints = safeFilter * xpPoints;
     return resultXpPoints;
 }
 
 
 -(void)addXpPoints:(float)xpPoints
-           toSkill:(Skill *)skill
-       withContext:(NSManagedObjectContext *)context;
+           toSkill:(Skill *)skill;
 {
     if (xpPoints) {
-        [self changeAddXpPoints:xpPoints toSkill:skill withContext:context];
-        [Skill saveContext:context];
-        [self.delegateSkillChange didFinishChangingExperiencePointsForSkill:skill];
+        [self changeAddXpPoints:xpPoints toSkill:skill];
+        [Skill saveContext:self.context];
+        //[self.delegateSkillChange didFinishChangingExperiencePointsForSkill:skill];
+        [self didFinishChangingExperiencePointsForSkill:skill];
     }
 }
 
 
 -(void)changeAddXpPoints:(float)xpPoints
-                 toSkill:(Skill *)skill
-             withContext:(NSManagedObjectContext *)context;
+                 toSkill:(Skill *)skill;
 {
     //calculate xp
-    if (skill.skillTemplate.basicSkillGrowthGoes != 0 && skill.basicSkill) {
-        [self changeAddXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill withContext:context];
+    if (skill.skillTemplate.levelGrowthGoesToBasicSkill != 0 && skill.basicSkill) {
+        [self changeAddXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill];
     }
     
-    skill.thisLvlCurrentProgress += [self xpPoints:xpPoints forSkill:skill];
-    skill = [self calculateAddingXpPointsForSkill:skill WithContext:context];
+    skill.currentProgress += [self xpPoints:xpPoints forSkill:skill];
+    skill = [self calculateAddingXpPointsForSkill:skill];
     skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
     
-    [self.delegateSkillChange didChangeExperiencePointsForSkill:skill];
+    //[self.delegateSkillChange didChangeExperiencePointsForSkill:skill];
+    [self didChangeExperiencePointsForSkill:skill];
 }
 
--(Skill *)calculateAddingXpPointsForSkill:(Skill *)skill WithContext:(NSManagedObjectContext *)context
+-(Skill *)calculateAddingXpPointsForSkill:(Skill *)skill
 {
-    float xpNextLvl = skill.thisLvl * skill.skillTemplate.thisSkillProgression + skill.skillTemplate.thisBasicBarrier;
+    float xpNextLvl = skill.currentLevel * skill.skillTemplate.levelProgression + skill.skillTemplate.levelBasicBarrier;
     
-    if (skill.thisLvlCurrentProgress >= xpNextLvl) {
-        skill.thisLvlCurrentProgress -= xpNextLvl;
-        skill.thisLvl ++;
-        [self.delegateSkillChange didChangeSkillLevel:skill];
-        [self calculateAddingXpPointsForSkill:skill WithContext:context]; //check if more than 1 lvl
+    if (skill.currentProgress >= xpNextLvl) {
+        skill.currentProgress -= xpNextLvl;
+        skill.currentLevel ++;
+        [self didChangeSkillLevel:skill];
+        [self calculateAddingXpPointsForSkill:skill]; //check if more than 1 lvl
+    }
+    else if (skill.currentLevel < skill.skillTemplate.skillStartingLvl) {
+        skill.currentLevel = skill.skillTemplate.skillStartingLvl;
     }
     
     return skill;
 }
 
 -(void)removeXpPoints:(float)xpPoints
-              toSkill:(Skill *)skill
-          withContext:(NSManagedObjectContext *)context;
+              toSkill:(Skill *)skill;
 {
     if (xpPoints)
     {
-        [self changeRemoveXpPoints:xpPoints toSkill:skill withContext:context];
-        [Skill saveContext:context];
-        [self.delegateSkillChange didFinishChangingExperiencePointsForSkill:skill];
+        [self changeRemoveXpPoints:xpPoints toSkill:skill];
+        [Skill saveContext:self.context];
+        [self didFinishChangingExperiencePointsForSkill:skill];
     }
 }
 
 -(void)changeRemoveXpPoints:(float)xpPoints
-                    toSkill:(Skill *)skill
-                withContext:(NSManagedObjectContext *)context;
+                    toSkill:(Skill *)skill;
 {
-    if (skill.skillTemplate.basicSkillGrowthGoes != 0 && skill.basicSkill) {
-        [self changeRemoveXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill withContext:context];
+    if (skill.skillTemplate.levelGrowthGoesToBasicSkill != 0 && skill.basicSkill) {
+        [self changeRemoveXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill];
     }
     
-    skill.thisLvlCurrentProgress -= [self xpPoints:xpPoints forSkill:skill];
-    skill = [self calculateRemovingXpPointsForSkill:skill WithContext:context];
+    skill.currentProgress -= [self xpPoints:xpPoints forSkill:skill];
+    skill = [self calculateRemovingXpPointsForSkill:skill];
     skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
     
-    [self.delegateSkillChange didChangeExperiencePointsForSkill:skill];
+    //[self.delegateSkillChange didChangeExperiencePointsForSkill:skill];
+    [self didChangeExperiencePointsForSkill:skill];
 }
 
--(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill WithContext:(NSManagedObjectContext *)context
+-(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill
 {
-    if (skill.thisLvl == 0) {
-        skill.thisLvlCurrentProgress = (skill.thisLvlCurrentProgress < 0) ? 0 : skill.thisLvlCurrentProgress;
+    if (skill.currentLevel == skill.skillTemplate.skillStartingLvl) {
+        skill.currentProgress = (skill.currentProgress < 0) ? 0 : skill.currentProgress;
         return skill;
     }
-    if (skill.thisLvlCurrentProgress < 0) {
-        skill.thisLvl --;
-        [self.delegateSkillChange didChangeSkillLevel:skill];
-        float xpPrevLvl = skill.thisLvl * skill.skillTemplate.thisSkillProgression + skill.skillTemplate.thisBasicBarrier;
-        skill.thisLvlCurrentProgress += xpPrevLvl;
-        [self calculateRemovingXpPointsForSkill:skill WithContext:context];
+    
+    if (skill.currentProgress < 0) {
+        skill.currentLevel --;
+        //[self.delegateSkillChange didChangeSkillLevel:skill];
+        [self didChangeSkillLevel:skill];
+        float xpPrevLvl = skill.currentLevel * skill.skillTemplate.levelProgression + skill.skillTemplate.levelBasicBarrier;
+        skill.currentProgress += xpPrevLvl;
+        [self calculateRemovingXpPointsForSkill:skill];
     }
 
     return skill;
@@ -510,6 +721,19 @@ static SkillManager *instance = nil;
     
     return skill;
 }
+
+-(NSArray *)fetchAllSkillsForSkillSet:(SkillSet *)skillSet;
+{
+    NSMutableArray *allCollection = [NSMutableArray new];
+    for (SkillTemplate *skillTemplate in [[DefaultSkillTemplates sharedInstance] allNoneCoreSkillTemplates]) {
+        Skill *skill = [self getSkillWithTemplate:skillTemplate withSkillSet:skillSet];
+        if (skill) {
+            [allCollection addObject:skill];
+        }
+    }
+    return allCollection;
+}
+
 
 -(NSArray *)fetchAllNoneBasicSkillsForSkillSet:(SkillSet *)skillSet;
 {

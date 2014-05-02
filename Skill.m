@@ -22,8 +22,8 @@
 
 @dynamic dateXpAdded;
 @dynamic skillId;
-@dynamic thisLvl;
-@dynamic thisLvlCurrentProgress;
+@dynamic currentLevel;
+@dynamic currentProgress;
 @dynamic basicSkill;
 @dynamic items;
 @dynamic skillSet;
@@ -50,8 +50,8 @@
         
         skill.skillId = [NSString stringWithFormat:@"%@",skill.objectID];
         
-        skill.thisLvl = skillTemplate.skillStartingLvl;
-        skill.thisLvlCurrentProgress = curentPoints ? curentPoints : 0.0;
+        skill.currentLevel = skillTemplate.skillStartingLvl;
+        skill.currentProgress = curentPoints ? curentPoints : 0.0;
         skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
         skill.skillTemplate = skillTemplate;
         

@@ -18,7 +18,7 @@ typedef enum {
 
 @protocol DropDownViewDelegate
 @required
--(void)dropDownController:(DropDownViewController *)dropDown cellSelected:(NSInteger)returnIndex;
+-(void)dropDownController:(DropDownViewController *)dropDown cellSelected:(NSIndexPath *)returnIndex;
 @end
 
 
