@@ -24,14 +24,14 @@
 @property (nonatomic) Skill *bsSkill;
 
 @property (nonatomic) Skill *physiqueSkill;
-@property (nonatomic) Skill *mentalitySkill;
+@property (nonatomic) Skill *intelligSkill;
 
 @property (nonatomic) Skill *strSkill;
 @property (nonatomic) Skill *toSkill;
 @property (nonatomic) Skill *agSkill;
-@property (nonatomic) Skill *wpSkill;
-@property (nonatomic) Skill *intlSkill;
-@property (nonatomic) Skill *chaSkill;
+@property (nonatomic) Skill *cntSkill;
+@property (nonatomic) Skill *rsnSkill;
+@property (nonatomic) Skill *pstSkill;
 
 @end
 
@@ -70,10 +70,10 @@
     return _physiqueSkill;
 }
 
--(Skill *)mentalitySkill
+-(Skill *)intelligSkill
 {
-    _mentalitySkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].mentality withCharacter:self.character];
-    return _mentalitySkill;
+    _intelligSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].intelligence withCharacter:self.character];
+    return _intelligSkill;
 }
 
 
@@ -107,22 +107,22 @@
     return _agSkill;
 }
 
--(Skill *)wpSkill
+-(Skill *)cntSkill
 {
-    _wpSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].discipline withCharacter:self.character];
-    return _wpSkill;
+    _cntSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].control withCharacter:self.character];
+    return _cntSkill;
 }
 
--(Skill *)intlSkill
+-(Skill *)rsnSkill
 {
-    _intlSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].intelligence withCharacter:self.character];
-    return _intlSkill;
+    _rsnSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].reason withCharacter:self.character];
+    return _rsnSkill;
 }
 
--(Skill *)chaSkill
+-(Skill *)pstSkill
 {
-    _chaSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].charisma withCharacter:self.character];
-    return _chaSkill;
+    _pstSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].perception withCharacter:self.character];
+    return _pstSkill;
 }
 
 -(void)setSkillSetFromView
@@ -159,12 +159,12 @@
     self.strTextField.text = [NSString stringWithFormat:@"%d",self.strSkill.currentLevel + self.physiqueSkill.currentLevel];
     self.toTextField.text = [NSString stringWithFormat:@"%d",self.toSkill.currentLevel + self.physiqueSkill.currentLevel];
     self.agTextField.text = [NSString stringWithFormat:@"%d",self.agSkill.currentLevel + self.physiqueSkill.currentLevel];
-    self.wpTextField.text = [NSString stringWithFormat:@"%d",self.wpSkill.currentLevel + self.mentalitySkill.currentLevel];
-    self.intlTextField.text = [NSString stringWithFormat:@"%d",self.intlSkill.currentLevel + self.mentalitySkill.currentLevel];
-    self.chaTextField.text = [NSString stringWithFormat:@"%d",self.chaSkill.currentLevel + self.mentalitySkill.currentLevel];
+    self.cntrTextField.text = [NSString stringWithFormat:@"%d",self.cntSkill.currentLevel + self.intelligSkill.currentLevel];
+    self.rsnTextField.text = [NSString stringWithFormat:@"%d",self.rsnSkill.currentLevel + self.intelligSkill.currentLevel];
+    self.pstTextField.text = [NSString stringWithFormat:@"%d",self.pstSkill.currentLevel + self.intelligSkill.currentLevel];
 
     self.physiqueTextField.text = [NSString stringWithFormat:@"%d",self.physiqueSkill.currentLevel];
-    self.mentalityTextField.text = [NSString stringWithFormat:@"%d",self.mentalitySkill.currentLevel];
+    self.intelligTextField.text = [NSString stringWithFormat:@"%d",self.intelligSkill.currentLevel];
     
     self.bulkTextField.text = self.bonusBulkTextField.text;
     self.movementTextField.text = [NSString stringWithFormat:@"%d",self.character.skillSet.pace + self.physiqueSkill.currentLevel];
@@ -181,9 +181,9 @@
         self.strTextField.enabled = false;
         self.toTextField.enabled = false;
         self.agTextField.enabled = false;
-        self.wpTextField.enabled = false;
-        self.intlTextField.enabled = false;
-        self.chaTextField.enabled = false;
+        self.cntrTextField.enabled = false;
+        self.rsnTextField.enabled = false;
+        self.pstTextField.enabled = false;
         self.bonusBulkTextField.enabled = false;
         self.bonusAMeleeTextField.enabled = false;
         self.bonusARangeTextField.enabled = false;
@@ -192,9 +192,9 @@
         self.strTextField.backgroundColor = [UIColor clearColor];
         self.toTextField.backgroundColor = [UIColor clearColor];
         self.agTextField.backgroundColor = [UIColor clearColor];
-        self.wpTextField.backgroundColor = [UIColor clearColor];
-        self.intlTextField.backgroundColor = [UIColor clearColor];
-        self.chaTextField.backgroundColor = [UIColor clearColor];
+        self.cntrTextField.backgroundColor = [UIColor clearColor];
+        self.rsnTextField.backgroundColor = [UIColor clearColor];
+        self.pstTextField.backgroundColor = [UIColor clearColor];
         self.bonusBulkTextField.backgroundColor = [UIColor clearColor];
         self.bonusAMeleeTextField.backgroundColor = [UIColor clearColor];
         self.bonusARangeTextField.backgroundColor = [UIColor clearColor];
@@ -207,9 +207,9 @@
         self.strTextField.delegate = _executer;
         self.toTextField.delegate = _executer;
         self.agTextField.delegate = _executer;
-        self.wpTextField.delegate = _executer;
-        self.intlTextField.delegate = _executer;
-        self.chaTextField.delegate = _executer;
+        self.cntrTextField.delegate = _executer;
+        self.rsnTextField.delegate = _executer;
+        self.pstTextField.delegate = _executer;
         //
         self.bonusBulkTextField.delegate = _executer;
         self.bonusAMeleeTextField.delegate = _executer;
@@ -220,9 +220,9 @@
         self.strTextField.enabled = true;
         self.toTextField.enabled = true;
         self.agTextField.enabled = true;
-        self.wpTextField.enabled = true;
-        self.intlTextField.enabled = true;
-        self.chaTextField.enabled = true;
+        self.cntrTextField.enabled = true;
+        self.rsnTextField.enabled = true;
+        self.pstTextField.enabled = true;
         
         //
         self.bonusBulkTextField.enabled = true;
@@ -234,9 +234,9 @@
         self.strTextField.backgroundColor = [UIColor whiteColor];
         self.toTextField.backgroundColor = [UIColor whiteColor];
         self.agTextField.backgroundColor = [UIColor whiteColor];
-        self.wpTextField.backgroundColor = [UIColor whiteColor];
-        self.intlTextField.backgroundColor = [UIColor whiteColor];
-        self.chaTextField.backgroundColor = [UIColor whiteColor];
+        self.cntrTextField.backgroundColor = [UIColor whiteColor];
+        self.rsnTextField.backgroundColor = [UIColor whiteColor];
+        self.pstTextField.backgroundColor = [UIColor whiteColor];
         //
         self.bonusBulkTextField.backgroundColor = [UIColor whiteColor];
         self.bonusAMeleeTextField.backgroundColor = [UIColor whiteColor];
@@ -252,9 +252,9 @@
     BOOL emptyStats = (self.strTextField.text.length == 0 ||
                        self.toTextField.text.length == 0 ||
                        self.agTextField.text.length == 0 ||
-                       self.wpTextField.text.length == 0 ||
-                       self.intlTextField.text.length == 0 ||
-                       self.chaTextField.text.length == 0);
+                       self.cntrTextField.text.length == 0 ||
+                       self.rsnTextField.text.length == 0 ||
+                       self.pstTextField.text.length == 0);
     if (emptyStats){
         return false;
     }
@@ -268,9 +268,9 @@
         textField == self.strTextField ||
         textField == self.toTextField ||
         textField == self.agTextField ||
-        textField == self.wpTextField ||
-        textField == self.intlTextField ||
-        textField == self.chaTextField ||
+        textField == self.cntrTextField ||
+        textField == self.rsnTextField ||
+        textField == self.pstTextField ||
         textField == self.bonusAMeleeTextField ||
         textField == self.bonusARangeTextField ||
         textField == self.bonusBulkTextField) {
@@ -285,9 +285,9 @@
     if (textField == self.strTextField ||
         textField == self.toTextField ||
         textField == self.agTextField ||
-        textField == self.wpTextField ||
-        textField == self.intlTextField ||
-        textField == self.chaTextField) {
+        textField == self.cntrTextField ||
+        textField == self.rsnTextField ||
+        textField == self.pstTextField) {
         return true;
     }
     
@@ -305,14 +305,14 @@
     else if (textField == self.agTextField) {
         [[SkillManager sharedInstance] setLevelOfSkill:self.agSkill toLevel:textField.text.integerValue];
     }
-    else if (textField == self.intlTextField) {
-        [[SkillManager sharedInstance] setLevelOfSkill:self.intlSkill toLevel:textField.text.integerValue];
+    else if (textField == self.rsnTextField) {
+        [[SkillManager sharedInstance] setLevelOfSkill:self.rsnSkill toLevel:textField.text.integerValue];
     }
-    else if (textField == self.chaTextField) {
-        [[SkillManager sharedInstance] setLevelOfSkill:self.chaSkill toLevel:textField.text.integerValue];
+    else if (textField == self.pstTextField) {
+        [[SkillManager sharedInstance] setLevelOfSkill:self.pstSkill toLevel:textField.text.integerValue];
     }
-    else if (textField == self.wpTextField) {
-        [[SkillManager sharedInstance] setLevelOfSkill:self.wpSkill toLevel:textField.text.integerValue];
+    else if (textField == self.cntrTextField) {
+        [[SkillManager sharedInstance] setLevelOfSkill:self.cntSkill toLevel:textField.text.integerValue];
     }
     
     [self resetUneditableStats];

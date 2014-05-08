@@ -14,7 +14,7 @@
 
 @interface StatView : UIView
 
-@property (nonatomic) IBOutlet UITextField *mentalityTextField;
+@property (nonatomic) IBOutlet UITextField *intelligTextField;
 @property (nonatomic) IBOutlet UITextField *physiqueTextField;
 @property (nonatomic) IBOutlet UITextField *bulkTextField;
 @property (nonatomic) IBOutlet UITextField *movementTextField;
@@ -22,9 +22,9 @@
 @property (nonatomic) IBOutlet UITextField *strTextField;
 @property (nonatomic) IBOutlet UITextField *toTextField;
 @property (nonatomic) IBOutlet UITextField *agTextField;
-@property (nonatomic) IBOutlet UITextField *wpTextField;
-@property (nonatomic) IBOutlet UITextField *intlTextField;
-@property (nonatomic) IBOutlet UITextField *chaTextField;
+@property (nonatomic) IBOutlet UITextField *cntrTextField;
+@property (nonatomic) IBOutlet UITextField *rsnTextField;
+@property (nonatomic) IBOutlet UITextField *pstTextField;
 
 @property (nonatomic) IBOutlet UITextField *bonusAMeleeTextField;
 @property (nonatomic) IBOutlet UITextField *bonusARangeTextField;

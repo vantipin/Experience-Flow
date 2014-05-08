@@ -27,6 +27,8 @@ typedef enum SkillClassType : int16_t
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * skillDescription;
+@property (nonatomic, retain) NSString * skillRules;
+@property (nonatomic, retain) NSString * skillRulesExamples;
 @property (nonatomic, retain) Pic *icon;
 @property (nonatomic) float levelBasicBarrier;
 @property (nonatomic) float levelProgression;
@@ -51,6 +53,8 @@ typedef enum SkillClassType : int16_t
 - (void)removeSubSkillsTemplate:(NSSet *)values;
 
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                                     withRules:(NSString *)rules
+                             withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription
                                  withSkillIcon:(UIImage *)icon
                             withBasicXpBarrier:(float)basicXpBarrier
@@ -64,6 +68,8 @@ typedef enum SkillClassType : int16_t
 +(NSArray *)fetchAllSkillTemplatesWithContext:(NSManagedObjectContext *)context;
 
 +(BOOL)deleteSkillTemplateWithName:(NSString *)skillTemplateName withContext:(NSManagedObjectContext *)context;
+
++(NSArray *)fetchSkillTemplateForName:(NSString *)name withContext:(NSManagedObjectContext *)context;
 
 +(NSString *)entityNameForSkillTemplate:(SkillTemplate *)skillTemplate;
 +(NSString *)entityNameForSkillEnum:(int16_t)skillEnum;

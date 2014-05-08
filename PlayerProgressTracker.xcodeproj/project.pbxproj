@@ -36,6 +36,7 @@
 		DF6A7ADA190EDB0D0079E71D /* CharacterDollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6A7AD9190EDB0D0079E71D /* CharacterDollViewController.m */; };
 		DF6A7ADC190EE1270079E71D /* DollStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF6A7ADB190EE1270079E71D /* DollStoryboard.storyboard */; };
 		DF6A7AF2191157390079E71D /* DollActiveSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6A7AF1191157390079E71D /* DollActiveSegment.m */; };
+		DF6A7B1B191AB2130079E71D /* SkillTemplateDiskData.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6A7B1A191AB2130079E71D /* SkillTemplateDiskData.m */; };
 		DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6E927B18D33F18000967F5 /* SkillViewCell.xib */; };
 		DF6E927F18D43076000967F5 /* CustomXpRaisingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */; };
 		DF6E928E18D43946000967F5 /* lowerXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E928A18D43946000967F5 /* lowerXp.png */; };
@@ -136,6 +137,8 @@
 		DF6A7ADB190EE1270079E71D /* DollStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DollStoryboard.storyboard; sourceTree = "<group>"; };
 		DF6A7AF0191157390079E71D /* DollActiveSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DollActiveSegment.h; sourceTree = "<group>"; };
 		DF6A7AF1191157390079E71D /* DollActiveSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DollActiveSegment.m; sourceTree = "<group>"; };
+		DF6A7B19191AB2130079E71D /* SkillTemplateDiskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTemplateDiskData.h; sourceTree = "<group>"; };
+		DF6A7B1A191AB2130079E71D /* SkillTemplateDiskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTemplateDiskData.m; sourceTree = "<group>"; };
 		DF6E927B18D33F18000967F5 /* SkillViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SkillViewCell.xib; path = Views/SkillViewCell.xib; sourceTree = "<group>"; };
 		DF6E927D18D43076000967F5 /* CustomXpRaisingBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomXpRaisingBtnView.h; sourceTree = "<group>"; };
 		DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomXpRaisingBtnView.m; sourceTree = "<group>"; };
@@ -414,6 +417,8 @@
 				DFAED13E186333000039D17B /* MainContextObject.h */,
 				DFAED13B1863329B0039D17B /* AppSettings.h */,
 				DFAED13C1863329B0039D17B /* AppSettings.m */,
+				DF6A7B19191AB2130079E71D /* SkillTemplateDiskData.h */,
+				DF6A7B1A191AB2130079E71D /* SkillTemplateDiskData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 				DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */,
 				DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */,
 				DFB07C07187F0AEE00FF0EF7 /* ClassesDropViewController.m in Sources */,
+				DF6A7B1B191AB2130079E71D /* SkillTemplateDiskData.m in Sources */,
 				DFAED13A186331790039D17B /* CoreDataClass.m in Sources */,
 				DF2A96D518982CBD00A6EB45 /* SkillTemplate.m in Sources */,
 				DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */,

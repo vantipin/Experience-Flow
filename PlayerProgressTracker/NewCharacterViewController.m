@@ -19,6 +19,7 @@
 #import "DefaultSkillTemplates.h"
 #import "AddSkillDropViewController.h"
 #import "WeaponChoiceDropViewController.h"
+#import "SkillTemplateDiskData.h"
 
 
 @interface NewCharacterViewController ()
@@ -78,6 +79,7 @@
     self.name.text = self.character.name;
     
     self.characterSheetView.backgroundColor = bodyColor;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -87,7 +89,12 @@
     self.statView.character = self.character;//setter will update interface
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
     self.dollController.character = self.character;
-
+    
+//    for (SkillTemplate *skillTemplate in [DefaultSkillTemplates sharedInstance].allNoneCoreSkillTemplates) {
+//        [SkillTemplateDiskData saveData:skillTemplate toPath:[SkillTemplateDiskData getPrivateDocsDir]];
+//    }
+    
+      NSMutableArray *allskill = [SkillTemplateDiskData loadSkillTemplates];
 //    //TODO
 //    [_character addToCurrentMeleeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] ordinary] withContext:self.context];
 //    [_character setCurrentRangeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] bow] withContext:self.context];

@@ -20,6 +20,8 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 @dynamic name;
 @dynamic skillEnumType;
 @dynamic skillDescription;
+@dynamic skillRulesExamples;
+@dynamic skillRules;
 @dynamic skillStartingLvl;
 @dynamic levelBasicBarrier;
 @dynamic levelProgression;
@@ -30,6 +32,8 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 @dynamic icon;
 
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                                     withRules:(NSString *)rules
+                             withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription
                                  withSkillIcon:(UIImage *)icon
                             withBasicXpBarrier:(float)basicXpBarrier
@@ -42,16 +46,19 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 {
     if (name && (basicXpBarrier || skillProgression))
     {
+        SkillTemplate *skillTemplate;
         NSArray *existingSkillsWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",name] withContext:context];
         if (existingSkillsWithThisName && existingSkillsWithThisName.count!=0)
         {
-            return [existingSkillsWithThisName lastObject];
+            skillTemplate = [existingSkillsWithThisName lastObject];
         }
-    
-        //create new one
-        SkillTemplate *skillTemplate = [NSEntityDescription insertNewObjectForEntityForName:@"SkillTemplate" inManagedObjectContext:context];
-        
+        else {
+            //create new one
+            skillTemplate = [NSEntityDescription insertNewObjectForEntityForName:@"SkillTemplate" inManagedObjectContext:context];
+        }
         skillTemplate.name = name;
+        skillTemplate.skillRules = rules;
+        skillTemplate.skillRulesExamples = examples;
         skillTemplate.skillDescription = skillDescription;
         skillTemplate.levelBasicBarrier = basicXpBarrier;
         skillTemplate.levelProgression = skillProgression;
@@ -71,6 +78,11 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
     
         NSLog(@"Created new template with name: %@",name);
         [SkillTemplate saveContext:context];
+        
+        //save it here
+        //NSDictionary *objectToDictionary = [skillTemplate di];
+        
+        
         
         return skillTemplate;
     }
@@ -128,6 +140,12 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
     DefaultSkillTemplates *defaultSkills = [DefaultSkillTemplates sharedInstance];
     [defaultSkills allNoneCoreSkillTemplates]; //should create all default skill templates if missed
 }
+
++(NSArray *)fetchSkillTemplateForName:(NSString *)name withContext:(NSManagedObjectContext *)context;
+{
+    return [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",name]  withContext:context];
+}
+
 
 +(BOOL)deleteSkillTemplateWithName:(NSString *)skillTemplateName withContext:(NSManagedObjectContext *)context
 {

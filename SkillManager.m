@@ -191,8 +191,11 @@ static SkillManager *instance = nil;
                 tempWsCount ++;
             }
         }
-        tempWs = tempWs / tempWsCount;
-        bonus = tempWs / 2;
+        
+        if (tempWs) {
+            tempWs = tempWs / tempWsCount;
+            bonus = tempWs / 2;
+        }
     }
         
     return bonus;
@@ -234,7 +237,10 @@ static SkillManager *instance = nil;
                 wsPenaltiesCount ++;
             }
         }
-        wsPenalty = wsPenalty / wsPenaltiesCount;
+        
+        if (wsPenalty) {
+            wsPenalty = wsPenalty / wsPenaltiesCount;
+        }
         ws = ws / skillsArray.count;
         ws -= wsPenalty;
     }
@@ -764,7 +770,20 @@ static SkillManager *instance = nil;
     
     
     UITextView *tipTextView = [[UITextView alloc] initWithFrame:tipFrame];
-    [tipTextView setText:skillTemplate.skillDescription];
+    
+    NSString *description = @"";
+    
+    if (skillTemplate.skillDescription) {
+        description = [description stringByAppendingString:skillTemplate.skillDescription];
+    }
+    if (skillTemplate.skillRules) {
+        description = [description stringByAppendingString:[NSString stringWithFormat:@"\n\n%@",skillTemplate.skillRules]];
+    }
+    if (skillTemplate.skillRulesExamples) {
+        description = [description stringByAppendingString:[NSString stringWithFormat:@"\n\n%@",skillTemplate.skillRulesExamples]];
+    }
+    
+    [tipTextView setText:description];
     [tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
     [tipTextView sizeToFit];
     tipTextView.frame = CGRectMake(tipTextView.frame.origin.x, tipTextView.frame.origin.y, tipTextView.frame.size.width, (tipTextView.frame.size.height > parentView.frame.size.height * 0.8) ? parentView.frame.size.height * 0.8 : tipTextView.frame.size.height);

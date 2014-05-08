@@ -10,19 +10,19 @@
 
 @class RangeSkill,MagicSkill,MeleeSkill,AdvancedSkill,Skill,SkillTemplate,Character,CharacterConditionAttributes,SkillSet;
 
-@interface DefaultSkillTemplates : NSObject
+@interface DefaultSkillTemplates : NSObject <NSCoding>
 
 @property (nonatomic) SkillTemplate *physique;
-@property (nonatomic) SkillTemplate *mentality;
+@property (nonatomic) SkillTemplate *intelligence;
 
 //advanced
 @property (nonatomic) SkillTemplate *strength;
 @property (nonatomic) SkillTemplate *toughness;
 @property (nonatomic) SkillTemplate *agility;
 
-@property (nonatomic) SkillTemplate *intelligence;
-@property (nonatomic) SkillTemplate *discipline;
-@property (nonatomic) SkillTemplate *charisma;
+@property (nonatomic) SkillTemplate *reason;
+@property (nonatomic) SkillTemplate *control;
+@property (nonatomic) SkillTemplate *perception;
 
 @property (nonatomic) SkillTemplate *bearingCapacity;
 @property (nonatomic) SkillTemplate *swimming;
@@ -35,7 +35,6 @@
 
 @property (nonatomic) SkillTemplate *animalHandling;
 
-@property (nonatomic) SkillTemplate *perception;
 @property (nonatomic) SkillTemplate *education;
 
 

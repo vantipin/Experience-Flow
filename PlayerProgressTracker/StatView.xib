@@ -288,19 +288,19 @@
                     <rect key="frame" x="20" y="151" width="166" height="117"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dsc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGd-R0-ExA">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Crl" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGd-R0-ExA">
                             <rect key="frame" x="5" y="57" width="35" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Int" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01Y-ju-rfU">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rsn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01Y-ju-rfU">
                             <rect key="frame" x="5" y="27" width="35" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cha" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jp1-T6-r43">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pst" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jp1-T6-r43">
                             <rect key="frame" x="5" y="87" width="35" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
@@ -352,7 +352,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="166" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mentality" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaS-vo-O1z">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Intelligence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaS-vo-O1z">
                                     <rect key="frame" x="5" y="0.0" width="100" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="19"/>
@@ -384,16 +384,16 @@
                 <outlet property="bonusPaceTextField" destination="Zj5-kZ-dHV" id="ADo-2s-FQ7"/>
                 <outlet property="bonusView" destination="OvH-PQ-kcc" id="80t-uM-WRh"/>
                 <outlet property="bulkTextField" destination="d9G-jl-i7I" id="hPF-9P-hnc"/>
-                <outlet property="chaTextField" destination="lsg-FF-UGZ" id="kXl-8I-HNY"/>
+                <outlet property="cntrTextField" destination="Lhv-lT-IDo" id="rMJ-VT-ETW"/>
                 <outlet property="currentHpLabel" destination="e8d-sF-sME" id="u0M-NL-rnt"/>
-                <outlet property="intlTextField" destination="mXT-yD-mrk" id="WB4-mr-lby"/>
+                <outlet property="intelligTextField" destination="frg-RY-uCJ" id="Osi-RB-rA3"/>
                 <outlet property="maxHpLabel" destination="fbT-Ye-Gzc" id="9QI-kJ-TXm"/>
-                <outlet property="mentalityTextField" destination="frg-RY-uCJ" id="2hb-iJ-ojP"/>
                 <outlet property="movementTextField" destination="TYb-D0-WTd" id="1ia-1z-5kR"/>
                 <outlet property="physiqueTextField" destination="6un-u2-Qh4" id="brv-N3-1ox"/>
+                <outlet property="pstTextField" destination="lsg-FF-UGZ" id="IZO-es-B0U"/>
+                <outlet property="rsnTextField" destination="mXT-yD-mrk" id="ciM-rG-N6c"/>
                 <outlet property="strTextField" destination="Fb2-yy-JNA" id="GVL-HY-SBg"/>
                 <outlet property="toTextField" destination="4j2-VV-Hql" id="8tW-Nh-C9D"/>
-                <outlet property="wpTextField" destination="Lhv-lT-IDo" id="tWN-OS-u9Y"/>
                 <outletCollection property="headerContainerViewsArray" destination="3sJ-B9-124" id="lTr-Cj-7JC"/>
                 <outletCollection property="headerContainerViewsArray" destination="KLX-2f-13h" id="zGs-E0-cBv"/>
                 <outletCollection property="lightContainerViewsArray" destination="hhk-Cl-n0a" id="oyj-XV-5Wa"/>
