@@ -25,6 +25,8 @@
 		DF30A01B190001FC0018CE28 /* addButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF30A019190001FC0018CE28 /* addButton@2x.png */; };
 		DF30A01E190003890018CE28 /* AddSkillViewCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF30A01D190003890018CE28 /* AddSkillViewCellTableViewCell.m */; };
 		DF30A02919000C370018CE28 /* AddSkillDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF30A02819000C370018CE28 /* AddSkillDropViewController.m */; };
+		DF48AAD3192138E700F8F509 /* NodeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF48AAD2192138E700F8F509 /* NodeView.storyboard */; };
+		DF48AAD519215A3700F8F509 /* mentalSkillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF48AAD419215A3700F8F509 /* mentalSkillNode@2x.png */; };
 		DF49368F18E569D30058129E /* BasicSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF49368E18E569D30058129E /* BasicSkill.m */; };
 		DF4F935418D9D5D400C6ED26 /* MeleeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F935318D9D5D400C6ED26 /* MeleeSkill.m */; };
 		DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF4F936718DCC32300C6ED26 /* StatView.xib */; };
@@ -46,6 +48,12 @@
 		DF6E929418D4399B000967F5 /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E929218D4399B000967F5 /* noImage.png */; };
 		DF6E929518D4399B000967F5 /* noImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6E929318D4399B000967F5 /* noImage@2x.png */; };
 		DF719B751909081A005A8A4F /* WeaponChoiceDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF719B741909081A005A8A4F /* WeaponChoiceDropViewController.m */; };
+		DF9770CF1923C75800873AD2 /* skillNodeHighlited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF9770CB1923C75800873AD2 /* skillNodeHighlited@2x.png */; };
+		DF9770D01923C75800873AD2 /* skillNodeHighlited.png in Resources */ = {isa = PBXBuildFile; fileRef = DF9770CC1923C75800873AD2 /* skillNodeHighlited.png */; };
+		DF9770D11923C75800873AD2 /* skillNode.png in Resources */ = {isa = PBXBuildFile; fileRef = DF9770CD1923C75800873AD2 /* skillNode.png */; };
+		DF9770D21923C75800873AD2 /* skillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF9770CE1923C75800873AD2 /* skillNode@2x.png */; };
+		DF9770D51923C8E200873AD2 /* SkillTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9770D41923C8E200873AD2 /* SkillTreeViewController.m */; };
+		DF9770DB1923C95200873AD2 /* NodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9770DA1923C95200873AD2 /* NodeViewController.m */; };
 		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
 		DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED101186309B40039D17B /* CoreGraphics.framework */; };
 		DFAED104186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
@@ -119,6 +127,8 @@
 		DF30A01D190003890018CE28 /* AddSkillViewCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddSkillViewCellTableViewCell.m; path = Views/AddSkillViewCellTableViewCell.m; sourceTree = "<group>"; };
 		DF30A02719000C370018CE28 /* AddSkillDropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSkillDropViewController.h; sourceTree = "<group>"; };
 		DF30A02819000C370018CE28 /* AddSkillDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSkillDropViewController.m; sourceTree = "<group>"; };
+		DF48AAD2192138E700F8F509 /* NodeView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NodeView.storyboard; sourceTree = "<group>"; };
+		DF48AAD419215A3700F8F509 /* mentalSkillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mentalSkillNode@2x.png"; sourceTree = "<group>"; };
 		DF49368D18E569D30058129E /* BasicSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicSkill.h; sourceTree = "<group>"; };
 		DF49368E18E569D30058129E /* BasicSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicSkill.m; sourceTree = "<group>"; };
 		DF4F935218D9D5D400C6ED26 /* MeleeSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeleeSkill.h; sourceTree = "<group>"; };
@@ -150,6 +160,14 @@
 		DF6E929318D4399B000967F5 /* noImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noImage@2x.png"; path = "Images/noImage@2x.png"; sourceTree = SOURCE_ROOT; };
 		DF719B731909081A005A8A4F /* WeaponChoiceDropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeaponChoiceDropViewController.h; sourceTree = "<group>"; };
 		DF719B741909081A005A8A4F /* WeaponChoiceDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeaponChoiceDropViewController.m; sourceTree = "<group>"; };
+		DF9770CB1923C75800873AD2 /* skillNodeHighlited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeHighlited@2x.png"; sourceTree = "<group>"; };
+		DF9770CC1923C75800873AD2 /* skillNodeHighlited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeHighlited.png; sourceTree = "<group>"; };
+		DF9770CD1923C75800873AD2 /* skillNode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNode.png; sourceTree = "<group>"; };
+		DF9770CE1923C75800873AD2 /* skillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNode@2x.png"; sourceTree = "<group>"; };
+		DF9770D31923C8E200873AD2 /* SkillTreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTreeViewController.h; sourceTree = "<group>"; };
+		DF9770D41923C8E200873AD2 /* SkillTreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTreeViewController.m; sourceTree = "<group>"; };
+		DF9770D91923C95200873AD2 /* NodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeViewController.h; sourceTree = "<group>"; };
+		DF9770DA1923C95200873AD2 /* NodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeViewController.m; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Xp Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xp Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -320,6 +338,18 @@
 			name = DollClasses;
 			sourceTree = "<group>";
 		};
+		DF9770DC1923C96200873AD2 /* SkillTree */ = {
+			isa = PBXGroup;
+			children = (
+				DF9770D31923C8E200873AD2 /* SkillTreeViewController.h */,
+				DF9770D41923C8E200873AD2 /* SkillTreeViewController.m */,
+				DF9770D91923C95200873AD2 /* NodeViewController.h */,
+				DF9770DA1923C95200873AD2 /* NodeViewController.m */,
+				DF48AAD2192138E700F8F509 /* NodeView.storyboard */,
+			);
+			name = SkillTree;
+			sourceTree = "<group>";
+		};
 		DFAED0F3186309B40039D17B = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +384,7 @@
 		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DF9770DC1923C96200873AD2 /* SkillTree */,
 				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
 				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
 				DF6A7AEF191156D40079E71D /* DollClasses */,
@@ -441,6 +472,11 @@
 		DFB07BFC187EFA1700FF0EF7 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				DF9770CB1923C75800873AD2 /* skillNodeHighlited@2x.png */,
+				DF9770CC1923C75800873AD2 /* skillNodeHighlited.png */,
+				DF9770CD1923C75800873AD2 /* skillNode.png */,
+				DF9770CE1923C75800873AD2 /* skillNode@2x.png */,
+				DF48AAD419215A3700F8F509 /* mentalSkillNode@2x.png */,
 				DF010F8E19001EA90064B914 /* deleteButton.png */,
 				DF010F8F19001EA90064B914 /* deleteButton@2x.png */,
 				DF30A018190001FC0018CE28 /* addButton.png */,
@@ -535,16 +571,22 @@
 			files = (
 				DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */,
 				DF30A01B190001FC0018CE28 /* addButton@2x.png in Resources */,
+				DF9770D21923C75800873AD2 /* skillNode@2x.png in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
+				DF48AAD3192138E700F8F509 /* NodeView.storyboard in Resources */,
 				DF6E928F18D43946000967F5 /* lowerXp@2x.png in Resources */,
+				DF9770CF1923C75800873AD2 /* skillNodeHighlited@2x.png in Resources */,
 				DF6E929418D4399B000967F5 /* noImage.png in Resources */,
 				DF6E929018D43946000967F5 /* raiseXp.png in Resources */,
+				DF9770D01923C75800873AD2 /* skillNodeHighlited.png in Resources */,
 				DF6A7ADC190EE1270079E71D /* DollStoryboard.storyboard in Resources */,
+				DF48AAD519215A3700F8F509 /* mentalSkillNode@2x.png in Resources */,
 				DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
 				DF4F936F18DDB3FD00C6ED26 /* AppIcon@2x.png in Resources */,
 				DF4F936E18DDB3FD00C6ED26 /* AppIcon.png in Resources */,
+				DF9770D11923C75800873AD2 /* skillNode.png in Resources */,
 				DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */,
 				DF30A01A190001FC0018CE28 /* addButton.png in Resources */,
 				DF010F9019001EA90064B914 /* deleteButton.png in Resources */,
@@ -599,8 +641,10 @@
 				DF309A2A18F537680018CE28 /* AdvancedSkill.m in Sources */,
 				DFAED140186333000039D17B /* MainContextObject.m in Sources */,
 				DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */,
+				DF9770D51923C8E200873AD2 /* SkillTreeViewController.m in Sources */,
 				DF309A3618F5BEAB0018CE28 /* SkillSet.m in Sources */,
 				DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */,
+				DF9770DB1923C95200873AD2 /* NodeViewController.m in Sources */,
 				DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */,
 				DFB07C0A18815C9B00FF0EF7 /* Item.m in Sources */,
 				DFB07C07187F0AEE00FF0EF7 /* ClassesDropViewController.m in Sources */,

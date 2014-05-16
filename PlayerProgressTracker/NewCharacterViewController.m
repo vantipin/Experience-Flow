@@ -13,16 +13,28 @@
 #import "MeleeSkill.h"
 #import "RangeSkill.h"
 #import "SkillTemplate.h"
-#import "SkillTableViewController.h"
 #import "CharacterConditionAttributes.h"
 #import "SkillSet.h"
 #import "DefaultSkillTemplates.h"
 #import "AddSkillDropViewController.h"
 #import "WeaponChoiceDropViewController.h"
 #import "SkillTemplateDiskData.h"
+#import "SkillTreeViewController.h"
 
 
 @interface NewCharacterViewController ()
+
+@property (nonatomic) IBOutlet UIButton *raceBtn;
+@property (nonatomic) IBOutlet UILabel  *raceLabel;
+@property (nonatomic) IBOutlet UIButton *saveSet;
+@property (nonatomic) IBOutlet UIButton *saveCharacter;
+@property (nonatomic) IBOutlet UIImageView *icon;
+@property (nonatomic) IBOutlet UITextField *name;
+@property (nonatomic) IBOutlet UIView *characterSheetView;
+@property (nonatomic) IBOutlet UIView *statViewContainer;
+@property (nonatomic) IBOutlet UIView *additionalSkillContainerView;
+@property (nonatomic) IBOutlet UIButton *addNewSkillButton;
+
 
 @property (nonatomic,strong) Character *character;
 @property (nonatomic,strong) ClassesDropViewController *classesDropController;
@@ -30,13 +42,14 @@
 @property (nonatomic) WeaponChoiceDropViewController *setWeaponDropDownViewController;
 @property (nonatomic,strong) NSMutableArray *raceNames;
 @property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-@property (nonatomic,strong) SkillTableViewController *skillTableViewController;
 @property (nonatomic) BOOL shouldRewriteSkillsLevels; //for cases when player tap race button;
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) StatView *statView;
 @property (nonatomic) CharacterDollViewController *dollController;
 
 @property (nonatomic) UITextField *currentlyEditingField; //for applying changes when (save) buttons tapped
+
+@property (nonatomic) SkillTreeViewController *skillTreeController;
 
 @end
 
@@ -58,9 +71,6 @@
     //[self allFontsToConsole];
     //[StatSet deleteStatSetWithName:@"" withContext:self.managedObjectContext];
     self.shouldRewriteSkillsLevels = true;
-    self.skillTableViewController.skillSet =  self.character.skillSet;
-    self.skillTableViewController.skillTableDelegate = self;
-    [self addChildViewController:self.skillTableViewController];
     
     self.classesDropController.delegateDropDown = self;
     self.classesDropController.delegateDeleteStatSet = self;
@@ -89,12 +99,13 @@
     self.statView.character = self.character;//setter will update interface
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
     self.dollController.character = self.character;
-    
+    self.skillTreeController.character = self.character;
+    //[self.skillTreeController resetSkillNodes];
 //    for (SkillTemplate *skillTemplate in [DefaultSkillTemplates sharedInstance].allNoneCoreSkillTemplates) {
 //        [SkillTemplateDiskData saveData:skillTemplate toPath:[SkillTemplateDiskData getPrivateDocsDir]];
 //    }
     
-      NSMutableArray *allskill = [SkillTemplateDiskData loadSkillTemplates];
+      //NSMutableArray *allskill = [SkillTemplateDiskData loadSkillTemplates];
 //    //TODO
 //    [_character addToCurrentMeleeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] ordinary] withContext:self.context];
 //    [_character setCurrentRangeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] bow] withContext:self.context];
@@ -122,10 +133,23 @@
         _dollController = [CharacterDollViewController getInstanceFromStoryboardWithFrame:frame];
         [self addChildViewController:_dollController];
         [self.statViewContainer addSubview:_dollController.view];
-        self.dollController.delegateTapSegment = self;
+
     }
     
     return _dollController;
+}
+
+-(SkillTreeViewController *)skillTreeController
+{
+    if (!_skillTreeController) {
+        
+        _skillTreeController = [[SkillTreeViewController alloc] init];
+        [self addChildViewController:_skillTreeController];
+        [self.additionalSkillContainerView addSubview:_skillTreeController.view];
+        _skillTreeController.view.frame = self.additionalSkillContainerView.bounds;
+    }
+    
+    return _skillTreeController;
 }
 
 -(NSManagedObjectContext *)context
@@ -193,7 +217,7 @@
 -(AddSkillDropViewController *)addNewSkillDropController
 {
     if (!_addNewSkillDropController) {
-        _addNewSkillDropController = [[AddSkillDropViewController alloc] initWithArrayData:[[DefaultSkillTemplates sharedInstance] allNoneCoreSkillTemplates]
+        _addNewSkillDropController = [[AddSkillDropViewController alloc] initWithArrayData:[[DefaultSkillTemplates sharedInstance] allSkillTemplates]
                                                                           withSkillSet:self.character.skillSet
                                                                     withWidthTableView:320
                                                                             cellHeight:48
@@ -203,19 +227,6 @@
         _addNewSkillDropController.view.backgroundColor = lightBodyColor;
     }
     return _addNewSkillDropController;
-}
-
--(SkillTableViewController *)skillTableViewController
-{
-    if (!_skillTableViewController) {
-        _skillTableViewController = [SkillTableViewController new];
-        [self.additionalSkillContainerView addSubview:_skillTableViewController.view];
-        _skillTableViewController.view.frame = self.additionalSkillContainerView.bounds;
-        self.additionalSkillContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _skillTableViewController.view.backgroundColor = lightBodyColor;
-    }
-    
-    return _skillTableViewController;
 }
 
 -(void)refreshRaceNames
@@ -264,11 +275,9 @@
     
     [character saveCharacterWithContext:self.context];
     
-    self.skillTableViewController.skillSet =  character.skillSet;
     [self.statView setViewFromSkillSet];
     
     [self.dollController updateSkillValues];
-    [self.skillTableViewController.tableView reloadData];
     
     self.addNewSkillDropController.skillSet = character.skillSet;
 }
@@ -366,15 +375,6 @@
     else {
         [self.addNewSkillDropController closeAnimation];
     }
-}
-#pragma mark -
-#pragma mark skill table delegate
--(void)didUpdateCharacterSkills
-{
-    self.shouldRewriteSkillsLevels = false;
-    [self updateRaceButtonWithName:nil];
-    [self.statView setViewFromSkillSet];
-    [self.dollController updateSkillValues];
 }
 
 #pragma mark -

@@ -48,6 +48,7 @@
 -(int)countBSforRangeSkill:(RangeSkill *)skill;
 -(int)countDCBonusForRangeSkill:(RangeSkill *)skill;
 -(int)countUsableLevelValueForSkill:(Skill *)skill;
+-(int)countSkillsInChainStartingWithSkill:(SkillTemplate *)skillTemplate;
 
 /**
  Add skill to chosen set of skills and return reference pointing on that skill object. If skill with such template already exist - will return old skill.

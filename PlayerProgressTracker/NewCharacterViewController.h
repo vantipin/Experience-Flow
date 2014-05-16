@@ -12,22 +12,11 @@
 #import "ColorConstants.h"
 #import "ClassesDropViewController.h"
 #import "StatView.h"
-#import "SkillTableViewController.h"
 #import "AddSkillDropViewController.h"
 #import "CharacterDollViewController.h"
 
 
-@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,SkillTableViewControllerDelegate,AddNewSkillControllerProtocol, CharacterDollViewControllerProtocol>
+@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,AddNewSkillControllerProtocol, CharacterDollViewControllerProtocol>
 
-@property (nonatomic) IBOutlet UIButton *raceBtn;
-@property (nonatomic) IBOutlet UILabel  *raceLabel;
-@property (nonatomic) IBOutlet UIButton *saveSet;
-@property (nonatomic) IBOutlet UIButton *saveCharacter;
-@property (nonatomic) IBOutlet UIImageView *icon;
-@property (nonatomic) IBOutlet UITextField *name;
-@property (nonatomic) IBOutlet UIView *characterSheetView;
-@property (nonatomic) IBOutlet UIView *statViewContainer;
-@property (nonatomic) IBOutlet UIView *additionalSkillContainerView;
-@property (nonatomic) IBOutlet UIButton *addNewSkillButton;
 
 @end

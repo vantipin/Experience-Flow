@@ -138,7 +138,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 +(void)checkDefaultSkillsAndCreateIfMissingWithContext:(NSManagedObjectContext *)context
 {
     DefaultSkillTemplates *defaultSkills = [DefaultSkillTemplates sharedInstance];
-    [defaultSkills allNoneCoreSkillTemplates]; //should create all default skill templates if missed
+    [defaultSkills allSkillTemplates]; //should create all default skill templates if missed
 }
 
 +(NSArray *)fetchSkillTemplateForName:(NSString *)name withContext:(NSManagedObjectContext *)context;

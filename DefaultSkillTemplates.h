@@ -10,7 +10,7 @@
 
 @class RangeSkill,MagicSkill,MeleeSkill,AdvancedSkill,Skill,SkillTemplate,Character,CharacterConditionAttributes,SkillSet;
 
-@interface DefaultSkillTemplates : NSObject <NSCoding>
+@interface DefaultSkillTemplates : NSObject
 
 @property (nonatomic) SkillTemplate *physique;
 @property (nonatomic) SkillTemplate *intelligence;
@@ -137,6 +137,6 @@
 -(NSArray *)allMeleeCombatSkillTemplates;
 -(NSArray *)allRangeCombatSkillTemplates;
 
--(NSArray *)allNoneCoreSkillTemplates;
+-(NSArray *)allSkillTemplates;
 
 @end

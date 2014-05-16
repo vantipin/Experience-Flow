@@ -110,7 +110,7 @@ static DefaultSkillTemplates *instance = nil;
     return instance;
 }
 
--(NSArray *)allNoneCoreSkillTemplates
+-(NSArray *)allSkillTemplates
 {
     NSArray *allDefaultSkills;
     

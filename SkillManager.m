@@ -286,6 +286,12 @@ static SkillManager *instance = nil;
     return overAllLevel;
 }
 
+-(int)countSkillsInChainStartingWithSkill:(SkillTemplate *)skillTemplate;
+{
+    int numberOfSkills = 1 + (skillTemplate.basicSkillTemplate ? [self countSkillsInChainStartingWithSkill:skillTemplate.basicSkillTemplate] : 0);
+    return numberOfSkills;
+}
+
 #pragma mark smart adding/removing methods
 -(Skill *)addNewSkillWithTempate:(SkillTemplate *)skillTemplate
                       toSkillSet:(SkillSet *)skillSet
@@ -731,7 +737,7 @@ static SkillManager *instance = nil;
 -(NSArray *)fetchAllSkillsForSkillSet:(SkillSet *)skillSet;
 {
     NSMutableArray *allCollection = [NSMutableArray new];
-    for (SkillTemplate *skillTemplate in [[DefaultSkillTemplates sharedInstance] allNoneCoreSkillTemplates]) {
+    for (SkillTemplate *skillTemplate in [[DefaultSkillTemplates sharedInstance] allSkillTemplates]) {
         Skill *skill = [self getSkillWithTemplate:skillTemplate withSkillSet:skillSet];
         if (skill) {
             [allCollection addObject:skill];
@@ -744,7 +750,7 @@ static SkillManager *instance = nil;
 -(NSArray *)fetchAllNoneBasicSkillsForSkillSet:(SkillSet *)skillSet;
 {
     NSMutableArray *allCollection = [NSMutableArray new];
-    for (SkillTemplate *skillTemplate in [[DefaultSkillTemplates sharedInstance] allNoneCoreSkillTemplates]) {
+    for (SkillTemplate *skillTemplate in [[DefaultSkillTemplates sharedInstance] allSkillTemplates]) {
         if (skillTemplate.skillEnumType != BasicSkillType) {
             Skill *skill = [self getSkillWithTemplate:skillTemplate withSkillSet:skillSet];
             if (skill) {
