@@ -47,10 +47,6 @@
 @property (nonatomic) SkillTemplate *flail;
 @property (nonatomic) SkillTemplate *greatWeapon;
 @property (nonatomic) SkillTemplate *polearm;
-@property (nonatomic) SkillTemplate *cavalry;
-@property (nonatomic) SkillTemplate *fencing;
-@property (nonatomic) SkillTemplate *staff;
-@property (nonatomic) SkillTemplate *spear;
 
 
 @property (nonatomic) SkillTemplate *ballisticSkill;
@@ -59,7 +55,6 @@
 @property (nonatomic) SkillTemplate *blackpowder;
 @property (nonatomic) SkillTemplate *crossbow;
 @property (nonatomic) SkillTemplate *thrown;
-@property (nonatomic) SkillTemplate *sling;
 
 
 //Intimidate (S) Basic skill.
@@ -133,6 +128,7 @@
  */
 + (DefaultSkillTemplates *)sharedInstance;
 
+-(NSArray *)allBasicSkillTemplates;
 -(NSArray *)allCoreSkillTemplates;
 -(NSArray *)allMeleeCombatSkillTemplates;
 -(NSArray *)allRangeCombatSkillTemplates;

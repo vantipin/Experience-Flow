@@ -286,10 +286,41 @@ static SkillManager *instance = nil;
     return overAllLevel;
 }
 
--(int)countSkillsInChainStartingWithSkill:(SkillTemplate *)skillTemplate;
+-(int)countPositionYInATreeForSkill:(SkillTemplate *)skillTemplate;
 {
-    int numberOfSkills = 1 + (skillTemplate.basicSkillTemplate ? [self countSkillsInChainStartingWithSkill:skillTemplate.basicSkillTemplate] : 0);
+    int numberOfSkills = 1 + (skillTemplate.basicSkillTemplate ? [self countPositionYInATreeForSkill:skillTemplate.basicSkillTemplate] : 0);
     return numberOfSkills;
+}
+
+-(NSInteger)countPositionXInATreeForSkill:(SkillTemplate *)skillTemplate;
+{
+    NSInteger position = 0;
+    if (skillTemplate.basicSkillTemplate) {
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES comparator:^NSComparisonResult(id obj1, id obj2) {
+            return [(NSString *)obj1 compare:(NSString *)obj2 options:NSNumericSearch];
+        }];
+        NSArray *sortedArray = [skillTemplate.basicSkillTemplate.subSkillsTemplate sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+        position = [sortedArray indexOfObject:skillTemplate] + [self countNumberOfSiblingsInTreeBeforeSkill:skillTemplate];
+    }
+    return position;
+}
+
+-(NSInteger)countNumberOfSiblingsInTreeBeforeSkill:(SkillTemplate *)skill
+{
+    NSInteger siblings = 0;
+    if (skill.basicSkillTemplate) {
+        siblings += skill.basicSkillTemplate.subSkillsTemplate.count + [self countNumberOfSiblingsInTreeBeforeSkill:skill.basicSkillTemplate];
+    }
+    return siblings;
+}
+
+-(SkillTemplate *)getRootSkillWithSkill:(SkillTemplate *)skill
+{
+    SkillTemplate *root = skill;
+    if (skill.basicSkillTemplate) {
+        root = [self getRootSkillWithSkill:skill.basicSkillTemplate];
+    }
+    return root;
 }
 
 #pragma mark smart adding/removing methods
@@ -704,7 +735,7 @@ static SkillManager *instance = nil;
     
     if (!skill)
     {
-        NSLog(@"Warning! Skill with name ""%@"" is missing for character with id %@!",skillTemplate.name,character.characterId);
+        NSLog(@"Warning! Skill with name ""%@"" is missing for character with id %@!",skillTemplate.name,character.name);
         if (!character.skillSet) {
             character.skillSet = [NSEntityDescription insertNewObjectForEntityForName:@"SkillSet" inManagedObjectContext:self.context];
         }

@@ -125,16 +125,11 @@ static DefaultSkillTemplates *instance = nil;
                          self.flail,
                          self.greatWeapon,
                          self.polearm,
-                         self.cavalry,
-                         self.fencing,
-                         self.staff,
-                         self.spear,
                          
                          self.bow,
                          self.blackpowder,
                          self.crossbow,
                          self.thrown,
-                         self.sling,
                          
                          self.strength,
                          self.toughness,
@@ -155,6 +150,15 @@ static DefaultSkillTemplates *instance = nil;
     
     return allDefaultSkills;
 }
+
+
+-(NSArray *)allBasicSkillTemplates;
+{
+    NSArray *allSkills = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"skillEnumType == %d",BasicSkillType] withContext:self.context];
+    
+    return allSkills;
+}
+
 
 -(NSArray *)allCoreSkillTemplates
 {
@@ -184,11 +188,7 @@ static DefaultSkillTemplates *instance = nil;
                            self.ordinary,
                            self.flail,
                            self.greatWeapon,
-                           self.polearm,
-                           self.cavalry,
-                           self.fencing,
-                           self.staff,
-                           self.spear];
+                           self.polearm];
     
     return allCharacterSkills;
 }
@@ -200,8 +200,7 @@ static DefaultSkillTemplates *instance = nil;
     allCharacterSkills = @[self.bow,
                            self.blackpowder,
                            self.crossbow,
-                           self.thrown,
-                           self.sling];
+                           self.thrown];
     
     return allCharacterSkills;
 }
@@ -281,7 +280,7 @@ static DefaultSkillTemplates *instance = nil;
                                                      withBasicXpBarrier:15
                                                    withSkillProgression:15
                                                withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
-                                                          withSkillType:BasicSkillType
+                                                          withSkillType:AdvancedSkillType
                                                  withDefaultStartingLvl:0
                                                 withParentSkillTemplate:self.physique
                                                             withContext:self.context];
@@ -310,7 +309,7 @@ static DefaultSkillTemplates *instance = nil;
                                                      withBasicXpBarrier:15
                                                    withSkillProgression:15
                                                withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
-                                                          withSkillType:BasicSkillType
+                                                          withSkillType:AdvancedSkillType
                                                  withDefaultStartingLvl:0
                                                 withParentSkillTemplate:self.physique
                                                             withContext:self.context];
@@ -769,7 +768,7 @@ static DefaultSkillTemplates *instance = nil;
     return _unarmed;
 }
 
-//ordinary
+//cutting
 -(SkillTemplate *)ordinary{
     if (!_ordinary){
         SkillTemplate *skillTemplate;
@@ -778,7 +777,7 @@ static DefaultSkillTemplates *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ordinaryName
                                                               withRules:nil
                                                       withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of one-handed axes, swords, clubs, hammers, daggers."
+                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of one-handed axes, swords, clubs, hammers, daggers, main gauches and rapiers."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
                                                    withSkillProgression:defaultMeleeWeaponProgression
@@ -859,7 +858,7 @@ static DefaultSkillTemplates *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:polearmName
                                                               withRules:nil
                                                       withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of halberds."
+                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of halberds, spears, quarter staffs and lances."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
                                                    withSkillProgression:defaultMeleeWeaponProgression
@@ -875,114 +874,6 @@ static DefaultSkillTemplates *instance = nil;
         _polearm = skillTemplate;
     }
     return _polearm;
-}
-
-//cavalry
--(SkillTemplate *)cavalry{
-    if (!_cavalry){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",cavalryName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:cavalryName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of sabres and lances."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
-                                                   withSkillProgression:defaultMeleeWeaponProgression
-                                               withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
-                                                          withSkillType:MeleeSkillType
-                                                 withDefaultStartingLvl:1
-                                                withParentSkillTemplate:self.weaponSkill
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _cavalry = skillTemplate;
-    }
-    return _cavalry;
-}
-
-//fencing
--(SkillTemplate *)fencing{
-    if (!_fencing){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",fencingName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:fencingName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of main gauches, rapiers."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
-                                                   withSkillProgression:defaultMeleeWeaponProgression
-                                               withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
-                                                          withSkillType:MeleeSkillType
-                                                 withDefaultStartingLvl:1
-                                                withParentSkillTemplate:self.weaponSkill
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _fencing = skillTemplate;
-    }
-    return _fencing;
-}
-
-//staff
--(SkillTemplate *)staff{
-    if (!_staff){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",staffName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:staffName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of quarter staffs."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
-                                                   withSkillProgression:defaultMeleeWeaponProgression
-                                               withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
-                                                          withSkillType:MeleeSkillType
-                                                 withDefaultStartingLvl:1
-                                                withParentSkillTemplate:self.weaponSkill
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _staff = skillTemplate;
-    }
-    return _staff;
-}
-
-//spear
--(SkillTemplate *)spear{
-    if (!_spear){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",spearName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:spearName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of spears."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
-                                                   withSkillProgression:defaultMeleeWeaponProgression
-                                               withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
-                                                          withSkillType:MeleeSkillType
-                                                 withDefaultStartingLvl:1
-                                                withParentSkillTemplate:self.weaponSkill
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _spear = skillTemplate;
-    }
-    return _spear;
 }
 
 #pragma mark ranged weapons skills
@@ -1076,7 +967,7 @@ static DefaultSkillTemplates *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:thrownName
                                                               withRules:nil
                                                       withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of javelins, lasso, nets, spear, throwing axes/hammers/daggers/stars, whips and improvised."
+                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of javelins, lasso, nets, spear, throwing axes/hammers/daggers/stars, whips, slings and staff slings."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultRangeWeaponBasicBarrier
                                                    withSkillProgression:defaultRangeWeaponProgression
@@ -1092,33 +983,6 @@ static DefaultSkillTemplates *instance = nil;
         _thrown = skillTemplate;
     }
     return _thrown;
-}
-
-//sling
--(SkillTemplate *)sling{
-    if (!_sling){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",slingName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:slingName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of slings and staff slings."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultRangeWeaponBasicBarrier
-                                                   withSkillProgression:defaultRangeWeaponProgression
-                                               withBasicSkillGrowthGoes:defaultRangeWeaponGrowhtGoes
-                                                          withSkillType:RangeSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.ballisticSkill
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _sling = skillTemplate;
-    }
-    return _sling;
 }
 
 
