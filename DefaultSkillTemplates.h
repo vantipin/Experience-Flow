@@ -42,12 +42,9 @@
 
 @property (nonatomic) SkillTemplate *weaponSkill;
 //sub WS
-@property (nonatomic) SkillTemplate *unarmed;
-@property (nonatomic) SkillTemplate *ordinary;
-@property (nonatomic) SkillTemplate *flail;
-@property (nonatomic) SkillTemplate *greatWeapon;
-@property (nonatomic) SkillTemplate *polearm;
-
+@property (nonatomic) SkillTemplate *blunt;
+@property (nonatomic) SkillTemplate *cutting;
+@property (nonatomic) SkillTemplate *piercing;
 
 @property (nonatomic) SkillTemplate *ballisticSkill;
 //sub BS

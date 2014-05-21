@@ -25,35 +25,27 @@
 #define weaponSkillName @"Melee"
 #define ballisticSkillName @"Range"
 
-#define unarmedName @"Unarmed"
-#define ordinaryName @"Ordinary"
-#define flailName @"Flail"
-#define greatWeaponName @"Great Weapon"
-#define polearmName @"Polearm"
-#define cavalryName @"Cavalry"
-#define fencingName @"Fencing"
-#define staffName @"Staff"
-#define spearName @"Spear"
-
+#define bluntName @"Crashing"
+#define ordinaryName @"Cutting"
+#define flailName @"Piercing"
 
 #define bowName @"Bow"
-#define blackpowderName @"Blackpowder"
+#define blackpowderName @"Firearm"
 #define crossbowName @"Crossbow"
 #define thrownName @"Thrown"
-#define slingName @"Sling"
 
 #define strengthName @"Strength"
 #define toughnessName @"Toughness"
 #define agilityName @"Agility"
 
 #define reasonName @"Reason"
-#define disciplineName @"Discipline"
+#define disciplineName @"Control"
 #define perceptionName @"Perception"
 
 #define stealthName @"Stealth"
 #define animalHandlingName @"Animal Handling"
 #define educationName @"Education"
-#define bearingCapacityName @"Bearing Capacity"
+#define bearingCapacityName @"Capacity"
 #define swimmingName @"Swim"
 #define climbName @"Climb"
 #define rideName @"Ride"
@@ -120,11 +112,9 @@ static DefaultSkillTemplates *instance = nil;
                          self.weaponSkill,
                          self.ballisticSkill,
                          
-                         self.unarmed,
-                         self.ordinary,
-                         self.flail,
-                         self.greatWeapon,
-                         self.polearm,
+                         self.blunt,
+                         self.cutting,
+                         self.piercing,
                          
                          self.bow,
                          self.blackpowder,
@@ -184,11 +174,9 @@ static DefaultSkillTemplates *instance = nil;
 {
     NSArray *allCharacterSkills;
     
-    allCharacterSkills = @[self.unarmed,
-                           self.ordinary,
-                           self.flail,
-                           self.greatWeapon,
-                           self.polearm];
+    allCharacterSkills = @[self.blunt,
+                           self.cutting,
+                           self.piercing];
     
     return allCharacterSkills;
 }
@@ -389,9 +377,9 @@ static DefaultSkillTemplates *instance = nil;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",agilityName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:agilityName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Applying one’s manual dexterity and fine motor skills to specific tasks. Use this skill to perform feats of acrobatics, balance along narrow surfaces, or slip from bonds. It also reflects delicacy and precision while manipulating objects. Specialisation options: Dodge, balance, acrobatics, juggling, dance, knots & ropework"
+                                                              withRules:@"Rules: \n- For jumping, traversing narrow or treacherous surfaces pass the Agility test*.\n- When falling down from less then 6 meters you can attempt to land on feet taking same damage with 0 Strength.\n- Using a balancing pole (two hands) while traversing a narrow surface grants +1 to Agility check.\n- If you use a pole as part of a running jump, you gain a +2 bonus on your Agility check (but must let go of the pole in the process)."
+                                                      withRulesExamples:@"*Here examples of tasks and their stats:\nLevel 1. d6 test. Move on narrow surface or uneven ground without falling at half speed. Running Jump with distance equal to the half of your movement. Running distance must be more or equal to jumping distance. Land on a feet falling from 1 meter height.\nLevel 2. d8 test. Jump from a place with distance equal to the half of your movement. Land on a feet falling from 2 meter height.\nLevel 3. d10 test. Running Jump with distance equal to your movement. Running distance must be more or equal to jumping distance. Land on a feet falling from 3 meter height.\nLevel 4. d12 test. Move(at full speed)/Fight on narrow surface or uneven ground without falling. Land on a feet falling from 4 meter height.\nLevel 5. d20 test. Jump from a place with distance equal to your movement. Land on a feet falling from 5 meter height."
+                                                        withDescription:@"Advanced skill. Describe a skill and grace in physical movement. Keeping balance while traversing narrow or treacherous surfaces. You can also dive, flip, jump, and roll, avoiding attacks and confusing your opponents."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultPhsAndMnsBasicBarrier
                                                    withSkillProgression:defaultPhsAndMnsProgression
@@ -741,16 +729,16 @@ static DefaultSkillTemplates *instance = nil;
 }
 
 #pragma mark melee weapons skills
-//unarmed
--(SkillTemplate *)unarmed{
-    if (!_unarmed){
+//blunt
+-(SkillTemplate *)blunt{
+    if (!_blunt){
         SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",unarmedName] withContext:self.context];
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",bluntName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:unarmedName
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:bluntName
                                                               withRules:nil
                                                       withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of bare handed, battle gantlets."
+                                                        withDescription:@"Advanced skill. Covers the skill of using crushing potential of weapon in melee combat."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
                                                    withSkillProgression:defaultMeleeWeaponProgression
@@ -763,21 +751,21 @@ static DefaultSkillTemplates *instance = nil;
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
         }
-        _unarmed = skillTemplate;
+        _blunt = skillTemplate;
     }
-    return _unarmed;
+    return _blunt;
 }
 
 //cutting
--(SkillTemplate *)ordinary{
-    if (!_ordinary){
+-(SkillTemplate *)cutting{
+    if (!_cutting){
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",ordinaryName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ordinaryName
                                                               withRules:nil
                                                       withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of one-handed axes, swords, clubs, hammers, daggers, main gauches and rapiers."
+                                                        withDescription:@"Advanced skill. Covers the skill of using cutting potential of weapon in melee combat."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
                                                    withSkillProgression:defaultMeleeWeaponProgression
@@ -790,21 +778,21 @@ static DefaultSkillTemplates *instance = nil;
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
         }
-        _ordinary = skillTemplate;
+        _cutting = skillTemplate;
     }
-    return _ordinary;
+    return _cutting;
 }
 
-//flail
--(SkillTemplate *)flail{
-    if (!_flail){
+//piercing
+-(SkillTemplate *)piercing{
+    if (!_piercing){
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",flailName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:flailName
                                                               withRules:nil
                                                       withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of flails, morning stars and chain weapons."
+                                                        withDescription:@"Advanced skill. Covers the skill of using piercing potential of weapon in melee combat."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
                                                    withSkillProgression:defaultMeleeWeaponProgression
@@ -817,63 +805,9 @@ static DefaultSkillTemplates *instance = nil;
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
         }
-        _flail = skillTemplate;
+        _piercing = skillTemplate;
     }
-    return _flail;
-}
-
-//great weapon
--(SkillTemplate *)greatWeapon{
-    if (!_greatWeapon){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",greatWeaponName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:greatWeaponName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of great weapons, two-handed swords, hammers etc."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
-                                                   withSkillProgression:defaultMeleeWeaponProgression
-                                               withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
-                                                          withSkillType:MeleeSkillType
-                                                 withDefaultStartingLvl:1
-                                                withParentSkillTemplate:self.weaponSkill
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _greatWeapon = skillTemplate;
-    }
-    return _greatWeapon;
-}
-
-//polearm
--(SkillTemplate *)polearm{
-    if (!_polearm){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",polearmName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:polearmName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of halberds, spears, quarter staffs and lances."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMeleeWeaponBasicBarrier
-                                                   withSkillProgression:defaultMeleeWeaponProgression
-                                               withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
-                                                          withSkillType:MeleeSkillType
-                                                 withDefaultStartingLvl:1
-                                                withParentSkillTemplate:self.weaponSkill
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _polearm = skillTemplate;
-    }
-    return _polearm;
+    return _piercing;
 }
 
 #pragma mark ranged weapons skills

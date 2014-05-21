@@ -127,7 +127,7 @@
     [segment.titleLabel setTextColor:[UIColor blackColor]];
     segment.backgroundColor = [UIColor redColor];
     [segment addTarget:self action:@selector(defaultTapAction:) forControlEvents:UIControlEventTouchUpInside];
-    Skill *defaultSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[[DefaultSkillTemplates sharedInstance] unarmed] withCharacter:self.character];
+    Skill *defaultSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[[DefaultSkillTemplates sharedInstance] blunt] withCharacter:self.character];
     segment.delegateSegment = self;
     segment.currentSkill = defaultSkill;
 
@@ -162,7 +162,7 @@
         }
     }
     if (self.character.characterCondition.currentMeleeSkills.allObjects.count == 0) {
-        [self.character.characterCondition addCurrentMeleeSkills:[NSSet setWithObject:[[SkillManager sharedInstance] getOrAddSkillWithTemplate:[[DefaultSkillTemplates sharedInstance] unarmed] withCharacter:self.character]]];
+        [self.character.characterCondition addCurrentMeleeSkills:[NSSet setWithObject:[[SkillManager sharedInstance] getOrAddSkillWithTemplate:[[DefaultSkillTemplates sharedInstance] blunt] withCharacter:self.character]]];
     }
     
     
