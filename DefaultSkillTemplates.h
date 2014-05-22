@@ -36,6 +36,7 @@
 @property (nonatomic) SkillTemplate *animalHandling;
 
 @property (nonatomic) SkillTemplate *education;
+@property (nonatomic) SkillTemplate *heal;
 
 
 

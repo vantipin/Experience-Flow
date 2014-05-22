@@ -26,8 +26,7 @@
                                 </state>
                                 <connections>
                                     <action selector="didTabSkillButton:" destination="HRk-67-RWO" eventType="touchUpInside" id="h0I-LA-TMl"/>
-                                    <outletCollection property="gestureRecognizers" destination="bBp-7A-13n" appends="YES" id="EbL-Qs-a34"/>
-                                    <outletCollection property="gestureRecognizers" destination="Ge2-h4-hRU" appends="YES" id="wM8-1N-lyc"/>
+                                    <outletCollection property="gestureRecognizers" destination="PUG-t6-Dks" appends="YES" id="Lcz-kr-H5f"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y1H-T2-Du3" customClass="NodeButton">
@@ -41,6 +40,7 @@
                                 </state>
                                 <connections>
                                     <action selector="didTabSkillLevelButton:" destination="HRk-67-RWO" eventType="touchUpInside" id="DwU-X8-lTS"/>
+                                    <outletCollection property="gestureRecognizers" destination="PUG-t6-Dks" appends="YES" id="kYj-Y9-Wty"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -56,16 +56,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B4Y-RW-RXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="up" id="bBp-7A-13n" userLabel="Swipe Up">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="PUG-t6-Dks">
                     <connections>
-                        <action selector="didSwipSkillUp:" destination="HRk-67-RWO" id="Kie-CT-ZIU"/>
+                        <action selector="pan:" destination="HRk-67-RWO" id="7eI-0k-GTe"/>
                     </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="down" id="Ge2-h4-hRU" userLabel="Swipe Down">
-                    <connections>
-                        <action selector="didSwipeSkillDown:" destination="HRk-67-RWO" id="F6k-gg-0BI"/>
-                    </connections>
-                </swipeGestureRecognizer>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="108" y="-448"/>
         </scene>

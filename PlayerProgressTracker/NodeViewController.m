@@ -74,15 +74,21 @@
     [self.delegate didTapNodeLevel:self];
 }
 
--(IBAction)didSwipeSkillDown:(id)sender;
+
+- (IBAction)pan:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    [self.delegate didSwipNodeDown:self];
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded || gestureRecognizer.state == UIGestureRecognizerStateFailed || gestureRecognizer.state == UIGestureRecognizerStateCancelled){
+        CGPoint velocity = [gestureRecognizer velocityInView:self.view];
+        
+        if (velocity.y > 0) {
+            [self.delegate didSwipNodeDown:self];
+        }
+        else {
+            [self.delegate didSwipNodeUp:self];
+        }
+    }
 }
 
--(IBAction)didSwipSkillUp:(id)sender;
-{
-    [self.delegate didSwipNodeUp:self];
-}
 /*
 #pragma mark - Navigation
 

@@ -293,13 +293,15 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    NSLog(@"zooming....");
+    //NSLog(@"zooming....");
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"scrolling...");
+    //NSLog(@"scrolling...");
 }
+
+
 
 #pragma mark #import NodeViewControllerProtocol methods
 -(void)didSwipNodeDown:(NodeViewController *)node
@@ -315,12 +317,14 @@ static NSString *emptyParentKey = @"emptyParent";
 -(void)didTapNode:(NodeViewController *)node
 {
     NSLog(@"did tap node %@",node.skill.skillTemplate.name);
+    [[SkillManager sharedInstance] showDescriptionForSkillTemplate:node.skill.skillTemplate inView:self.scrollView.superview];
 }
 
 -(void)didTapNodeLevel:(NodeViewController *)node
 {
     NSLog(@"did tap level of node %@",node.skill.skillTemplate.name);
 }
+
 /*
 #pragma mark - Navigation
 
