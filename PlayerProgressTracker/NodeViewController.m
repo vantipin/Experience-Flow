@@ -7,12 +7,12 @@
 //
 
 #import "NodeViewController.h"
+#import "NodeLinkController.h"
 #import "SkillTemplate.h"
 
 @interface NodeViewController ()
 
-@property (nonatomic) IBOutlet NodeButton *skillButton;
-@property (nonatomic) IBOutlet NodeButton *skillLevelButton;
+@property (nonatomic) IBOutlet UIButton *skillLevelButton;
 
 @end
 
@@ -23,6 +23,9 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"NodeView" bundle:nil];
     NodeViewController *controller = [storyboard instantiateInitialViewController];
     controller.view.frame =  frame;
+    
+    //[controller invokeAnimationWithX:0 withY:0];
+    
     return controller;
 }
 
@@ -53,6 +56,15 @@
     if (_skill) {
         [self updateInterface];
     }
+}
+
+-(NSMutableArray *)nodeLinksChild
+{
+    if (!_nodeLinksChild) {
+        _nodeLinksChild = [NSMutableArray new];
+    }
+    
+    return _nodeLinksChild;
 }
 
 -(void)updateInterface
@@ -89,6 +101,69 @@
     }
 }
 
+
+#pragma mark manage links
+
+-(void)setParentNodeLink:(NodeViewController *)parentNodeLink;
+{
+    if (self.nodeLinkParent) {
+        [self.nodeLinkParent.parent.nodeLinksChild removeObject:parentNodeLink];
+        [self removeLink:self.nodeLinkParent];
+    }
+    self.nodeLinkParent = [self addLinkWithParent:parentNodeLink andChild:self];
+}
+
+-(void)removeLink:(NodeLinkController *)link;
+{
+    [link removeFromParentViewController];
+    [link.view removeFromSuperview];
+}
+
+-(NodeLinkController *)addLinkWithParent:(NodeViewController *)parent andChild:(NodeViewController *)child
+{
+    CGPoint parentCenter = parent.view.center;
+    CGPoint childCenter  = CGPointMake(child.view.center.x, child.view.center.y - (child.view.frame.size.height / 5));
+    
+    float originX = parentCenter.x;
+    float originY = parentCenter.y;
+    float sizeX   = hypotf(parentCenter.x - childCenter.x, parentCenter.y - childCenter.y);
+    float sizeY   = 90;
+    
+    CGRect linkFrame = CGRectMake(originX, originY, sizeX, sizeY);
+    
+    NodeLinkController *newNodeLink = [NodeLinkController getInstanceFromStoryboardWithFrame:linkFrame];
+    //turn the image
+    //...
+    CGFloat angle = [self pointPairToBearingDegrees:parentCenter secondPoint:childCenter];
+    newNodeLink.view.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
+    newNodeLink.view.layer.position = linkFrame.origin;
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(angle);
+    [newNodeLink.view setTransform:rotate];
+
+   
+    
+    [parent.nodeLinksChild addObject:newNodeLink];
+    child.nodeLinkParent = newNodeLink;
+    
+    newNodeLink.parent = parent;
+    newNodeLink.child  = child;
+    
+    [self.parentViewController addChildViewController:newNodeLink];
+    [parent.view.superview addSubview:newNodeLink.view];
+    [parent.view.superview sendSubviewToBack:newNodeLink.view];
+
+    return newNodeLink;
+}
+
+
+- (CGFloat) pointPairToBearingDegrees:(CGPoint)startingPoint secondPoint:(CGPoint) endingPoint
+{
+    CGPoint originPoint = CGPointMake(endingPoint.x - startingPoint.x, endingPoint.y - startingPoint.y); // get origin point to origin by subtracting end from start
+    float bearingRadians = atan2f(originPoint.y, originPoint.x); // get bearing in radians
+    //float bearingDegrees = bearingRadians * (180.0 / M_PI); // convert to degrees
+    //bearingDegrees = (bearingDegrees > 0.0 ? bearingDegrees : (360.0 + bearingDegrees)); // correct discontinuity
+    return bearingRadians;
+}
 /*
 #pragma mark - Navigation
 
@@ -100,10 +175,30 @@
 }
 */
 
-
-@end
-
-
-@implementation NodeButton
+- (void)invokeAnimationWithX:(float)x withY:(float)y
+{
+    x = (arc4random() %30);
+    y = (arc4random() %30);
+    x -= 15;
+    y -= 15;
+    
+    float duration = (abs(x) > 9 || abs(y) > 9) ? 3 : 1.5 + arc4random() %2;
+    [UIView animateWithDuration:duration animations:^{
+        self.view.frame = CGRectMake(self.view.frame.origin.x + x,
+                                     self.view.frame.origin.y + y,
+                                     self.view.frame.size.width,
+                                     self.view.frame.size.height);
+    } completion:^(BOOL success){
+        float duration = (abs(x) > 9 || abs(y) > 9) ? 3 : 1.5 + arc4random() %2;
+        [UIView animateWithDuration:duration animations:^{
+            self.view.frame = CGRectMake(self.view.frame.origin.x - x,
+                                         self.view.frame.origin.y - y,
+                                         self.view.frame.size.width,
+                                         self.view.frame.size.height);
+        } completion:^(BOOL success){
+            [self invokeAnimationWithX:x withY:y];
+        }];
+    }];
+}
 
 @end

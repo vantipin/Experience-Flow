@@ -30,6 +30,7 @@ static NSString *emptyParentKey = @"emptyParent";
 @property (nonatomic) NSMutableDictionary *treeWidthForTreeArrayObject;
 @property (nonatomic) NSMutableDictionary *nodesOnSingleLevelForLevelArrayObject;
 @property (nonatomic) NSMutableDictionary *sectionIndexesForSkillParentName;
+@property (nonatomic) NSMutableDictionary *nodeIndexesForSkillNames;
 @property (nonatomic) long treeHeight;
 
 @end
@@ -148,6 +149,14 @@ static NSString *emptyParentKey = @"emptyParent";
     }
     
     return _treeWidthForTreeArrayObject;
+}
+
+-(NSMutableDictionary *)nodeIndexesForSkillNames
+{
+    if (!_nodeIndexesForSkillNames) {
+        _nodeIndexesForSkillNames = [NSMutableDictionary new];
+    }
+    return _nodeIndexesForSkillNames;
 }
 
 #pragma mark -
@@ -274,6 +283,15 @@ static NSString *emptyParentKey = @"emptyParent";
                         [self addChildViewController:newSkillNode];
                         [self.containerView addSubview:newSkillNode.view];
                         newSkillNode.delegate = self;
+                        
+                        [self.nodeIndexesForSkillNames setObject:newSkillNode forKey:skillTemplate.name];
+                        if (skillTemplate.basicSkillTemplate) {
+                            if ([self.nodeIndexesForSkillNames valueForKey:skillTemplate.basicSkillTemplate.name]) {
+                                
+                                [newSkillNode setParentNodeLink:[self.nodeIndexesForSkillNames valueForKey:skillTemplate.basicSkillTemplate.name]];
+                            }
+                        }
+                        
                     }
                     sectionMargin += section.count * (nodeDiameter + minimalMarginBetweenNodesX) + minimalMarginBetweenNodesX;
                     thisTreeGreatestSectionMargin = (sectionMargin > thisTreeGreatestSectionMargin) ? sectionMargin : thisTreeGreatestSectionMargin;
@@ -306,12 +324,26 @@ static NSString *emptyParentKey = @"emptyParent";
 #pragma mark #import NodeViewControllerProtocol methods
 -(void)didSwipNodeDown:(NodeViewController *)node
 {
-    NSLog(@"swipe down node %@",node.skill.skillTemplate.name);
+    //NSLog(@"swipe down node %@",node.skill.skillTemplate.name);
+    [UIView animateWithDuration:0.3 animations:^{
+        node.skillButton.highlighted = true;
+    } completion:^(BOOL success){
+        [UIView animateWithDuration:0.3 animations:^{
+            node.skillButton.highlighted = false;
+        }];
+    }];
 }
 
 -(void)didSwipNodeUp:(NodeViewController *)node
 {
-    NSLog(@"swipe up node %@",node.skill.skillTemplate.name);
+    //NSLog(@"swipe up node %@",node.skill.skillTemplate.name);
+    [UIView animateWithDuration:0.3 animations:^{
+        node.skillButton.highlighted = true;
+    } completion:^(BOOL success){
+        [UIView animateWithDuration:0.3 animations:^{
+            node.skillButton.highlighted = false;
+        }];
+    }];
 }
 
 -(void)didTapNode:(NodeViewController *)node
@@ -335,5 +367,7 @@ static NSString *emptyParentKey = @"emptyParent";
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

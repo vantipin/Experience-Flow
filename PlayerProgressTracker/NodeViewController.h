@@ -20,17 +20,24 @@
 
 @end
 
-@interface NodeButton : UIButton
-@end
+
+@class NodeLinkController;
 
 
 @interface NodeViewController : UIViewController
 
+@property (nonatomic) NodeLinkController *nodeLinkParent;
+@property (nonatomic) NSMutableArray *nodeLinksChild;
+
 @property (nonatomic) Skill *skill;
 @property (nonatomic,assign) id<NodeViewControllerProtocol> delegate;
+
+@property (nonatomic) IBOutlet UIButton *skillButton;
 
 +(NodeViewController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 
 -(void)updateInterface;
+
+-(void)setParentNodeLink:(NodeViewController *)parentNodeLink;
 
 @end
