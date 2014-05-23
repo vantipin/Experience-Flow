@@ -11,12 +11,10 @@
 #import "SkillManager.h"
 #import "ColorConstants.h"
 #import "ClassesDropViewController.h"
-#import "StatView.h"
 #import "AddSkillDropViewController.h"
-#import "CharacterDollViewController.h"
 
 
-@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,AddNewSkillControllerProtocol, CharacterDollViewControllerProtocol>
+@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,AddNewSkillControllerProtocol>
 
 
 @end

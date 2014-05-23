@@ -44,8 +44,6 @@
 @property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 @property (nonatomic) BOOL shouldRewriteSkillsLevels; //for cases when player tap race button;
 @property (nonatomic) NSManagedObjectContext *context;
-@property (nonatomic) StatView *statView;
-@property (nonatomic) CharacterDollViewController *dollController;
 
 @property (nonatomic) UITextField *currentlyEditingField; //for applying changes when (save) buttons tapped
 
@@ -82,9 +80,6 @@
     self.setWeaponDropDownViewController.delegateDropDown = self;
     [self.view addSubview:self.setWeaponDropDownViewController.view];
     
-    self.statView.settable = true;
-    self.statView.executer = self;
-    
     self.name.delegate = self;
     self.name.text = self.character.name;
     
@@ -94,11 +89,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.statView initFields];
-    
-    self.statView.character = self.character;//setter will update interface
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
-    self.dollController.character = self.character;
     self.skillTreeController.character = self.character;
     //[self.skillTreeController resetSkillNodes];
 //    for (SkillTemplate *skillTemplate in [DefaultSkillTemplates sharedInstance].allNoneCoreSkillTemplates) {
@@ -115,28 +106,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(StatView *)statView
-{
-    if (!_statView) {
-        _statView = [[StatView alloc] initWithFrame:CGRectMake(0, 0, 320, 360)];
-        [self.statViewContainer addSubview:_statView];
-    }
-    return _statView;
-}
-
--(CharacterDollViewController *)dollController
-{
-    if (!_dollController) {
-        CGRect frame = CGRectMake(320, 0, 400, 360);
-        _dollController = [CharacterDollViewController getInstanceFromStoryboardWithFrame:frame];
-        [self addChildViewController:_dollController];
-        [self.statViewContainer addSubview:_dollController.view];
-
-    }
-    
-    return _dollController;
 }
 
 -(SkillTreeViewController *)skillTreeController
@@ -246,7 +215,6 @@
     
     if (self.raceNames.count == 0 || !self.shouldRewriteSkillsLevels) {
         //no statSet is available or character's skills set statSet
-        [self.statView setViewFromSkillSet];
         [self prepareViewForSavingNewClass];
     }
     else {
@@ -269,15 +237,10 @@
 
 -(void)setSkillSet:(SkillSet *)skillSet forCharacter:(Character *)character;
 {
-    SkillSet *formerSet = self.statView.character.skillSet;
-    self.statView.character.skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:skillSet];
-    [SkillSet deleteSkillSet:formerSet withContext:self.context];
+    //SkillSet *formerSet = self.statView.character.skillSet;
+    //[SkillSet deleteSkillSet:formerSet withContext:self.context];
     
     [character saveCharacterWithContext:self.context];
-    
-    [self.statView setViewFromSkillSet];
-    
-    [self.dollController updateSkillValues];
     
     self.addNewSkillDropController.skillSet = character.skillSet;
 }
@@ -335,20 +298,6 @@
 -(IBAction)saveStatSetBtn:(id)sender
 {
     [self resignCurrentTextFieldResponder];
-    
-    if ([self.statView nonEmptyStats]) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"New basic stat set"
-                                                       message: @"Save new set with name:"
-                                                      delegate: self
-                                             cancelButtonTitle:@"Cancel"
-                                             otherButtonTitles:@"Save",nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        
-        self.alertTextField = [alert textFieldAtIndex:0];
-        self.alertTextField.delegate = self; //to forbit saving empty name
-        
-        [alert show];
-    }
 }
 
 -(IBAction)raceBtnTapped:(id)sender
@@ -412,23 +361,23 @@
         self.shouldRewriteSkillsLevels = true;
         [self updateRaceButtonWithName:name];
     }
-    else if (dropDown == self.setWeaponDropDownViewController) {
-        if (returnIndex.section == 0) {
-            SkillTemplate *meleeWeaponTemplate = self.setWeaponDropDownViewController.meleeSkills[returnIndex.row];
-            MeleeSkill *meleeSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:meleeWeaponTemplate withCharacter:self.character];
-            
-            DollActiveSegment *currentSegment = (DollActiveSegment *)dropDown.anchorView;
-            currentSegment.currentSkill = meleeSkill;
-        }
-        else if (returnIndex.section == 1) {
-            SkillTemplate *rangeWeaponTemplate = self.setWeaponDropDownViewController.rangeSkills[returnIndex.row];
-            RangeSkill *rangeSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:rangeWeaponTemplate withCharacter:self.character];
-            
-            DollActiveSegment *currentSegment = (DollActiveSegment *)dropDown.anchorView;
-            currentSegment.currentSkill = rangeSkill;
-        }
-        
-    }
+//    else if (dropDown == self.setWeaponDropDownViewController) {
+//        if (returnIndex.section == 0) {
+//            SkillTemplate *meleeWeaponTemplate = self.setWeaponDropDownViewController.meleeSkills[returnIndex.row];
+//            MeleeSkill *meleeSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:meleeWeaponTemplate withCharacter:self.character];
+//            
+//            DollActiveSegment *currentSegment = (DollActiveSegment *)dropDown.anchorView;
+//            currentSegment.currentSkill = meleeSkill;
+//        }
+//        else if (returnIndex.section == 1) {
+//            SkillTemplate *rangeWeaponTemplate = self.setWeaponDropDownViewController.rangeSkills[returnIndex.row];
+//            RangeSkill *rangeSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:rangeWeaponTemplate withCharacter:self.character];
+//            
+//            DollActiveSegment *currentSegment = (DollActiveSegment *)dropDown.anchorView;
+//            currentSegment.currentSkill = rangeSkill;
+//        }
+//        
+//    }
 }
 
 -(void)deleteStatSetWithName:(NSString *)name
@@ -461,17 +410,17 @@
             self.character.name = textField.text;
             [Character saveContext:self.context];
         }
-        else if ([self.statView isTextFieldInStatView:textField]) {
-            if (textField.text.length == 0) {
-                return false;
-            }
-            else if ([self.statView isTextFieldIsSkillToSet:textField]) {
-                [self.statView setSkillFromTextView:textField];
-            }
-            else {
-                [self.statView setSkillSetFromView];
-            }
-        }
+//        else if ([self.statView isTextFieldInStatView:textField]) {
+//            if (textField.text.length == 0) {
+//                return false;
+//            }
+//            else if ([self.statView isTextFieldIsSkillToSet:textField]) {
+//                [self.statView setSkillFromTextView:textField];
+//            }
+//            else {
+//                [self.statView setSkillSetFromView];
+//            }
+//        }
         return true;
     }
     [textField resignFirstResponder];
@@ -480,18 +429,18 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
-    if ([self.statView isTextFieldInStatView:textField]) {
-        //from here filter stat input. Only number. Max 2 numbers
-        NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
-        NSUInteger newLength = [textField.text length] + [string length] - range.length;
-        if ([string rangeOfCharacterFromSet:set].location != NSNotFound || newLength > 2) {
-            [textField resignFirstResponder];
-            return false;
-        }
-        //suggest new stat set
-        [self prepareViewForSavingNewClass];
-        return true;
-    }
+//    if ([self.statView isTextFieldInStatView:textField]) {
+//        //from here filter stat input. Only number. Max 2 numbers
+//        NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+//        NSUInteger newLength = [textField.text length] + [string length] - range.length;
+//        if ([string rangeOfCharacterFromSet:set].location != NSNotFound || newLength > 2) {
+//            [textField resignFirstResponder];
+//            return false;
+//        }
+//        //suggest new stat set
+//        [self prepareViewForSavingNewClass];
+//        return true;
+//    }
     return true;
 }
 
@@ -531,18 +480,6 @@
     }
     else {
         return false;
-    }
-}
-
-#pragma mark doll protocol
--(void)didTapActiveSegment:(DollActiveSegment *)segment
-{
-    if (self.setWeaponDropDownViewController.view.hidden) {
-        self.setWeaponDropDownViewController.anchorView = segment;
-        [self.setWeaponDropDownViewController openAnimation];
-    }
-    else {
-        [self.setWeaponDropDownViewController closeAnimation];
     }
 }
 

@@ -13,7 +13,7 @@
 
 static float minimalMarginBetweenTrees = 100;
 static float minimalMarginBetweenNodesX = 70;
-static float minimalMarginBetweenNodesY = 180;
+static float minimalMarginBetweenNodesY = 130;
 static float borderSize = 100;
 static float nodeDiameter = 200;
 
@@ -56,14 +56,14 @@ static NSString *emptyParentKey = @"emptyParent";
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
     
-    float width = borderSize;
+    float width = 0;
     for (NSMutableArray *tree in self.trees) {
         NSInteger currentTreeWidth = [[self.treeWidthForTreeArrayObject objectForKey:tree] integerValue];
         width += currentTreeWidth * (minimalMarginBetweenNodesX + nodeDiameter);
     }
     width += (self.trees.count - 1) * minimalMarginBetweenTrees;
     
-    float height = (self.treeHeight * (nodeDiameter + minimalMarginBetweenNodesY)) + minimalMarginBetweenNodesY + (borderSize * 2);
+    float height = (self.treeHeight * (nodeDiameter + minimalMarginBetweenNodesY)) + minimalMarginBetweenNodesY;
     self.scrollView.contentSize = CGSizeMake(width, height);
     
     self.containerView.frame = CGRectMake(0, 0, width, height);
@@ -77,7 +77,7 @@ static NSString *emptyParentKey = @"emptyParent";
     
     self.scrollView.minimumZoomScale = minScale;
     self.scrollView.maximumZoomScale = 1.0f;
-    self.scrollView.zoomScale = 1.0f;
+    self.scrollView.zoomScale = scaleHeight;
     
     [self resetSkillNodes];
 }
@@ -267,7 +267,7 @@ static NSString *emptyParentKey = @"emptyParent";
                         else {
                             nodeX = borderSize + treeMargin + sectionMargin + [section indexOfObject:skillTemplate] * (nodeDiameter + minimalMarginBetweenNodesX);
                         }
-                        float nodeY = borderSize + ([tree indexOfObject:level] * (nodeDiameter + minimalMarginBetweenNodesY)) + minimalMarginBetweenNodesY;
+                        float nodeY = ([tree indexOfObject:level] * (nodeDiameter + minimalMarginBetweenNodesY)) + minimalMarginBetweenNodesY;
                         CGRect skillNodeFrame = CGRectMake(nodeX, nodeY, nodeDiameter, nodeDiameter);
                         NodeViewController *newSkillNode = [NodeViewController getInstanceFromStoryboardWithFrame:skillNodeFrame];
                         newSkillNode.skill = skill;
