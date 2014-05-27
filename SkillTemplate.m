@@ -79,7 +79,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
         NSLog(@"Created new template with name: %@",name);
         [SkillTemplate saveContext:context];
         
-        //save it here
+        //save it Here are
         //NSDictionary *objectToDictionary = [skillTemplate di];
         
         

@@ -430,7 +430,7 @@
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
 //    if ([self.statView isTextFieldInStatView:textField]) {
-//        //from here filter stat input. Only number. Max 2 numbers
+//        //from Here are filter stat input. Only number. Max 2 numbers
 //        NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
 //        NSUInteger newLength = [textField.text length] + [string length] - range.length;
 //        if ([string rangeOfCharacterFromSet:set].location != NSNotFound || newLength > 2) {

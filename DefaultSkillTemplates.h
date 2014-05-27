@@ -24,7 +24,6 @@
 @property (nonatomic) SkillTemplate *control;
 @property (nonatomic) SkillTemplate *perception;
 
-@property (nonatomic) SkillTemplate *bearingCapacity;
 @property (nonatomic) SkillTemplate *swimming;
 @property (nonatomic) SkillTemplate *climb;
 
@@ -33,10 +32,14 @@
 @property (nonatomic) SkillTemplate *knavery;
 @property (nonatomic) SkillTemplate *hackDevice;
 
+@property (nonatomic) SkillTemplate *senseMotive;
+
 @property (nonatomic) SkillTemplate *animalHandling;
+@property (nonatomic) SkillTemplate *bluff;
 
 @property (nonatomic) SkillTemplate *education;
 @property (nonatomic) SkillTemplate *heal;
+@property (nonatomic) SkillTemplate *appraise;
 
 
 
@@ -81,7 +84,7 @@
  //*/
 
 //Intuition (?) Basic skill.
-/*The ability to trust instincts about people, places, and things. The gut feeling that lets a character know if someone is lying, or if there’s a subtle threat implied in someone’s tone or posture. Also covers the ability to make reason- ably accurate estimations and evaluate an item’s worth or purpose. Can be used to size up and opponent and get a general sense of their abilities or intentions, in which case it is opposed by the target’s Discipline.
+/*The ability to trust instincts about people, places, and things. The gut feeling that lets a character know if someone is lying, or if tHere are’s a subtle threat implied in someone’s tone or posture. Also covers the ability to make reason- ably accurate estimations and evaluate an item’s worth or purpose. Can be used to size up and opponent and get a general sense of their abilities or intentions, in which case it is opposed by the target’s Discipline.
  Specialisation options: Detect lies, estimate sums, evaluation, gauge opponent
  //*/
 
