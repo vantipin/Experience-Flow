@@ -53,6 +53,8 @@
 
 #define animalHandlingName @"Animal Handling"
 #define bluffName          @"Bluff"
+#define diplomacyName      @"Diplomacy"
+#define intimidateName     @"Intimidate"
 
 #define hackDeviceName @"Hack Device"
 #define educationName @"Education"
@@ -146,7 +148,9 @@ static DefaultSkillTemplates *instance = nil;
                          self.heal,
                          self.senseMotive,
                          self.appraise,
-                         self.bluff];
+                         self.bluff,
+                         self.diplomacy,
+                         self.intimidate];
     
     return allDefaultSkills;
 }
@@ -664,7 +668,7 @@ static DefaultSkillTemplates *instance = nil;
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:bluffName
                                                               withRules:@"Rules:\n- Deceive Someone. Attempting to deceive someone takes at least 1 round, but can possibly take longer if the lie is elaborate.\n- Feint in Combat. Feinting in combat is a standard action. Roll to hit dice twice and choose which one to use.\n- Deliver Secret Message. You can use Bluff to pass hidden messages to another character without others understanding your true meaning. Delivering a secret message generally takes twice as long as the message would otherwise take to relay."
-                                                      withRulesExamples:@"The target wants to believe you +3\nThe lie is believable 	              +3\nThe lie is unlikely 	               0\nThe lie is far-fetched 	             -3\nThe lie is impossible 	             -10\nThe target is drunk or impaired 	 +3\nYou possess convincing proof 	    up to +5  Here are examples of tasks and their stats:\nd8 test. Deceive Someone.\nd12 test. Feint in Combat.\n2d8 test. Deliver Secret Message. Roll multiple times for complex message."
+                                                      withRulesExamples:@"Modifier +3. The target wants to believe you\nModifier +3. The lie is believable\nModifier 0. The lie is unlikely\nModifier -3. The lie is far-fetched\nModifier -10. The lie is impossible\nModifier +3. The target is drunk or impaired\nModifier up to +5. You possess convincing proof\n\nWarnin! All checks goes against opponent ""Sense Motive"" skill. \nHere are examples of tasks and their stats:\nd8 test. Deceive Someone.\nd12 test. Feint in Combat.\n2d8 test. Deliver Secret Message. Roll multiple times for complex message."
                                                         withDescription:@"Advanced skill. Bluff is an opposed skill check against your opponentís Sense Motive skill. If you use Bluff to fool someone, with a successful check you convince your opponent that what you are saying is true. Bluff checks are modified depending upon the believability of the lie. The following modifiers are applied to the roll of the creature attempting to tell the lie. Note that some lies are so improbable that it is impossible to convince anyone that they are true."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultAdvBasicBarrierLow
@@ -722,7 +726,7 @@ static DefaultSkillTemplates *instance = nil;
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:hackDeviceName
                                                               withRules:@"Rules:\n- You should perform hack device test on every hack related action* Usually all checks goes against the level of task. \nSome type of devices will require having specific tools lack of which will make hacking task hard (if not imposible) to perform - if you haven't got a right tool you may at best get a penalty to your hacking level equal to the level of the task. Commonly to pick a lock you will require a lockpick or even a full set of thieving tools.  \n- Performing this skill in a difficult condition may increase level of the task. \n- To perform this skill character require number of 30 sec equal to level of the task.  \n- Failing tests usually doesn't affect the character (aside from wasting his/her time and wear disabling tools), but in some cases it can trigger an action, depending on a type of device. \n\nThis skill gives you following advantages: \nHaving an expirience in disabling devices make you character more inventing in finding and collecting a right tools. If haven't already know someone to sell you right instruments you can buy different goods (and maybe alter them a little bit) to use as a hacking tools. Sometimes you can even find suiting objects for hacking with a perception check. Finding the right tool works only for tasks which level less or equal to the level of the skill."
-                                                      withRulesExamples:@"*Here are examples of tasks and their stats:\nLevel 2. d6 test. Jam a lock. \nLevel 4. d8 test. Sabotage a wagon wheel. Lockpick a simple constructed lock. \nLevel 6. d10 test. Disarm a trap, reset a trap. Lockpick a average constructed lock. \nLevel 8. d12 test. Disarm a complex trap, cleverly sabotage a clockwork device. Lockpick a good constructed lock. \nLevel 10. 2d8 test. Sabotage ingeniously crafted mechanism. Lockpick an amazingly constructed or very exotic lock."
+                                                      withRulesExamples:@"Warning! All checks goes against the level of the tasks presented here. \n*Here are examples of tasks and their stats:\nLevel 2. d6 test. Jam a lock. \nLevel 4. d8 test. Sabotage a wagon wheel. Lockpick a simple constructed lock. \nLevel 6. d10 test. Disarm a trap, reset a trap. Lockpick a average constructed lock. \nLevel 8. d12 test. Disarm a complex trap, cleverly sabotage a clockwork device. Lockpick a good constructed lock. \nLevel 10. 2d8 test. Sabotage ingeniously crafted mechanism. Lockpick an amazingly constructed or very exotic lock."
                                                         withDescription:@"Advanced skill. You are skilled at disarming traps and opening locks. In addition, this skill lets you sabotage simple mechanical devices, such as catapults, wagon wheels, and doors. Specialisation options: open locks, sabotage mechanisms, disable traps."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultAdvBasicBarrierLow
@@ -822,6 +826,62 @@ static DefaultSkillTemplates *instance = nil;
     }
     return _animalHandling;
 }
+
+//diplomacy
+-(SkillTemplate *)diplomacy{
+    if (!_diplomacy){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",diplomacyName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:diplomacyName
+                                                              withRules:@"Rules:\n- Influence Attitude. Using Diplomacy to influence a creatureís attitude takes 1 minute of continuous interaction.Succeed- If you succeed, the characterís attitude toward you is improved by one step. A creatureís attitude cannot be shifted more than two steps up in this way, although the GM can override this rule in some situations.Fail- characterís attitude toward you is unchanged. If you fail by 4 or more, the characterís attitude toward you is decreased by one step.\n\nChecks goes against creature Control skill.\nd12 test.Hostile\nd10 test.Unfriendly\nd8 test. Indifferent\nd6 test. Friendly\n0 test.  Helpful\n\n- Make Request. Making a request of a creature takes 1 or more rounds of interaction, depending upon the complexity of the request. \n\nChecks goes against creature Control skill according to the table above.\nModifier +2. Give simple advice or directions.\nModifier 0. Give detailed advice.\nModifier 0. Give simple aid.\nModifier -2. Reveal an unimportant secret.\nModifier -2. Give lengthy or complicated aid.\nModifier -4. Give dangerous aid.\nModifier -4 or more. Reveal secret knowledge.\nModifier -6 or more. Give aid that could result in punishment.\nModifier -2 per request. Additional requests.\n\n- Gather Information. Using Diplomacy to gather information takes 1d4 hours of work, searching for rumors and informants. Most commonly known facts or rumors it is d10. For obscure or secret knowledge, might increase to d20 or higher. The GM might rule that some topics are simply unknown to common folk.\n\nd10 Gather common Information.\nd20 Gather obscure Information.\n\n- You cannot use Diplomacy to influence a given creatureís attitude more than once in a 24 hour period. If a request is refused, the result does not change with additional checks, although other requests might be made. You can retry Diplomacy checks made to gather information.\n- You cannot use Diplomacy against a creature that does not understand you or has an Reason of 3 or less. Diplomacy is generally ineffective in combat and against creatures that intend to harm you or your allies in the immediate future."
+                                                      withRulesExamples:nil
+                                                        withDescription:@"You can use this skill to persuade others to agree with your arguments, to resolve differences, and to gather valuable information or rumors from people. This skill is also used to negotiate conflicts by using the proper etiquette and manners suitable to the problem."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:defaultAdvBasicBarrierHight
+                                                   withSkillProgression:defaultAdvProgression
+                                               withBasicSkillGrowthGoes:defaultAdvGrowhtGoesLow
+                                                          withSkillType:AdvancedSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.control
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        _diplomacy = skillTemplate;
+    }
+    return _diplomacy;
+}
+
+
+//intimidate
+-(SkillTemplate *)intimidate{
+    if (!_intimidate){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",intimidateName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:intimidateName
+                                                              withRules:@"Rules:\n- Checks goes against enemy Control skill.\n\nModifier +2. Your physique higher than an opponent physique.\nModifier +2. Your bulk higher than an opponent bulk.\nModifier -2. Your physique less than an opponent physique.\nModifier -2. Your bulk less than an opponent bulk.\nModifier -5/+5. Additional factors like outfit, situation or nature of creature.\nModifier -2 for each time. Try again. This increase resets after one hour has passed.\n\n- Demoralize. Demoralizing an opponent is a standard action. You can use this skill to cause an opponent stress points. Success: If you are successful, the target get stress attempts equal to the value on the dice. Fail: The opponent is not stressed.\n\n- Influence Attitude. You can use Intimidate to force an opponent to act friendly toward you for 1d6 * 10 minutes with a successful check.\n\nSuccess: If successful, the opponent will:\n*give you information you desire\n*take actions that do not endanger it\n*offer other limited assistance\nAfter the intimidate expires, the target treats you as unfriendly and may report you to local authorities.\n\nFail: If you fail this check by 5 or more, the target attempts to deceive you or otherwise hinder your activities.\n\n- Influence Attitude Action. Using Intimidate to change an opponentís attitude requires 1 minute of conversation."
+                                                      withRulesExamples:@"d8 test. Demoralize. Influence Attitude. Influence Attitude Action."
+                                                        withDescription:@"You can use this skill to frighten your opponents or to get them to act in a way that benefits you. This skill includes verbal threats and displays of prowess."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:defaultAdvBasicBarrierHight
+                                                   withSkillProgression:defaultAdvProgression
+                                               withBasicSkillGrowthGoes:defaultAdvGrowhtGoesLow
+                                                          withSkillType:AdvancedSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.control
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        _intimidate = skillTemplate;
+    }
+    return _intimidate;
+}
+
 
 #pragma mark melee weapons skills
 //blunt

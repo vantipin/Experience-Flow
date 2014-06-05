@@ -24,8 +24,6 @@
     NodeViewController *controller = [storyboard instantiateInitialViewController];
     controller.view.frame =  frame;
     
-    //[controller invokeAnimationWithX:0 withY:0];
-    
     return controller;
 }
 
@@ -41,6 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -48,6 +48,25 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self nodeAnimation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+
+}
+
+- (void)applicationWillEnterForeground:(NSNotification *)note {
+    [self.view.layer removeAllAnimations];
 }
 
 -(void)setSkill:(Skill *)skill
@@ -174,6 +193,65 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark animations
+
+
+-(void)nodeAnimation
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        CGPoint anchorPoint = self.view.center;
+        
+        CGMutablePathRef thePath = CGPathCreateMutable();
+        CGPathMoveToPoint(thePath, nil, anchorPoint.x, anchorPoint.y);
+        CGPathAddCurveToPoint(thePath, nil,
+                              [self getRandomPointWithAnchor:anchorPoint.x], [self getRandomPointWithAnchor:anchorPoint.y],
+                              [self getRandomPointWithAnchor:anchorPoint.x], [self getRandomPointWithAnchor:anchorPoint.y],
+                              anchorPoint.x, anchorPoint.y);
+        
+        CAKeyframeAnimation *theAnimation;
+        
+        // Create the animation object, specifying the position property as the key path.
+        theAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        theAnimation.path = thePath;
+        
+        float duration = 2 + arc4random() % 4;
+        theAnimation.duration = duration;
+        
+        //theAnimation.calculationMode = kCAAnimationLinear;
+        //theAnimation.tim
+        
+        theAnimation.repeatCount = INFINITY;
+        theAnimation.delegate = self;
+        theAnimation.autoreverses = true;
+        
+        // Add the animation to the layer.
+        [self.view.layer addAnimation:theAnimation forKey:@"position"];
+    } completion:^(BOOL success) {
+        NSLog(@"Block complete");
+    }];
+    
+
+}
+
+
+-(float)getRandomPointWithAnchor:(float)anchorValue
+{
+    static int movingRadius = 14;
+    return (anchorValue + (arc4random() % movingRadius) - 2 * movingRadius);
+}
+
+
+-(void)animationDidStart:(CAAnimation *)anim
+{
+    NSLog(@"animationDidStart");
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSLog(@"animationDidStop");
+}
+
 
 - (void)invokeAnimationWithX:(float)x withY:(float)y
 {

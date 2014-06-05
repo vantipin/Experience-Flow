@@ -495,4 +495,24 @@
     }
 }
 
+
+-(IBAction)imageTap:(id)sender
+{
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	picker.delegate = self;
+    
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    
+	[self presentViewController:picker animated:true completion:^{}];
+}
+
+#pragma mark image picker delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [picker dismissViewControllerAnimated:true completion:^{
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        self.icon.contentMode = UIViewContentModeScaleToFill;
+        [self.icon setImage:image];
+    }];
+}
+
 @end

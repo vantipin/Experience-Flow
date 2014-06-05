@@ -32,7 +32,8 @@
 {
     [super viewDidLoad];
     
-    self.characterTableView.dataSource = self;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     [self updateDataSource];
     
     self.view.backgroundColor = bodyColor;
@@ -53,7 +54,7 @@
     [self.dataSource removeAllObjects];
     [self.dataSource addObjectsFromArray:characters];
     
-    [self.characterTableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

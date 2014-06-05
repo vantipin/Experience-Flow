@@ -36,6 +36,8 @@
 
 @property (nonatomic) SkillTemplate *animalHandling;
 @property (nonatomic) SkillTemplate *bluff;
+@property (nonatomic) SkillTemplate *diplomacy;
+@property (nonatomic) SkillTemplate *intimidate;
 
 @property (nonatomic) SkillTemplate *education;
 @property (nonatomic) SkillTemplate *heal;

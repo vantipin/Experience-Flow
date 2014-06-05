@@ -12,8 +12,8 @@
 #import "DefaultSkillTemplates.h"
 
 static float minimalMarginBetweenTrees = 100;
-static float minimalMarginBetweenNodesX = 70;
-static float minimalMarginBetweenNodesY = 130;
+static float minimalMarginBetweenNodesX = 50;
+static float minimalMarginBetweenNodesY = 110;
 static float borderSize = 100;
 static float nodeDiameter = 200;
 
@@ -57,10 +57,18 @@ static NSString *emptyParentKey = @"emptyParent";
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
     
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    self.scrollView.autoresizesSubviews = true;
+    
+    
     float width = 0;
     for (NSMutableArray *tree in self.trees) {
         NSInteger currentTreeWidth = [[self.treeWidthForTreeArrayObject objectForKey:tree] integerValue];
-        width += currentTreeWidth * (minimalMarginBetweenNodesX + nodeDiameter);
+        
+        //TODO
+        //Need to know space points and node points for proper calculation
+        //Now assume all of that is nodes.
+        width += (currentTreeWidth - 1) * (minimalMarginBetweenNodesX + nodeDiameter);
     }
     width += (self.trees.count - 1) * minimalMarginBetweenTrees;
     

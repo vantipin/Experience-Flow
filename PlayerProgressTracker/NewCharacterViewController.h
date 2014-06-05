@@ -14,7 +14,7 @@
 #import "AddSkillDropViewController.h"
 
 
-@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,AddNewSkillControllerProtocol>
+@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,AddNewSkillControllerProtocol,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
 @end

@@ -16,10 +16,7 @@
 
 #import "SkillManager.h"
 
-@interface PlayerListViewController : UIViewController <UITableViewDataSource>
-
-@property (nonatomic) IBOutlet UITableView *characterTableView;
-//@property (nonatomic) IBOutlet UITableViewCell *cell;
+@interface PlayerListViewController : UITableViewController <UITableViewDataSource>
 
 
 @end
