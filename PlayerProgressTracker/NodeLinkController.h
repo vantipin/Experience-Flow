@@ -19,4 +19,7 @@
 
 +(NodeLinkController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 
+//get instance of animation used by Group animation. Control points calculated with node objects
+-(CAKeyframeAnimation *)nodeAnimationInvoke;
+
 @end

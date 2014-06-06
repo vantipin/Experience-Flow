@@ -33,6 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    self.view.autoresizesSubviews = true;
     // Do any additional setup after loading the view.
 }
 

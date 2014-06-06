@@ -66,6 +66,9 @@
 {
     [super viewDidLoad];
     
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    self.view.autoresizesSubviews = true;
+    
     //[self allFontsToConsole];
     //[StatSet deleteStatSetWithName:@"" withContext:self.managedObjectContext];
     self.shouldRewriteSkillsLevels = true;
@@ -89,6 +92,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
     self.skillTreeController.character = self.character;
     //[self.skillTreeController resetSkillNodes];

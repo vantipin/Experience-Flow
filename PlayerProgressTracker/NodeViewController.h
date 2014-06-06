@@ -34,10 +34,17 @@
 
 @property (nonatomic) IBOutlet UIButton *skillButton;
 
+//current animation points used by related Links objects
+@property (nonatomic) CGPoint point1;
+@property (nonatomic) CGPoint point2;
+
 +(NodeViewController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 
 -(void)updateInterface;
 
 -(void)setParentNodeLink:(NodeViewController *)parentNodeLink;
+
+//get instance of animation used by Group animation
+-(CAKeyframeAnimation *)nodeAnimationInvokeWithPoint1:(CGPoint)point1 withPoint2:(CGPoint)point2;
 
 @end

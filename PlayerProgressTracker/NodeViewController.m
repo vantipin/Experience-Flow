@@ -14,6 +14,9 @@
 
 @property (nonatomic) IBOutlet UIButton *skillLevelButton;
 
+@property (nonatomic) CGPoint anchorPoint;
+@property (nonatomic) CAKeyframeAnimation *driftAnimation;
+
 @end
 
 @implementation NodeViewController
@@ -39,8 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     // Do any additional setup after loading the view.
 }
 
@@ -50,11 +51,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.anchorPoint = self.view.center;
+}
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self nodeAnimation];
+    [self nodeAnimationInvokeWithPoint1:CGPointMake([self getRandomPointWithAnchor:self.anchorPoint.x], [self getRandomPointWithAnchor:self.anchorPoint.y])
+                             withPoint2:CGPointMake([self getRandomPointWithAnchor:self.anchorPoint.x], [self getRandomPointWithAnchor:self.anchorPoint.y])];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
@@ -75,6 +81,22 @@
     if (_skill) {
         [self updateInterface];
     }
+}
+
+
+-(CAKeyframeAnimation *)driftAnimation
+{
+    if (!_driftAnimation) {
+        _driftAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        _driftAnimation.repeatCount = 1;
+        _driftAnimation.delegate = self;
+        _driftAnimation.removedOnCompletion = true;
+        _driftAnimation.autoreverses = true;
+        _driftAnimation.fillMode = kCAFillModeForwards;
+        _driftAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    }
+    
+    return _driftAnimation;
 }
 
 -(NSMutableArray *)nodeLinksChild
@@ -179,8 +201,6 @@
 {
     CGPoint originPoint = CGPointMake(endingPoint.x - startingPoint.x, endingPoint.y - startingPoint.y); // get origin point to origin by subtracting end from start
     float bearingRadians = atan2f(originPoint.y, originPoint.x); // get bearing in radians
-    //float bearingDegrees = bearingRadians * (180.0 / M_PI); // convert to degrees
-    //bearingDegrees = (bearingDegrees > 0.0 ? bearingDegrees : (360.0 + bearingDegrees)); // correct discontinuity
     return bearingRadians;
 }
 /*
@@ -197,59 +217,53 @@
 #pragma mark animations
 
 
--(void)nodeAnimation
+-(CAKeyframeAnimation *)nodeAnimationInvokeWithPoint1:(CGPoint)point1 withPoint2:(CGPoint)point2;
 {
-    [UIView animateWithDuration:0.5 animations:^{
-        CGPoint anchorPoint = self.view.center;
-        
-        CGMutablePathRef thePath = CGPathCreateMutable();
-        CGPathMoveToPoint(thePath, nil, anchorPoint.x, anchorPoint.y);
-        CGPathAddCurveToPoint(thePath, nil,
-                              [self getRandomPointWithAnchor:anchorPoint.x], [self getRandomPointWithAnchor:anchorPoint.y],
-                              [self getRandomPointWithAnchor:anchorPoint.x], [self getRandomPointWithAnchor:anchorPoint.y],
-                              anchorPoint.x, anchorPoint.y);
-        
-        CAKeyframeAnimation *theAnimation;
-        
-        // Create the animation object, specifying the position property as the key path.
-        theAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-        theAnimation.path = thePath;
-        
-        float duration = 2 + arc4random() % 4;
-        theAnimation.duration = duration;
-        
-        //theAnimation.calculationMode = kCAAnimationLinear;
-        //theAnimation.tim
-        
-        theAnimation.repeatCount = INFINITY;
-        theAnimation.delegate = self;
-        theAnimation.autoreverses = true;
-        
-        // Add the animation to the layer.
-        [self.view.layer addAnimation:theAnimation forKey:@"position"];
-    } completion:^(BOOL success) {
-        NSLog(@"Block complete");
-    }];
+    CGMutablePathRef thePath = CGPathCreateMutable();
     
-
+    self.point1 = point1;
+    self.point2 = point2;
+    
+    CGPathMoveToPoint(thePath, nil, self.anchorPoint.x, self.anchorPoint.y);
+    CGPathAddCurveToPoint(thePath, nil,
+                          point1.x, point1.y,
+                          point2.x, point2.y,
+                          self.anchorPoint.x, self.anchorPoint.y);
+    
+    self.driftAnimation.path = thePath;
+    
+    float duration = 4;
+    self.driftAnimation.duration = duration;
+    
+    [self.view.layer addAnimation:_driftAnimation forKey:@"position"];
+    
+    self.driftAnimation.removedOnCompletion = true;
+    
+    return self.driftAnimation;
 }
 
 
 -(float)getRandomPointWithAnchor:(float)anchorValue
 {
-    static int movingRadius = 14;
-    return (anchorValue + (arc4random() % movingRadius) - 2 * movingRadius);
-}
-
-
--(void)animationDidStart:(CAAnimation *)anim
-{
-    NSLog(@"animationDidStart");
+    int movingRadius = 70;
+    float randomVal = arc4random() % movingRadius;
+    randomVal -= movingRadius / 2;
+    float result = anchorValue + randomVal;
+    return result;
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    NSLog(@"animationDidStop");
+    //NSLog(@"reinvoke animation");
+    if (self.view.window) {
+        [self nodeAnimationInvokeWithPoint1:CGPointMake([self getRandomPointWithAnchor:self.anchorPoint.x], [self getRandomPointWithAnchor:self.anchorPoint.y])
+                                 withPoint2:CGPointMake([self getRandomPointWithAnchor:self.anchorPoint.x], [self getRandomPointWithAnchor:self.anchorPoint.y])];
+    }
+    
+    self.point1 = CGPointZero;
+    self.point2 = CGPointZero;
+    
+    NSLog(@"did stop");
 }
 
 

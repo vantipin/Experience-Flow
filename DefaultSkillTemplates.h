@@ -33,6 +33,7 @@
 @property (nonatomic) SkillTemplate *hackDevice;
 
 @property (nonatomic) SkillTemplate *senseMotive;
+@property (nonatomic) SkillTemplate *disguise;
 
 @property (nonatomic) SkillTemplate *animalHandling;
 @property (nonatomic) SkillTemplate *bluff;

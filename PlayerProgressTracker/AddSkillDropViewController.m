@@ -32,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    self.view.autoresizesSubviews = true;
     // Do any additional setup after loading the view.
 }
 
@@ -45,10 +48,14 @@
 {
     if (!_cancelingView)
     {
-        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        //CGRect screenRect = [[UIScreen mainScreen] bounds];
         
         //prepare view for canceling dropview
-        _cancelingView = [[UIView alloc] initWithFrame:screenRect];
+        _cancelingView = [[UIView alloc] initWithFrame:self.view.superview.bounds];
+        
+        _cancelingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        _cancelingView.autoresizesSubviews = true;
+        
         _cancelingView.opaque = false;
         _cancelingView.backgroundColor = kRGB(200, 200, 200, 0.3);
         

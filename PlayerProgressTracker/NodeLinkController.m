@@ -10,6 +10,9 @@
 
 @interface NodeLinkController ()
 
+@property (nonatomic) CAKeyframeAnimation *driftAnimation;
+@property (nonatomic) CAKeyframeAnimation *stretchAnimation;
+
 @end
 
 @implementation NodeLinkController

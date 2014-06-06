@@ -86,7 +86,7 @@ static NSString *emptyParentKey = @"emptyParent";
     
     self.scrollView.minimumZoomScale = minScale;
     self.scrollView.maximumZoomScale = 1.0f;
-    self.scrollView.zoomScale = scaleHeight;
+    self.scrollView.zoomScale = MAX(scaleWidth, scaleHeight);
     
     [self resetSkillNodes];
 }
