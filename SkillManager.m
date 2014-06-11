@@ -292,6 +292,11 @@ static SkillManager *instance = nil;
     return numberOfSkills;
 }
 
+-(float)countXpNeededForNextLevel:(Skill *)skill;
+{
+    return (skill.currentLevel * skill.skillTemplate.levelProgression + skill.skillTemplate.levelBasicBarrier);
+}
+
 -(NSInteger)countPositionXInATreeForSkill:(SkillTemplate *)skillTemplate;
 {
     NSInteger position = 0;
@@ -666,7 +671,7 @@ static SkillManager *instance = nil;
 
 -(Skill *)calculateAddingXpPointsForSkill:(Skill *)skill
 {
-    float xpNextLvl = skill.currentLevel * skill.skillTemplate.levelProgression + skill.skillTemplate.levelBasicBarrier;
+    float xpNextLvl = [self countXpNeededForNextLevel:skill];
     
     if (skill.currentProgress >= xpNextLvl) {
         skill.currentProgress -= xpNextLvl;
@@ -718,7 +723,7 @@ static SkillManager *instance = nil;
         skill.currentLevel --;
         //[self.delegateSkillChange didChangeSkillLevel:skill];
         [self didChangeSkillLevel:skill];
-        float xpPrevLvl = skill.currentLevel * skill.skillTemplate.levelProgression + skill.skillTemplate.levelBasicBarrier;
+        float xpPrevLvl = [self countXpNeededForNextLevel:skill];
         skill.currentProgress += xpPrevLvl;
         [self calculateRemovingXpPointsForSkill:skill];
     }

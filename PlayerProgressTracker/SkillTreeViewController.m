@@ -27,11 +27,16 @@ static NSString *emptyParentKey = @"emptyParent";
 
 @property (nonatomic) NSMutableArray *trees;
 
-@property (nonatomic) NSMutableDictionary *treeWidthForTreeArrayObject;
+@property (nonatomic) NSMutableDictionary *treeNodeWidthForTreeArrayObject;
+@property (nonatomic) NSMutableDictionary *treeSpacesWidthForTreeArrayObject;
+
 @property (nonatomic) NSMutableDictionary *nodesOnSingleLevelForLevelArrayObject;
+
 @property (nonatomic) NSMutableDictionary *sectionIndexesForSkillParentName;
 @property (nonatomic) NSMutableDictionary *nodeIndexesForSkillNames;
 @property (nonatomic) long treeHeight;
+
+@property (nonatomic) NSMutableArray *allExistingNodes;
 
 @end
 
@@ -50,10 +55,6 @@ static NSString *emptyParentKey = @"emptyParent";
 {
     [super viewDidLoad];
     [self initTree];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
     
@@ -61,14 +62,12 @@ static NSString *emptyParentKey = @"emptyParent";
     self.scrollView.autoresizesSubviews = true;
     
     
-    float width = 0;
+    float width = 0 + borderSize * 2;
     for (NSMutableArray *tree in self.trees) {
-        NSInteger currentTreeWidth = [[self.treeWidthForTreeArrayObject objectForKey:tree] integerValue];
+        NSInteger currentTreeWidth = [[self.treeNodeWidthForTreeArrayObject objectForKey:tree] integerValue];
         
-        //TODO
-        //Need to know space points and node points for proper calculation
-        //Now assume all of that is nodes.
-        width += (currentTreeWidth - 1) * (minimalMarginBetweenNodesX + nodeDiameter);
+        NSInteger currentTreeMaxWidthSpacing = [[self.treeSpacesWidthForTreeArrayObject objectForKey:tree] integerValue];
+        width += (currentTreeWidth * nodeDiameter) + (currentTreeMaxWidthSpacing * minimalMarginBetweenNodesX);
     }
     width += (self.trees.count - 1) * minimalMarginBetweenTrees;
     
@@ -76,25 +75,35 @@ static NSString *emptyParentKey = @"emptyParent";
     self.scrollView.contentSize = CGSizeMake(width, height);
     
     self.containerView.frame = CGRectMake(0, 0, width, height);
-    
-    
-    float scaleWidth = self.scrollView.frame.size.width / self.scrollView.contentSize.width;
-    float scaleHeight = self.scrollView.frame.size.height / self.scrollView.contentSize.height;
-    CGFloat minScale = MIN(scaleWidth, scaleHeight);
-    
-    self.scrollView.scrollEnabled = true;
-    
-    self.scrollView.minimumZoomScale = minScale;
-    self.scrollView.maximumZoomScale = 1.0f;
-    self.scrollView.zoomScale = MAX(scaleWidth, scaleHeight);
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self updateScrollViewZoomAnimated:false];
     [self resetSkillNodes];
+    [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[SkillManager sharedInstance] unsubscribeForSkillChangeNotifications:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    //NSLog(@"%d",toInterfaceOrientation);
+    [self updateScrollViewZoomAnimated:true];
 }
 
 -(UIScrollView *)scrollView
@@ -150,13 +159,23 @@ static NSString *emptyParentKey = @"emptyParent";
     return _sectionIndexesForSkillParentName;
 }
 
--(NSMutableDictionary *)treeWidthForTreeArrayObject
+-(NSMutableDictionary *)treeNodeWidthForTreeArrayObject
 {
-    if (!_treeWidthForTreeArrayObject) {
-        _treeWidthForTreeArrayObject = [NSMutableDictionary new];
+    if (!_treeNodeWidthForTreeArrayObject) {
+        _treeNodeWidthForTreeArrayObject = [NSMutableDictionary new];
     }
     
-    return _treeWidthForTreeArrayObject;
+    return _treeNodeWidthForTreeArrayObject;
+}
+
+
+-(NSMutableDictionary *)treeSpacesWidthForTreeArrayObject
+{
+    if (!_treeSpacesWidthForTreeArrayObject) {
+        _treeSpacesWidthForTreeArrayObject = [NSMutableDictionary new];
+    }
+    
+    return _treeSpacesWidthForTreeArrayObject;
 }
 
 -(NSMutableDictionary *)nodeIndexesForSkillNames
@@ -167,13 +186,44 @@ static NSString *emptyParentKey = @"emptyParent";
     return _nodeIndexesForSkillNames;
 }
 
+-(void)updateScrollViewZoomAnimated:(BOOL)animated
+{
+//    BOOL isLandscape = false;
+//    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+//    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)){
+//        isLandscape = false;
+//    }
+//    else {
+//        isLandscape = true;
+//    }
+    
+    float scrollViewRealWidth = self.scrollView.frame.size.width;
+    float scrollViewRealHeight = self.scrollView.frame.size.height;
+    
+//    NSLog(@"width  %f",scrollViewRealWidth);
+//    NSLog(@"height %f",scrollViewRealHeight);
+    
+    float scaleWidth = scrollViewRealWidth / self.scrollView.contentSize.width;
+    float scaleHeight = scrollViewRealHeight / self.scrollView.contentSize.height;
+    CGFloat minScale = MIN(scaleWidth, scaleHeight);
+    CGFloat currentScale = MIN(scrollViewRealHeight, scrollViewRealWidth) / self.scrollView.contentSize.height;//MAX(scaleWidth, scaleHeight)
+    
+    self.scrollView.scrollEnabled = true;
+    
+    self.scrollView.minimumZoomScale = minScale;
+    self.scrollView.maximumZoomScale = 1.0f;
+    [self.scrollView setZoomScale:currentScale animated:animated];
+}
+
 #pragma mark -
 #pragma build tree methods
 -(void)initTree
 {
     self.trees = [NSMutableArray new];
+    self.allExistingNodes = [NSMutableArray new];
     self.treeHeight = 0;
-    self.treeWidthForTreeArrayObject = nil;
+    self.treeNodeWidthForTreeArrayObject = nil;
+    self.treeSpacesWidthForTreeArrayObject = nil;
     self.sectionIndexesForSkillParentName = nil;
     self.nodesOnSingleLevelForLevelArrayObject = nil;
     
@@ -194,18 +244,28 @@ static NSString *emptyParentKey = @"emptyParent";
         [self addSubSkillsFrom:rootSkill withTreeIndex:indexOfTree];
         
         NSInteger treeWidth = 0;
+        NSInteger treeCurrentSpaces = 0;
         for (NSMutableArray *level in tree) {
-            NSInteger levelWidth= 0;
+            NSInteger levelWidth = 0;
+            NSInteger levelSpaces = 0;
             for (NSMutableArray *section in level) {
                 levelWidth += section.count;
+                levelSpaces += section.count;
             }
-            levelWidth += level.count - 1 ? : 0;
-            [self.nodesOnSingleLevelForLevelArrayObject setObject:[NSNumber numberWithInteger:levelWidth] forKey:level];
+            levelSpaces --;
+            levelSpaces += level.count;
+            
+            //levelWidth += level.count - 1 ? : 0;
+            [self.nodesOnSingleLevelForLevelArrayObject setObject:[NSNumber numberWithInteger:levelSpaces] forKey:level];
             if (levelWidth > treeWidth) {
                 treeWidth = levelWidth;
             }
+            if (levelSpaces > treeCurrentSpaces) {
+                treeCurrentSpaces = levelSpaces;
+            }
         }
-        [self.treeWidthForTreeArrayObject setObject:[NSNumber numberWithInteger:treeWidth] forKey:tree];
+        [self.treeNodeWidthForTreeArrayObject setObject:[NSNumber numberWithInteger:treeWidth] forKey:tree];
+        [self.treeSpacesWidthForTreeArrayObject setObject:[NSNumber numberWithInteger:treeCurrentSpaces] forKey:tree];
     }
 }
 
@@ -268,7 +328,7 @@ static NSString *emptyParentKey = @"emptyParent";
         NSUInteger treeMargin = 0;
         for (NSMutableArray *tree in self.trees) {
             NSUInteger thisTreeGreatestSectionMargin = 0;
-            NSInteger treeWidth = [[self.treeWidthForTreeArrayObject objectForKey:tree] integerValue];
+            NSInteger treeWidth = [[self.treeNodeWidthForTreeArrayObject objectForKey:tree] integerValue];
             for (NSMutableArray *level in tree) {
                 NSInteger levelWidth = [[self.nodesOnSingleLevelForLevelArrayObject objectForKey:level] integerValue];
                 NSUInteger sectionMargin = 0;
@@ -299,6 +359,7 @@ static NSString *emptyParentKey = @"emptyParent";
                                 [newSkillNode setParentNodeLink:[self.nodeIndexesForSkillNames valueForKey:skillTemplate.basicSkillTemplate.name]];
                             }
                         }
+                        [self.allExistingNodes addObject:newSkillNode];
                         
                     }
                     sectionMargin += section.count * (nodeDiameter + minimalMarginBetweenNodesX) + minimalMarginBetweenNodesX;
@@ -307,6 +368,14 @@ static NSString *emptyParentKey = @"emptyParent";
             }
             treeMargin += thisTreeGreatestSectionMargin + minimalMarginBetweenTrees;
         }
+    }
+}
+
+
+-(void)refreshSkillvalues;
+{
+    for (NodeViewController *node in self.allExistingNodes) {
+        [node updateInterface];
     }
 }
 
@@ -332,26 +401,13 @@ static NSString *emptyParentKey = @"emptyParent";
 #pragma mark #import NodeViewControllerProtocol methods
 -(void)didSwipNodeDown:(NodeViewController *)node
 {
-    //NSLog(@"swipe down node %@",node.skill.skillTemplate.name);
-    [UIView animateWithDuration:0.3 animations:^{
-        node.skillButton.highlighted = true;
-    } completion:^(BOOL success){
-        [UIView animateWithDuration:0.3 animations:^{
-            node.skillButton.highlighted = false;
-        }];
-    }];
+    [[SkillManager sharedInstance] removeXpPoints:1.0f toSkill:node.skill];
 }
 
 -(void)didSwipNodeUp:(NodeViewController *)node
 {
-    //NSLog(@"swipe up node %@",node.skill.skillTemplate.name);
-    [UIView animateWithDuration:0.3 animations:^{
-        node.skillButton.highlighted = true;
-    } completion:^(BOOL success){
-        [UIView animateWithDuration:0.3 animations:^{
-            node.skillButton.highlighted = false;
-        }];
-    }];
+    
+    [[SkillManager sharedInstance] addXpPoints:1.0f toSkill:node.skill];
 }
 
 -(void)didTapNode:(NodeViewController *)node
@@ -364,6 +420,26 @@ static NSString *emptyParentKey = @"emptyParent";
 {
     NSLog(@"did tap level of node %@",node.skill.skillTemplate.name);
 }
+
+
+#pragma mark SkillChangeProtocol
+-(void)didChangeExperiencePointsForSkill:(Skill *)skill
+{
+    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:skill.skillTemplate.name];
+    if (node) {
+        [node updateInterface];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            node.skillButton.highlighted = true;
+        } completion:^(BOOL success){
+            [UIView animateWithDuration:0.1 animations:^{
+                node.skillButton.highlighted = false;
+            }];
+        }];
+    }
+}
+
+
 
 /*
 #pragma mark - Navigation

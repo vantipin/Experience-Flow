@@ -9,10 +9,12 @@
 #import "NodeViewController.h"
 #import "NodeLinkController.h"
 #import "SkillTemplate.h"
+#import "SkillManager.h"
 
 @interface NodeViewController ()
 
 @property (nonatomic) IBOutlet UIButton *skillLevelButton;
+@property (nonatomic) IBOutlet UIImageView *xpAuraImageView;
 
 @property (nonatomic) CGPoint anchorPoint;
 @property (nonatomic) CAKeyframeAnimation *driftAnimation;
@@ -108,10 +110,34 @@
     return _nodeLinksChild;
 }
 
+
+-(void)processXPAura
+{
+    CAShapeLayer *layer = [CAShapeLayer new];//initWithLayer:self.xpAuraImageView.layer];
+    
+    float portionToShow =  self.skill.currentProgress / [[SkillManager sharedInstance] countXpNeededForNextLevel:self.skill];
+
+    CGFloat angle = (portionToShow * 2 * M_PI) + (3 * M_PI / 2);
+    CGPoint center = self.xpAuraImageView.center;
+    CGFloat radius = self.xpAuraImageView.frame.size.width / 2;
+
+    UIBezierPath *piePath = [UIBezierPath bezierPath];
+    [piePath moveToPoint:center];
+    [piePath addLineToPoint:CGPointMake(center.x + radius * cosf((3 * M_PI / 2)), center.y + radius * sinf((3 * M_PI / 2)))];
+    [piePath addArcWithCenter:center radius:radius startAngle:(3 * M_PI / 2) endAngle:angle clockwise:YES];
+    [piePath addLineToPoint:center];
+    [piePath closePath]; // this will automatically add a straight line to the center
+    
+    layer.path = piePath.CGPath;//[UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:(3 * M_PI / 2) endAngle:angle clockwise:true].CGPath;
+    
+    self.xpAuraImageView.layer.mask = layer;
+}
+
 -(void)updateInterface
 {
     [self.skillButton setTitle:_skill.skillTemplate.name forState:UIControlStateNormal];
-    [self.skillLevelButton setTitle:[NSString stringWithFormat:@"%d",_skill.currentLevel] forState:UIControlStateNormal];
+    [self.skillLevelButton setTitle:[NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:_skill]] forState:UIControlStateNormal];
+    [self processXPAura];
 }
 
 
@@ -133,11 +159,13 @@
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded || gestureRecognizer.state == UIGestureRecognizerStateFailed || gestureRecognizer.state == UIGestureRecognizerStateCancelled){
         CGPoint velocity = [gestureRecognizer velocityInView:self.view];
         
-        if (velocity.y > 0) {
-            [self.delegate didSwipNodeDown:self];
-        }
-        else {
-            [self.delegate didSwipNodeUp:self];
+        if (abs(velocity.x) < abs(velocity.y)) {
+            if (velocity.y > 0) {
+                [self.delegate didSwipNodeDown:self];
+            }
+            else {
+                [self.delegate didSwipNodeUp:self];
+            }
         }
     }
 }
@@ -203,16 +231,7 @@
     float bearingRadians = atan2f(originPoint.y, originPoint.x); // get bearing in radians
     return bearingRadians;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark animations
 
@@ -262,8 +281,6 @@
     
     self.point1 = CGPointZero;
     self.point2 = CGPointZero;
-    
-    NSLog(@"did stop");
 }
 
 

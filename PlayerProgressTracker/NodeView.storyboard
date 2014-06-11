@@ -12,11 +12,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="PMw-TF-v4Y">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                            <button opaque="NO" alpha="0.96999999999999997" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="PMw-TF-v4Y">
+                                <rect key="frame" x="0.0" y="1" width="199" height="199"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                                 <state key="normal" title="Control" backgroundImage="skillNode.png">
                                     <color key="titleColor" red="0.74866641436286219" green="0.84813331959262994" blue="0.98921465873718262" alpha="1" colorSpace="calibratedRGB"/>
@@ -30,19 +30,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y1H-T2-Du3">
-                                <rect key="frame" x="75" y="123" width="50" height="50"/>
+                                <rect key="frame" x="75" y="122" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
                                 <size key="titleShadowOffset" width="0.0" height="-1"/>
                                 <state key="normal" title="10">
-                                    <color key="titleColor" red="0.24811638676830383" green="0.27985429337014245" blue="0.32495615433673475" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.83137261870000001" green="0.80000007149999997" blue="0.72941178080000002" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" red="0.38431376218795776" green="0.41960787773132324" blue="0.47058826684951782" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" red="0.89019614458084106" green="0.85882359743118286" blue="0.7882353663444519" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTabSkillLevelButton:" destination="HRk-67-RWO" eventType="touchUpInside" id="DwU-X8-lTS"/>
                                     <outletCollection property="gestureRecognizers" destination="PUG-t6-Dks" appends="YES" id="kYj-Y9-Wty"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xpAura.png" id="Tsu-YH-jEj">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -53,6 +57,7 @@
                     <connections>
                         <outlet property="skillButton" destination="PMw-TF-v4Y" id="K7M-os-Qgw"/>
                         <outlet property="skillLevelButton" destination="Y1H-T2-Du3" id="JgU-tc-V00"/>
+                        <outlet property="xpAuraImageView" destination="Tsu-YH-jEj" id="YDj-5G-rsF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B4Y-RW-RXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -68,6 +73,7 @@
     <resources>
         <image name="skillNode.png" width="197" height="197"/>
         <image name="skillNodeHighlited.png" width="197" height="197"/>
+        <image name="xpAura.png" width="193" height="193"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

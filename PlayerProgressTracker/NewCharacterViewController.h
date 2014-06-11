@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MainContextObject.h"
 #import "SkillManager.h"
-#import "ColorConstants.h"
 #import "ClassesDropViewController.h"
 #import "AddSkillDropViewController.h"
 
 
-@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,AddNewSkillControllerProtocol,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,AddNewSkillControllerProtocol,UIImagePickerControllerDelegate, UINavigationControllerDelegate,SkillChangeProtocol>
 
 
 @end

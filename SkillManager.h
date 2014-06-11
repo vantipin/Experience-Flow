@@ -48,6 +48,7 @@
 -(int)countBSforRangeSkill:(RangeSkill *)skill;
 -(int)countDCBonusForRangeSkill:(RangeSkill *)skill;
 -(int)countUsableLevelValueForSkill:(Skill *)skill;
+-(float)countXpNeededForNextLevel:(Skill *)skill;
 
 -(int)countPositionYInATreeForSkill:(SkillTemplate *)skillTemplate;
 -(NSInteger)countPositionXInATreeForSkill:(SkillTemplate *)skillTemplate;

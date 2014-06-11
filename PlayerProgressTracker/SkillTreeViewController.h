@@ -11,7 +11,7 @@
 #import "Character.h"
 
 
-@interface SkillTreeViewController : UIViewController <UIScrollViewDelegate, NodeViewControllerProtocol>
+@interface SkillTreeViewController : UIViewController <UIScrollViewDelegate, NodeViewControllerProtocol, SkillChangeProtocol>
 
 @property (nonatomic) Character *character;
 
@@ -19,5 +19,10 @@
  *Clear current skill tree and draw a new one. Use this methode AFTER you set the character.
  */
 -(void)resetSkillNodes;
+
+/*
+ *Refresh node states without redrawing whole structure
+ */
+-(void)refreshSkillvalues;
 
 @end

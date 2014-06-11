@@ -86,6 +86,8 @@
 		DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */; };
 		DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */; };
 		DFC88CAC186B0EA6007E4D90 /* SkillManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC88CAB186B0EA6007E4D90 /* SkillManager.m */; };
+		DFCEDE4819461CB8002AFB6D /* xpAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCEDE4619461CB8002AFB6D /* xpAura@2x.png */; };
+		DFCEDE4919461CB8002AFB6D /* xpAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCEDE4719461CB8002AFB6D /* xpAura.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +225,8 @@
 		DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTableViewController.m; sourceTree = "<group>"; };
 		DFC88CAA186B0EA6007E4D90 /* SkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillManager.h; sourceTree = "<group>"; };
 		DFC88CAB186B0EA6007E4D90 /* SkillManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillManager.m; sourceTree = "<group>"; };
+		DFCEDE4619461CB8002AFB6D /* xpAura@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xpAura@2x.png"; sourceTree = "<group>"; };
+		DFCEDE4719461CB8002AFB6D /* xpAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xpAura.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +488,8 @@
 		DFB07BFC187EFA1700FF0EF7 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				DFCEDE4619461CB8002AFB6D /* xpAura@2x.png */,
+				DFCEDE4719461CB8002AFB6D /* xpAura.png */,
 				DF5D5717192FC4930025ADF1 /* addButton.png */,
 				DF5D5718192FC4930025ADF1 /* addButton@2x.png */,
 				DF5D5719192FC4930025ADF1 /* deleteButton.png */,
@@ -593,6 +599,7 @@
 				DF5D5725192FC4930025ADF1 /* deleteButton@2x.png in Resources */,
 				DF6E929418D4399B000967F5 /* noImage.png in Resources */,
 				DF5D5722192FC4930025ADF1 /* addButton.png in Resources */,
+				DFCEDE4919461CB8002AFB6D /* xpAura.png in Resources */,
 				DF6E929018D43946000967F5 /* raiseXp.png in Resources */,
 				DF6A7ADC190EE1270079E71D /* DollStoryboard.storyboard in Resources */,
 				DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */,
@@ -607,6 +614,7 @@
 				DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */,
 				DF5D572B192FC4930025ADF1 /* skillNodeHighlited.png in Resources */,
 				DF6E928E18D43946000967F5 /* lowerXp.png in Resources */,
+				DFCEDE4819461CB8002AFB6D /* xpAura@2x.png in Resources */,
 				DF97714D192F811A00873AD2 /* SkillLinkView.storyboard in Resources */,
 				DF5D572C192FC4930025ADF1 /* skillNodeHighlited@2x.png in Resources */,
 				DF30A017190001A40018CE28 /* AddSkillViewCellTableViewCell.xib in Resources */,

@@ -8,18 +8,13 @@
 
 #import "NewCharacterViewController.h"
 
-#import "Character.h"
-#import "Skill.h"
-#import "MeleeSkill.h"
-#import "RangeSkill.h"
-#import "SkillTemplate.h"
-#import "CharacterConditionAttributes.h"
 #import "SkillSet.h"
 #import "DefaultSkillTemplates.h"
 #import "AddSkillDropViewController.h"
-#import "WeaponChoiceDropViewController.h"
 #import "SkillTemplateDiskData.h"
 #import "SkillTreeViewController.h"
+#import "MainContextObject.h"
+#import "ColorConstants.h"
 
 
 @interface NewCharacterViewController ()
@@ -39,15 +34,12 @@
 @property (nonatomic,strong) Character *character;
 @property (nonatomic,strong) ClassesDropViewController *classesDropController;
 @property (nonatomic) AddSkillDropViewController *addNewSkillDropController;
-@property (nonatomic) WeaponChoiceDropViewController *setWeaponDropDownViewController;
 @property (nonatomic,strong) NSMutableArray *raceNames;
 @property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
-@property (nonatomic) BOOL shouldRewriteSkillsLevels; //for cases when player tap race button;
 @property (nonatomic) NSManagedObjectContext *context;
-
 @property (nonatomic) UITextField *currentlyEditingField; //for applying changes when (save) buttons tapped
-
 @property (nonatomic) SkillTreeViewController *skillTreeController;
+@property (nonatomic) BOOL shouldRewriteSkillsLevels;
 
 @end
 
@@ -80,9 +72,6 @@
     self.addNewSkillDropController.delegateDropDown = self;
     [self.view addSubview:self.addNewSkillDropController.view];
     
-    self.setWeaponDropDownViewController.delegateDropDown = self;
-    [self.view addSubview:self.setWeaponDropDownViewController.view];
-    
     self.name.delegate = self;
     self.name.text = self.character.name;
     
@@ -92,7 +81,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
     
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
     self.skillTreeController.character = self.character;
@@ -105,6 +94,11 @@
 //    //TODO
 //    [_character addToCurrentMeleeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] ordinary] withContext:self.context];
 //    [_character setCurrentRangeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] bow] withContext:self.context];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[SkillManager sharedInstance] unsubscribeForSkillChangeNotifications:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -173,21 +167,6 @@
     return _classesDropController;
 }
 
--(WeaponChoiceDropViewController *)setWeaponDropDownViewController
-{
-    if (!_setWeaponDropDownViewController) {
-        UIFont *font = [UIFont fontWithName:@"Noteworthy-Bold" size:18];
-        _setWeaponDropDownViewController = [[WeaponChoiceDropViewController alloc] initWithArrayData:[NSArray new]
-                                                                                          cellHeight:40
-                                                                                      widthTableView:200
-                                                                                             refView:self.view
-                                                                                           animation:AlphaChange
-                                                                                     backGroundColor:lightBodyColor];
-        _setWeaponDropDownViewController.font = font;
-    }
-    return _setWeaponDropDownViewController;
-}
-
 -(AddSkillDropViewController *)addNewSkillDropController
 {
     if (!_addNewSkillDropController) {
@@ -242,12 +221,14 @@
 
 -(void)setSkillSet:(SkillSet *)skillSet forCharacter:(Character *)character;
 {
-    //SkillSet *formerSet = self.statView.character.skillSet;
+    //SkillSet *formerSet = self.character.skillSet;
     //[SkillSet deleteSkillSet:formerSet withContext:self.context];
     
     [character saveCharacterWithContext:self.context];
     
     self.addNewSkillDropController.skillSet = character.skillSet;
+    
+    [self.skillTreeController refreshSkillvalues];
 }
 
 
@@ -298,11 +279,25 @@
     [SkillSet saveContext:self.context];
     //set current name to recently saved one
     [self updateRaceButtonWithName:nameString];
+    [self.skillTreeController refreshSkillvalues];
 }
 
 -(IBAction)saveStatSetBtn:(id)sender
 {
     [self resignCurrentTextFieldResponder];
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"New basic stat set"
+                                                   message: @"Save new set with name:"
+                                                  delegate: self
+                                         cancelButtonTitle:@"Cancel"
+                                         otherButtonTitles:@"Save",nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    self.alertTextField = [alert textFieldAtIndex:0];
+    self.alertTextField.delegate = self; //to forbit saving empty name
+    
+    [alert show];
+
 }
 
 -(IBAction)raceBtnTapped:(id)sender
@@ -366,46 +361,10 @@
         self.shouldRewriteSkillsLevels = true;
         [self updateRaceButtonWithName:name];
     }
-//    else if (dropDown == self.setWeaponDropDownViewController) {
-//        if (returnIndex.section == 0) {
-//            SkillTemplate *meleeWeaponTemplate = self.setWeaponDropDownViewController.meleeSkills[returnIndex.row];
-//            MeleeSkill *meleeSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:meleeWeaponTemplate withCharacter:self.character];
-//            
-//            DollActiveSegment *currentSegment = (DollActiveSegment *)dropDown.anchorView;
-//            currentSegment.currentSkill = meleeSkill;
-//        }
-//        else if (returnIndex.section == 1) {
-//            SkillTemplate *rangeWeaponTemplate = self.setWeaponDropDownViewController.rangeSkills[returnIndex.row];
-//            RangeSkill *rangeSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:rangeWeaponTemplate withCharacter:self.character];
-//            
-//            DollActiveSegment *currentSegment = (DollActiveSegment *)dropDown.anchorView;
-//            currentSegment.currentSkill = rangeSkill;
-//        }
-//        
-//    }
-}
-
--(void)deleteStatSetWithName:(NSString *)name
-{
-    if ([SkillSet deleteSkillSetWithName:name withContext:self.context]) {
-        [self.classesDropController openAnimation];
-        [self refreshRaceNames];
-        [self updateRaceButtonWithName:[self.raceNames lastObject]];
-    }
 }
 
 #pragma mark -
 #pragma mark textfield delegate methods
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
-    //No empty inputs;
-    if (textField.text.length == 0) {
-        return true;
-    }
-    
-    [textField resignFirstResponder];
-    return false;
-}
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
@@ -415,37 +374,9 @@
             self.character.name = textField.text;
             [Character saveContext:self.context];
         }
-//        else if ([self.statView isTextFieldInStatView:textField]) {
-//            if (textField.text.length == 0) {
-//                return false;
-//            }
-//            else if ([self.statView isTextFieldIsSkillToSet:textField]) {
-//                [self.statView setSkillFromTextView:textField];
-//            }
-//            else {
-//                [self.statView setSkillSetFromView];
-//            }
-//        }
         return true;
     }
     [textField resignFirstResponder];
-    return true;
-}
-
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-
-//    if ([self.statView isTextFieldInStatView:textField]) {
-//        //from Here are filter stat input. Only number. Max 2 numbers
-//        NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
-//        NSUInteger newLength = [textField.text length] + [string length] - range.length;
-//        if ([string rangeOfCharacterFromSet:set].location != NSNotFound || newLength > 2) {
-//            [textField resignFirstResponder];
-//            return false;
-//        }
-//        //suggest new stat set
-//        [self prepareViewForSavingNewClass];
-//        return true;
-//    }
     return true;
 }
 
@@ -459,6 +390,16 @@
 {
     if (self.currentlyEditingField) {
         [self.currentlyEditingField resignFirstResponder];
+    }
+}
+
+#pragma mark DeleteStatSetProtocol
+-(void)deleteStatSetWithName:(NSString *)name
+{
+    if ([SkillSet deleteSkillSetWithName:name withContext:self.context]) {
+        [self.classesDropController openAnimation];
+        [self refreshRaceNames];
+        [self updateRaceButtonWithName:[self.raceNames lastObject]];
     }
 }
 
@@ -476,6 +417,7 @@
     }
 }
 
+
 -(BOOL)deleteNewSkillWithTemplate:(SkillTemplate *)skillTemplate
 {
     BOOL deleted = [[SkillManager sharedInstance] removeSkillWithTemplate:skillTemplate fromSkillSet:self.character.skillSet withContext:self.context];
@@ -488,6 +430,12 @@
     }
 }
 
+
+#pragma mark SkillChangeProtocol
+-(void)didFinishChangingExperiencePointsForSkill:(Skill *)skill
+{
+    [self prepareViewForSavingNewClass];
+}
 
 -(void)allFontsToConsole
 {
@@ -504,6 +452,8 @@
 -(IBAction)imageTap:(id)sender
 {
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.view.frame = self.view.bounds;
+    
 	picker.delegate = self;
     
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
