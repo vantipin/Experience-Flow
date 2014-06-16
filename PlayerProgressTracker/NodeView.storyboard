@@ -18,11 +18,14 @@
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
+                                <size key="titleShadowOffset" width="0.0" height="-1"/>
                                 <state key="normal" title="Control" backgroundImage="skillNode.png">
-                                    <color key="titleColor" red="0.74866641436286219" green="0.84813331959262994" blue="0.98921465873718262" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.77647066116333008" green="0.88627457618713379" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" red="0.4745098352432251" green="0.55294120311737061" blue="0.7450980544090271" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <state key="highlighted" backgroundImage="skillNodeHighlited.png">
                                     <color key="titleColor" red="0.89865148352389135" green="0.91933521212889358" blue="0.98921465873718262" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.84323963999999996" green="0.88985292140000005" blue="0.98921465870000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTabSkillButton:" destination="HRk-67-RWO" eventType="touchUpInside" id="h0I-LA-TMl"/>
@@ -33,10 +36,10 @@
                                 <rect key="frame" x="75" y="122" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
-                                <size key="titleShadowOffset" width="0.0" height="-1"/>
+                                <size key="titleShadowOffset" width="0.0" height="2"/>
                                 <state key="normal" title="10">
-                                    <color key="titleColor" red="0.38431376218795776" green="0.41960787773132324" blue="0.47058826684951782" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" red="0.89019614458084106" green="0.85882359743118286" blue="0.7882353663444519" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" red="0.51372551918029785" green="0.72549021244049072" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" red="0.31413580515136491" green="0.42161029563289149" blue="0.68128188775510212" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTabSkillLevelButton:" destination="HRk-67-RWO" eventType="touchUpInside" id="DwU-X8-lTS"/>
@@ -73,7 +76,7 @@
     <resources>
         <image name="skillNode.png" width="197" height="197"/>
         <image name="skillNodeHighlited.png" width="197" height="197"/>
-        <image name="xpAura.png" width="193" height="193"/>
+        <image name="xpAura.png" width="195" height="195"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
