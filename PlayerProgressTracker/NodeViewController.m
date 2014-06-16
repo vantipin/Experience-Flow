@@ -19,9 +19,13 @@
 @property (nonatomic) CGPoint anchorPoint;
 @property (nonatomic) CAKeyframeAnimation *driftAnimation;
 
+@property (nonatomic) SkillTemplate *skillTemplate;
+
 @end
 
 @implementation NodeViewController
+
+@synthesize skill = _skill;
 
 +(NodeViewController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 {
@@ -77,10 +81,22 @@
     [self.view.layer removeAllAnimations];
 }
 
+-(Skill *)skill
+{
+    if (!_skill) {
+        if (self.delegate && self.skillTemplate) {
+            self.skill = [self.delegate needNewSkillObjectWithTemplate:self.skillTemplate];
+        }
+    }
+    
+    return _skill;
+}
+
 -(void)setSkill:(Skill *)skill
 {
     _skill = skill;
     if (_skill) {
+        self.skillTemplate = _skill.skillTemplate;
         [self updateInterface];
     }
 }
@@ -135,8 +151,8 @@
 
 -(void)updateInterface
 {
-    [self.skillButton setTitle:_skill.skillTemplate.name forState:UIControlStateNormal];
-    [self.skillLevelButton setTitle:[NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:_skill]] forState:UIControlStateNormal];
+    [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
+    [self.skillLevelButton setTitle:[NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill]] forState:UIControlStateNormal];
     [self processXPAura];
 }
 

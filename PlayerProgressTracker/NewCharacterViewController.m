@@ -221,16 +221,35 @@
 
 -(void)setSkillSet:(SkillSet *)skillSet forCharacter:(Character *)character;
 {
-    //SkillSet *formerSet = self.character.skillSet;
-    //[SkillSet deleteSkillSet:formerSet withContext:self.context];
+    SkillSet *formerSet = self.character.skillSet;
+    [SkillSet deleteSkillSet:formerSet withContext:self.context];
+    character.skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:skillSet];
+    
     
     [character saveCharacterWithContext:self.context];
     
-    self.addNewSkillDropController.skillSet = character.skillSet;
-    
-    [self.skillTreeController refreshSkillvalues];
+    self.addNewSkillDropController.skillSet = character.skillSet; //upadte skill set drop down
+    [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];                //update skill tree
 }
 
+
+-(void)saveCurrentStatSetWithName:(NSString *)nameString
+{
+    SkillSet *skillSet;
+    NSArray *array = [SkillSet fetchSkillSetWithName:nameString withContext:self.context];
+    if (array && array.count != 0) {
+        SkillSet *existingSkillSet = [array lastObject];
+        [SkillSet deleteSkillSet:existingSkillSet withContext:self.context];
+    }
+    
+    skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:self.character.skillSet];
+    skillSet.name = nameString;
+    
+    [SkillSet saveContext:self.context];
+    //set current name to recently saved one
+    [self updateRaceButtonWithName:nameString];
+    [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];
+}
 
 -(void)prepareViewForSavingNewClass
 {
@@ -262,24 +281,6 @@
         }];
     }
     //self.raceBtn.alpha = 1;
-}
-
--(void)saveCurrentStatSetWithName:(NSString *)nameString
-{
-    SkillSet *skillSet;
-    NSArray *array = [SkillSet fetchSkillSetWithName:nameString withContext:self.context];
-    if (array && array.count != 0) {
-        SkillSet *existingSkillSet = [array lastObject];
-        [SkillSet deleteSkillSet:existingSkillSet withContext:self.context];
-    }
-    
-    skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:self.character.skillSet];
-    skillSet.name = nameString;
-    
-    [SkillSet saveContext:self.context];
-    //set current name to recently saved one
-    [self updateRaceButtonWithName:nameString];
-    [self.skillTreeController refreshSkillvalues];
 }
 
 -(IBAction)saveStatSetBtn:(id)sender

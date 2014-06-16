@@ -740,7 +740,7 @@ static SkillManager *instance = nil;
     
     if (!skill)
     {
-        NSLog(@"Warning! Skill with name ""%@"" is missing for character with id %@!",skillTemplate.name,character.name);
+        //NSLog(@"Warning! Skill with name ""%@"" is missing for character with id %@!",skillTemplate.name,character.name);
         if (!character.skillSet) {
             character.skillSet = [NSEntityDescription insertNewObjectForEntityForName:@"SkillSet" inManagedObjectContext:self.context];
         }

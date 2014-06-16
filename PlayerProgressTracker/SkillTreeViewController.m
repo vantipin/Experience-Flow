@@ -374,7 +374,15 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)refreshSkillvalues;
 {
+    [self refreshSkillvaluesWithReloadingSkills:false];
+}
+
+-(void)refreshSkillvaluesWithReloadingSkills:(BOOL)needReload;
+{
     for (NodeViewController *node in self.allExistingNodes) {
+        if (needReload) {
+            node.skill = nil;
+        }
         [node updateInterface];
     }
 }
@@ -399,6 +407,15 @@ static NSString *emptyParentKey = @"emptyParent";
 
 
 #pragma mark #import NodeViewControllerProtocol methods
+-(Skill *)needNewSkillObjectWithTemplate:(SkillTemplate *)skillTemplate
+{
+    Skill *skill;
+    if (self.character) {
+        skill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:skillTemplate withCharacter:self.character];
+    }
+    return skill;
+}
+
 -(void)didSwipNodeDown:(NodeViewController *)node
 {
     [[SkillManager sharedInstance] removeXpPoints:1.0f toSkill:node.skill];

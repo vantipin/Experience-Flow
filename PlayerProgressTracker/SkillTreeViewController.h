@@ -24,5 +24,6 @@
  *Refresh node states without redrawing whole structure
  */
 -(void)refreshSkillvalues;
+-(void)refreshSkillvaluesWithReloadingSkills:(BOOL)needReload;
 
 @end

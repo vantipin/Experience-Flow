@@ -13,6 +13,8 @@
 
 @protocol NodeViewControllerProtocol <NSObject>
 
+-(Skill *)needNewSkillObjectWithTemplate:(SkillTemplate *)skillTemplate;
+
 -(void)didTapNode:(NodeViewController *)node;
 -(void)didTapNodeLevel:(NodeViewController *)node;
 -(void)didSwipNodeUp:(NodeViewController *)node;
