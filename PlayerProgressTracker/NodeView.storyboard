@@ -36,7 +36,7 @@
                                 <rect key="frame" x="75" y="122" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
-                                <size key="titleShadowOffset" width="0.0" height="2"/>
+                                <size key="titleShadowOffset" width="0.0" height="-2"/>
                                 <state key="normal" title="10">
                                     <color key="titleColor" red="0.51372551918029785" green="0.72549021244049072" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
                                     <color key="titleShadowColor" red="0.31413580515136491" green="0.42161029563289149" blue="0.68128188775510212" alpha="1" colorSpace="calibratedRGB"/>

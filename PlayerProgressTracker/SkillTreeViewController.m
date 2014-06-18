@@ -456,6 +456,36 @@ static NSString *emptyParentKey = @"emptyParent";
     }
 }
 
+-(void)didChangeSkillLevel:(Skill *)skill
+{
+    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:skill.skillTemplate.name];
+    if (node) {
+        for (Skill *subSkill in node.skill.subSkills) {
+            [self checkForUpdateSubskillsOf:subSkill];
+        }
+    }
+}
+
+
+-(void)checkForUpdateSubskillsOf:(Skill *)skill
+{
+    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:skill.skillTemplate.name];
+    if (node) {
+        [node updateInterface];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            node.skillButton.highlighted = true;
+        } completion:^(BOOL success){
+            [UIView animateWithDuration:0.1 animations:^{
+                node.skillButton.highlighted = false;
+            }];
+        }];
+        
+        for (Skill *subSkill in node.skill.subSkills) {
+            [self checkForUpdateSubskillsOf:subSkill];
+        }
+    }
+}
 
 
 /*
