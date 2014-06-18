@@ -179,6 +179,8 @@
 		DF977149192F80B200873AD2 /* NodeLinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeLinkController.h; sourceTree = "<group>"; };
 		DF97714A192F80B200873AD2 /* NodeLinkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeLinkController.m; sourceTree = "<group>"; };
 		DF97714C192F811A00873AD2 /* SkillLinkView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SkillLinkView.storyboard; sourceTree = "<group>"; };
+		DFA7D2EE195214E400FE2D3E /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appIcon.png; path = Images/appIcon.png; sourceTree = "<group>"; };
+		DFA7D2EF1952150100FE2D3E /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appIcon@2x.png"; path = "Images/appIcon@2x.png"; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Xp Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xp Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -369,6 +371,8 @@
 		DFAED0F3186309B40039D17B = {
 			isa = PBXGroup;
 			children = (
+				DFA7D2EF1952150100FE2D3E /* appIcon@2x.png */,
+				DFA7D2EE195214E400FE2D3E /* appIcon.png */,
 				DFAED13418630A350039D17B /* Model */,
 				DFAED105186309B40039D17B /* PlayerProgressTracker */,
 				DFAED124186309B40039D17B /* PlayerProgressTrackerTests */,

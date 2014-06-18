@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
     
+    self.font = [UIFont fontWithName:@"Noteworthy-Light" size:15];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
 	// Do any additional setup after loading the view.
