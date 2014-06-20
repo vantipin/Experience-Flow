@@ -10,7 +10,6 @@
 
 #import "SkillSet.h"
 #import "DefaultSkillTemplates.h"
-#import "AddSkillDropViewController.h"
 #import "SkillTemplateDiskData.h"
 #import "SkillTreeViewController.h"
 #import "MainContextObject.h"
@@ -28,12 +27,10 @@
 @property (nonatomic) IBOutlet UIView *characterSheetView;
 @property (nonatomic) IBOutlet UIView *statViewContainer;
 @property (nonatomic) IBOutlet UIView *additionalSkillContainerView;
-@property (nonatomic) IBOutlet UIButton *addNewSkillButton;
 
 
 @property (nonatomic,strong) Character *character;
 @property (nonatomic,strong) ClassesDropViewController *classesDropController;
-@property (nonatomic) AddSkillDropViewController *addNewSkillDropController;
 @property (nonatomic,strong) NSMutableArray *raceNames;
 @property (nonatomic,strong) UITextField *alertTextField; //weak link break standart delegate methode - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 @property (nonatomic) NSManagedObjectContext *context;
@@ -58,25 +55,28 @@
 {
     [super viewDidLoad];
     
+    //[[SkillManager sharedInstance] clearSkillTemplate];
+    
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
     
-    //[self allFontsToConsole];
-    //[StatSet deleteStatSetWithName:@"" withContext:self.managedObjectContext];
     self.shouldRewriteSkillsLevels = true;
     
     self.classesDropController.delegateDropDown = self;
     self.classesDropController.delegateDeleteStatSet = self;
     [self.view addSubview:self.classesDropController.view];
     
-    self.addNewSkillDropController.delegateDropDown = self;
-    [self.view addSubview:self.addNewSkillDropController.view];
-    
     self.name.delegate = self;
     self.name.text = self.character.name;
     
-    self.characterSheetView.backgroundColor = bodyColor;
+    CALayer *imageLayer = self.icon.layer;
+    [imageLayer setCornerRadius:20];
+    [imageLayer setMasksToBounds:YES];
     
+
+    CALayer *textViewLayer = self.name.layer;
+    [textViewLayer setCornerRadius:8];
+    [textViewLayer setMasksToBounds:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -167,21 +167,6 @@
     return _classesDropController;
 }
 
--(AddSkillDropViewController *)addNewSkillDropController
-{
-    if (!_addNewSkillDropController) {
-        _addNewSkillDropController = [[AddSkillDropViewController alloc] initWithArrayData:[[DefaultSkillTemplates sharedInstance] allSkillTemplates]
-                                                                          withSkillSet:self.character.skillSet
-                                                                    withWidthTableView:320
-                                                                            cellHeight:48
-                                                                           withRedView:self.addNewSkillButton
-                                                                         withAnimation:AlphaChange];
-        _addNewSkillDropController.delegateAddNewSkill = self;
-        _addNewSkillDropController.view.backgroundColor = lightBodyColor;
-    }
-    return _addNewSkillDropController;
-}
-
 -(void)refreshRaceNames
 {
     [self.raceNames removeAllObjects];
@@ -228,7 +213,6 @@
     
     [character saveCharacterWithContext:self.context];
     
-    self.addNewSkillDropController.skillSet = character.skillSet; //upadte skill set drop down
     [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];                //update skill tree
 }
 
@@ -315,18 +299,6 @@
     }
 }
 
--(IBAction)addNewSkillTapped:(id)sender
-{
-    [self resignCurrentTextFieldResponder];
-    
-    if (self.addNewSkillDropController.view.hidden) {
-        [self.addNewSkillDropController openAnimation];
-    }
-    else {
-        [self.addNewSkillDropController closeAnimation];
-    }
-}
-
 #pragma mark -
 #pragma mark alert delegate
 
@@ -353,11 +325,7 @@
 #pragma mark dropDown methods
 -(void)dropDownController:(DropDownViewController *)dropDown cellSelected:(NSIndexPath *)returnIndex
 {
-    if (dropDown == self.addNewSkillDropController) {
-        SkillTemplate *skillTemplate = [self.addNewSkillDropController.dropDownDataSource objectAtIndex:returnIndex.row];
-        NSLog(@"%@",skillTemplate.name);
-    }
-    else if (dropDown == self.classesDropController) {
+    if (dropDown == self.classesDropController) {
         NSString *name = self.raceNames[returnIndex.row];
         self.shouldRewriteSkillsLevels = true;
         [self updateRaceButtonWithName:name];

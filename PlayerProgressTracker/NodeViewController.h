@@ -44,7 +44,7 @@
 
 -(void)updateInterface;
 
--(void)setParentNodeLink:(NodeViewController *)parentNodeLink;
+-(void)setParentNodeLink:(NodeViewController *)parentNodeLink placeInView:(UIView *)containerView addToController:(UIViewController *)controller;
 
 //get instance of animation used by Group animation
 -(CAKeyframeAnimation *)nodeAnimationInvokeWithPoint1:(CGPoint)point1 withPoint2:(CGPoint)point2;

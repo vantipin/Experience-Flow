@@ -23,6 +23,7 @@ static NSString *emptyParentKey = @"emptyParent";
 
 @property (nonatomic) UIScrollView *scrollView;
 @property (nonatomic) UIView *containerView;
+@property (nonatomic) UIView *containerForContainerView; //Why? bug with centering zooming
 
 
 @property (nonatomic) NSMutableArray *trees;
@@ -75,13 +76,18 @@ static NSString *emptyParentKey = @"emptyParent";
     self.scrollView.contentSize = CGSizeMake(width, height);
     
     self.containerView.frame = CGRectMake(0, 0, width, height);
+    self.containerForContainerView.frame = self.containerView.frame;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self updateScrollViewZoomAnimated:false];
     [self resetSkillNodes];
     [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self updateScrollViewZoomAnimated:true];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -120,9 +126,18 @@ static NSString *emptyParentKey = @"emptyParent";
 {
     if (!_containerView) {
         _containerView = [UIView new];
-        [self.scrollView addSubview:self.containerView];
+        [self.containerForContainerView addSubview:self.containerView];
     }
     return _containerView;
+}
+
+-(UIView *)containerForContainerView
+{
+    if (!_containerForContainerView) {
+        _containerForContainerView = [UIView new];
+        [self.scrollView addSubview:self.containerForContainerView];
+    }
+    return _containerForContainerView;
 }
 
 -(void)setCharacter:(Character *)character
@@ -197,6 +212,11 @@ static NSString *emptyParentKey = @"emptyParent";
 //        isLandscape = true;
 //    }
     
+
+    //since orientation change allowed zoom scale should be reset in order to calculate following scales correctly
+    [self.scrollView setZoomScale:1.0f];
+    
+    
     float scrollViewRealWidth = self.scrollView.frame.size.width;
     float scrollViewRealHeight = self.scrollView.frame.size.height;
     
@@ -212,7 +232,9 @@ static NSString *emptyParentKey = @"emptyParent";
     
     self.scrollView.minimumZoomScale = minScale;
     self.scrollView.maximumZoomScale = 1.0f;
-    [self.scrollView setZoomScale:currentScale animated:animated];
+    [self.scrollView setZoomScale:currentScale  animated:animated];
+    
+    //NSLog(@"\nmin %f \nmax %f",self.scrollView.minimumZoomScale,self.scrollView.maximumZoomScale);
 }
 
 #pragma mark -
@@ -356,7 +378,7 @@ static NSString *emptyParentKey = @"emptyParent";
                         if (skillTemplate.basicSkillTemplate) {
                             if ([self.nodeIndexesForSkillNames valueForKey:skillTemplate.basicSkillTemplate.name]) {
                                 
-                                [newSkillNode setParentNodeLink:[self.nodeIndexesForSkillNames valueForKey:skillTemplate.basicSkillTemplate.name]];
+                                [newSkillNode setParentNodeLink:[self.nodeIndexesForSkillNames valueForKey:skillTemplate.basicSkillTemplate.name] placeInView:self.containerView addToController:self];
                             }
                         }
                         [self.allExistingNodes addObject:newSkillNode];
@@ -391,22 +413,43 @@ static NSString *emptyParentKey = @"emptyParent";
 #pragma mark UIScrollViewDelegate methods
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return self.containerView;
+    return self.containerForContainerView;
+}
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    //NSLog(@"zooming....");
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //NSLog(@"scrolling...");
+    [self centerScrollViewContents];
 }
 
 
+- (void)centerScrollViewContents {
+    CGSize boundsSize = self.scrollView.bounds.size;
+    CGRect contentsFrame = self.containerForContainerView.frame;
 
-#pragma mark #import NodeViewControllerProtocol methods
+    if (contentsFrame.size.width < boundsSize.width) {
+        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
+    } else {
+        contentsFrame.origin.x = 0.0f;
+    }
+    
+    if (contentsFrame.size.height < boundsSize.height) {
+        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
+    } else {
+        contentsFrame.origin.y = 0.0f;
+    }
+    
+    self.containerForContainerView.frame = contentsFrame;
+
+}
+
+
+#pragma mark NodeViewControllerProtocol methods
 -(Skill *)needNewSkillObjectWithTemplate:(SkillTemplate *)skillTemplate
 {
     Skill *skill;

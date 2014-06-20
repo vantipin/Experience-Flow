@@ -25,13 +25,14 @@
 #define weaponSkillName @"Melee"
 #define ballisticSkillName @"Range"
 
+#define magicName @"Magic"
+
 #define bluntName @"Crashing"
 #define ordinaryName @"Cutting"
 #define flailName @"Piercing"
 
 #define bowName @"Bow"
 #define blackpowderName @"Firearm"
-#define crossbowName @"Crossbow"
 #define thrownName @"Thrown"
 
 #define strengthName @"Strength"
@@ -42,12 +43,15 @@
 #define disciplineName @"Control"
 #define perceptionName @"Perception"
 
+
+
 #define swimmingName @"Swim"
 #define climbName @"Climb"
 
 #define rideName @"Ride"
 #define knaveryName @"Knavery"
 #define stealthName @"Stealth"
+#define escapeArtistName @"Escape Artist"
 
 #define senseMotiveName @"Sense Motive"
 #define disguiseName @"Disguise"
@@ -61,6 +65,11 @@
 #define educationName @"Education"
 #define healName @"Heal"
 #define appraiseName @"Appraise"
+
+#define dharName @"Dhar"
+#define ghyranName @"Ghyran"
+#define aqshyName @"Aqshy"
+#define hyshName @"Hysh"
 
 static float defaultPhsAndMnsProgression = 6;
 static float defaultPhsAndMnsBasicBarrier = 3;
@@ -79,6 +88,11 @@ static float defaultMeleeWeaponGrowhtGoes = 0.3;
 static float defaultRangeWeaponProgression = 5;
 static float defaultRangeWeaponBasicBarrier = 8;
 static float defaultRangeWeaponGrowhtGoes = 0.3;
+
+
+static float defaultMagicSubSkillProgression = 5;
+static float defaultMagicSubSkillBasicBarrier = 18;
+static float defaultMagicSubSkillGrowhtGoes = 0.2;
 
 static int defaultEncumbrancePenalties = 10;
 
@@ -121,24 +135,26 @@ static DefaultSkillTemplates *instance = nil;
                          
                          self.weaponSkill,
                          self.ballisticSkill,
-                         
-                         self.blunt,
-                         self.cutting,
-                         self.piercing,
-                         
-                         self.bow,
-                         self.blackpowder,
-                         self.crossbow,
-                         self.thrown,
-                         
                          self.strength,
                          self.toughness,
                          self.agility,
                          self.reason,
                          self.control,
                          self.perception,
+                         self.magic,
                          
+                         self.dhar,
+                         self.aqshy,
+                         self.hysh,
+                         self.ghyran,
+                         self.blunt,
+                         self.cutting,
+                         self.piercing,
+                         self.bow,
+                         self.blackpowder,
+                         self.thrown,
                          self.stealth,
+                         self.escapeArtist,
                          self.animalHandling,
                          self.education,
                          self.swimming,
@@ -172,14 +188,13 @@ static DefaultSkillTemplates *instance = nil;
     
     allCharacterSkills = @[self.weaponSkill,
                            self.ballisticSkill,
-                           
                            self.strength,
                            self.toughness,
                            self.agility,
                            self.reason,
                            self.control,
                            self.perception,
-                           
+                           self.magic,
                            self.physique,
                            self.intelligence];
     
@@ -203,7 +218,6 @@ static DefaultSkillTemplates *instance = nil;
     
     allCharacterSkills = @[self.bow,
                            self.blackpowder,
-                           self.crossbow,
                            self.thrown];
     
     return allCharacterSkills;
@@ -328,8 +342,36 @@ static DefaultSkillTemplates *instance = nil;
     return _ballisticSkill;
 }
 
-#pragma mark -
-#pragma mark advanced skills
+
+-(SkillTemplate *)magic{
+    if (!_magic){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",magicName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:magicName
+                                                              withRules:nil
+                                                      withRulesExamples:nil
+                                                        withDescription:@"Magic!"
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:12
+                                                   withSkillProgression:5
+                                               withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
+                                                          withSkillType:AdvancedSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.intelligence
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        
+        _magic = skillTemplate;
+        
+    }
+    return _magic;
+}
+
+
 //strength
 -(SkillTemplate *)strength{
     if (!_strength){
@@ -495,6 +537,10 @@ static DefaultSkillTemplates *instance = nil;
     return _perception;
 }
 
+
+#pragma mark -
+#pragma mark advanced skills
+
 //swimming
 -(SkillTemplate *)swimming{
     if (!_swimming){
@@ -579,6 +625,33 @@ static DefaultSkillTemplates *instance = nil;
     return _stealth;
 }
 
+-(SkillTemplate *)escapeArtist{
+    if (!_escapeArtist){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",escapeArtistName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:escapeArtistName
+                                                              withRules:@"Rules:\n- Ropes/Bindings. d10 test. 1 minute. Test goest against binder's Strenght skill.\n- Net, animate rope spell, command plants, control plants, or entangle. If no special penalties described it's d20 check. 1 full-round action.\n- Tight Space. d12 test. At least 1 minute. Getting through a space where your head fits but your shoulders donít. If the space is long you may need to make multiple checks. You canít get through a space that your head does not fit through.\n- Escape Grab. d6 test against enemy Strenght. Standart Action.\n- Manacles and Masterwork Manacles. 1 minute. d12 check against level of Manacles. Usually 5 for manacles and 8 for Masterwork Manacles."
+                                                      withRulesExamples:nil
+                                                        withDescription:@"Advanced skill. Your training allows you to slip bonds and escape from grapples."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:defaultAdvBasicBarrierLow
+                                                   withSkillProgression:defaultAdvProgression
+                                               withBasicSkillGrowthGoes:defaultAdvGrowhtGoesLow
+                                                          withSkillType:AdvancedSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.agility
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        
+        _escapeArtist = skillTemplate;
+    }
+    return _escapeArtist;
+}
+
 //ride
 -(SkillTemplate *)ride{
     if (!_ride){
@@ -586,7 +659,7 @@ static DefaultSkillTemplates *instance = nil;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",rideName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:rideName
-                                                              withRules:[NSString stringWithFormat:@"Rules:\n- You should perform ride test on every ride related action*.\n- You can gain bonuses or penalties to the skill level depending on quality of saddle or pose you choose to ride the mount. A good saddle gives +2 to the skill level. Riding bareback gives -4 to riding. \n- For every %d points of encumbrance (counting equipment you are wearing) your ride level decreased by 1.\n- You should use Animal Handling skill Test Value for your mount for discipline tests if needed. \n\nThis skill gives you following advantages: \nLevel 6 etc. - Typical riding actions don’t require checks. You can saddle, mount, ride, and dismount from a mount without a problem.",defaultEncumbrancePenalties]                                                      withRulesExamples:@"*Here are examples of tasks and their stats:\nLevel 1. d8 test. Guide with knees. You can react instantly to guide your mount with your knees so that you can use both hands in combat. Make your Ride check at the start of your turn. If you fail, you can use only one hand this round because you need to use the other to control your mount. \nLevel 1. d8 test. Stay in Saddle. You can react instantly to try to avoid falling when your mount rears or bolts unexpectedly or when you take damage. This usage does not take an action. \nLevel 2. d10 test. Cover. You can react instantly to drop down and hang alongside your mount, using it as cover. You can’t attack or cast spells while using your mount as cover. If you fail your Ride check, you don’t get the cover benefit. This usage does not take an action. \nLevel 2. d10 test. Soft fall. You can react instantly to try to take no damage when you fall off a mount — when it is killed or when it falls, for example. If you fail your Ride check, you take d6 falling damage. This usage does not take an action. \nLevel 2. d10 test. Leap. You can get your mount to leap obstacles as part of its movement. If you fail your Ride check, you fall off the mount when it leaps and take the appropriate falling damage (at least d6 points). This usage does not take an action, but is part of the mount’s movement. \nLevel 2. d10 test. Spur Mount. You can spur your mount to greater speed with an action. A successful Ride check increases the mount’s speed twice for 1 round but deals 1 fatigue to the creature. \nLevel 3. d12 test. Control mount in battle. As an action, you can attempt to control a light horse, pony, heavy horse, or other mount not trained for combat riding while in battle. If you fail the Ride check, you can do nothing else in that round. You do not need to roll for warhorses or warponies. \nLevel 3. d12 test. Fast mount or dismount. You can attempt to mount or dismount from a mount of up to one size category larger than yourself as a free action, provided that you still have an action available that round. If you fail the Ride check, mounting or dismounting is an action. You can’t use fast mount or dismount on a mount more than one size category larger than yourself. \nLevel 4. 2d8 test. Stand on mount. This allows you to stand on your mount’s back even during movement or combat. You take no penalties to actions while doing so. \nLevel 5. d20 test. Unconscious Control. As a free action, you can attempt to control a light horse, pony, or heavy horse while in combat. If the character fails, you control the mount with action point. You do not need to roll for warhorses or warponies. \nLevel 5. d20 test. Attack from Cover. You can react instantly to drop down and hang alongside your mount, using it as one-half cover. You can attack and cast spells while using your mount as cover without penalty. If you fail, you don’t get the cover benefit."
+                                                              withRules:[NSString stringWithFormat:@"Rules:\n- You should perform ride test on every ride related action*. All checks goes against the level of the task.\n- You can gain bonuses or penalties to the skill level depending on quality of saddle or pose you choose to ride the mount. A good saddle gives +2 to the skill level. Riding bareback gives -4 to riding. \n- For every %d points of encumbrance (counting equipment you are wearing) your ride level decreased by 1.\n- You should use Animal Handling skill Test Value for your mount for discipline tests if needed. \n\nThis skill gives you following advantages: \nLevel 6 etc. - Typical riding actions don’t require checks. You can saddle, mount, ride, and dismount from a mount without a problem.",defaultEncumbrancePenalties]                                                      withRulesExamples:@"*Here are examples of tasks and their stats:\nLevel 1. d6 test. Guide with knees. You can react instantly to guide your mount with your knees so that you can use both hands in combat. Make your Ride check at the start of your turn. If you fail, you can use only one hand this round because you need to use the other to control your mount. \nLevel 1. d6 test. Stay in Saddle. You can react instantly to try to avoid falling when your mount rears or bolts unexpectedly or when you take damage. This usage does not take an action. \nLevel 2. d8 test. Cover. You can react instantly to drop down and hang alongside your mount, using it as cover. You can’t attack or cast spells while using your mount as cover. If you fail your Ride check, you don’t get the cover benefit. This usage does not take an action. \nLevel 2. d8 test. Soft fall. You can react instantly to try to take no damage when you fall off a mount — when it is killed or when it falls, for example. If you fail your Ride check, you take d6 falling damage. This usage does not take an action. \nLevel 2. d8 test. Leap. You can get your mount to leap obstacles as part of its movement. If you fail your Ride check, you fall off the mount when it leaps and take the appropriate falling damage (at least d6 points). This usage does not take an action, but is part of the mount’s movement. \nLevel 2. d8 test. Spur Mount. You can spur your mount to greater speed with an action. A successful Ride check increases the mount’s speed twice for 1 round but deals 1 fatigue to the creature. \nLevel 3. d10 test. Control mount in battle. As an action, you can attempt to control a light horse, pony, heavy horse, or other mount not trained for combat riding while in battle. If you fail the Ride check, you can do nothing else in that round. You do not need to roll for warhorses or warponies. \nLevel 3. d10 test. Fast mount or dismount. You can attempt to mount or dismount from a mount of up to one size category larger than yourself as a free action, provided that you still have an action available that round. If you fail the Ride check, mounting or dismounting is an action. You can’t use fast mount or dismount on a mount more than one size category larger than yourself. \nLevel 4. d12 test. Stand on mount. This allows you to stand on your mount’s back even during movement or combat. You take no penalties to actions while doing so. \nLevel 5. d20 test. Unconscious Control. As a free action, you can attempt to control a light horse, pony, or heavy horse while in combat. If the character fails, you control the mount with action point. You do not need to roll for warhorses or warponies. \nLevel 5. d20 test. Attack from Cover. You can react instantly to drop down and hang alongside your mount, using it as one-half cover. You can attack and cast spells while using your mount as cover without penalty. If you fail, you don’t get the cover benefit."
                                                         withDescription:@"Advanced skill. Defines a character’s ability to ride or care for a horse or other common mount, as well as drive and manage a wagon or carriage, and provide maintenance and care for the equipment associated with horses, mules and other riding or team animals. This skill also covers the ability to manage such animals and keep them calm under duress or spur them to greater action. Specialisation options: trample, trick riding, mounted archery, long distance travel."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultAdvBasicBarrierLow
@@ -614,7 +687,7 @@ static DefaultSkillTemplates *instance = nil;
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:knaveryName
                                                               withRules:[NSString stringWithFormat:@"Rules:\n- You should perform knavery test on every knavery related action*.\n- For every %d points of encumbrance (counting equipment you are wearing) your knavery level decreased by 1.\n- If you are trying to perform skill while someone watching you closely - to remain unnoticed you should pass knavery test against opponent perception.\n\nThis skill gives you following advantages: \nYou are able to be cool about legerdemain and now opponent will watch closely only if he expect a trick and get a good position to expose your knavery. In other situation you should easily find a moment to perform knavery.",defaultEncumbrancePenalties]
-                                                      withRulesExamples:@"*Here are examples of tasks and their stats:\nLevel 1. d8 test. Palm a coin-sized object, make a coin disappear. \nLevel 3. d12 test. Lift a small object from a person. \nLevel 5. d20 test. Lift a sheathed weapon from another creature and hide it on the character’s person, if the weapon is no more than one size category larger than the character’s own size. \nLevel 7. 2d12 test. Make an adjacent, willing creature or object of the character’s size or smaller “disappear” while in plain view. In fact, the willing creature or object is displaced up to 10 feet away—make a separate knavery test to determine how well the “disappeared” creature or object is hidden."
+                                                      withRulesExamples:@"*Here are examples of tasks and their stats:\nLevel 1. d8 test. Palm a coin-sized object, make a coin disappear. \nLevel 3. d10 test. Lift a small object from a person. \nLevel 5. d20 test. Lift a sheathed weapon from another creature and hide it on the character’s person, if the weapon is no more than one size category larger than the character’s own size. \nLevel 7. 2d12 test. Make an adjacent, willing creature or object of the character’s size or smaller “disappear” while in plain view. In fact, the willing creature or object is displaced up to 10 feet away—make a separate knavery test to determine how well the “disappeared” creature or object is hidden."
                                                         withDescription:@"Advanced skill. Your training allows you to pick pockets, draw hidden weapons, and take a variety of actions without being noticed. Specialisation options: pick pockets, draw hidden weapons, show a trick."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultAdvBasicBarrierLow
@@ -830,7 +903,113 @@ static DefaultSkillTemplates *instance = nil;
     return _heal;
 }
 
-//animalHandling
+
+
+-(SkillTemplate *)dhar{
+    if (!_dhar){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",dharName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:dharName
+                                                              withRules:nil
+                                                      withRulesExamples:nil
+                                                        withDescription:@"Dark Arts. Dude, don't go there.."
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:defaultMagicSubSkillBasicBarrier
+                                                   withSkillProgression:defaultMagicSubSkillProgression
+                                               withBasicSkillGrowthGoes:defaultMagicSubSkillGrowhtGoes
+                                                          withSkillType:AdvancedSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.magic
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        _dhar = skillTemplate;
+    }
+    return _dhar;
+}
+
+-(SkillTemplate *)ghyran{
+    if (!_ghyran){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",ghyranName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ghyranName
+                                                              withRules:nil
+                                                      withRulesExamples:nil
+                                                        withDescription:@"Life magic. Make road for the healers!"
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:defaultMagicSubSkillBasicBarrier
+                                                   withSkillProgression:defaultMagicSubSkillProgression
+                                               withBasicSkillGrowthGoes:defaultMagicSubSkillGrowhtGoes
+                                                          withSkillType:AdvancedSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.magic
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        _ghyran = skillTemplate;
+    }
+    return _ghyran;
+}
+
+-(SkillTemplate *)hysh{
+    if (!_hysh){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",hyshName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:hyshName
+                                                              withRules:nil
+                                                      withRulesExamples:nil
+                                                        withDescription:@"Light magic. So illuminating!"
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:defaultMagicSubSkillBasicBarrier
+                                                   withSkillProgression:defaultMagicSubSkillProgression
+                                               withBasicSkillGrowthGoes:defaultMagicSubSkillGrowhtGoes
+                                                          withSkillType:AdvancedSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.magic
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        _hysh = skillTemplate;
+    }
+    return _hysh;
+}
+
+-(SkillTemplate *)aqshy{
+    if (!_aqshy){
+        SkillTemplate *skillTemplate;
+        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",aqshyName] withContext:self.context];
+        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
+            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:aqshyName
+                                                              withRules:nil
+                                                      withRulesExamples:nil
+                                                        withDescription:@"Fire magic. Hot! Hot!"
+                                                          withSkillIcon:nil
+                                                     withBasicXpBarrier:defaultMagicSubSkillBasicBarrier
+                                                   withSkillProgression:defaultMagicSubSkillProgression
+                                               withBasicSkillGrowthGoes:defaultMagicSubSkillGrowhtGoes
+                                                          withSkillType:AdvancedSkillType
+                                                 withDefaultStartingLvl:0
+                                                withParentSkillTemplate:self.magic
+                                                            withContext:self.context];
+        }
+        else{
+            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
+        }
+        _aqshy = skillTemplate;
+    }
+    return _aqshy;
+}
+
+
 -(SkillTemplate *)animalHandling{
     if (!_animalHandling){
         SkillTemplate *skillTemplate;
@@ -840,6 +1019,7 @@ static DefaultSkillTemplates *instance = nil;
                                                               withRules:@"Rules:\n- Handle an Animal. This task involves commanding an animal to perform a task or trick that it knows. If your check succeeds, the animal performs the task or trick on its next action.\n- Teach an animal a trick. One week of work. Animal can learn number of tricks equal to it's Reason level.\n- Train an animal for a general purpose. Rather than teaching an animal individual tricks, you can simply train it for a general purpose. Essentially, an animal's purpose represents a preselected set of known tricks that fit into a common scheme, such as guarding or heavy labor. The animal must meet all the normal prerequisites for all tricks included in the training package. An animal can be trained for only one general purpose, though if the creature is capable of learning additional tricks (above and beyond those included in its general purpose), it may do so. Training an animal for a purpose requires fewer checks than teaching individual tricks does, but no less time.\n- Rear a Wild Animal. To rear an animal means to raise a wild creature from infancy so that it becomes domesticated. A handler can rear as many as three creatures of the same kind at once. A successfully domesticated animal can be taught tricks at the same time it's being raised, or it can be taught as a domesticated animal later.\n- For tasks with specific time frames noted above, you must spend half this time (at the rate of 3 hours per day per animal being handled) working toward completion of the task before you attempt the Handle Animal check. If the check fails, your attempt to teach, rear, or train the animal fails and you need not complete the teaching, rearing, or training time. If the check succeeds, you must invest the remainder of the time to complete the teaching, rearing, or training. If the time is interrupted or the task is not followed through to completion, the attempt to teach, rear, or train the animal automatically fails.\n- You gain bonuses to the skill checks equal to animal Reason skill if of course it friendly to you."
                                                       withRulesExamples:@"d10 test. Handle an animal.\n2d8 test. Teach an animal a trick. Train an animal for a general purpose*. Rear a wild animal.\n2d12 test. Push an animal. Rear a wild animal with bad temper.\n\n*General Purpose\nModifier -4. Air Support\nModifier -4. Combat Training (or 'Combat Riding')\nModifier -6. Burglar\nModifier -4. Fighting\nModifier -4. Guarding\nModifier -2. Heavy labor\nModifier -4. Hunting\nModifier -6. Liberator\nModifier -2. Performance\nModifier -2. Riding\n\n*Additional factors\nModifier -4. Animal is wounded or forced to hustle for more than 1 hour between sleep cycles.\nModifier -6. Push the animal to perform a task or trick that it doesn't know but is physically capable of performing.\n\nTrain an Animal for a Purpose\n- Air Support. Modifier -4. An animal trained in air support knows the attack, bombard, and deliver tricks.\n- Burglar. Modifier -6. An animal trained as a burglar knows the come, fetch, seek, and sneak tricks and can steal objects. You can order it to steal a specific item you point out.\n- Combat Training. Modifier -4. An animal trained to bear a rider into combat knows the tricks attack, come, defend, down, guard, and heel. Training an animal for combat riding takes 6 weeks. You may also 'upgrade' an animal trained for riding to one trained for combat by spending 3 weeks and making a successful Handle Animal check with -3 penalty. The new general purpose and tricks completely replace the animal's previous purpose and any tricks it once knew. Many horses and riding dogs are trained in this way.\n- Fighting. Modifier -4. An animal trained to engage in combat knows the tricks attack, down, and stay. Training an animal for fighting takes three weeks.\n- Guarding. Modifier -4. An animal trained to guard knows the tricks attack, defend, menace, down, and guard. Training an animal for guarding takes four weeks.\n- Heavy Labor. Modifier -2. An animal trained for heavy labor knows the tricks come and work. Training an animal for heavy labor takes two weeks.\n- Hunting. Modifier -4. An animal trained for hunting knows the tricks attack, down, fetch, heel, seek, and track. Training an animal for hunting takes six weeks.\n- Liberator. Modifier -6. An animal trained in liberating knows the break out, flee, and get help tricks.\n- Performance. Modifier -2. An animal trained for performance knows the tricks come, fetch, heel, perform, and stay. Training an animal for performance takes five weeks.\n- Riding. Modifier -2. An animal trained to bear a rider knows the tricks come, heel, and stay. Training an animal for riding takes three weeks.\n- Servant. Modifier -4. An animal trained as a servant knows the deliver, exclusive, and serve tricks.\n\n\nTricks\n- Aid. Modifier -4.  Aid a specific ally in combat by attacking a specific foe the ally is fighting. You may point to a particular creature that you wish the animal to aid, and another that you want it make an attack action against, and it will comply if able. The normal creature type restrictions governing the attack trick still apply.\n- Attack. Modifier -4. The animal attacks apparent enemies. You may point to a particular creature that you wish the animal to attack, and it will comply if able. Normally, an animal will attack only humanoids, monstrous humanoids, giants, or other animals. Teaching an animal to attack all creatures (including such unnatural creatures as undead and aberrations) counts as two tricks.\n- Bombard. Modifier -4. A flying animal can deliver projectiles on command, attempting to drop a specified item that it can carry (often alchemist's fire or some other incendiary) on a designated point or opponent, using its Thrown skill to determine its attack roll. The animal cannot throw the object, and must be able to fly directly over the target.\n- Break Out. Modifier -4. On command, the animal attempts to break or gnaw through any bars or bindings restricting itself, its handler, or a person indicated by the handler. If not effective on its own, this trick can grant the target character a +4 circumstance bonus on Escape Artist checks. The animal can also take certain basic actions like lifting a latch or bringing its master an unattended key. Weight and Strength restrictions still apply, and pickpocketing a key or picking any sort of lock is still far beyond the animal's ability.\n- Bury. Modifier -2. An animal with this trick can be instructed to bury an object in its possession. The animal normally seeks a secluded place to bury its object. An animal with both bury and fetch can be instructed to fetch an item it has buried.\n- Combat action. Modifier -4. Modifier -4. The animal is trained to use a specific combat action on command. An animal must know the attack trick before it can be taught the maneuver trick, and it only performs maneuvers against targets it would normally attack. This trick can be taught to an animal multiple times. Each time it is taught, the animal can be commanded to use a different combat action.\n- Come. Modifier -2. The animal comes to you, even if it normally would not do so.\n- Defend. Modifier -4. The animal defends you (or is ready to defend you if no threat is present), even without any command being given. Alternatively, you can command the animal to defend a specific other character.\n- Deliver. Modifier -2. The animal takes an object (one you or an ally gives it, or that it recovers with the fetch trick) to a place or person you indicate. If you indicate a place, the animal drops the item and returns to you. If you indicate a person, the animal stays adjacent to the person until the item is taken. (Retrieving an item from an animal using the deliver trick is a move action.)\n- Detect. Modifier -6. The animal is trained to seek out the smells of explosives and poisons, unusual noises or echoes, air currents, and other common elements signifying potential dangers or secret passages. When commanded, the animal uses its Perception skill to try to pinpoint the source of anything that strikes it as unusual about a room or location. Note that because the animal is not intelligent, any number of strange mechanisms, doors, scents, or unfamiliar objects may catch the animal's attention, and it cannot attempt the same Perception check more than once in this way.\n- Down. Modifier -2. The animal breaks off from combat or otherwise backs down. An animal that doesn't know this trick continues to fight until it must flee (due to injury, a fear effect, or the like) or its opponent is defeated.\n- Entertain. Modifier -6. The animal can dance, sing, or perform some other impressive and enjoyable trick to entertain those around it. At the command of its owner, the animal can make a Perform check to show off its talent. Willing onlookers or those who fail an opposed Sense Motive check take a ñ2 penalty on Perception checks to notice anything but the animal entertaining them. Tricksters and con artists often teach their animals to perform this trick while they pickpocket viewers or sneak about unnoticed.\n- Exclusive. Modifier -4. The animal takes directions only from the handler who taught it this trick. If an animal has both the exclusive and serve tricks, it takes directions only from the handler that taught it the exclusive trick and those creatures indicated by the trainer's serve command. An animal with the exclusive trick does not take trick commands from others even if it is friendly or helpful toward them (such as through the result of a charm animal spell), though this does not prevent it from being controlled by other enchantment spells (such as dominate animal), and the animal still otherwise acts as a friendly or helpful creature when applicable.\n- Fetch. Modifier -2. The animal goes and gets something. If you do not point out a specific item, the animal fetches some random object.\n- Flee. Modifier -4. The animal attempts to run away or hide as best it can, returning only when its handler commands it to do so. Until such a command is received, the animal does its best to track its handler and any creatures with him or her, remaining hidden but within range of its sight or hearing. This trick is particularly useful for thieves and adventurers in that it allows the animal to evade capture, then return later to help free its friends.\n- Get Help. Modifier -4. With this trick, a trainer can designate a number of creatures up to the animal's Reason score as 'help.' When the command is given, the animal attempts to find one of those people and bring her back to the handler, even if that means journeying a long distance to the last place it encountered the target creature.\n- Guard. Modifier -4. The animal stays in place and prevents others from approaching.\n- Heel. Modifier -2. The animal follows you closely, even to places where it normally wouldn't go.\n- Hunt. Modifier -4. This trick allows an animal to use its natural stalking or foraging instincts to find food and return it to the animal's handler. An animal with this trick may attempt Survival checks  to provide food for others or lead them to water and shelter (as the 'get along in the wild' use of the Survival skill). An animal with this trick may use the aid another action to assist Survival checks made by its handler for these purposes.\n- Perform. Modifier -2. The animal performs a variety of simple tricks, such as sitting up, rolling over, roaring or barking, and so on.\n- Menace. Modifier -4. A menacing animal attempts to keep a creature you indicate from moving. It does its best to intimidate the target, but only attacks if the target attempts to move from its present location or take any significant action (particularly a hostile-seeming one). As soon as the target stops moving, the animal ceases attacking, but continues to menace.\n- Seek. Modifier -2. The animal moves into an area and looks around for anything that is obviously alive or animate.\n- Serve. Modifier -2. An animal with this trick willingly takes orders from a creature you designate. If the creature you tell the animal to serve knows what tricks the animal has, it can instruct the animal to perform these tricks using your Handle Animal bonus on the check instead of its own. The animal treats the designated ally as friendly. An animal can unlearn this trick with 1 week of training. This trick can be taught to an animal multiple times. Each time it is taught, the animal can serve an additional creature you designate.\n- Sneak. Modifier -2. The animal can be ordered to make Stealth checks in order to stay hidden and to continue using Stealth even when circumstances or its natural instincts would normally cause it to abandon secrecy.\n- Stay. Modifier -2. The animal stays in place, waiting for you to return. It does not challenge other creatures that come by, though it still defends itself if it needs to.\n- Track. Modifier -4. The animal tracks the scent presented to it. (This requires the animal to have the scent ability)\n- Throw Rider. Modifier -2. The animal can attempt to fling a creature riding it to the ground. Treat this as a trip combat action that applies to all creatures riding the animal. An animal that knows the throw rider and exclusive tricks can be instructed to attempt to automatically throw anyone other than its trainer who attempts to ride it.\n- Watch. Modifier -2. The animal can be commanded to keep watch over a particular area, such as a campsite, and raise an alarm if it notices any sizable or dangerous creature entering the area. This trick is often included in the Guarding purpose.\n- Work. Modifier -2. The animal pulls or pushes a medium or heavy load."
                                                         withDescription:@"Advanced skill. You are trained at working with animals, and can teach them tricks, get them to follow your simple commands, or even domesticate them."
+
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultAdvBasicBarrierHight
                                                    withSkillProgression:defaultAdvProgression
@@ -1032,7 +1212,7 @@ static DefaultSkillTemplates *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:blackpowderName
                                                               withRules:nil
                                                       withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of blunderbusses, handguns, Hochland long rifles, pistols, repeater handguns and repeater pistols."
+                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of blunderbusses, handguns, Hochland long rifles, pistols, repeater handguns and repeater pistols, crossbows, crossbow pistols and repeater crossbows."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultRangeWeaponBasicBarrier
                                                    withSkillProgression:defaultRangeWeaponProgression
@@ -1048,33 +1228,6 @@ static DefaultSkillTemplates *instance = nil;
         _blackpowder = skillTemplate;
     }
     return _blackpowder;
-}
-
-//crossbow
--(SkillTemplate *)crossbow{
-    if (!_crossbow){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",crossbowName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:crossbowName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Covers the basic use, care and maintenance of crossbows, crossbow pistols and repeater crossbows."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultRangeWeaponBasicBarrier
-                                                   withSkillProgression:defaultRangeWeaponProgression
-                                               withBasicSkillGrowthGoes:defaultRangeWeaponGrowhtGoes
-                                                          withSkillType:RangeSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.ballisticSkill
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _crossbow = skillTemplate;
-    }
-    return _crossbow;
 }
 
 //thrown

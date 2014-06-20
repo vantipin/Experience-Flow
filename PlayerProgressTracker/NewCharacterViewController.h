@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SkillManager.h"
 #import "ClassesDropViewController.h"
-#import "AddSkillDropViewController.h"
 
 
-@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,AddNewSkillControllerProtocol,UIImagePickerControllerDelegate, UINavigationControllerDelegate,SkillChangeProtocol>
+@interface NewCharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,UIImagePickerControllerDelegate, UINavigationControllerDelegate,SkillChangeProtocol>
 
 
 @end

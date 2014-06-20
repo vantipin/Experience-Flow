@@ -96,4 +96,7 @@
  */
 -(void)showDescriptionForSkillTemplate:(SkillTemplate *)skillTemplate inView:(UIView *)parentView;
 
+
+//currently method used in development purposes only
+-(void)clearSkillTemplate;
 @end

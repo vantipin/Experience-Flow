@@ -189,13 +189,13 @@
 
 #pragma mark manage links
 
--(void)setParentNodeLink:(NodeViewController *)parentNodeLink;
+-(void)setParentNodeLink:(NodeViewController *)parentNodeLink placeInView:(UIView *)containerView addToController:(UIViewController *)controller;
 {
     if (self.nodeLinkParent) {
         [self.nodeLinkParent.parent.nodeLinksChild removeObject:parentNodeLink];
         [self removeLink:self.nodeLinkParent];
     }
-    self.nodeLinkParent = [self addLinkWithParent:parentNodeLink andChild:self];
+    self.nodeLinkParent = [self addLinkWithParent:parentNodeLink andChild:self placeInView:containerView addToController:controller];
 }
 
 -(void)removeLink:(NodeLinkController *)link;
@@ -204,7 +204,7 @@
     [link.view removeFromSuperview];
 }
 
--(NodeLinkController *)addLinkWithParent:(NodeViewController *)parent andChild:(NodeViewController *)child
+-(NodeLinkController *)addLinkWithParent:(NodeViewController *)parent andChild:(NodeViewController *)child placeInView:(UIView *)containerView addToController:(UIViewController *)controller;
 {
     CGPoint parentCenter = parent.view.center;
     CGPoint childCenter  = CGPointMake(child.view.center.x, child.view.center.y - (child.view.frame.size.height / 5));
@@ -225,7 +225,6 @@
     CGAffineTransform rotate = CGAffineTransformMakeRotation(angle);
     [newNodeLink.view setTransform:rotate];
 
-   
     
     [parent.nodeLinksChild addObject:newNodeLink];
     child.nodeLinkParent = newNodeLink;
@@ -233,9 +232,9 @@
     newNodeLink.parent = parent;
     newNodeLink.child  = child;
     
-    [self.parentViewController addChildViewController:newNodeLink];
-    [parent.view.superview addSubview:newNodeLink.view];
-    [parent.view.superview sendSubviewToBack:newNodeLink.view];
+    [containerView addSubview:newNodeLink.view];
+    [containerView sendSubviewToBack:newNodeLink.view];
+    [controller addChildViewController:newNodeLink];
 
     return newNodeLink;
 }

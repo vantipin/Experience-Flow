@@ -400,7 +400,8 @@ static SkillManager *instance = nil;
 
 -(void)checkAllCharacterCoreSkills:(Character *)character
 {
-    NSArray *coreSkillTemplates = [DefaultSkillTemplates sharedInstance].allCoreSkillTemplates;
+    //TODO allCoreSkillTemplates replaced with allSkillTemplates
+    NSArray *coreSkillTemplates = [DefaultSkillTemplates sharedInstance].allSkillTemplates;
     for (SkillTemplate *skillTemplate in coreSkillTemplates) {
         [self getOrAddSkillWithTemplate:skillTemplate withCharacter:character];
     }
@@ -689,7 +690,8 @@ static SkillManager *instance = nil;
 -(void)removeXpPoints:(float)xpPoints
               toSkill:(Skill *)skill;
 {
-    if (xpPoints)
+    BOOL isLevelContainAnyXpToRemove = (skill.currentProgress || skill.currentLevel);
+    if (xpPoints && isLevelContainAnyXpToRemove)
     {
         [self changeRemoveXpPoints:xpPoints toSkill:skill];
         [Skill saveContext:self.context];
@@ -797,6 +799,11 @@ static SkillManager *instance = nil;
     return allCollection;
 }
 
+-(void)clearSkillTemplate;
+{
+    [SkillTemplate clearEntityForNameWithObjName:@"SkillTemplate" withPredicate:nil withGivenContext:self.context];
+}
+
 #pragma mark tips and descriptions
 
 -(void)showDescriptionForSkillTemplate:(SkillTemplate *)skillTemplate inView:(UIView *)parentView
@@ -843,8 +850,12 @@ static SkillManager *instance = nil;
     [self.activeTipView addSubview:closingAreaView];
     [self.activeTipView addSubview:tipTextView];
     [self.activeTipView bringSubviewToFront:tipTextView];
-    [self.activeTipView setBackgroundColor:kRGB(220, 220, 220, 0.7)];
+    [self.activeTipView setBackgroundColor:kRGB(220, 220, 220, 0.3)];
     tipTextView.center = parentView.center;
+    
+    CALayer *imageLayer = tipTextView.layer;
+    [imageLayer setCornerRadius:15];
+    [imageLayer setMasksToBounds:YES];
     
     //UITapGestureRecognizer *tapRecognizer;
     //tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeTip)];
