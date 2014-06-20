@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF1F57221954C0DB002D7EF2 /* nightSky@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57201954C0DB002D7EF2 /* nightSky@2x.png */; };
+		DF1F57231954C0DB002D7EF2 /* nightSky.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57211954C0DB002D7EF2 /* nightSky.png */; };
+		DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57241954C0E4002D7EF2 /* appIcon.png */; };
+		DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57251954C0E4002D7EF2 /* appIcon@2x.png */; };
+		DF1F572A1954C10D002D7EF2 /* headerCreatingCharacter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57281954C10D002D7EF2 /* headerCreatingCharacter@2x.png */; };
+		DF1F572B1954C10D002D7EF2 /* headerCreatingCharacter.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57291954C10D002D7EF2 /* headerCreatingCharacter.png */; };
 		DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */; };
 		DF24B1241871EC9A00B57855 /* PlayerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1231871EC9A00B57855 /* PlayerCellView.m */; };
 		DF24B1341877377900B57855 /* StatView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1331877377900B57855 /* StatView.m */; };
@@ -51,12 +57,6 @@
 		DF9770DB1923C95200873AD2 /* NodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9770DA1923C95200873AD2 /* NodeViewController.m */; };
 		DF97714B192F80B200873AD2 /* NodeLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF97714A192F80B200873AD2 /* NodeLinkController.m */; };
 		DF97714D192F811A00873AD2 /* SkillLinkView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF97714C192F811A00873AD2 /* SkillLinkView.storyboard */; };
-		DFA7D2F81952D56C00FE2D3E /* Night_Sky_Texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DFA7D2F71952D56C00FE2D3E /* Night_Sky_Texture.jpg */; };
-		DFA7D2FB1952DEC500FE2D3E /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA7D2F91952DEC500FE2D3E /* appIcon.png */; };
-		DFA7D2FC1952DEC500FE2D3E /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA7D2FA1952DEC500FE2D3E /* appIcon@2x.png */; };
-		DFA7D32C1953456E00FE2D3E /* nightSky.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA7D32A1953456E00FE2D3E /* nightSky.png */; };
-		DFA7D32F19534F8C00FE2D3E /* headerCreatingCharacter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA7D32D19534F8C00FE2D3E /* headerCreatingCharacter@2x.png */; };
-		DFA7D33019534F8C00FE2D3E /* headerCreatingCharacter.png in Resources */ = {isa = PBXBuildFile; fileRef = DFA7D32E19534F8C00FE2D3E /* headerCreatingCharacter.png */; };
 		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
 		DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED101186309B40039D17B /* CoreGraphics.framework */; };
 		DFAED104186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
@@ -100,6 +100,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF1F57201954C0DB002D7EF2 /* nightSky@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nightSky@2x.png"; sourceTree = "<group>"; };
+		DF1F57211954C0DB002D7EF2 /* nightSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nightSky.png; sourceTree = "<group>"; };
+		DF1F57241954C0E4002D7EF2 /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
+		DF1F57251954C0E4002D7EF2 /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
+		DF1F57281954C10D002D7EF2 /* headerCreatingCharacter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerCreatingCharacter@2x.png"; sourceTree = "<group>"; };
+		DF1F57291954C10D002D7EF2 /* headerCreatingCharacter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerCreatingCharacter.png; sourceTree = "<group>"; };
 		DF24B11F1871DF0C00B57855 /* NewCharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCharacterViewController.h; sourceTree = "<group>"; };
 		DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCharacterViewController.m; sourceTree = "<group>"; };
 		DF24B1221871EC9A00B57855 /* PlayerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCellView.h; sourceTree = "<group>"; };
@@ -167,12 +173,6 @@
 		DF977149192F80B200873AD2 /* NodeLinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeLinkController.h; sourceTree = "<group>"; };
 		DF97714A192F80B200873AD2 /* NodeLinkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeLinkController.m; sourceTree = "<group>"; };
 		DF97714C192F811A00873AD2 /* SkillLinkView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SkillLinkView.storyboard; sourceTree = "<group>"; };
-		DFA7D2F71952D56C00FE2D3E /* Night_Sky_Texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Night_Sky_Texture.jpg; sourceTree = "<group>"; };
-		DFA7D2F91952DEC500FE2D3E /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
-		DFA7D2FA1952DEC500FE2D3E /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
-		DFA7D32A1953456E00FE2D3E /* nightSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nightSky.png; sourceTree = "<group>"; };
-		DFA7D32D19534F8C00FE2D3E /* headerCreatingCharacter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerCreatingCharacter@2x.png"; sourceTree = "<group>"; };
-		DFA7D32E19534F8C00FE2D3E /* headerCreatingCharacter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerCreatingCharacter.png; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Xp Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xp Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -349,8 +349,8 @@
 		DFAED0F3186309B40039D17B = {
 			isa = PBXGroup;
 			children = (
-				DFA7D2F91952DEC500FE2D3E /* appIcon.png */,
-				DFA7D2FA1952DEC500FE2D3E /* appIcon@2x.png */,
+				DF1F57241954C0E4002D7EF2 /* appIcon.png */,
+				DF1F57251954C0E4002D7EF2 /* appIcon@2x.png */,
 				DFAED13418630A350039D17B /* Model */,
 				DFAED105186309B40039D17B /* PlayerProgressTracker */,
 				DFAED124186309B40039D17B /* PlayerProgressTrackerTests */,
@@ -467,10 +467,10 @@
 		DFB07BFC187EFA1700FF0EF7 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				DFA7D32D19534F8C00FE2D3E /* headerCreatingCharacter@2x.png */,
-				DFA7D32E19534F8C00FE2D3E /* headerCreatingCharacter.png */,
-				DFA7D32A1953456E00FE2D3E /* nightSky.png */,
-				DFA7D2F71952D56C00FE2D3E /* Night_Sky_Texture.jpg */,
+				DF1F57281954C10D002D7EF2 /* headerCreatingCharacter@2x.png */,
+				DF1F57291954C10D002D7EF2 /* headerCreatingCharacter.png */,
+				DF1F57201954C0DB002D7EF2 /* nightSky@2x.png */,
+				DF1F57211954C0DB002D7EF2 /* nightSky.png */,
 				DFCEDE4619461CB8002AFB6D /* xpAura@2x.png */,
 				DFCEDE4719461CB8002AFB6D /* xpAura.png */,
 				DF5D5717192FC4930025ADF1 /* addButton.png */,
@@ -571,7 +571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */,
-				DFA7D33019534F8C00FE2D3E /* headerCreatingCharacter.png in Resources */,
+				DF1F57221954C0DB002D7EF2 /* nightSky@2x.png in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
 				DF5D572A192FC4930025ADF1 /* skillNode@2x.png in Resources */,
 				DF5D5724192FC4930025ADF1 /* deleteButton.png in Resources */,
@@ -579,19 +579,20 @@
 				DF5D5723192FC4930025ADF1 /* addButton@2x.png in Resources */,
 				DF6E928F18D43946000967F5 /* lowerXp@2x.png in Resources */,
 				DF5D5725192FC4930025ADF1 /* deleteButton@2x.png in Resources */,
-				DFA7D2FB1952DEC500FE2D3E /* appIcon.png in Resources */,
 				DF6E929418D4399B000967F5 /* noImage.png in Resources */,
 				DF5D5722192FC4930025ADF1 /* addButton.png in Resources */,
 				DFCEDE4919461CB8002AFB6D /* xpAura.png in Resources */,
+				DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */,
+				DF1F57231954C0DB002D7EF2 /* nightSky.png in Resources */,
 				DF6E929018D43946000967F5 /* raiseXp.png in Resources */,
+				DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */,
 				DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */,
-				DFA7D2FC1952DEC500FE2D3E /* appIcon@2x.png in Resources */,
+				DF1F572B1954C10D002D7EF2 /* headerCreatingCharacter.png in Resources */,
 				DF5D5727192FC4930025ADF1 /* link@2x.png in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
 				DF5D5726192FC4930025ADF1 /* link.png in Resources */,
 				DF5D5729192FC4930025ADF1 /* skillNode.png in Resources */,
-				DFA7D32F19534F8C00FE2D3E /* headerCreatingCharacter@2x.png in Resources */,
 				DF5D5728192FC4930025ADF1 /* mentalSkillNode@2x.png in Resources */,
 				DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */,
 				DF5D572B192FC4930025ADF1 /* skillNodeHighlited.png in Resources */,
@@ -600,8 +601,7 @@
 				DF97714D192F811A00873AD2 /* SkillLinkView.storyboard in Resources */,
 				DF5D572C192FC4930025ADF1 /* skillNodeHighlited@2x.png in Resources */,
 				DF30A017190001A40018CE28 /* AddSkillViewCellTableViewCell.xib in Resources */,
-				DFA7D32C1953456E00FE2D3E /* nightSky.png in Resources */,
-				DFA7D2F81952D56C00FE2D3E /* Night_Sky_Texture.jpg in Resources */,
+				DF1F572A1954C10D002D7EF2 /* headerCreatingCharacter@2x.png in Resources */,
 				DF6E929518D4399B000967F5 /* noImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
