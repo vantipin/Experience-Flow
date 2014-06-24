@@ -7,12 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF1F57221954C0DB002D7EF2 /* nightSky@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57201954C0DB002D7EF2 /* nightSky@2x.png */; };
-		DF1F57231954C0DB002D7EF2 /* nightSky.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57211954C0DB002D7EF2 /* nightSky.png */; };
 		DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57241954C0E4002D7EF2 /* appIcon.png */; };
 		DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57251954C0E4002D7EF2 /* appIcon@2x.png */; };
-		DF1F572A1954C10D002D7EF2 /* headerCreatingCharacter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57281954C10D002D7EF2 /* headerCreatingCharacter@2x.png */; };
-		DF1F572B1954C10D002D7EF2 /* headerCreatingCharacter.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57291954C10D002D7EF2 /* headerCreatingCharacter.png */; };
+		DF1F58121959E6B1002D7EF2 /* SkillLevelsSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F58111959E6B1002D7EF2 /* SkillLevelsSetManager.m */; };
+		DF1F58241959E7A7002D7EF2 /* headerCreatingCharacter.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58131959E7A7002D7EF2 /* headerCreatingCharacter.png */; };
+		DF1F58251959E7A7002D7EF2 /* headerCreatingCharacter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58141959E7A7002D7EF2 /* headerCreatingCharacter@2x.png */; };
+		DF1F58261959E7A7002D7EF2 /* nightSky.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58151959E7A7002D7EF2 /* nightSky.png */; };
+		DF1F58271959E7A7002D7EF2 /* nightSky@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58161959E7A7002D7EF2 /* nightSky@2x.png */; };
+		DF1F58281959E7A7002D7EF2 /* skillNode.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58171959E7A7002D7EF2 /* skillNode.png */; };
+		DF1F58291959E7A7002D7EF2 /* skillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58181959E7A7002D7EF2 /* skillNode@2x.png */; };
+		DF1F582A1959E7A7002D7EF2 /* skillNodeHighlited.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58191959E7A7002D7EF2 /* skillNodeHighlited.png */; };
+		DF1F582B1959E7A7002D7EF2 /* skillNodeHighlited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F581A1959E7A7002D7EF2 /* skillNodeHighlited@2x.png */; };
+		DF1F582C1959E7A7002D7EF2 /* xpAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F581B1959E7A7002D7EF2 /* xpAura.png */; };
+		DF1F582D1959E7A7002D7EF2 /* xpAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F581C1959E7A7002D7EF2 /* xpAura@2x.png */; };
+		DF1F582E1959E7A7002D7EF2 /* link.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F581D1959E7A7002D7EF2 /* link.png */; };
+		DF1F582F1959E7A7002D7EF2 /* link@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F581E1959E7A7002D7EF2 /* link@2x.png */; };
+		DF1F58301959E7A7002D7EF2 /* mentalSkillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F581F1959E7A7002D7EF2 /* mentalSkillNode@2x.png */; };
+		DF1F58311959E7A7002D7EF2 /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58201959E7A7002D7EF2 /* deleteButton.png */; };
+		DF1F58321959E7A7002D7EF2 /* deleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58211959E7A7002D7EF2 /* deleteButton@2x.png */; };
+		DF1F58331959E7A7002D7EF2 /* addButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58221959E7A7002D7EF2 /* addButton.png */; };
+		DF1F58341959E7A7002D7EF2 /* addButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F58231959E7A7002D7EF2 /* addButton@2x.png */; };
+		DF1F583A1959EABC002D7EF2 /* SkillLevelsSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F58391959EABC002D7EF2 /* SkillLevelsSet.m */; };
 		DF24B1211871DF0C00B57855 /* NewCharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */; };
 		DF24B1241871EC9A00B57855 /* PlayerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1231871EC9A00B57855 /* PlayerCellView.m */; };
 		DF24B1341877377900B57855 /* StatView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF24B1331877377900B57855 /* StatView.m */; };
@@ -33,17 +48,6 @@
 		DF4F937218DDBF6100C6ED26 /* RangeSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937118DDBF6100C6ED26 /* RangeSkill.m */; };
 		DF4F937518DDBF6100C6ED26 /* MagicSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937418DDBF6100C6ED26 /* MagicSkill.m */; };
 		DF4F937818DDBF6100C6ED26 /* PietySkill.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4F937718DDBF6100C6ED26 /* PietySkill.m */; };
-		DF5D5722192FC4930025ADF1 /* addButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D5717192FC4930025ADF1 /* addButton.png */; };
-		DF5D5723192FC4930025ADF1 /* addButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D5718192FC4930025ADF1 /* addButton@2x.png */; };
-		DF5D5724192FC4930025ADF1 /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D5719192FC4930025ADF1 /* deleteButton.png */; };
-		DF5D5725192FC4930025ADF1 /* deleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D571A192FC4930025ADF1 /* deleteButton@2x.png */; };
-		DF5D5726192FC4930025ADF1 /* link.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D571B192FC4930025ADF1 /* link.png */; };
-		DF5D5727192FC4930025ADF1 /* link@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D571C192FC4930025ADF1 /* link@2x.png */; };
-		DF5D5728192FC4930025ADF1 /* mentalSkillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D571D192FC4930025ADF1 /* mentalSkillNode@2x.png */; };
-		DF5D5729192FC4930025ADF1 /* skillNode.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D571E192FC4930025ADF1 /* skillNode.png */; };
-		DF5D572A192FC4930025ADF1 /* skillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D571F192FC4930025ADF1 /* skillNode@2x.png */; };
-		DF5D572B192FC4930025ADF1 /* skillNodeHighlited.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D5720192FC4930025ADF1 /* skillNodeHighlited.png */; };
-		DF5D572C192FC4930025ADF1 /* skillNodeHighlited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF5D5721192FC4930025ADF1 /* skillNodeHighlited@2x.png */; };
 		DF6A7B1B191AB2130079E71D /* SkillTemplateDiskData.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6A7B1A191AB2130079E71D /* SkillTemplateDiskData.m */; };
 		DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF6E927B18D33F18000967F5 /* SkillViewCell.xib */; };
 		DF6E927F18D43076000967F5 /* CustomXpRaisingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF6E927E18D43076000967F5 /* CustomXpRaisingBtnView.m */; };
@@ -73,7 +77,6 @@
 		DFAED12B186309B40039D17B /* PlayerProgressTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */; };
 		DFAED13718630A540039D17B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13518630A540039D17B /* Model.xcdatamodeld */; };
 		DFAED13A186331790039D17B /* CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED139186331790039D17B /* CoreDataClass.m */; };
-		DFAED13D1863329B0039D17B /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13C1863329B0039D17B /* AppSettings.m */; };
 		DFAED140186333000039D17B /* MainContextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED13F186333000039D17B /* MainContextObject.m */; };
 		DFAED1621864D4C10039D17B /* DropDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED1611864D4C10039D17B /* DropDownViewController.m */; };
 		DFB07C07187F0AEE00FF0EF7 /* ClassesDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB07C06187F0AEE00FF0EF7 /* ClassesDropViewController.m */; };
@@ -85,8 +88,6 @@
 		DFC3B9B4188849E00026C0A4 /* SkillViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B3188849E00026C0A4 /* SkillViewCell.m */; };
 		DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */; };
 		DFC88CAC186B0EA6007E4D90 /* SkillManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC88CAB186B0EA6007E4D90 /* SkillManager.m */; };
-		DFCEDE4819461CB8002AFB6D /* xpAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCEDE4619461CB8002AFB6D /* xpAura@2x.png */; };
-		DFCEDE4919461CB8002AFB6D /* xpAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCEDE4719461CB8002AFB6D /* xpAura.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,12 +101,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DF1F57201954C0DB002D7EF2 /* nightSky@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nightSky@2x.png"; sourceTree = "<group>"; };
-		DF1F57211954C0DB002D7EF2 /* nightSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nightSky.png; sourceTree = "<group>"; };
 		DF1F57241954C0E4002D7EF2 /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
 		DF1F57251954C0E4002D7EF2 /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
-		DF1F57281954C10D002D7EF2 /* headerCreatingCharacter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerCreatingCharacter@2x.png"; sourceTree = "<group>"; };
-		DF1F57291954C10D002D7EF2 /* headerCreatingCharacter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerCreatingCharacter.png; sourceTree = "<group>"; };
+		DF1F58101959E6B1002D7EF2 /* SkillLevelsSetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillLevelsSetManager.h; sourceTree = "<group>"; };
+		DF1F58111959E6B1002D7EF2 /* SkillLevelsSetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillLevelsSetManager.m; sourceTree = "<group>"; };
+		DF1F58131959E7A7002D7EF2 /* headerCreatingCharacter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = headerCreatingCharacter.png; path = Images/headerCreatingCharacter.png; sourceTree = SOURCE_ROOT; };
+		DF1F58141959E7A7002D7EF2 /* headerCreatingCharacter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "headerCreatingCharacter@2x.png"; path = "Images/headerCreatingCharacter@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F58151959E7A7002D7EF2 /* nightSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nightSky.png; path = Images/nightSky.png; sourceTree = SOURCE_ROOT; };
+		DF1F58161959E7A7002D7EF2 /* nightSky@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nightSky@2x.png"; path = "Images/nightSky@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F58171959E7A7002D7EF2 /* skillNode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skillNode.png; path = Images/skillNode.png; sourceTree = SOURCE_ROOT; };
+		DF1F58181959E7A7002D7EF2 /* skillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "skillNode@2x.png"; path = "Images/skillNode@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F58191959E7A7002D7EF2 /* skillNodeHighlited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skillNodeHighlited.png; path = Images/skillNodeHighlited.png; sourceTree = SOURCE_ROOT; };
+		DF1F581A1959E7A7002D7EF2 /* skillNodeHighlited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "skillNodeHighlited@2x.png"; path = "Images/skillNodeHighlited@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F581B1959E7A7002D7EF2 /* xpAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = xpAura.png; path = Images/xpAura.png; sourceTree = SOURCE_ROOT; };
+		DF1F581C1959E7A7002D7EF2 /* xpAura@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "xpAura@2x.png"; path = "Images/xpAura@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F581D1959E7A7002D7EF2 /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = link.png; path = Images/link.png; sourceTree = SOURCE_ROOT; };
+		DF1F581E1959E7A7002D7EF2 /* link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link@2x.png"; path = "Images/link@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F581F1959E7A7002D7EF2 /* mentalSkillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mentalSkillNode@2x.png"; path = "Images/mentalSkillNode@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F58201959E7A7002D7EF2 /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = deleteButton.png; path = Images/deleteButton.png; sourceTree = SOURCE_ROOT; };
+		DF1F58211959E7A7002D7EF2 /* deleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "deleteButton@2x.png"; path = "Images/deleteButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F58221959E7A7002D7EF2 /* addButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addButton.png; path = Images/addButton.png; sourceTree = SOURCE_ROOT; };
+		DF1F58231959E7A7002D7EF2 /* addButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "addButton@2x.png"; path = "Images/addButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		DF1F58381959EABC002D7EF2 /* SkillLevelsSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillLevelsSet.h; sourceTree = "<group>"; };
+		DF1F58391959EABC002D7EF2 /* SkillLevelsSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillLevelsSet.m; sourceTree = "<group>"; };
 		DF24B11F1871DF0C00B57855 /* NewCharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCharacterViewController.h; sourceTree = "<group>"; };
 		DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCharacterViewController.m; sourceTree = "<group>"; };
 		DF24B1221871EC9A00B57855 /* PlayerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCellView.h; sourceTree = "<group>"; };
@@ -144,17 +162,6 @@
 		DF4F937418DDBF6100C6ED26 /* MagicSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicSkill.m; sourceTree = "<group>"; };
 		DF4F937618DDBF6100C6ED26 /* PietySkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PietySkill.h; sourceTree = "<group>"; };
 		DF4F937718DDBF6100C6ED26 /* PietySkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PietySkill.m; sourceTree = "<group>"; };
-		DF5D5717192FC4930025ADF1 /* addButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addButton.png; sourceTree = "<group>"; };
-		DF5D5718192FC4930025ADF1 /* addButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addButton@2x.png"; sourceTree = "<group>"; };
-		DF5D5719192FC4930025ADF1 /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
-		DF5D571A192FC4930025ADF1 /* deleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButton@2x.png"; sourceTree = "<group>"; };
-		DF5D571B192FC4930025ADF1 /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link.png; sourceTree = "<group>"; };
-		DF5D571C192FC4930025ADF1 /* link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link@2x.png"; sourceTree = "<group>"; };
-		DF5D571D192FC4930025ADF1 /* mentalSkillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mentalSkillNode@2x.png"; sourceTree = "<group>"; };
-		DF5D571E192FC4930025ADF1 /* skillNode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNode.png; sourceTree = "<group>"; };
-		DF5D571F192FC4930025ADF1 /* skillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNode@2x.png"; sourceTree = "<group>"; };
-		DF5D5720192FC4930025ADF1 /* skillNodeHighlited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeHighlited.png; sourceTree = "<group>"; };
-		DF5D5721192FC4930025ADF1 /* skillNodeHighlited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeHighlited@2x.png"; sourceTree = "<group>"; };
 		DF6A7B19191AB2130079E71D /* SkillTemplateDiskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTemplateDiskData.h; sourceTree = "<group>"; };
 		DF6A7B1A191AB2130079E71D /* SkillTemplateDiskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTemplateDiskData.m; sourceTree = "<group>"; };
 		DF6E927B18D33F18000967F5 /* SkillViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SkillViewCell.xib; path = Views/SkillViewCell.xib; sourceTree = "<group>"; };
@@ -195,8 +202,6 @@
 		DFAED13618630A540039D17B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DFAED138186331790039D17B /* CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataClass.h; sourceTree = "<group>"; };
 		DFAED139186331790039D17B /* CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataClass.m; sourceTree = "<group>"; };
-		DFAED13B1863329B0039D17B /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
-		DFAED13C1863329B0039D17B /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
 		DFAED13E186333000039D17B /* MainContextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainContextObject.h; path = PlayerProgressTracker/MainContextObject.h; sourceTree = "<group>"; };
 		DFAED13F186333000039D17B /* MainContextObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainContextObject.m; path = PlayerProgressTracker/MainContextObject.m; sourceTree = "<group>"; };
 		DFAED1601864D4C10039D17B /* DropDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownViewController.h; sourceTree = "<group>"; };
@@ -219,8 +224,6 @@
 		DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTableViewController.m; sourceTree = "<group>"; };
 		DFC88CAA186B0EA6007E4D90 /* SkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillManager.h; sourceTree = "<group>"; };
 		DFC88CAB186B0EA6007E4D90 /* SkillManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillManager.m; sourceTree = "<group>"; };
-		DFCEDE4619461CB8002AFB6D /* xpAura@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xpAura@2x.png"; sourceTree = "<group>"; };
-		DFCEDE4719461CB8002AFB6D /* xpAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xpAura.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +304,8 @@
 				DF309A2918F537680018CE28 /* AdvancedSkill.m */,
 				DF309A3418F5BEAB0018CE28 /* SkillSet.h */,
 				DF309A3518F5BEAB0018CE28 /* SkillSet.m */,
+				DF1F58381959EABC002D7EF2 /* SkillLevelsSet.h */,
+				DF1F58391959EABC002D7EF2 /* SkillLevelsSet.m */,
 			);
 			name = Skills;
 			sourceTree = "<group>";
@@ -435,16 +440,16 @@
 			isa = PBXGroup;
 			children = (
 				DFAED141186333140039D17B /* CoreData */,
+				DFAED13F186333000039D17B /* MainContextObject.m */,
+				DFAED13E186333000039D17B /* MainContextObject.h */,
+				DF6A7B19191AB2130079E71D /* SkillTemplateDiskData.h */,
+				DF6A7B1A191AB2130079E71D /* SkillTemplateDiskData.m */,
+				DF1F58101959E6B1002D7EF2 /* SkillLevelsSetManager.h */,
+				DF1F58111959E6B1002D7EF2 /* SkillLevelsSetManager.m */,
 				DFC88CAA186B0EA6007E4D90 /* SkillManager.h */,
 				DFC88CAB186B0EA6007E4D90 /* SkillManager.m */,
 				DF30A00818F714BD0018CE28 /* DefaultSkillTemplates.h */,
 				DF30A00918F714BD0018CE28 /* DefaultSkillTemplates.m */,
-				DFAED13F186333000039D17B /* MainContextObject.m */,
-				DFAED13E186333000039D17B /* MainContextObject.h */,
-				DFAED13B1863329B0039D17B /* AppSettings.h */,
-				DFAED13C1863329B0039D17B /* AppSettings.m */,
-				DF6A7B19191AB2130079E71D /* SkillTemplateDiskData.h */,
-				DF6A7B1A191AB2130079E71D /* SkillTemplateDiskData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -467,23 +472,23 @@
 		DFB07BFC187EFA1700FF0EF7 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				DF1F57281954C10D002D7EF2 /* headerCreatingCharacter@2x.png */,
-				DF1F57291954C10D002D7EF2 /* headerCreatingCharacter.png */,
-				DF1F57201954C0DB002D7EF2 /* nightSky@2x.png */,
-				DF1F57211954C0DB002D7EF2 /* nightSky.png */,
-				DFCEDE4619461CB8002AFB6D /* xpAura@2x.png */,
-				DFCEDE4719461CB8002AFB6D /* xpAura.png */,
-				DF5D5717192FC4930025ADF1 /* addButton.png */,
-				DF5D5718192FC4930025ADF1 /* addButton@2x.png */,
-				DF5D5719192FC4930025ADF1 /* deleteButton.png */,
-				DF5D571A192FC4930025ADF1 /* deleteButton@2x.png */,
-				DF5D571B192FC4930025ADF1 /* link.png */,
-				DF5D571C192FC4930025ADF1 /* link@2x.png */,
-				DF5D571D192FC4930025ADF1 /* mentalSkillNode@2x.png */,
-				DF5D571E192FC4930025ADF1 /* skillNode.png */,
-				DF5D571F192FC4930025ADF1 /* skillNode@2x.png */,
-				DF5D5720192FC4930025ADF1 /* skillNodeHighlited.png */,
-				DF5D5721192FC4930025ADF1 /* skillNodeHighlited@2x.png */,
+				DF1F58131959E7A7002D7EF2 /* headerCreatingCharacter.png */,
+				DF1F58141959E7A7002D7EF2 /* headerCreatingCharacter@2x.png */,
+				DF1F58151959E7A7002D7EF2 /* nightSky.png */,
+				DF1F58161959E7A7002D7EF2 /* nightSky@2x.png */,
+				DF1F58171959E7A7002D7EF2 /* skillNode.png */,
+				DF1F58181959E7A7002D7EF2 /* skillNode@2x.png */,
+				DF1F58191959E7A7002D7EF2 /* skillNodeHighlited.png */,
+				DF1F581A1959E7A7002D7EF2 /* skillNodeHighlited@2x.png */,
+				DF1F581B1959E7A7002D7EF2 /* xpAura.png */,
+				DF1F581C1959E7A7002D7EF2 /* xpAura@2x.png */,
+				DF1F581D1959E7A7002D7EF2 /* link.png */,
+				DF1F581E1959E7A7002D7EF2 /* link@2x.png */,
+				DF1F581F1959E7A7002D7EF2 /* mentalSkillNode@2x.png */,
+				DF1F58201959E7A7002D7EF2 /* deleteButton.png */,
+				DF1F58211959E7A7002D7EF2 /* deleteButton@2x.png */,
+				DF1F58221959E7A7002D7EF2 /* addButton.png */,
+				DF1F58231959E7A7002D7EF2 /* addButton@2x.png */,
 				DF6E929218D4399B000967F5 /* noImage.png */,
 				DF6E929318D4399B000967F5 /* noImage@2x.png */,
 				DF6E928A18D43946000967F5 /* lowerXp.png */,
@@ -570,38 +575,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF1F582C1959E7A7002D7EF2 /* xpAura.png in Resources */,
+				DF1F58251959E7A7002D7EF2 /* headerCreatingCharacter@2x.png in Resources */,
+				DF1F58311959E7A7002D7EF2 /* deleteButton.png in Resources */,
+				DF1F582F1959E7A7002D7EF2 /* link@2x.png in Resources */,
+				DF1F582E1959E7A7002D7EF2 /* link.png in Resources */,
+				DF1F58331959E7A7002D7EF2 /* addButton.png in Resources */,
+				DF1F58341959E7A7002D7EF2 /* addButton@2x.png in Resources */,
 				DF4F936818DCC32300C6ED26 /* StatView.xib in Resources */,
-				DF1F57221954C0DB002D7EF2 /* nightSky@2x.png in Resources */,
+				DF1F58241959E7A7002D7EF2 /* headerCreatingCharacter.png in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
-				DF5D572A192FC4930025ADF1 /* skillNode@2x.png in Resources */,
-				DF5D5724192FC4930025ADF1 /* deleteButton.png in Resources */,
 				DF48AAD3192138E700F8F509 /* NodeView.storyboard in Resources */,
-				DF5D5723192FC4930025ADF1 /* addButton@2x.png in Resources */,
+				DF1F582B1959E7A7002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
+				DF1F58271959E7A7002D7EF2 /* nightSky@2x.png in Resources */,
+				DF1F582A1959E7A7002D7EF2 /* skillNodeHighlited.png in Resources */,
+				DF1F58281959E7A7002D7EF2 /* skillNode.png in Resources */,
 				DF6E928F18D43946000967F5 /* lowerXp@2x.png in Resources */,
-				DF5D5725192FC4930025ADF1 /* deleteButton@2x.png in Resources */,
+				DF1F582D1959E7A7002D7EF2 /* xpAura@2x.png in Resources */,
+				DF1F58291959E7A7002D7EF2 /* skillNode@2x.png in Resources */,
 				DF6E929418D4399B000967F5 /* noImage.png in Resources */,
-				DF5D5722192FC4930025ADF1 /* addButton.png in Resources */,
-				DFCEDE4919461CB8002AFB6D /* xpAura.png in Resources */,
 				DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */,
-				DF1F57231954C0DB002D7EF2 /* nightSky.png in Resources */,
+				DF1F58261959E7A7002D7EF2 /* nightSky.png in Resources */,
 				DF6E929018D43946000967F5 /* raiseXp.png in Resources */,
 				DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */,
 				DF6E927C18D33F18000967F5 /* SkillViewCell.xib in Resources */,
-				DF1F572B1954C10D002D7EF2 /* headerCreatingCharacter.png in Resources */,
-				DF5D5727192FC4930025ADF1 /* link@2x.png in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
+				DF1F58301959E7A7002D7EF2 /* mentalSkillNode@2x.png in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
-				DF5D5726192FC4930025ADF1 /* link.png in Resources */,
-				DF5D5729192FC4930025ADF1 /* skillNode.png in Resources */,
-				DF5D5728192FC4930025ADF1 /* mentalSkillNode@2x.png in Resources */,
 				DF6E929118D43946000967F5 /* raiseXp@2x.png in Resources */,
-				DF5D572B192FC4930025ADF1 /* skillNodeHighlited.png in Resources */,
+				DF1F58321959E7A7002D7EF2 /* deleteButton@2x.png in Resources */,
 				DF6E928E18D43946000967F5 /* lowerXp.png in Resources */,
-				DFCEDE4819461CB8002AFB6D /* xpAura@2x.png in Resources */,
 				DF97714D192F811A00873AD2 /* SkillLinkView.storyboard in Resources */,
-				DF5D572C192FC4930025ADF1 /* skillNodeHighlited@2x.png in Resources */,
 				DF30A017190001A40018CE28 /* AddSkillViewCellTableViewCell.xib in Resources */,
-				DF1F572A1954C10D002D7EF2 /* headerCreatingCharacter@2x.png in Resources */,
 				DF6E929518D4399B000967F5 /* noImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,8 +642,8 @@
 				DFAED116186309B40039D17B /* PlayerListViewController.m in Sources */,
 				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
 				DF49368F18E569D30058129E /* BasicSkill.m in Sources */,
-				DFAED13D1863329B0039D17B /* AppSettings.m in Sources */,
 				DF4F937818DDBF6100C6ED26 /* PietySkill.m in Sources */,
+				DF1F583A1959EABC002D7EF2 /* SkillLevelsSet.m in Sources */,
 				DFAED10C186309B40039D17B /* main.m in Sources */,
 				DF97714B192F80B200873AD2 /* NodeLinkController.m in Sources */,
 				DF4F937218DDBF6100C6ED26 /* RangeSkill.m in Sources */,
@@ -647,6 +652,7 @@
 				DF309A2A18F537680018CE28 /* AdvancedSkill.m in Sources */,
 				DFAED140186333000039D17B /* MainContextObject.m in Sources */,
 				DFB07C1318815C9C00FF0EF7 /* Insanity.m in Sources */,
+				DF1F58121959E6B1002D7EF2 /* SkillLevelsSetManager.m in Sources */,
 				DF9770D51923C8E200873AD2 /* SkillTreeViewController.m in Sources */,
 				DF309A3618F5BEAB0018CE28 /* SkillSet.m in Sources */,
 				DFB07C1918815C9C00FF0EF7 /* WeaponMelee.m in Sources */,

@@ -799,9 +799,9 @@ static SkillManager *instance = nil;
     return allCollection;
 }
 
--(void)clearSkillTemplate;
+-(void)clearSkillTemplateWithName:(NSString *)name;
 {
-    [SkillTemplate clearEntityForNameWithObjName:@"SkillTemplate" withPredicate:nil withGivenContext:self.context];
+    [SkillTemplate clearEntityForNameWithObjName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = ",name] withGivenContext:self.context];
 }
 
 #pragma mark tips and descriptions

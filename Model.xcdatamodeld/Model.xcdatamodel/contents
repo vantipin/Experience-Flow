@@ -68,6 +68,10 @@
         <relationship name="skillTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="skillsFromThisTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
         <relationship name="subSkills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skill" inverseName="basicSkill" inverseEntity="Skill" syncable="YES"/>
     </entity>
+    <entity name="SkillLevelsSet" representedClassName="SkillLevelsSet" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="SkillSet" representedClassName="SkillSet" syncable="YES">
         <attribute name="bulk" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
         <attribute name="modifierAMelee" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
@@ -106,8 +110,8 @@
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="weaponRanged" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AdvancedSkill" positionX="72" positionY="-27" width="128" height="43"/>
-        <element name="BasicSkill" positionX="72" positionY="-27" width="128" height="43"/>
+        <element name="AdvancedSkill" positionX="72" positionY="-27" width="128" height="45"/>
+        <element name="BasicSkill" positionX="72" positionY="-27" width="128" height="45"/>
         <element name="Character" positionX="72" positionY="-27" width="128" height="165"/>
         <element name="CharacterConditionAttributes" positionX="72" positionY="-27" width="128" height="225"/>
         <element name="Insanity" positionX="72" positionY="-27" width="128" height="75"/>
@@ -122,5 +126,6 @@
         <element name="SkillTemplate" positionX="-254" positionY="258" width="128" height="238"/>
         <element name="WeaponMelee" positionX="-180" positionY="69" width="128" height="120"/>
         <element name="WeaponRanged" positionX="-326" positionY="24" width="128" height="75"/>
+        <element name="SkillLevelsSet" positionX="-126" positionY="117" width="128" height="75"/>
     </elements>
 </model>

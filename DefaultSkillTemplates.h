@@ -12,6 +12,9 @@
 
 @interface DefaultSkillTemplates : NSObject
 
+//default false. On true will reload current skillTemplates params from this obj
+@property (nonatomic) BOOL shouldUpdate;
+
 @property (nonatomic) SkillTemplate *physique;
 @property (nonatomic) SkillTemplate *intelligence;
 

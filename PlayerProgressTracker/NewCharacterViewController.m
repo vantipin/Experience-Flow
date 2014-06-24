@@ -56,6 +56,7 @@
     [super viewDidLoad];
     
     //[[SkillManager sharedInstance] clearSkillTemplate];
+    [DefaultSkillTemplates sharedInstance].shouldUpdate = true;;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;

@@ -98,5 +98,5 @@
 
 
 //currently method used in development purposes only
--(void)clearSkillTemplate;
+-(void)clearSkillTemplateWithName:(NSString *)name;
 @end
