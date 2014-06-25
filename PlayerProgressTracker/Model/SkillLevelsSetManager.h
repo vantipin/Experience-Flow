@@ -10,4 +10,8 @@
 
 @interface SkillLevelsSetManager : NSObject
 
++ (SkillLevelsSetManager *)sharedInstance;
+
+-(void)synchroniseTemplatesWithDefaultValues;
+
 @end
