@@ -43,6 +43,19 @@ static SkillLevelsSetManager *instance = nil;
     return instance;
 }
 
+
+-(NSArray *)getLevelSets;
+{
+    NSArray *existingSets = [SkillLevelsSet fetchRequestForObjectName:@"SkillLevelsSet" withPredicate:nil withContext:self.context];
+    if (!existingSets || !existingSets.count) {
+        [self synchroniseTemplatesWithDefaultValues];
+        existingSets = [SkillLevelsSet fetchRequestForObjectName:@"SkillLevelsSet" withPredicate:nil withContext:self.context];
+    }
+    
+    return existingSets;
+}
+
+
 -(NSManagedObjectContext *)context
 {
     if (!_context) {
@@ -89,14 +102,12 @@ static SkillLevelsSetManager *instance = nil;
 
 -(void)synchroniseTemplatesWithDefaultValues
 {
-    NSArray *existingEmpty = [SkillLevelsSet fetchRequestForObjectName:@"SkillLevelsSet" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",nameEmpty] withContext:self.context];
-    if (!existingEmpty || !existingEmpty.count) {
+    if (![self fetchSetNamed:nameEmpty]) {
         NSDictionary *set = @{};
         [self saveSkillLevelsSet:set withName:nameEmpty];
     }
     
-    NSArray *existingHuman = [SkillLevelsSet fetchRequestForObjectName:@"SkillLevelsSet" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",nameHuman] withContext:self.context];
-    if (!existingHuman || !existingHuman.count) {
+    if (![self fetchSetNamed:nameHuman]) {
         NSDictionary *set = @{[DefaultSkillTemplates sharedInstance].physique.name : @(2),
                               [DefaultSkillTemplates sharedInstance].intelligence.name : @(2),
                               
@@ -113,13 +124,9 @@ static SkillLevelsSetManager *instance = nil;
 -(void)saveSkillLevelsSet:(NSDictionary *)setDictionary withName:(NSString *)name
 {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:setDictionary];
-    NSArray *existingSet = [SkillLevelsSet fetchRequestForObjectName:@"SkillLevelsSet" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",name] withContext:self.context];
     
-    SkillLevelsSet *set;
-    if (existingSet && existingSet.count) {
-        set = [existingSet lastObject];
-    }
-    else {
+    SkillLevelsSet *set = [self fetchSetNamed:name];
+    if (!set) {
         set = [NSEntityDescription insertNewObjectForEntityForName:@"SkillLevelsSet" inManagedObjectContext:self.context];
         set.name = name;
     }
@@ -131,16 +138,37 @@ static SkillLevelsSetManager *instance = nil;
 
 -(NSDictionary *)loadSkillLevelsSetWithName:(NSString *)name
 {
+    SkillLevelsSet *set = [self fetchSetNamed:name];
+    if (set) {
+        return [self loadSkillLevelsSet:set];
+    }
+    else {
+        return nil;
+    }
+}
+
+
+-(NSDictionary *)loadSkillLevelsSet:(SkillLevelsSet *)set
+{
+    NSDictionary *setDictionary = (NSDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:set.data];
+    return setDictionary;
+}
+
+-(SkillLevelsSet *)fetchSetNamed:(NSString *)name;
+{
     NSArray *existingSet = [SkillLevelsSet fetchRequestForObjectName:@"SkillLevelsSet" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",name] withContext:self.context];
+    
     SkillLevelsSet *set;
     if (existingSet && existingSet.count) {
         set = [existingSet lastObject];
-        
-        NSDictionary *setDictionary = (NSDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:set.data];
-        return setDictionary;
     }
     
-    return nil;
+    return set;
+}
+
+-(BOOL)deleteSkillSetWithName:(NSString *)name;
+{
+    return [SkillLevelsSet clearEntityForNameWithObjName:@"SkillLevelsSet" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",name] withGivenContext:self.context];
 }
 
 @end

@@ -65,6 +65,8 @@
     
     self.dateModifed = [[NSDate date] timeIntervalSince1970];
     
+    [Character saveContext:context];
+    
     success = true;
     return success;
 }

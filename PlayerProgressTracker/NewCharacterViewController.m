@@ -14,6 +14,8 @@
 #import "SkillTreeViewController.h"
 #import "MainContextObject.h"
 #import "ColorConstants.h"
+#import "SkillLevelsSetManager.h"
+#import "SkillLevelsSet.h"
 
 
 @interface NewCharacterViewController ()
@@ -36,7 +38,6 @@
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) UITextField *currentlyEditingField; //for applying changes when (save) buttons tapped
 @property (nonatomic) SkillTreeViewController *skillTreeController;
-@property (nonatomic) BOOL shouldRewriteSkillsLevels;
 
 @end
 
@@ -56,12 +57,10 @@
     [super viewDidLoad];
     
     //[[SkillManager sharedInstance] clearSkillTemplate];
-    [DefaultSkillTemplates sharedInstance].shouldUpdate = true;;
+    [DefaultSkillTemplates sharedInstance].shouldUpdate = true;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
-    
-    self.shouldRewriteSkillsLevels = true;
     
     self.classesDropController.delegateDropDown = self;
     self.classesDropController.delegateDeleteStatSet = self;
@@ -74,7 +73,6 @@
     [imageLayer setCornerRadius:20];
     [imageLayer setMasksToBounds:YES];
     
-
     CALayer *textViewLayer = self.name.layer;
     [textViewLayer setCornerRadius:8];
     [textViewLayer setMasksToBounds:YES];
@@ -99,6 +97,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [self.character saveCharacterWithContext:self.context];
     [[SkillManager sharedInstance] unsubscribeForSkillChangeNotifications:self];
 }
 
@@ -135,11 +134,11 @@
         NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.context];
         if (arrayOfUnfinishedCharacters.count != 0){
             _character = [arrayOfUnfinishedCharacters lastObject];
-            [[SkillManager sharedInstance] checkAllCharacterCoreSkills:_character];
         }
         else{
             _character = [Character newCharacterWithContext:self.context];
         }
+        [[SkillManager sharedInstance] checkAllCharacterCoreSkills:_character];
     }
     else{
         //[Character saveContext:self.context];
@@ -171,8 +170,8 @@
 -(void)refreshRaceNames
 {
     [self.raceNames removeAllObjects];
-    NSArray *arraySet = [NSMutableArray arrayWithArray:[SkillSet fetchCharacterlessSkillSetsWithContext:self.context]];
-    for (SkillSet *set in arraySet){
+    NSArray *arraySet = [[SkillLevelsSetManager sharedInstance] getLevelSets];
+    for (SkillLevelsSet *set in arraySet){
         if (set.name) {
             [_raceNames addObject:set.name];
         }
@@ -183,8 +182,10 @@
 {
     [self refreshRaceNames];
     
-    if (self.raceNames.count == 0 || !self.shouldRewriteSkillsLevels) {
+    BOOL isAPartOfSkillSets = ([self.raceNames indexOfObject:self.character.skillSet.name] == NSNotFound);
+    if (self.raceNames.count == 0 || !isAPartOfSkillSets) {
         //no statSet is available or character's skills set statSet
+        currentTitle = self.character.skillSet.name;
         [self prepareViewForSavingNewClass];
     }
     else {
@@ -192,10 +193,8 @@
             currentTitle = [self.raceNames lastObject];
         }
         
-        SkillSet *statSet = [[SkillSet fetchSkillSetWithName:currentTitle withContext:self.context] lastObject];
-        [self setSkillSet:statSet forCharacter:self.character];
-        
-        self.shouldRewriteSkillsLevels = false;
+        [self setSkillSet:currentTitle forCharacter:self.character];
+    
         [self dissmissSavingNewRace];
     }
     
@@ -205,12 +204,10 @@
     [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
 }
 
--(void)setSkillSet:(SkillSet *)skillSet forCharacter:(Character *)character;
+-(void)setSkillSet:(NSString *)skillSet forCharacter:(Character *)character;
 {
-    SkillSet *formerSet = self.character.skillSet;
-    [SkillSet deleteSkillSet:formerSet withContext:self.context];
-    character.skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:skillSet];
-    
+    [[SkillLevelsSetManager sharedInstance] loadLevelsSetNamed:skillSet forCharacter:self.character];
+    character.skillSet.name = skillSet;
     
     [character saveCharacterWithContext:self.context];
     
@@ -220,17 +217,16 @@
 
 -(void)saveCurrentStatSetWithName:(NSString *)nameString
 {
-    SkillSet *skillSet;
-    NSArray *array = [SkillSet fetchSkillSetWithName:nameString withContext:self.context];
-    if (array && array.count != 0) {
-        SkillSet *existingSkillSet = [array lastObject];
-        [SkillSet deleteSkillSet:existingSkillSet withContext:self.context];
+    NSMutableDictionary *skillSet = [NSMutableDictionary new];
+    for (Skill *skill in self.character.skillSet.skills) {
+        if (skill.currentLevel != skill.skillTemplate.skillStartingLvl) {
+            [skillSet setValue:@(skill.currentLevel) forKey:skill.skillTemplate.name];
+        }
     }
     
-    skillSet = [[SkillManager sharedInstance] cloneSkillsWithSkillSet:self.character.skillSet];
-    skillSet.name = nameString;
+    self.character.skillSet.name = nameString;
+    [[SkillLevelsSetManager sharedInstance] saveSkillLevelsSet:[skillSet copy] withName:nameString];
     
-    [SkillSet saveContext:self.context];
     //set current name to recently saved one
     [self updateRaceButtonWithName:nameString];
     [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];
@@ -239,8 +235,6 @@
 -(void)prepareViewForSavingNewClass
 {
     //prepare setting character skills to listed in stat set
-    self.shouldRewriteSkillsLevels = true;
-    //self.raceBtn.alpha = 0;
     
     if (self.saveSet.alpha < 1) {
         self.saveSet.frame = CGRectMake(self.saveSet.frame.origin.x - 100, self.saveSet.frame.origin.y, self.saveSet.frame.size.width, self.saveSet.frame.size.height);
@@ -328,7 +322,7 @@
 {
     if (dropDown == self.classesDropController) {
         NSString *name = self.raceNames[returnIndex.row];
-        self.shouldRewriteSkillsLevels = true;
+        self.character.skillSet.name = nil;
         [self updateRaceButtonWithName:name];
     }
 }
@@ -366,7 +360,10 @@
 #pragma mark DeleteStatSetProtocol
 -(void)deleteStatSetWithName:(NSString *)name
 {
-    if ([SkillSet deleteSkillSetWithName:name withContext:self.context]) {
+    if ([[SkillLevelsSetManager sharedInstance] deleteSkillSetWithName:name]) {
+        if ([self.character.skillSet.name isEqualToString:name]) {
+            self.character.skillSet.name = nil;
+        }
         [self.classesDropController openAnimation];
         [self refreshRaceNames];
         [self updateRaceButtonWithName:[self.raceNames lastObject]];

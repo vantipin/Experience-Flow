@@ -8,10 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@class Character, SkillLevelsSet;
+
 @interface SkillLevelsSetManager : NSObject
 
 + (SkillLevelsSetManager *)sharedInstance;
 
--(void)synchroniseTemplatesWithDefaultValues;
+-(NSArray *)getLevelSets;
 
+-(void)synchroniseTemplatesWithDefaultValues;
+-(void)loadLevelsSetNamed:(NSString *)setName forCharacter:(Character *)character;
+
+-(void)saveSkillLevelsSet:(NSDictionary *)setDictionary withName:(NSString *)name;
+
+-(NSDictionary *)loadSkillLevelsSet:(SkillLevelsSet *)set;
+-(NSDictionary *)loadSkillLevelsSetWithName:(NSString *)name;
+-(SkillLevelsSet *)fetchSetNamed:(NSString *)name;
+
+-(BOOL)deleteSkillSetWithName:(NSString *)name;
 @end
