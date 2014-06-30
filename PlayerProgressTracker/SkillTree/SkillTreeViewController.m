@@ -50,9 +50,18 @@ static NSString *emptyParentKey = @"emptyParent";
     return self;
 }
 
+-(id)init {
+    self = [super init];
+    if (self) {
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.customHeaderStatLayoutY = 0;
     [self initTree];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
@@ -207,7 +216,7 @@ static NSString *emptyParentKey = @"emptyParent";
         float height = 40;
         _statHeaderController = [StatViewController getInstanceFromStoryboardWithFrame:CGRectMake(
                                                                                                   0,
-                                                                                                  self.scrollView.frame.size.height - height,
+                                                                                                  0 + self.customHeaderStatLayoutY,
                                                                                                   self.scrollView.frame.size.width,
                                                                                                   height)];
         [self.view addSubview:_statHeaderController.view];

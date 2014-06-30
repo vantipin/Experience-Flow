@@ -117,6 +117,7 @@
         [self addChildViewController:_skillTreeController];
         [self.additionalSkillContainerView addSubview:_skillTreeController.view];
         _skillTreeController.view.frame = self.additionalSkillContainerView.bounds;
+        _skillTreeController.customHeaderStatLayoutY = 100;
     }
     
     return _skillTreeController;

@@ -14,7 +14,7 @@
 @interface SkillTreeViewController : UIViewController <UIScrollViewDelegate, NodeViewControllerProtocol, SkillChangeProtocol>
 
 @property (nonatomic) Character *character;
-
+@property (nonatomic) float customHeaderStatLayoutY;
 /*
  *Clear current skill tree and draw a new one. Use this methode AFTER you set the character.
  */
