@@ -116,6 +116,7 @@ static SkillLevelsSetManager *instance = nil;
                               [DefaultSkillTemplates sharedInstance].agility.name : @(2),
                               [DefaultSkillTemplates sharedInstance].reason.name : @(2),
                               [DefaultSkillTemplates sharedInstance].control.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].perception.name : @(2),
                               [DefaultSkillTemplates sharedInstance].agility.name : @(2)};
         [self saveSkillLevelsSet:set withName:nameHuman];
     }

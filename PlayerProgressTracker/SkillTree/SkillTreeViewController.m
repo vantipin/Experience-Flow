@@ -10,6 +10,7 @@
 #import "SkillTemplate.h"
 #import "SkillManager.h"
 #import "DefaultSkillTemplates.h"
+#import "StatViewController.h"
 
 static float minimalMarginBetweenTrees = 100;
 static float minimalMarginBetweenNodesX = 50;
@@ -25,19 +26,16 @@ static NSString *emptyParentKey = @"emptyParent";
 @property (nonatomic) UIView *containerView;
 @property (nonatomic) UIView *containerForContainerView; //Why? bug with centering zooming
 
-
 @property (nonatomic) NSMutableArray *trees;
-
 @property (nonatomic) NSMutableDictionary *treeNodeWidthForTreeArrayObject;
 @property (nonatomic) NSMutableDictionary *treeSpacesWidthForTreeArrayObject;
-
 @property (nonatomic) NSMutableDictionary *nodesOnSingleLevelForLevelArrayObject;
-
 @property (nonatomic) NSMutableDictionary *sectionIndexesForSkillParentName;
 @property (nonatomic) NSMutableDictionary *nodeIndexesForSkillNames;
 @property (nonatomic) long treeHeight;
-
 @property (nonatomic) NSMutableArray *allExistingNodes;
+
+@property (nonatomic) StatViewController *statHeaderController;
 
 @end
 
@@ -117,6 +115,8 @@ static NSString *emptyParentKey = @"emptyParent";
     if (!_scrollView) {
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         self.scrollView.delegate = self;
+        self.scrollView.showsHorizontalScrollIndicator = false;
+        self.scrollView.showsVerticalScrollIndicator = false;
         [self.view addSubview:self.scrollView];
     }
     return _scrollView;
@@ -199,6 +199,35 @@ static NSString *emptyParentKey = @"emptyParent";
         _nodeIndexesForSkillNames = [NSMutableDictionary new];
     }
     return _nodeIndexesForSkillNames;
+}
+
+-(StatViewController *)statHeaderController
+{
+    if (!_statHeaderController) {
+        float height = 40;
+        _statHeaderController = [StatViewController getInstanceFromStoryboardWithFrame:CGRectMake(
+                                                                                                  0,
+                                                                                                  self.scrollView.frame.size.height - height,
+                                                                                                  self.scrollView.frame.size.width,
+                                                                                                  height)];
+        [self.view addSubview:_statHeaderController.view];
+    }
+    
+    return _statHeaderController;
+}
+
+-(void)updateStatHeader
+{
+    Skill *toughnessSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].toughness withCharacter:self.character];
+    Skill *strenghtSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].strength withCharacter:self.character];
+    Skill *physiqueSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].physique withCharacter:self.character];
+    
+    self.statHeaderController.bulkLabel.text = [NSString stringWithFormat:@"%d",self.character.bulk];
+    self.statHeaderController.movementLabel.text = [NSString stringWithFormat:@"%d",self.character.pace + physiqueSkill.currentLevel];
+    self.statHeaderController.healthCurrentLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 3];
+    self.statHeaderController.healthMaxLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 3];
+    self.statHeaderController.inventoryCurrentLabel.text = [NSString stringWithFormat:@"%d",0];
+    self.statHeaderController.inventoryMaxLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:strenghtSkill] * 3];
 }
 
 -(void)updateScrollViewZoomAnimated:(BOOL)animated
@@ -327,7 +356,7 @@ static NSString *emptyParentKey = @"emptyParent";
     if (![self.sectionIndexesForSkillParentName objectForKey:parentName]) {
         
         NSMutableArray *newSection = [NSMutableArray new];
-        [self.sectionIndexesForSkillParentName setObject:[NSNumber numberWithUnsignedInt:currentLevel.count] forKey:parentName];
+        [self.sectionIndexesForSkillParentName setObject:[NSNumber numberWithUnsignedLong:currentLevel.count] forKey:parentName];
         [currentLevel addObject:newSection];
     }
     NSUInteger sectionIndex = [[self.sectionIndexesForSkillParentName objectForKey:parentName] unsignedIntegerValue];
@@ -390,6 +419,7 @@ static NSString *emptyParentKey = @"emptyParent";
             }
             treeMargin += thisTreeGreatestSectionMargin + minimalMarginBetweenTrees;
         }
+        [self updateStatHeader];
     }
 }
 
@@ -407,6 +437,7 @@ static NSString *emptyParentKey = @"emptyParent";
         }
         [node updateInterface];
     }
+    [self updateStatHeader];
 }
 
 
@@ -507,6 +538,7 @@ static NSString *emptyParentKey = @"emptyParent";
             [self checkForUpdateSubskillsOf:subSkill];
         }
     }
+    [self updateStatHeader];
 }
 
 
@@ -529,7 +561,6 @@ static NSString *emptyParentKey = @"emptyParent";
         }
     }
 }
-
 
 /*
 #pragma mark - Navigation

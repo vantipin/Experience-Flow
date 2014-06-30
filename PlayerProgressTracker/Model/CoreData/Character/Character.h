@@ -26,6 +26,8 @@
 @property (nonatomic) NSTimeInterval dateModifed;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic) int16_t wounds;
+@property (nonatomic) int16_t pace;
+@property (nonatomic) int16_t bulk;
 @property (nonatomic, retain) CharacterConditionAttributes *characterCondition;
 @property (nonatomic, retain) Pic *icon;
 @property (nonatomic, retain) SkillSet *skillSet;

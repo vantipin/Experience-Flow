@@ -88,6 +88,16 @@
 		DFAED129186309B40039D17B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFAED127186309B40039D17B /* InfoPlist.strings */; };
 		DFAED12B186309B40039D17B /* PlayerProgressTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */; };
 		DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */; };
+		DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */; };
+		DFDA01BA1961C7BA005D3703 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B41961C7BA005D3703 /* health.png */; };
+		DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B51961C7BA005D3703 /* health@2x.png */; };
+		DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B61961C7BA005D3703 /* inventoryIcon.png */; };
+		DFDA01BD1961C7BA005D3703 /* inventoryIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B71961C7BA005D3703 /* inventoryIcon@2x.png */; };
+		DFDA01BE1961C7BA005D3703 /* movement.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B81961C7BA005D3703 /* movement.png */; };
+		DFDA01BF1961C7BA005D3703 /* movement@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B91961C7BA005D3703 /* movement@2x.png */; };
+		DFDA01C21961CE7F005D3703 /* bulk.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01C01961CE7F005D3703 /* bulk.png */; };
+		DFDA01C31961CE7F005D3703 /* bulk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01C11961CE7F005D3703 /* bulk@2x.png */; };
+		DFDA01C61961D1B6005D3703 /* StatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDA01C51961D1B6005D3703 /* StatViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +234,17 @@
 		DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerProgressTrackerTests.m; sourceTree = "<group>"; };
 		DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTableViewController.h; sourceTree = "<group>"; };
 		DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTableViewController.m; sourceTree = "<group>"; };
+		DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatViewController.storyboard; sourceTree = "<group>"; };
+		DFDA01B41961C7BA005D3703 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
+		DFDA01B51961C7BA005D3703 /* health@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "health@2x.png"; sourceTree = "<group>"; };
+		DFDA01B61961C7BA005D3703 /* inventoryIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inventoryIcon.png; sourceTree = "<group>"; };
+		DFDA01B71961C7BA005D3703 /* inventoryIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inventoryIcon@2x.png"; sourceTree = "<group>"; };
+		DFDA01B81961C7BA005D3703 /* movement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movement.png; sourceTree = "<group>"; };
+		DFDA01B91961C7BA005D3703 /* movement@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movement@2x.png"; sourceTree = "<group>"; };
+		DFDA01C01961CE7F005D3703 /* bulk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bulk.png; sourceTree = "<group>"; };
+		DFDA01C11961CE7F005D3703 /* bulk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulk@2x.png"; sourceTree = "<group>"; };
+		DFDA01C41961D1B6005D3703 /* StatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatViewController.h; sourceTree = "<group>"; };
+		DFDA01C51961D1B6005D3703 /* StatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,12 +381,8 @@
 		DF1F5C79195B432D002D7EF2 /* SkillTree */ = {
 			isa = PBXGroup;
 			children = (
-				DF1F5C7A195B432D002D7EF2 /* NodeLinkController.h */,
-				DF1F5C7B195B432D002D7EF2 /* NodeLinkController.m */,
-				DF1F5C7C195B432D002D7EF2 /* NodeView.storyboard */,
-				DF1F5C7D195B432D002D7EF2 /* NodeViewController.h */,
-				DF1F5C7E195B432D002D7EF2 /* NodeViewController.m */,
-				DF1F5C7F195B432D002D7EF2 /* SkillLinkView.storyboard */,
+				DFDA01C81961D2FA005D3703 /* headerStatView */,
+				DFDA01C71961D2E2005D3703 /* nodes */,
 				DF1F5C80195B432D002D7EF2 /* SkillTreeViewController.h */,
 				DF1F5C81195B432D002D7EF2 /* SkillTreeViewController.m */,
 			);
@@ -388,6 +405,14 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DFDA01C01961CE7F005D3703 /* bulk.png */,
+				DFDA01C11961CE7F005D3703 /* bulk@2x.png */,
+				DFDA01B41961C7BA005D3703 /* health.png */,
+				DFDA01B51961C7BA005D3703 /* health@2x.png */,
+				DFDA01B61961C7BA005D3703 /* inventoryIcon.png */,
+				DFDA01B71961C7BA005D3703 /* inventoryIcon@2x.png */,
+				DFDA01B81961C7BA005D3703 /* movement.png */,
+				DFDA01B91961C7BA005D3703 /* movement@2x.png */,
 				DF1F5C9A195B4338002D7EF2 /* addButton.png */,
 				DF1F5C9B195B4338002D7EF2 /* addButton@2x.png */,
 				DF1F5C9C195B4338002D7EF2 /* deleteButton.png */,
@@ -508,6 +533,29 @@
 			name = Resourses;
 			sourceTree = "<group>";
 		};
+		DFDA01C71961D2E2005D3703 /* nodes */ = {
+			isa = PBXGroup;
+			children = (
+				DF1F5C7A195B432D002D7EF2 /* NodeLinkController.h */,
+				DF1F5C7B195B432D002D7EF2 /* NodeLinkController.m */,
+				DF1F5C7C195B432D002D7EF2 /* NodeView.storyboard */,
+				DF1F5C7D195B432D002D7EF2 /* NodeViewController.h */,
+				DF1F5C7E195B432D002D7EF2 /* NodeViewController.m */,
+				DF1F5C7F195B432D002D7EF2 /* SkillLinkView.storyboard */,
+			);
+			name = nodes;
+			sourceTree = "<group>";
+		};
+		DFDA01C81961D2FA005D3703 /* headerStatView */ = {
+			isa = PBXGroup;
+			children = (
+				DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */,
+				DFDA01C41961D1B6005D3703 /* StatViewController.h */,
+				DFDA01C51961D1B6005D3703 /* StatViewController.m */,
+			);
+			name = headerStatView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -584,6 +632,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFDA01C21961CE7F005D3703 /* bulk.png in Resources */,
 				DF1F5CB8195B4338002D7EF2 /* link@2x.png in Resources */,
 				DF1F5CBD195B4338002D7EF2 /* nightSky@2x.png in Resources */,
 				DF1F5C90195B432D002D7EF2 /* StatView.xib in Resources */,
@@ -591,18 +640,22 @@
 				DF1F5CB5195B4338002D7EF2 /* headerCreatingCharacter.png in Resources */,
 				DF1F5CB1195B4338002D7EF2 /* addButton.png in Resources */,
 				DF1F5CB3195B4338002D7EF2 /* deleteButton.png in Resources */,
+				DFDA01C31961CE7F005D3703 /* bulk@2x.png in Resources */,
 				DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */,
 				DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */,
 				DF1F5CBB195B4338002D7EF2 /* mentalSkillNode@2x.png in Resources */,
 				DF1F5C92195B432D002D7EF2 /* NodeView.storyboard in Resources */,
 				DF1F5CB2195B4338002D7EF2 /* addButton@2x.png in Resources */,
+				DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */,
 				DF1F5C8E195B432D002D7EF2 /* SkillViewCell.xib in Resources */,
 				DF1F5CC2195B4338002D7EF2 /* skillNode.png in Resources */,
+				DFDA01BF1961C7BA005D3703 /* movement@2x.png in Resources */,
 				DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */,
 				DF1F5CB7195B4338002D7EF2 /* link.png in Resources */,
 				DF1F5CBE195B4338002D7EF2 /* noImage.png in Resources */,
 				DF1F5CC1195B4338002D7EF2 /* raiseXp@2x.png in Resources */,
 				DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */,
+				DFDA01BD1961C7BA005D3703 /* inventoryIcon@2x.png in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
 				DF1F5CBF195B4338002D7EF2 /* noImage@2x.png in Resources */,
@@ -612,10 +665,14 @@
 				DF1F5CBC195B4338002D7EF2 /* nightSky.png in Resources */,
 				DF1F5C94195B432D002D7EF2 /* SkillLinkView.storyboard in Resources */,
 				DF1F5CC3195B4338002D7EF2 /* skillNode@2x.png in Resources */,
+				DFDA01BE1961C7BA005D3703 /* movement.png in Resources */,
 				DF1F5CB6195B4338002D7EF2 /* headerCreatingCharacter@2x.png in Resources */,
+				DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */,
 				DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
+				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
 				DF1F5CC4195B4338002D7EF2 /* skillNodeHighlited.png in Resources */,
+				DFDA01BA1961C7BA005D3703 /* health.png in Resources */,
 				DF1F5CB4195B4338002D7EF2 /* deleteButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,6 +692,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFDA01C61961D1B6005D3703 /* StatViewController.m in Sources */,
 				DF1F5C63195B431E002D7EF2 /* Skill.m in Sources */,
 				DF1F5C62195B431E002D7EF2 /* RangeSkill.m in Sources */,
 				DF1F5C5D195B431E002D7EF2 /* AdvancedSkill.m in Sources */,

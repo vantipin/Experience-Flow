@@ -76,6 +76,8 @@
     CALayer *textViewLayer = self.name.layer;
     [textViewLayer setCornerRadius:8];
     [textViewLayer setMasksToBounds:YES];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
