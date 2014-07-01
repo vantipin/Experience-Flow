@@ -28,16 +28,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="148"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headerClouds.png" id="Loq-Mt-lJG">
+                                    <imageView userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headerClouds.png" id="Loq-Mt-lJG">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="148"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o5B-9Q-gUS">
-                                        <rect key="frame" x="176" y="49" width="230" height="30"/>
+                                        <rect key="frame" x="176" y="48" width="230" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="18"/>
                                         <state key="normal" title="Save new stat set">
-                                            <color key="titleColor" red="0.060777750739999997" green="0.33722591530000001" blue="0.68185985329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.34413317669999999" green="0.55918683950000003" blue="0.82995854589999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -49,20 +49,20 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <state key="normal" title="Human">
-                                            <color key="titleColor" red="0.060777750741947204" green="0.33722591534215013" blue="0.68185985331632648" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.34413317666488352" green="0.55918683952506865" blue="0.82995854591836737" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="raceBtnTapped:" destination="ntv-du-Lpc" eventType="touchUpInside" id="LUe-i7-y5w"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Race:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w1Z-H5-Uxe">
-                                        <rect key="frame" x="20" y="50" width="52" height="30"/>
+                                        <rect key="frame" x="17" y="48" width="52" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="19"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="Mwc-Yv-Loc">
-                                        <rect key="frame" x="651.00000090659387" y="50" width="326" height="30"/>
+                                        <rect key="frame" x="651.00000185680074" y="50" width="326" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
@@ -78,7 +78,7 @@
                                         <rect key="frame" x="449" y="12" width="125" height="126"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="SOK-oW-wtN">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="SOK-oW-wtN">
                                                 <rect key="frame" x="7" y="11" width="110" height="110"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.85714285710000004" green="0.79654630609999999" blue="0.58844582680000002" alpha="1" colorSpace="calibratedRGB"/>
