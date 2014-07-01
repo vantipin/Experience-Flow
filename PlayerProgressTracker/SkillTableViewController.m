@@ -15,6 +15,8 @@
 #import "Skill.h"
 #import "SkillViewCell.h"
 #import "SkillSet.h"
+#import "TipViewController.h"
+#import "CustomPopoverViewController.h"
 
 @interface SkillTableViewController ()
 @property (nonatomic) NSMutableArray *skillsDataSource;
@@ -143,8 +145,7 @@
 -(void)skill:(Skill *)skill buttonTapped:(UIButton *)sender
 {
     UIView *parentView = self.view;
-
-    [[SkillManager sharedInstance] showDescriptionForSkillTemplate:skill.skillTemplate inView:parentView];
+    //[[SkillManager sharedInstance] showDescriptionForSkillTemplate:skill.skillTemplate inView:parentView];
 
 }
 

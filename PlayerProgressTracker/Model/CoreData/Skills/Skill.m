@@ -29,6 +29,7 @@
 @dynamic skillSet;
 @dynamic skillTemplate;
 @dynamic subSkills;
+@dynamic startingLevel;
 
 //create
 +(Skill *)newSkillWithTemplate:(SkillTemplate *)skillTemplate
@@ -50,7 +51,7 @@
         
         skill.skillId = [NSString stringWithFormat:@"%@",skill.objectID];
         
-        skill.currentLevel = skillTemplate.skillStartingLvl;
+        skill.currentLevel = skillTemplate.defaultLevel;
         skill.currentProgress = curentPoints ? curentPoints : 0.0;
         skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
         skill.skillTemplate = skillTemplate;

@@ -20,20 +20,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
-                            <view contentMode="scaleToFill" id="ZBt-Mc-L83">
+                            <view contentMode="scaleAspectFit" id="ZBt-Mc-L83">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="148"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.84999999999999987" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headerCreatingCharacter.png" id="lsl-e7-1TC">
+                                    <imageView userInteractionEnabled="NO" alpha="0.099999999999999686" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headerCreatingCharacter.png" id="lsl-e7-1TC">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="148"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headerClouds.png" id="Loq-Mt-lJG">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="148"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o5B-9Q-gUS">
-                                        <rect key="frame" x="178" y="49" width="230" height="30"/>
+                                        <rect key="frame" x="176" y="49" width="230" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="18"/>
                                         <state key="normal" title="Save new stat set">
-                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.060777750739999997" green="0.33722591530000001" blue="0.68185985329999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -45,7 +49,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                                         <state key="normal" title="Human">
-                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.060777750741947204" green="0.33722591534215013" blue="0.68185985331632648" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="raceBtnTapped:" destination="ntv-du-Lpc" eventType="touchUpInside" id="LUe-i7-y5w"/>
@@ -60,7 +64,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="Mwc-Yv-Loc">
                                         <rect key="frame" x="651.00000090659387" y="50" width="326" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done"/>
                                     </textField>
@@ -134,6 +138,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="headerClouds.png" width="1024" height="150"/>
         <image name="headerCreatingCharacter.png" width="1024" height="145"/>
         <image name="nightSky.png" width="1024" height="768"/>
         <image name="noImage.png" width="85" height="100"/>

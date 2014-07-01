@@ -70,11 +70,11 @@
     self.name.text = self.character.name;
     
     CALayer *imageLayer = self.icon.layer;
-    [imageLayer setCornerRadius:20];
+    [imageLayer setCornerRadius:14];
     [imageLayer setMasksToBounds:YES];
     
     CALayer *textViewLayer = self.name.layer;
-    [textViewLayer setCornerRadius:8];
+    [textViewLayer setCornerRadius:5];
     [textViewLayer setMasksToBounds:YES];
     
     
@@ -222,7 +222,7 @@
 {
     NSMutableDictionary *skillSet = [NSMutableDictionary new];
     for (Skill *skill in self.character.skillSet.skills) {
-        if (skill.currentLevel != skill.skillTemplate.skillStartingLvl) {
+        if (skill.currentLevel != skill.skillTemplate.defaultLevel) {
             [skillSet setValue:@(skill.currentLevel) forKey:skill.skillTemplate.name];
         }
     }

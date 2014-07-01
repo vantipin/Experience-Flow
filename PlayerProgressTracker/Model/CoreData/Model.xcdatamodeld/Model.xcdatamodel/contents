@@ -64,6 +64,7 @@
         <attribute name="currentProgress" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="dateXpAdded" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="skillId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startingLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="basicSkill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Skill" inverseName="subSkills" inverseEntity="Skill" syncable="YES"/>
         <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeaponMelee" inverseName="skillRequired" inverseEntity="WeaponMelee" syncable="YES"/>
         <relationship name="skillSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillSet" inverseName="skills" inverseEntity="SkillSet" syncable="YES"/>
@@ -86,6 +87,7 @@
         <relationship name="skills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skill" inverseName="skillSet" inverseEntity="Skill" syncable="YES"/>
     </entity>
     <entity name="SkillTemplate" representedClassName="SkillTemplate" syncable="YES">
+        <attribute name="defaultLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="levelBasicBarrier" optional="YES" attributeType="Float" defaultValueString="1" syncable="YES"/>
         <attribute name="levelGrowthGoesToBasicSkill" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="levelProgression" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -94,7 +96,6 @@
         <attribute name="skillEnumType" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="skillRules" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="skillRulesExamples" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="skillStartingLvl" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="basicSkillTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="subSkillsTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
         <relationship name="icon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pic" inverseName="skills" inverseEntity="Pic" syncable="YES"/>
         <relationship name="skillsFromThisTemplate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Skill" inverseName="skillTemplate" inverseEntity="Skill" syncable="YES"/>
@@ -112,22 +113,22 @@
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="weaponRanged" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AdvancedSkill" positionX="72" positionY="-27" width="128" height="45"/>
-        <element name="BasicSkill" positionX="72" positionY="-27" width="128" height="45"/>
-        <element name="Character" positionX="72" positionY="-27" width="128" height="195"/>
-        <element name="CharacterConditionAttributes" positionX="72" positionY="-27" width="128" height="225"/>
-        <element name="Insanity" positionX="72" positionY="-27" width="128" height="75"/>
-        <element name="Item" positionX="72" positionY="-27" width="128" height="135"/>
-        <element name="MagicSkill" positionX="72" positionY="-27" width="128" height="60"/>
-        <element name="MeleeSkill" positionX="72" positionY="-27" width="128" height="60"/>
-        <element name="Pic" positionX="72" positionY="-27" width="128" height="120"/>
-        <element name="PietySkill" positionX="72" positionY="-27" width="128" height="60"/>
-        <element name="RangeSkill" positionX="72" positionY="-27" width="128" height="60"/>
-        <element name="Skill" positionX="72" positionY="-27" width="128" height="180"/>
-        <element name="SkillLevelsSet" positionX="-126" positionY="117" width="128" height="75"/>
-        <element name="SkillSet" positionX="72" positionY="-27" width="128" height="180"/>
-        <element name="SkillTemplate" positionX="-254" positionY="258" width="128" height="238"/>
-        <element name="WeaponMelee" positionX="-180" positionY="69" width="128" height="120"/>
-        <element name="WeaponRanged" positionX="-326" positionY="24" width="128" height="75"/>
+        <element name="AdvancedSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="BasicSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Character" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CharacterConditionAttributes" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Insanity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Item" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MagicSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MeleeSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Pic" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PietySkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RangeSkill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Skill" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SkillLevelsSet" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SkillSet" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SkillTemplate" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="WeaponMelee" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="WeaponRanged" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

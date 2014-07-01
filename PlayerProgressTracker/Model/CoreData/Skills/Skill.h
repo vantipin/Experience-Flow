@@ -17,6 +17,7 @@
 @property (nonatomic) NSTimeInterval dateXpAdded;
 @property (nonatomic, retain) NSString * skillId;
 @property (nonatomic) int16_t currentLevel;
+@property (nonatomic) int16_t startingLevel;
 @property (nonatomic) float currentProgress;
 @property (nonatomic, retain) Skill *basicSkill;
 @property (nonatomic, retain) WeaponMelee *items;
@@ -24,6 +25,8 @@
 @property (nonatomic, retain) SkillTemplate *skillTemplate;
 @property (nonatomic, retain) NSSet *subSkills;
 @end
+
+
 
 @interface Skill (CoreDataGeneratedAccessors)
 

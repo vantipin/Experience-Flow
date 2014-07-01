@@ -27,7 +27,6 @@ static SkillManager *instance = nil;
 
 @interface SkillManager()
 @property (nonatomic) NSManagedObjectContext *context;
-@property (nonatomic) UIView *activeTipView;
 @property (nonatomic) NSMutableArray *subscribersForSkillsChangeNotifications;
 @end
 
@@ -133,7 +132,7 @@ static SkillManager *instance = nil;
 {
     NSInteger Hp = 0;
     
-    NSInteger value = skillTemplate.skillStartingLvl;
+    NSInteger value = skillTemplate.defaultLevel;
     if (value < skillLevel){
         if ([skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].toughness.name]){
             Hp = 5 * (skillLevel - value);
@@ -680,8 +679,8 @@ static SkillManager *instance = nil;
         [self didChangeSkillLevel:skill];
         [self calculateAddingXpPointsForSkill:skill]; //check if more than 1 lvl
     }
-    else if (skill.currentLevel < skill.skillTemplate.skillStartingLvl) {
-        skill.currentLevel = skill.skillTemplate.skillStartingLvl;
+    else if (skill.currentLevel < skill.skillTemplate.defaultLevel) {
+        skill.currentLevel = skill.skillTemplate.defaultLevel;
     }
     
     return skill;
@@ -716,7 +715,7 @@ static SkillManager *instance = nil;
 
 -(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill
 {
-    if (skill.currentLevel == skill.skillTemplate.skillStartingLvl) {
+    if (skill.currentLevel == skill.skillTemplate.defaultLevel) {
         skill.currentProgress = (skill.currentProgress < 0) ? 0 : skill.currentProgress;
         return skill;
     }
@@ -803,88 +802,4 @@ static SkillManager *instance = nil;
 {
     [SkillTemplate clearEntityForNameWithObjName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = ",name] withGivenContext:self.context];
 }
-
-#pragma mark tips and descriptions
-
--(void)showDescriptionForSkillTemplate:(SkillTemplate *)skillTemplate inView:(UIView *)parentView
-{
-    CGRect closingAreaFrame = parentView.bounds;
-    
-    float defaultWidht = parentView.bounds.size.width * 0.8;
-    float defaultHeight = 10;
-    CGRect tipFrame = CGRectMake(0,
-                                 0,
-                                 defaultWidht,
-                                 defaultHeight);
-    
-    
-    UITextView *tipTextView = [[UITextView alloc] initWithFrame:tipFrame];
-    
-    NSString *description = @"";
-    
-    if (skillTemplate.skillDescription) {
-        description = [description stringByAppendingString:skillTemplate.skillDescription];
-    }
-    if (skillTemplate.skillRules) {
-        description = [description stringByAppendingString:[NSString stringWithFormat:@"\n\n%@",skillTemplate.skillRules]];
-    }
-    if (skillTemplate.skillRulesExamples) {
-        description = [description stringByAppendingString:[NSString stringWithFormat:@"\n\n%@",skillTemplate.skillRulesExamples]];
-    }
-    
-    [tipTextView setText:description];
-    [tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
-    [tipTextView sizeToFit];
-    tipTextView.frame = CGRectMake(tipTextView.frame.origin.x, tipTextView.frame.origin.y, tipTextView.frame.size.width, (tipTextView.frame.size.height > parentView.frame.size.height * 0.8) ? parentView.frame.size.height * 0.8 : tipTextView.frame.size.height);
-    tipTextView.scrollEnabled = true;
-    
-    tipTextView.backgroundColor = [UIColor whiteColor];
-    tipTextView.editable = false;
-    tipTextView.selectable = false;
-    
-    UIView *closingAreaView = [[UIView alloc] initWithFrame:closingAreaFrame];
-    closingAreaView.opaque = false;
-    closingAreaView.backgroundColor = [UIColor clearColor];
-    
-    self.activeTipView = [[UIView alloc] initWithFrame:closingAreaFrame];
-    [self.activeTipView addSubview:closingAreaView];
-    [self.activeTipView addSubview:tipTextView];
-    [self.activeTipView bringSubviewToFront:tipTextView];
-    [self.activeTipView setBackgroundColor:kRGB(220, 220, 220, 0.3)];
-    tipTextView.center = parentView.center;
-    
-    CALayer *imageLayer = tipTextView.layer;
-    [imageLayer setCornerRadius:15];
-    [imageLayer setMasksToBounds:YES];
-    
-    //UITapGestureRecognizer *tapRecognizer;
-    //tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeTip)];
-    //[self.activeTipView addGestureRecognizer:tapRecognizer];
-    UIPanGestureRecognizer *panRecognizer;
-    panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(closeTip)];
-    [self.activeTipView addGestureRecognizer:panRecognizer];
-    
-    
-    self.activeTipView.alpha = 0;
-    [parentView addSubview:self.activeTipView];
-    [parentView bringSubviewToFront:self.activeTipView];
-    
-    [UIView animateWithDuration:0.15 animations:^{
-        self.activeTipView.alpha = 1;
-    }];
-}
-
--(void)closeTip
-{
-    
-    if (self.activeTipView) {
-        [UIView animateWithDuration:0.15 animations:^{
-            self.activeTipView.alpha = 0;
-        }];
-        
-        [self.activeTipView removeFromSuperview];
-        self.activeTipView = nil;
-    }
-}
-
 @end

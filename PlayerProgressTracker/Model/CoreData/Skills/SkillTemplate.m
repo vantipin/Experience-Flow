@@ -22,7 +22,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 @dynamic skillDescription;
 @dynamic skillRulesExamples;
 @dynamic skillRules;
-@dynamic skillStartingLvl;
+@dynamic defaultLevel;
 @dynamic levelBasicBarrier;
 @dynamic levelProgression;
 @dynamic levelGrowthGoesToBasicSkill;
@@ -63,7 +63,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
         skillTemplate.levelBasicBarrier = basicXpBarrier;
         skillTemplate.levelProgression = skillProgression;
         skillTemplate.skillEnumType = skillClassType;
-        skillTemplate.skillStartingLvl = startingLvl;
+        skillTemplate.defaultLevel = startingLvl;
         
         if (icon)
         {

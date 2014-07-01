@@ -18,6 +18,7 @@
 
 static NSString *nameEmpty = @"Empty";
 static NSString *nameHuman = @"Human";
+static NSString *nameDwarf = @"Dwarf";
 static SkillLevelsSetManager *instance = nil;
 
 @interface SkillLevelsSetManager()
@@ -72,7 +73,7 @@ static SkillLevelsSetManager *instance = nil;
     if (setDict) {
         //emptify all character skill
         for (Skill *skill in character.skillSet.skills) {
-            skill.currentLevel = skill.skillTemplate.skillStartingLvl;
+            skill.currentLevel = skill.skillTemplate.defaultLevel;
             skill.currentProgress = 0;
         }
         
@@ -113,12 +114,24 @@ static SkillLevelsSetManager *instance = nil;
                               
                               [DefaultSkillTemplates sharedInstance].strength.name : @(2),
                               [DefaultSkillTemplates sharedInstance].toughness.name : @(2),
-                              [DefaultSkillTemplates sharedInstance].agility.name : @(2),
                               [DefaultSkillTemplates sharedInstance].reason.name : @(2),
                               [DefaultSkillTemplates sharedInstance].control.name : @(2),
                               [DefaultSkillTemplates sharedInstance].perception.name : @(2),
                               [DefaultSkillTemplates sharedInstance].agility.name : @(2)};
         [self saveSkillLevelsSet:set withName:nameHuman];
+    }
+    
+    if (![self fetchSetNamed:nameDwarf]) {
+        NSDictionary *set = @{[DefaultSkillTemplates sharedInstance].physique.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].intelligence.name : @(2),
+                              
+                              [DefaultSkillTemplates sharedInstance].strength.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].toughness.name : @(4),
+                              [DefaultSkillTemplates sharedInstance].reason.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].control.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].perception.name : @(0),
+                              [DefaultSkillTemplates sharedInstance].agility.name : @(2)};
+        [self saveSkillLevelsSet:set withName:nameDwarf];
     }
 }
 

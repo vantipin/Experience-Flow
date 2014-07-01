@@ -25,6 +25,9 @@
 @dynamic characterCondition;
 @dynamic icon;
 @dynamic skillSet;
+@dynamic bulk;
+@dynamic pace;
+
 
 //create/update
 

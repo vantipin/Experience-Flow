@@ -33,7 +33,7 @@ typedef enum SkillClassType : int16_t
 @property (nonatomic) float levelBasicBarrier;
 @property (nonatomic) float levelProgression;
 @property (nonatomic) float levelGrowthGoesToBasicSkill;
-@property (nonatomic) int16_t skillStartingLvl;
+@property (nonatomic) int16_t defaultLevel;
 @property (nonatomic) SkillClassesType skillEnumType;
 @property (nonatomic, retain) NSSet *skillsFromThisTemplate;
 @property (nonatomic, retain) SkillTemplate *basicSkillTemplate;

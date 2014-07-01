@@ -155,7 +155,7 @@
 
 -(void)showDescriptionForSkill:(SkillTemplate *)skillTemplate
 {
-    [[SkillManager sharedInstance] showDescriptionForSkillTemplate:skillTemplate inView:self.view.superview];
+    //[[SkillManager sharedInstance] showDescriptionForSkillTemplate:skillTemplate inView:self.view.superview];
 }
 
 #pragma mark -

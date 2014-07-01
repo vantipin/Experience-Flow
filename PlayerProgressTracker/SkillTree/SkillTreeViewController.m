@@ -11,6 +11,8 @@
 #import "SkillManager.h"
 #import "DefaultSkillTemplates.h"
 #import "StatViewController.h"
+#import "TipViewController.h"
+#import "CustomPopoverViewController.h"
 
 static float minimalMarginBetweenTrees = 100;
 static float minimalMarginBetweenNodesX = 50;
@@ -478,8 +480,8 @@ static NSString *emptyParentKey = @"emptyParent";
         contentsFrame.origin.x = 0.0f;
     }
     
-    if (contentsFrame.size.height < boundsSize.height) {
-        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
+    if ((contentsFrame.size.height - self.customHeaderStatLayoutY ) < boundsSize.height) {
+        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height + self.customHeaderStatLayoutY) / 2.0f;
     } else {
         contentsFrame.origin.y = 0.0f;
     }
@@ -513,7 +515,12 @@ static NSString *emptyParentKey = @"emptyParent";
 -(void)didTapNode:(NodeViewController *)node
 {
     NSLog(@"did tap node %@",node.skill.skillTemplate.name);
-    [[SkillManager sharedInstance] showDescriptionForSkillTemplate:node.skill.skillTemplate inView:self.scrollView.superview];
+    TipViewController *tipController = [[TipViewController alloc] initWithSkillTemplate:node.skill.skillTemplate];
+    CustomPopoverViewController *popover = [[CustomPopoverViewController alloc] initWithContentViewController:tipController];
+    popover.popoverContentSize = CGSizeMake(self.view.frame.size.width * 0.7, self.view.frame.size.height * 0.7);
+    
+    [popover presentPopoverInView:self.view];
+    //[[SkillManager sharedInstance] showDescriptionForSkillTemplate:node.skill.skillTemplate inView:self.scrollView.superview];
 }
 
 -(void)didTapNodeLevel:(NodeViewController *)node

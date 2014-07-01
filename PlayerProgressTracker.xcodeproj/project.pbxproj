@@ -52,8 +52,6 @@
 		DF1F5CB2195B4338002D7EF2 /* addButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9B195B4338002D7EF2 /* addButton@2x.png */; };
 		DF1F5CB3195B4338002D7EF2 /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9C195B4338002D7EF2 /* deleteButton.png */; };
 		DF1F5CB4195B4338002D7EF2 /* deleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9D195B4338002D7EF2 /* deleteButton@2x.png */; };
-		DF1F5CB5195B4338002D7EF2 /* headerCreatingCharacter.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9E195B4338002D7EF2 /* headerCreatingCharacter.png */; };
-		DF1F5CB6195B4338002D7EF2 /* headerCreatingCharacter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9F195B4338002D7EF2 /* headerCreatingCharacter@2x.png */; };
 		DF1F5CB7195B4338002D7EF2 /* link.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA0195B4338002D7EF2 /* link.png */; };
 		DF1F5CB8195B4338002D7EF2 /* link@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA1195B4338002D7EF2 /* link@2x.png */; };
 		DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA2195B4338002D7EF2 /* lowerXp.png */; };
@@ -98,6 +96,16 @@
 		DFDA01C21961CE7F005D3703 /* bulk.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01C01961CE7F005D3703 /* bulk.png */; };
 		DFDA01C31961CE7F005D3703 /* bulk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01C11961CE7F005D3703 /* bulk@2x.png */; };
 		DFDA01C61961D1B6005D3703 /* StatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDA01C51961D1B6005D3703 /* StatViewController.m */; };
+		DFDA01DF19631A51005D3703 /* textureWallBackground@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DB19631A51005D3703 /* textureWallBackground@2x.jpg */; };
+		DFDA01E019631A51005D3703 /* textureWallBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DC19631A51005D3703 /* textureWallBackground.jpg */; };
+		DFDA01E119631A51005D3703 /* headerWallPic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */; };
+		DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DE19631A51005D3703 /* headerWallPic.png */; };
+		DFDA01E51963245A005D3703 /* headerClouds.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E31963245A005D3703 /* headerClouds.png */; };
+		DFDA01E61963245A005D3703 /* headerClouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E41963245A005D3703 /* headerClouds@2x.png */; };
+		DFDA01E919632507005D3703 /* headerCreatingCharacter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E719632507005D3703 /* headerCreatingCharacter@2x.png */; };
+		DFDA01EA19632507005D3703 /* headerCreatingCharacter.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E819632507005D3703 /* headerCreatingCharacter.png */; };
+		DFDA01EE19632C1E005D3703 /* TipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDA01ED19632C1E005D3703 /* TipViewController.m */; };
+		DFDA01F119633043005D3703 /* CustomPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDA01F019633043005D3703 /* CustomPopoverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,8 +197,6 @@
 		DF1F5C9B195B4338002D7EF2 /* addButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addButton@2x.png"; sourceTree = "<group>"; };
 		DF1F5C9C195B4338002D7EF2 /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
 		DF1F5C9D195B4338002D7EF2 /* deleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButton@2x.png"; sourceTree = "<group>"; };
-		DF1F5C9E195B4338002D7EF2 /* headerCreatingCharacter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerCreatingCharacter.png; sourceTree = "<group>"; };
-		DF1F5C9F195B4338002D7EF2 /* headerCreatingCharacter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerCreatingCharacter@2x.png"; sourceTree = "<group>"; };
 		DF1F5CA0195B4338002D7EF2 /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link.png; sourceTree = "<group>"; };
 		DF1F5CA1195B4338002D7EF2 /* link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link@2x.png"; sourceTree = "<group>"; };
 		DF1F5CA2195B4338002D7EF2 /* lowerXp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lowerXp.png; sourceTree = "<group>"; };
@@ -245,6 +251,18 @@
 		DFDA01C11961CE7F005D3703 /* bulk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulk@2x.png"; sourceTree = "<group>"; };
 		DFDA01C41961D1B6005D3703 /* StatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatViewController.h; sourceTree = "<group>"; };
 		DFDA01C51961D1B6005D3703 /* StatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatViewController.m; sourceTree = "<group>"; };
+		DFDA01DB19631A51005D3703 /* textureWallBackground@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "textureWallBackground@2x.jpg"; sourceTree = "<group>"; };
+		DFDA01DC19631A51005D3703 /* textureWallBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = textureWallBackground.jpg; sourceTree = "<group>"; };
+		DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerWallPic@2x.png"; sourceTree = "<group>"; };
+		DFDA01DE19631A51005D3703 /* headerWallPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerWallPic.png; sourceTree = "<group>"; };
+		DFDA01E31963245A005D3703 /* headerClouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerClouds.png; sourceTree = "<group>"; };
+		DFDA01E41963245A005D3703 /* headerClouds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerClouds@2x.png"; sourceTree = "<group>"; };
+		DFDA01E719632507005D3703 /* headerCreatingCharacter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerCreatingCharacter@2x.png"; sourceTree = "<group>"; };
+		DFDA01E819632507005D3703 /* headerCreatingCharacter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerCreatingCharacter.png; sourceTree = "<group>"; };
+		DFDA01EC19632C1E005D3703 /* TipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipViewController.h; sourceTree = "<group>"; };
+		DFDA01ED19632C1E005D3703 /* TipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipViewController.m; sourceTree = "<group>"; };
+		DFDA01EF19633043005D3703 /* CustomPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPopoverViewController.h; sourceTree = "<group>"; };
+		DFDA01F019633043005D3703 /* CustomPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPopoverViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,6 +423,14 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DFDA01E719632507005D3703 /* headerCreatingCharacter@2x.png */,
+				DFDA01E819632507005D3703 /* headerCreatingCharacter.png */,
+				DFDA01E31963245A005D3703 /* headerClouds.png */,
+				DFDA01E41963245A005D3703 /* headerClouds@2x.png */,
+				DFDA01DB19631A51005D3703 /* textureWallBackground@2x.jpg */,
+				DFDA01DC19631A51005D3703 /* textureWallBackground.jpg */,
+				DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */,
+				DFDA01DE19631A51005D3703 /* headerWallPic.png */,
 				DFDA01C01961CE7F005D3703 /* bulk.png */,
 				DFDA01C11961CE7F005D3703 /* bulk@2x.png */,
 				DFDA01B41961C7BA005D3703 /* health.png */,
@@ -417,8 +443,6 @@
 				DF1F5C9B195B4338002D7EF2 /* addButton@2x.png */,
 				DF1F5C9C195B4338002D7EF2 /* deleteButton.png */,
 				DF1F5C9D195B4338002D7EF2 /* deleteButton@2x.png */,
-				DF1F5C9E195B4338002D7EF2 /* headerCreatingCharacter.png */,
-				DF1F5C9F195B4338002D7EF2 /* headerCreatingCharacter@2x.png */,
 				DF1F5CA0195B4338002D7EF2 /* link.png */,
 				DF1F5CA1195B4338002D7EF2 /* link@2x.png */,
 				DF1F5CA2195B4338002D7EF2 /* lowerXp.png */,
@@ -476,6 +500,7 @@
 		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DFDA01EB19632BF8005D3703 /* TipViewController */,
 				DF1F5C6B195B432D002D7EF2 /* Views */,
 				DF1F5C79195B432D002D7EF2 /* SkillTree */,
 				DF1F5C82195B432D002D7EF2 /* DropDownControllers */,
@@ -554,6 +579,17 @@
 				DFDA01C51961D1B6005D3703 /* StatViewController.m */,
 			);
 			name = headerStatView;
+			sourceTree = "<group>";
+		};
+		DFDA01EB19632BF8005D3703 /* TipViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DFDA01EF19633043005D3703 /* CustomPopoverViewController.h */,
+				DFDA01F019633043005D3703 /* CustomPopoverViewController.m */,
+				DFDA01EC19632C1E005D3703 /* TipViewController.h */,
+				DFDA01ED19632C1E005D3703 /* TipViewController.m */,
+			);
+			name = TipViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -637,17 +673,21 @@
 				DF1F5CBD195B4338002D7EF2 /* nightSky@2x.png in Resources */,
 				DF1F5C90195B432D002D7EF2 /* StatView.xib in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
-				DF1F5CB5195B4338002D7EF2 /* headerCreatingCharacter.png in Resources */,
 				DF1F5CB1195B4338002D7EF2 /* addButton.png in Resources */,
 				DF1F5CB3195B4338002D7EF2 /* deleteButton.png in Resources */,
 				DFDA01C31961CE7F005D3703 /* bulk@2x.png in Resources */,
+				DFDA01E919632507005D3703 /* headerCreatingCharacter@2x.png in Resources */,
 				DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */,
 				DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */,
+				DFDA01E51963245A005D3703 /* headerClouds.png in Resources */,
 				DF1F5CBB195B4338002D7EF2 /* mentalSkillNode@2x.png in Resources */,
 				DF1F5C92195B432D002D7EF2 /* NodeView.storyboard in Resources */,
 				DF1F5CB2195B4338002D7EF2 /* addButton@2x.png in Resources */,
 				DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */,
+				DFDA01E119631A51005D3703 /* headerWallPic@2x.png in Resources */,
+				DFDA01EA19632507005D3703 /* headerCreatingCharacter.png in Resources */,
 				DF1F5C8E195B432D002D7EF2 /* SkillViewCell.xib in Resources */,
+				DFDA01E61963245A005D3703 /* headerClouds@2x.png in Resources */,
 				DF1F5CC2195B4338002D7EF2 /* skillNode.png in Resources */,
 				DFDA01BF1961C7BA005D3703 /* movement@2x.png in Resources */,
 				DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */,
@@ -656,6 +696,7 @@
 				DF1F5CC1195B4338002D7EF2 /* raiseXp@2x.png in Resources */,
 				DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */,
 				DFDA01BD1961C7BA005D3703 /* inventoryIcon@2x.png in Resources */,
+				DFDA01DF19631A51005D3703 /* textureWallBackground@2x.jpg in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
 				DF1F5CBF195B4338002D7EF2 /* noImage@2x.png in Resources */,
@@ -663,11 +704,12 @@
 				DF1F5CBA195B4338002D7EF2 /* lowerXp@2x.png in Resources */,
 				DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */,
 				DF1F5CBC195B4338002D7EF2 /* nightSky.png in Resources */,
+				DFDA01E019631A51005D3703 /* textureWallBackground.jpg in Resources */,
 				DF1F5C94195B432D002D7EF2 /* SkillLinkView.storyboard in Resources */,
 				DF1F5CC3195B4338002D7EF2 /* skillNode@2x.png in Resources */,
 				DFDA01BE1961C7BA005D3703 /* movement.png in Resources */,
-				DF1F5CB6195B4338002D7EF2 /* headerCreatingCharacter@2x.png in Resources */,
 				DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */,
+				DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */,
 				DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
@@ -730,8 +772,10 @@
 				DFAED10C186309B40039D17B /* main.m in Sources */,
 				DF1F5C5E195B431E002D7EF2 /* BasicSkill.m in Sources */,
 				DF1F5C67195B431E002D7EF2 /* DefaultSkillTemplates.m in Sources */,
+				DFDA01F119633043005D3703 /* CustomPopoverViewController.m in Sources */,
 				DF1F5C55195B431E002D7EF2 /* CharacterConditionAttributes.m in Sources */,
 				DF1F5C64195B431E002D7EF2 /* SkillLevelsSet.m in Sources */,
+				DFDA01EE19632C1E005D3703 /* TipViewController.m in Sources */,
 				DF1F5C6A195B431E002D7EF2 /* SkillTemplateDiskData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

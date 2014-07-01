@@ -36,7 +36,7 @@
                                                               withSkillProgression:skillTemplateDisk.levelProgression
                                                           withBasicSkillGrowthGoes:skillTemplateDisk.levelGrowthGoesToBasicSkill
                                                                      withSkillType:skillTemplateDisk.skillEnumType
-                                                            withDefaultStartingLvl:skillTemplateDisk.skillStartingLvl
+                                                            withDefaultStartingLvl:skillTemplateDisk.defaultLevel
                                                            withParentSkillTemplate:nil
                                                                        withContext:context];
         
@@ -80,7 +80,7 @@
     skillTemplateDisk.skillDescription = skillTemplate.skillDescription;
     skillTemplateDisk.skillRules = skillTemplate.skillRules;
     skillTemplateDisk.skillRulesExamples = skillTemplate.skillRulesExamples;
-    skillTemplateDisk.skillStartingLvl = skillTemplate.skillStartingLvl;
+    skillTemplateDisk.defaultLevel = skillTemplate.defaultLevel;
     skillTemplateDisk.levelBasicBarrier = skillTemplate.levelBasicBarrier;
     skillTemplateDisk.levelGrowthGoesToBasicSkill = skillTemplate.levelGrowthGoesToBasicSkill;
     skillTemplateDisk.levelProgression = skillTemplate.levelProgression;
@@ -222,7 +222,7 @@
     [encoder encodeObject:self.skillDescription forKey:kskillDescription];
     [encoder encodeObject:self.skillRulesExamples forKey:kskillRulesExamples];
     [encoder encodeObject:self.skillRules forKey:kskillRules];
-    [encoder encodeInt:self.skillStartingLvl forKey:kskillStartingLvl];
+    [encoder encodeInt:self.defaultLevel forKey:kskillStartingLvl];
     [encoder encodeFloat:self.levelBasicBarrier forKey:klevelBasicBarrier];
     [encoder encodeFloat:self.levelGrowthGoesToBasicSkill forKey:klevelGrowthGoesToBasicSkill];
     [encoder encodeFloat:self.levelProgression forKey:klevelProgression];
@@ -236,7 +236,7 @@
     self.skillDescription = [decoder decodeObjectForKey:kskillDescription];
     self.skillRulesExamples = [decoder decodeObjectForKey:kskillRulesExamples];
     self.skillRules = [decoder decodeObjectForKey:kskillRules];
-    self.skillStartingLvl = [decoder decodeIntForKey:kskillStartingLvl];
+    self.defaultLevel = [decoder decodeIntForKey:kskillStartingLvl];
     self.levelBasicBarrier = [decoder decodeFloatForKey:klevelBasicBarrier];
     self.levelGrowthGoesToBasicSkill = [decoder decodeFloatForKey:klevelGrowthGoesToBasicSkill];
     self.levelProgression = [decoder decodeFloatForKey:klevelProgression];

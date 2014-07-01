@@ -91,12 +91,6 @@
 -(NSArray *)fetchAllSkillsForSkillSet:(SkillSet *)skillSet;
 
 
-/**
- *Show scrollable text view to display description for chosen skill. View will disappear on pan outside of text view. 
- */
--(void)showDescriptionForSkillTemplate:(SkillTemplate *)skillTemplate inView:(UIView *)parentView;
-
-
 //currently method used in development purposes only
 -(void)clearSkillTemplateWithName:(NSString *)name;
 @end
