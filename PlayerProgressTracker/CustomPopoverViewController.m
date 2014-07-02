@@ -7,7 +7,7 @@
 //
 
 #import "CustomPopoverViewController.h"
-#import "ColorConstants.h"
+#import "Constants.h"
 
 @interface CustomPopoverViewController ()
 
@@ -45,8 +45,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.view.backgroundColor = kRGB(240, 241, 242, 0.9);
+    
+    self.view.contentMode = UIViewContentModeScaleAspectFill;
+    self.view.layer.contents = (id)[UIImage imageWithContentsOfFile:filePathWithName(@"cloudBackground.png")].CGImage;
+    self.view.layer.masksToBounds = true;
     
     UITapGestureRecognizer *panRecognizer;
     panRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPopoverAnimated:)];
@@ -79,9 +81,9 @@
     if (!_contentView) {
         _contentView = [UIView new];
         CALayer *viewLayer = _contentView.layer;
-        viewLayer.cornerRadius = 26;
-        viewLayer.shadowRadius = 2;
-        viewLayer.shadowOpacity = 0.5;
+//        viewLayer.cornerRadius = 26;
+//        viewLayer.shadowRadius = 2;
+//        viewLayer.shadowOpacity = 0.5;
         [viewLayer setMasksToBounds:true];
         [self.view addSubview:_contentView];
     }

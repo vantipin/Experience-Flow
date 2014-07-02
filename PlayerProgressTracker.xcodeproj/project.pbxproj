@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF0995D4196460900025A76A /* headerCharacterStats.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995D0196460900025A76A /* headerCharacterStats.png */; };
+		DF0995D5196460900025A76A /* headerCharacterStats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995D1196460900025A76A /* headerCharacterStats@2x.png */; };
+		DF0995D8196460C70025A76A /* cloudBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995D6196460C70025A76A /* cloudBackground@2x.png */; };
+		DF0995D9196460C70025A76A /* cloudBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995D7196460C70025A76A /* cloudBackground.png */; };
+		DF0995DC196462140025A76A /* tipBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995DA196462140025A76A /* tipBackground@2x.png */; };
+		DF0995DD196462140025A76A /* tipBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995DB196462140025A76A /* tipBackground.png */; };
 		DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57241954C0E4002D7EF2 /* appIcon.png */; };
 		DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57251954C0E4002D7EF2 /* appIcon@2x.png */; };
 		DF1F5C54195B431E002D7EF2 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C25195B431E002D7EF2 /* Character.m */; };
@@ -96,8 +102,6 @@
 		DFDA01C21961CE7F005D3703 /* bulk.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01C01961CE7F005D3703 /* bulk.png */; };
 		DFDA01C31961CE7F005D3703 /* bulk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01C11961CE7F005D3703 /* bulk@2x.png */; };
 		DFDA01C61961D1B6005D3703 /* StatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDA01C51961D1B6005D3703 /* StatViewController.m */; };
-		DFDA01DF19631A51005D3703 /* textureWallBackground@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DB19631A51005D3703 /* textureWallBackground@2x.jpg */; };
-		DFDA01E019631A51005D3703 /* textureWallBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DC19631A51005D3703 /* textureWallBackground.jpg */; };
 		DFDA01E119631A51005D3703 /* headerWallPic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */; };
 		DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DE19631A51005D3703 /* headerWallPic.png */; };
 		DFDA01E51963245A005D3703 /* headerClouds.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E31963245A005D3703 /* headerClouds.png */; };
@@ -119,6 +123,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF0995D0196460900025A76A /* headerCharacterStats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerCharacterStats.png; sourceTree = "<group>"; };
+		DF0995D1196460900025A76A /* headerCharacterStats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerCharacterStats@2x.png"; sourceTree = "<group>"; };
+		DF0995D6196460C70025A76A /* cloudBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudBackground@2x.png"; sourceTree = "<group>"; };
+		DF0995D7196460C70025A76A /* cloudBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudBackground.png; sourceTree = "<group>"; };
+		DF0995DA196462140025A76A /* tipBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tipBackground@2x.png"; sourceTree = "<group>"; };
+		DF0995DB196462140025A76A /* tipBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tipBackground.png; sourceTree = "<group>"; };
 		DF1F57241954C0E4002D7EF2 /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
 		DF1F57251954C0E4002D7EF2 /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
 		DF1F5C24195B431E002D7EF2 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
@@ -218,7 +228,7 @@
 		DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContextObject.m; sourceTree = "<group>"; };
 		DF24B11F1871DF0C00B57855 /* NewCharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCharacterViewController.h; sourceTree = "<group>"; };
 		DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCharacterViewController.m; sourceTree = "<group>"; };
-		DF24B1291874B75900B57855 /* ColorConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
+		DF24B1291874B75900B57855 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Xp Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xp Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -251,8 +261,6 @@
 		DFDA01C11961CE7F005D3703 /* bulk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulk@2x.png"; sourceTree = "<group>"; };
 		DFDA01C41961D1B6005D3703 /* StatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatViewController.h; sourceTree = "<group>"; };
 		DFDA01C51961D1B6005D3703 /* StatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatViewController.m; sourceTree = "<group>"; };
-		DFDA01DB19631A51005D3703 /* textureWallBackground@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "textureWallBackground@2x.jpg"; sourceTree = "<group>"; };
-		DFDA01DC19631A51005D3703 /* textureWallBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = textureWallBackground.jpg; sourceTree = "<group>"; };
 		DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerWallPic@2x.png"; sourceTree = "<group>"; };
 		DFDA01DE19631A51005D3703 /* headerWallPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerWallPic.png; sourceTree = "<group>"; };
 		DFDA01E31963245A005D3703 /* headerClouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerClouds.png; sourceTree = "<group>"; };
@@ -423,12 +431,16 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DF0995DA196462140025A76A /* tipBackground@2x.png */,
+				DF0995DB196462140025A76A /* tipBackground.png */,
+				DF0995D6196460C70025A76A /* cloudBackground@2x.png */,
+				DF0995D7196460C70025A76A /* cloudBackground.png */,
+				DF0995D0196460900025A76A /* headerCharacterStats.png */,
+				DF0995D1196460900025A76A /* headerCharacterStats@2x.png */,
 				DFDA01E719632507005D3703 /* headerCreatingCharacter@2x.png */,
 				DFDA01E819632507005D3703 /* headerCreatingCharacter.png */,
 				DFDA01E31963245A005D3703 /* headerClouds.png */,
 				DFDA01E41963245A005D3703 /* headerClouds@2x.png */,
-				DFDA01DB19631A51005D3703 /* textureWallBackground@2x.jpg */,
-				DFDA01DC19631A51005D3703 /* textureWallBackground.jpg */,
 				DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */,
 				DFDA01DE19631A51005D3703 /* headerWallPic.png */,
 				DFDA01C01961CE7F005D3703 /* bulk.png */,
@@ -506,7 +518,7 @@
 				DF1F5C82195B432D002D7EF2 /* DropDownControllers */,
 				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
 				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
-				DF24B1291874B75900B57855 /* ColorConstants.h */,
+				DF24B1291874B75900B57855 /* Constants.h */,
 				DFAED10E186309B40039D17B /* AppDelegate.h */,
 				DFAED10F186309B40039D17B /* AppDelegate.m */,
 				DFAED111186309B40039D17B /* Main.storyboard */,
@@ -693,18 +705,20 @@
 				DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */,
 				DF1F5CB7195B4338002D7EF2 /* link.png in Resources */,
 				DF1F5CBE195B4338002D7EF2 /* noImage.png in Resources */,
+				DF0995D5196460900025A76A /* headerCharacterStats@2x.png in Resources */,
 				DF1F5CC1195B4338002D7EF2 /* raiseXp@2x.png in Resources */,
 				DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */,
 				DFDA01BD1961C7BA005D3703 /* inventoryIcon@2x.png in Resources */,
-				DFDA01DF19631A51005D3703 /* textureWallBackground@2x.jpg in Resources */,
+				DF0995D8196460C70025A76A /* cloudBackground@2x.png in Resources */,
+				DF0995DC196462140025A76A /* tipBackground@2x.png in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
+				DF0995D4196460900025A76A /* headerCharacterStats.png in Resources */,
 				DF1F5CBF195B4338002D7EF2 /* noImage@2x.png in Resources */,
 				DF1F5C8A195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib in Resources */,
 				DF1F5CBA195B4338002D7EF2 /* lowerXp@2x.png in Resources */,
 				DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */,
 				DF1F5CBC195B4338002D7EF2 /* nightSky.png in Resources */,
-				DFDA01E019631A51005D3703 /* textureWallBackground.jpg in Resources */,
 				DF1F5C94195B432D002D7EF2 /* SkillLinkView.storyboard in Resources */,
 				DF1F5CC3195B4338002D7EF2 /* skillNode@2x.png in Resources */,
 				DFDA01BE1961C7BA005D3703 /* movement.png in Resources */,
@@ -714,6 +728,8 @@
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
 				DF1F5CC4195B4338002D7EF2 /* skillNodeHighlited.png in Resources */,
+				DF0995D9196460C70025A76A /* cloudBackground.png in Resources */,
+				DF0995DD196462140025A76A /* tipBackground.png in Resources */,
 				DFDA01BA1961C7BA005D3703 /* health.png in Resources */,
 				DF1F5CB4195B4338002D7EF2 /* deleteButton@2x.png in Resources */,
 			);

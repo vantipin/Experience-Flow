@@ -19,7 +19,7 @@
 #import "SkillSet.h"
 #import "DefaultSkillTemplates.h"
 #import "CharacterConditionAttributes.h"
-#import "ColorConstants.h"
+#import "Constants.h"
 
 
 

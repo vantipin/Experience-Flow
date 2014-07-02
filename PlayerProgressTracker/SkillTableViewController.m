@@ -8,7 +8,7 @@
 
 #import "SkillTableViewController.h"
 #import "SkillTemplate.h"
-#import "ColorConstants.h"
+#import "Constants.h"
 #import "MainContextObject.h"
 #import "SkillViewCell.h"
 #import "Character.h"

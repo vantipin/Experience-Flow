@@ -13,7 +13,7 @@
 #import "SkillTemplateDiskData.h"
 #import "SkillTreeViewController.h"
 #import "MainContextObject.h"
-#import "ColorConstants.h"
+#import "Constants.h"
 #import "SkillLevelsSetManager.h"
 #import "SkillLevelsSet.h"
 
@@ -28,7 +28,7 @@
 @property (nonatomic) IBOutlet UITextField *name;
 @property (nonatomic) IBOutlet UIView *characterSheetView;
 @property (nonatomic) IBOutlet UIView *statViewContainer;
-@property (nonatomic) IBOutlet UIView *additionalSkillContainerView;
+@property (nonatomic) IBOutlet UIView *headerView;
 
 
 @property (nonatomic,strong) Character *character;
@@ -38,6 +38,8 @@
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) UITextField *currentlyEditingField; //for applying changes when (save) buttons tapped
 @property (nonatomic) SkillTreeViewController *skillTreeController;
+
+@property (nonatomic) BOOL shouldAnimate;
 
 @end
 
@@ -55,6 +57,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self allFontsToConsole];
+    self.shouldAnimate = true;
     
     //[[SkillManager sharedInstance] clearSkillTemplate];
     [DefaultSkillTemplates sharedInstance].shouldUpdate = true;
@@ -78,10 +83,20 @@
     [textViewLayer setMasksToBounds:YES];
     
     
+    self.view.contentMode = UIViewContentModeScaleAspectFill;
+    self.view.layer.contents = (id)[UIImage imageWithContentsOfFile:filePathWithName(@"nightSky.png")].CGImage;
+    self.view.layer.masksToBounds = true;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    if (self.shouldAnimate) {
+        self.headerView.frame = CGRectMake(0, self.headerView.frame.origin.y - 50, self.headerView.frame.size.width, self.headerView.frame.size.height);
+    }
+    
+    
+    
     [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
     
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
@@ -95,6 +110,21 @@
 //    //TODO
 //    [_character addToCurrentMeleeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] ordinary] withContext:self.context];
 //    [_character setCurrentRangeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] bow] withContext:self.context];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    //animate header
+    
+    if (self.shouldAnimate) {
+        [UIView animateWithDuration:0.18 animations:^{
+            self.headerView.frame = CGRectMake(0, 0, self.headerView.frame.size.width, self.headerView.frame.size.height);
+        } completion:^(BOOL success) {
+            [self.view bringSubviewToFront:self.headerView];
+            self.shouldAnimate = false;
+        }];
+    }
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -115,8 +145,8 @@
         
         _skillTreeController = [[SkillTreeViewController alloc] init];
         [self addChildViewController:_skillTreeController];
-        [self.additionalSkillContainerView addSubview:_skillTreeController.view];
-        _skillTreeController.view.frame = self.additionalSkillContainerView.bounds;
+        [self.view addSubview:_skillTreeController.view];
+        _skillTreeController.view.frame = self.view.bounds;
         _skillTreeController.customHeaderStatLayoutY = 100;
     }
     
@@ -428,14 +458,15 @@
     
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     
-	[self presentViewController:picker animated:true completion:^{}];
+	[self presentViewController:picker animated:true completion:^{
+        picker.view.frame = self.view.bounds;
+    }];
 }
 
 #pragma mark image picker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:true completion:^{
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        self.icon.contentMode = UIViewContentModeScaleToFill;
         [self.icon setImage:image];
     }];
 }

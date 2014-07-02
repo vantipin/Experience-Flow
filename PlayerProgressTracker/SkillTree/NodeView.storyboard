@@ -74,7 +74,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="skillNode.png" width="192" height="194"/>
+        <image name="skillNode.png" width="197" height="197"/>
         <image name="skillNodeHighlited.png" width="197" height="197"/>
         <image name="xpAura.png" width="195" height="195"/>
     </resources>

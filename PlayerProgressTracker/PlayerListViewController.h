@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MainContextObject.h"
 #import "PlayerCellView.h"
-#import "ColorConstants.h"
+#import "Constants.h"
 
 #import "Character.h"
 #import "Pic.h"

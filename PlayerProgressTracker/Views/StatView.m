@@ -15,7 +15,7 @@
 #import "MainContextObject.h"
 #import "CharacterConditionAttributes.h"
 #import "DefaultSkillTemplates.h"
-#import "ColorConstants.h"
+#import "Constants.h"
 
 @interface StatView()
 

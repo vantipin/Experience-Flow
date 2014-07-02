@@ -9,7 +9,7 @@
 #import "SkillViewCell.h"
 #import "SkillTemplate.h"
 #import "SkillTableViewController.h"
-#import "ColorConstants.h"
+#import "Constants.h"
 
 @interface SkillViewCell()
 
