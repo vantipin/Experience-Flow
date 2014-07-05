@@ -1,14 +1,14 @@
 //
-//  PlayerCellView.m
+//  PlayerViewCell.m
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 30.12.13.
-//  Copyright (c) 2013 WierdMasks. All rights reserved.
+//  Created by Vlad Antipin on 05.07.14.
+//  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
-#import "PlayerCellView.h"
+#import "PlayerViewCell.h"
 
-@implementation PlayerCellView
+@implementation PlayerViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -17,6 +17,11 @@
         // Initialization code
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

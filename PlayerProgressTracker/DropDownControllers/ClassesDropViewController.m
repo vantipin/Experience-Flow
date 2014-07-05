@@ -7,6 +7,7 @@
 //
 
 #import "ClassesDropViewController.h"
+#import "Constants.h"
 
 @interface ClassesDropViewController ()
 
@@ -29,12 +30,13 @@
 {
     [super viewDidLoad];
     
-    self.font = [UIFont fontWithName:@"Noteworthy-Light" size:15];
+    self.font = defaultFont;
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
     
+    
     CALayer *imageLayer = self.view.layer;
-    [imageLayer setCornerRadius:15];
+    [imageLayer setCornerRadius:10];
     [imageLayer setMasksToBounds:YES];
 	// Do any additional setup after loading the view.
 }

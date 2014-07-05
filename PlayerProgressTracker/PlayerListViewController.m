@@ -7,8 +7,19 @@
 //
 
 #import "PlayerListViewController.h"
+#import "MainContextObject.h"
+#import "Constants.h"
+#import "PlayerViewCell.h"
+
+#import "Character.h"
+#import "Pic.h"
+
+#import "SkillManager.h"
+
 
 @interface PlayerListViewController ()
+
+@property (nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic) NSMutableArray *dataSource;
 @property (nonatomic) NSManagedObjectContext *context;
@@ -31,9 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
     [self updateDataSource];
     
     self.view.backgroundColor = bodyColor;
@@ -76,26 +84,16 @@
     return ([self.dataSource count]==0)?1:[self.dataSource count];
 }
 
--(PlayerCellView *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(PlayerViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifer = @"CharactersListIdentifer";
-    PlayerCellView *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifer];
-    if (!cell) {
-        cell = [[PlayerCellView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifer];
-    }
-    else //clean up
-    {
-        for (UIView *subView in cell.contentView.subviews) {
-            [subView removeFromSuperview];
-        }
-    }
+    PlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayerViewCell"];
     
     cell.backgroundColor = [UIColor clearColor];
     
     if ([self.dataSource count] == 0) {
         UIButton *addCharacterBtn = [UIButton new];
         [addCharacterBtn setTitle:@"+ Add new character" forState:UIControlStateNormal];
-        [addCharacterBtn.titleLabel setFont:[UIFont fontWithName:@"Noteworthy-Bold" size:18]];
+        [addCharacterBtn.titleLabel setFont:defaultFont];
         [addCharacterBtn setTitleColor:textEditColor forState:UIControlStateNormal];
         addCharacterBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin
         | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
@@ -107,12 +105,12 @@
     else {//init as usual
         Character *character = self.dataSource[indexPath.row];
         
-        cell.playerName.text = character.name;
-        cell.lastModifed.text = [Character standartDateFormat:character.dateModifed];
+        cell.name.text = character.name;
+        cell.dateChanged.text = [Character standartDateFormat:character.dateModifed];
         
         if (character.icon) {
             UIImage *image = [character.icon imageFromPic];
-            [cell.playerIcon setImage: image];
+            cell.icon.image = image;
         }
         
     }

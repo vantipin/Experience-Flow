@@ -7,16 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MainContextObject.h"
-#import "PlayerCellView.h"
-#import "Constants.h"
 
-#import "Character.h"
-#import "Pic.h"
-
-#import "SkillManager.h"
-
-@interface PlayerListViewController : UITableViewController <UITableViewDataSource>
+@interface PlayerListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 @end

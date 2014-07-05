@@ -49,12 +49,22 @@
     self.view.contentMode = UIViewContentModeScaleAspectFill;
     self.view.layer.contents = (id)[UIImage imageWithContentsOfFile:filePathWithName(@"cloudBackground.png")].CGImage;
     self.view.layer.masksToBounds = true;
+
+
     
     UITapGestureRecognizer *panRecognizer;
     panRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPopoverAnimated:)];
     [self.view addGestureRecognizer:panRecognizer];
     panRecognizer.delegate = self;
     // Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [UIView animateWithDuration:0 animations:^{
+        self.view.layer.opaque = false;
+        self.view.layer.opacity = 0.95;
+    }];
 }
 
 - (void)didReceiveMemoryWarning

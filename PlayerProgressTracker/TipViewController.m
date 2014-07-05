@@ -64,7 +64,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = kRGB(240, 240, 240, 0.1);
+    self.view.backgroundColor = kRGB(250, 250, 250, 1);
 //    self.view.contentMode = UIViewContentModeScaleAspectFit;
 //    self.view.layer.contents = (id)[UIImage imageWithContentsOfFile:filePathWithName(@"tipBackground.png")].CGImage;
 //    self.view.layer.masksToBounds = true;
@@ -73,7 +73,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.tipTextView.frame = CGRectMake(self.view.frame.size.width * 0.05, self.view.frame.size.height * 0, self.view.frame.size.width * 0.9, self.view.frame.size.height * 1);
+    self.tipTextView.frame = CGRectMake(self.view.frame.size.width * 0.05, self.view.frame.size.height * 0.05, self.view.frame.size.width * 0.9, self.view.frame.size.height * 0.9);
 }
 
 -(void)viewDidAppear:(BOOL)animated

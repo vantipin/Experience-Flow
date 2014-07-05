@@ -459,7 +459,8 @@
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     
 	[self presentViewController:picker animated:true completion:^{
-        picker.view.frame = self.view.bounds;
+        
+        
     }];
 }
 
