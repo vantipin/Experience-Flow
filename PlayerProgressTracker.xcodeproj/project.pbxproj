@@ -92,6 +92,7 @@
 		DFAED129186309B40039D17B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFAED127186309B40039D17B /* InfoPlist.strings */; };
 		DFAED12B186309B40039D17B /* PlayerProgressTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */; };
 		DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */; };
+		DFC63F0E196DBAF10000AAAD /* CustomSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC63F0D196DBAF10000AAAD /* CustomSplitViewController.m */; };
 		DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */; };
 		DFDA01BA1961C7BA005D3703 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B41961C7BA005D3703 /* health.png */; };
 		DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B51961C7BA005D3703 /* health@2x.png */; };
@@ -250,6 +251,8 @@
 		DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerProgressTrackerTests.m; sourceTree = "<group>"; };
 		DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTableViewController.h; sourceTree = "<group>"; };
 		DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTableViewController.m; sourceTree = "<group>"; };
+		DFC63F0C196DBAF10000AAAD /* CustomSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSplitViewController.h; sourceTree = "<group>"; };
+		DFC63F0D196DBAF10000AAAD /* CustomSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSplitViewController.m; sourceTree = "<group>"; };
 		DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatViewController.storyboard; sourceTree = "<group>"; };
 		DFDA01B41961C7BA005D3703 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
 		DFDA01B51961C7BA005D3703 /* health@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "health@2x.png"; sourceTree = "<group>"; };
@@ -527,13 +530,15 @@
 				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
 				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
 				DF24B1291874B75900B57855 /* Constants.h */,
+				DFAED111186309B40039D17B /* Main.storyboard */,
 				DFAED10E186309B40039D17B /* AppDelegate.h */,
 				DFAED10F186309B40039D17B /* AppDelegate.m */,
-				DFAED111186309B40039D17B /* Main.storyboard */,
 				DF24B11F1871DF0C00B57855 /* NewCharacterViewController.h */,
 				DF24B1201871DF0C00B57855 /* NewCharacterViewController.m */,
 				DF0995DE1968303E0025A76A /* CharacterViewController.h */,
 				DF0995DF1968303E0025A76A /* CharacterViewController.m */,
+				DFC63F0C196DBAF10000AAAD /* CustomSplitViewController.h */,
+				DFC63F0D196DBAF10000AAAD /* CustomSplitViewController.m */,
 				DFAED117186309B40039D17B /* Images.xcassets */,
 				DFB07BFC187EFA1700FF0EF7 /* Resourses */,
 				DFAED106186309B40039D17B /* Supporting Files */,
@@ -786,6 +791,7 @@
 				DF1F5C68195B431E002D7EF2 /* SkillLevelsSetManager.m in Sources */,
 				DF1F5C60195B431E002D7EF2 /* MeleeSkill.m in Sources */,
 				DF1F5C58195B431E002D7EF2 /* Item.m in Sources */,
+				DFC63F0E196DBAF10000AAAD /* CustomSplitViewController.m in Sources */,
 				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
 				DF1F5C5C195B431E002D7EF2 /* Pic.m in Sources */,
 				DF1F5C93195B432D002D7EF2 /* NodeViewController.m in Sources */,

@@ -30,6 +30,19 @@
 
 @synthesize dataSource = _dataSource;
 
+
++(PlayerListViewController *)getInstanceFromStoryboard;
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PlayerList" bundle:nil];
+    PlayerListViewController *controller = [storyboard instantiateInitialViewController];
+    controller.view.frame = CGRectMake(0, 0, 350, 1024);
+    controller.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    controller.view.autoresizesSubviews = true;
+
+    return controller;
+}
+
+
 -(NSMutableArray *)dataSource
 {
     if (!_dataSource) {
@@ -47,6 +60,22 @@
     self.view.backgroundColor = bodyColor;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionTop];
+    if (self.dataSource.count) {
+        if (self.delegate) {
+            [self.delegate didTabPlayer:self.dataSource[0]];
+        }
+    }
+    else {
+        if (self.delegate) {
+            [self.delegate didTapNewPlayer];
+        }
+    }
+}
+
 -(NSManagedObjectContext *)context
 {
     if (!_context) {
@@ -61,7 +90,6 @@
     NSArray *characters = [Character fetchFinishedCharacterWithContext:self.context];
     [self.dataSource removeAllObjects];
     [self.dataSource addObjectsFromArray:characters];
-    
     [self.tableView reloadData];
 }
 
@@ -71,38 +99,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-#pragma mark IBActions and segues
--(IBAction)newCharacter:(id)sender
-{
-    [self performSegueWithIdentifier:@"NewCharacterSegue" sender:self];
-}
-
 #pragma mark UITableView delegates
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ([self.dataSource count]==0)?1:[self.dataSource count];
+    return self.dataSource.count;
 }
 
--(PlayerViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayerViewCell"];
-    
-    cell.backgroundColor = [UIColor clearColor];
-    
-    if ([self.dataSource count] == 0) {
-        UIButton *addCharacterBtn = [UIButton new];
-        [addCharacterBtn setTitle:@"+ Add new character" forState:UIControlStateNormal];
-        [addCharacterBtn.titleLabel setFont:defaultFont];
-        [addCharacterBtn setTitleColor:textEditColor forState:UIControlStateNormal];
-        addCharacterBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin
-        | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
-        [addCharacterBtn addTarget:self action:@selector(newCharacter:) forControlEvents:UIControlEventTouchUpInside];
-        [addCharacterBtn setBackgroundColor:[UIColor clearColor]];
-        addCharacterBtn.frame = cell.bounds;
-        [cell.contentView addSubview:addCharacterBtn];
+    if (self.dataSource.count == indexPath.row) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewPlayerViewCell"];
+        
+        return cell;
     }
-    else {//init as usual
+    else {
+        PlayerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayerViewCell"];
+        
         Character *character = self.dataSource[indexPath.row];
         
         cell.name.text = character.name;
@@ -113,14 +125,21 @@
             cell.icon.image = image;
         }
         
+        return cell;
     }
-    
-    return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"CharacterStatListSegue" sender:self];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (self.delegate) {
+        if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[UITableViewCell class]]) {
+            [self.delegate didTapNewPlayer];
+        }
+        else {
+            Character *character = self.dataSource[indexPath.row];
+            [self.delegate didTabPlayer:character];
+        }
+    }
 }
 @end
