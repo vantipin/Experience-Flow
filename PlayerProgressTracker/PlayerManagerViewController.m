@@ -150,7 +150,7 @@
         //[self.contentNavigationController popToRootViewControllerAnimated:true];
         [self.contentCharacterController selectCharacter:character];
         self.selectedCharacter = character;
-        [UIView animateWithDuration:0.1 animations:^{
+        [UIView animateWithDuration:0.2 animations:^{
             CGRect newFrame = self.sideBarContainerView.frame;
             newFrame.origin.y = 20;
             newFrame.size.height = 748;
@@ -187,7 +187,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIColor *cellBackground = kRGB(220, 220, 220, 0.65);
-    UIColor *cellBackgroundSelected = kRGB(235, 235, 245, 0.8);
+    UIColor *cellBackgroundSelected = kRGB(235, 235, 245, 0.9);
     UIView *selectedView = [UIView new];
     selectedView.backgroundColor = cellBackgroundSelected;
     
