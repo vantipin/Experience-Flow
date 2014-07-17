@@ -144,7 +144,7 @@
 
 -(void)skill:(Skill *)skill buttonTapped:(UIButton *)sender
 {
-    UIView *parentView = self.view;
+    //UIView *parentView = self.view;
     //[[SkillManager sharedInstance] showDescriptionForSkillTemplate:skill.skillTemplate inView:parentView];
 
 }

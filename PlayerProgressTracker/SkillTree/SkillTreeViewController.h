@@ -13,8 +13,13 @@
 
 @interface SkillTreeViewController : UIViewController <UIScrollViewDelegate, NodeViewControllerProtocol, SkillChangeProtocol>
 
+
+
 @property (nonatomic) Character *character;
 @property (nonatomic) float customHeaderStatLayoutY;
+
+-(id)initWithCharacter:(Character *)character;
+
 /*
  *Clear current skill tree and draw a new one. Use this methode AFTER you set the character.
  */
@@ -25,5 +30,5 @@
  */
 -(void)refreshSkillvalues;
 -(void)refreshSkillvaluesWithReloadingSkills:(BOOL)needReload;
-
+-(void)changeYStatLayout:(float)newYLayout animated:(BOOL)animated;
 @end

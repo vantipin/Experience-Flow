@@ -63,7 +63,7 @@
     
     if (!self.dateCreated)
     {
-        self.dateCreated = [CoreDataClass standartDateFormat:[[NSDate date] timeIntervalSince1970]];
+        self.dateCreated = [[NSDate date] timeIntervalSince1970];
     }
     
     self.dateModifed = [[NSDate date] timeIntervalSince1970];

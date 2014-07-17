@@ -22,7 +22,7 @@
 
 @property (nonatomic) BOOL characterFinished;
 @property (nonatomic, retain) NSString * characterId;
-@property (nonatomic, retain) NSString * dateCreated;
+@property (nonatomic) NSTimeInterval dateCreated;
 @property (nonatomic) NSTimeInterval dateModifed;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic) int16_t wounds;

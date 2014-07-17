@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
+static NSString *DID_UPDATE_CHARACTER_LIST = @"DID_UPDATE_CHARACTER_LIST";
+static NSString *SHOULD_HIDE_CUSTOM_SIDEBAR = @"SHOULD_HIDE_CUSTOM_SIDEBAR";
+
 #define kRGB(r, g, b, a) [UIColor colorWithRed:(r)/255. green:(g)/255. blue:(b)/255. alpha:(a)]
 
 #define defaultFont      [UIFont fontWithName:@"Bodoni 72 Smallcaps" size:17]

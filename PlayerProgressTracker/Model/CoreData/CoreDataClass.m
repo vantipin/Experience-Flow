@@ -18,8 +18,7 @@
     NSError *error = nil;
     NSArray *objPool = [context executeFetchRequest:request error:&error];
     
-    if (!error)
-    {
+    if (!error) {
         return objPool;
     }
     
@@ -30,12 +29,9 @@
 {
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = context;
-    if (managedObjectContext != nil)
-    {
-        if ([managedObjectContext hasChanges])
-        {
-            if (![managedObjectContext save:&error])
-            {
+    if (managedObjectContext != nil) {
+        if ([managedObjectContext hasChanges]) {
+            if (![managedObjectContext save:&error]) {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -43,14 +39,12 @@
                 
                 return false;
             }
-            else
-            {
+            else {
                 //save succeed
                 
             }
         }
-        else
-        {
+        else {
             NSLog(@"Context hasn't changed");
         }
     }
@@ -64,10 +58,8 @@
     
     NSArray *objectsPool = [self fetchRequestForObjectName:name withPredicate:predicate withContext:context];
     
-    if (objectsPool.count > 0 )
-    {
-        for (id obj in objectsPool)
-        {
+    if (objectsPool.count > 0 ) {
+        for (id obj in objectsPool) {
             [context deleteObject:obj];
         }
         [self saveContext:context];
@@ -80,9 +72,9 @@
 
 + (NSString *)standartDateFormat:(NSTimeInterval)date
 {
-    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    //[dateFormatter setDateFormat:@"dd.MM.YYYY hh:mm"];
-    NSString *dateString = [NSString stringWithFormat:@"%f",date];//[dateFormatter stringFromDate:date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"dd-MM-YY  hh:mm"];
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:date]];
     
     return dateString;
 }

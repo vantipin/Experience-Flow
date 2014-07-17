@@ -19,6 +19,7 @@ static float minimalMarginBetweenNodesX = 50;
 static float minimalMarginBetweenNodesY = 110;
 static float borderSize = 100;
 static float nodeDiameter = 200;
+static float headerHeight = 40;
 
 static NSString *emptyParentKey = @"emptyParent";
 
@@ -52,9 +53,11 @@ static NSString *emptyParentKey = @"emptyParent";
     return self;
 }
 
--(id)init {
+-(id)initWithCharacter:(Character *)character;
+{
     self = [super init];
     if (self) {
+        self.character = character;
     }
     
     return self;
@@ -63,7 +66,6 @@ static NSString *emptyParentKey = @"emptyParent";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.customHeaderStatLayoutY = 0;
     [self initTree];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
@@ -215,12 +217,12 @@ static NSString *emptyParentKey = @"emptyParent";
 -(StatViewController *)statHeaderController
 {
     if (!_statHeaderController) {
-        float height = 40;
+        
         _statHeaderController = [StatViewController getInstanceFromStoryboardWithFrame:CGRectMake(
                                                                                                   0,
                                                                                                   0 + self.customHeaderStatLayoutY,
                                                                                                   self.scrollView.frame.size.width,
-                                                                                                  height)];
+                                                                                                  headerHeight)];
         [self.view addSubview:_statHeaderController.view];
     }
     
@@ -451,17 +453,29 @@ static NSString *emptyParentKey = @"emptyParent";
     [self updateStatHeader];
 }
 
+-(void)changeYStatLayout:(float)newYLayout animated:(BOOL)animated;
+{
+    if (animated) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.customHeaderStatLayoutY = newYLayout;
+            [self centerScrollViewContents];
+            CGRect newHeaderFrame = self.statHeaderController.view.frame;
+            newHeaderFrame.origin.y = 0 + newYLayout;
+            self.statHeaderController.view.frame = newHeaderFrame;
+        }];
+    }
+    self.customHeaderStatLayoutY = newYLayout;
+    [self centerScrollViewContents];
+    CGRect newHeaderFrame = self.statHeaderController.view.frame;
+    newHeaderFrame.origin.y = 0 + newYLayout;
+    self.statHeaderController.view.frame = newHeaderFrame;
+}
+
 
 #pragma mark UIScrollViewDelegate methods
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.containerForContainerView;
-}
-
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView

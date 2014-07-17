@@ -1,49 +1,114 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="ntv-du-Lpc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="V83-41-BCy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Custom Split View Controller-->
+        <!--Player Manager View Controller-->
         <scene sceneID="Wj2-bm-Ei5">
             <objects>
-                <viewController id="V83-41-BCy" customClass="CustomSplitViewController" sceneMemberID="viewController">
+                <viewController id="V83-41-BCy" customClass="PlayerManagerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gm6-x0-fsR">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" id="rkX-Xq-eJk">
-                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="fsC-gb-bWu" kind="embed" id="mym-vX-HRF"/>
                                 </connections>
                             </containerView>
-                            <containerView contentMode="scaleToFill" id="htG-Aa-s9s">
-                                <rect key="frame" x="0.0" y="20" width="350" height="1004"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="pCq-ay-Yvy" kind="embed" id="fLz-jg-Qmg"/>
-                                </connections>
-                            </containerView>
+                            <view contentMode="scaleToFill" id="k2t-SZ-JGZ">
+                                <rect key="frame" x="744" y="97" width="280" height="671"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="CVd-fj-Zv5">
+                                        <rect key="frame" x="30" y="0.0" width="250" height="671"/>
+                                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                                        <color key="separatorColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <color key="sectionIndexColor" red="0.48543128190000001" green="0.48543128190000001" blue="0.48543128190000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerViewCell" rowHeight="90" id="yhX-sV-ppu" customClass="PlayerViewCell">
+                                                <rect key="frame" x="0.0" y="22" width="250" height="90"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yhX-sV-ppu" id="tvz-fs-N6F">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="89"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="y3O-KL-MMQ">
+                                                            <rect key="frame" x="12" y="10" width="70" height="70"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DUK-8C-qsG">
+                                                            <rect key="frame" x="92" y="14" width="146" height="26"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="19"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15-12-04 10:51" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yzb-MV-Mks">
+                                                            <rect key="frame" x="92" y="52" width="146" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="11"/>
+                                                            <color key="textColor" red="0.20087292729591832" green="0.20087292729591832" blue="0.20087292729591832" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="dateChanged" destination="Yzb-MV-Mks" id="UpW-Ni-e4m"/>
+                                                    <outlet property="icon" destination="y3O-KL-MMQ" id="8fM-UU-Yyb"/>
+                                                    <outlet property="name" destination="DUK-8C-qsG" id="cfG-MO-J8B"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewPlayerViewCell" textLabel="IKX-oh-SBv" rowHeight="90" style="IBUITableViewCellStyleDefault" id="WTJ-Vr-hx4">
+                                                <rect key="frame" x="0.0" y="112" width="250" height="90"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WTJ-Vr-hx4" id="P9O-iM-MBg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="89"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="+Add New Character" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IKX-oh-SBv">
+                                                            <rect key="frame" x="15" y="0.0" width="220" height="89"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="18"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="V83-41-BCy" id="DHZ-sZ-nan"/>
+                                            <outlet property="delegate" destination="V83-41-BCy" id="3PK-hC-mo5"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.059999999999999998" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="contentContainerView" destination="rkX-Xq-eJk" id="Pq8-Z1-1vE"/>
-                        <outlet property="playerListContainerView" destination="htG-Aa-s9s" id="7BI-aP-BIw"/>
+                        <outlet property="sideBarContainerView" destination="k2t-SZ-JGZ" id="AnJ-Vr-Kbg"/>
+                        <outlet property="tableView" destination="CVd-fj-Zv5" id="73q-bp-pvC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnC-ms-Z8E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1501" y="-2302"/>
+            <point key="canvasLocation" x="-1648" y="-2893"/>
         </scene>
-        <!--New Character View Controller - New character-->
+        <!--Character View Controller - New character-->
         <scene sceneID="QYY-IU-ABS">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" id="ntv-du-Lpc" customClass="NewCharacterViewController" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" id="ntv-du-Lpc" customClass="CharacterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFit" id="JeO-LB-3jJ">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,7 +127,7 @@
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="18"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Save new stat set">
-                                            <color key="titleColor" red="0.72941178080000002" green="0.86666673419999996" blue="0.96470594409999999" alpha="1" colorSpace="deviceRGB"/>
+                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -75,10 +140,19 @@
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="17"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Human">
-                                            <color key="titleColor" red="0.72941178080000002" green="0.86666673419999996" blue="0.96470594409999999" alpha="1" colorSpace="deviceRGB"/>
+                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
                                         <connections>
                                             <action selector="raceBtnTapped:" destination="ntv-du-Lpc" eventType="touchUpInside" id="LUe-i7-y5w"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ohd-AK-QyR">
+                                        <rect key="frame" x="947" y="22" width="57" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        <state key="normal" image="saveIcon.png"/>
+                                        <connections>
+                                            <action selector="saveButtonTap:" destination="ntv-du-Lpc" eventType="touchUpInside" id="bXA-rI-k5E"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Race:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w1Z-H5-Uxe">
@@ -88,15 +162,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="Mwc-Yv-Loc">
-                                        <rect key="frame" x="651.00000285271892" y="50" width="326" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="605" y="51" width="308" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done"/>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="peA-Oh-dUQ">
-                                        <rect key="frame" x="737.99999461435834" y="20" width="152" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="605" y="20" width="308" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="19"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -107,7 +181,6 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="SOK-oW-wtN">
                                                 <rect key="frame" x="7" y="11" width="110" height="110"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.85714285710000004" green="0.79654630609999999" blue="0.58844582680000002" alpha="1" colorSpace="calibratedRGB"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bdZ-iV-wUn">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="126"/>
@@ -124,7 +197,6 @@
                                 </subviews>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -151,7 +223,7 @@
                     <connections>
                         <outlet property="headerView" destination="ZBt-Mc-L83" id="i0g-Dh-Vp3"/>
                         <outlet property="icon" destination="SOK-oW-wtN" id="v67-6a-SJB"/>
-                        <outlet property="name" destination="Mwc-Yv-Loc" id="MYR-6Z-xZz"/>
+                        <outlet property="nameTextField" destination="Mwc-Yv-Loc" id="hoT-LA-nKl"/>
                         <outlet property="raceBtn" destination="Bvw-Ei-v5u" id="KfF-Vv-EK1"/>
                         <outlet property="raceLabel" destination="w1Z-H5-Uxe" id="hSI-lN-lAR"/>
                         <outlet property="saveCharacter" destination="e3I-PW-vgJ" id="1O8-AO-VW9"/>
@@ -160,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adq-xn-DMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1501" y="-250"/>
+            <point key="canvasLocation" x="642" y="-2893"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nuN-8t-ZKW">
@@ -172,103 +244,19 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Ew-ef-hLd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="ntv-du-Lpc" kind="relationship" relationship="rootViewController" id="ohL-Ng-mWy"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWV-xZ-huq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-517" y="-2893"/>
         </scene>
-        <!--Player List View Controller-->
-        <scene sceneID="UAz-YO-tSh">
-            <objects>
-                <viewController id="pCq-ay-Yvy" customClass="PlayerListViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JrS-XI-MsS">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="cF2-bI-mjc">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="1024"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerViewCell" rowHeight="90" id="8Q7-OE-740" customClass="PlayerCellView">
-                                        <rect key="frame" x="0.0" y="22" width="300" height="90"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Q7-OE-740" id="tLE-23-azg">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="89"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0Ca-J9-ZbL">
-                                                    <rect key="frame" x="10" y="10" width="70" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vup-lg-cm4">
-                                                    <rect key="frame" x="93" y="14" width="187" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RtZ-gi-1m7">
-                                                    <rect key="frame" x="93" y="48" width="187" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="14"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.95143096299999996" green="0.95143096299999996" blue="0.95143096299999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.95143096299999996" green="0.95143096299999996" blue="0.95143096299999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="lastModifed" destination="RtZ-gi-1m7" id="6sK-UJ-FnX"/>
-                                            <outlet property="playerIcon" destination="0Ca-J9-ZbL" id="5mc-lr-vac"/>
-                                            <outlet property="playerName" destination="vup-lg-cm4" id="hFi-LK-BwS"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NewPlayerViewCell" textLabel="uqn-a8-p8F" rowHeight="90" style="IBUITableViewCellStyleDefault" id="OWo-Dv-pfQ">
-                                        <rect key="frame" x="0.0" y="112" width="300" height="90"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OWo-Dv-pfQ" id="v7X-it-4pK">
-                                            <rect key="frame" x="0.0" y="0.0" width="267" height="89"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="+Add New Character" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uqn-a8-p8F">
-                                                    <rect key="frame" x="15" y="0.0" width="250" height="89"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.95143096299999996" green="0.95143096299999996" blue="0.95143096299999996" alpha="1" colorSpace="calibratedRGB"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.95143096299999996" green="0.95143096299999996" blue="0.95143096299999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="pCq-ay-Yvy" id="Sui-r4-SA2"/>
-                                    <outlet property="delegate" destination="pCq-ay-Yvy" id="oQ0-kv-ZoV"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="350" height="1024"/>
-                    <connections>
-                        <outlet property="tableView" destination="cF2-bI-mjc" id="bBr-SY-3uZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K8N-aJ-fJp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-517" y="-1751"/>
-        </scene>
     </scenes>
     <resources>
         <image name="headerClouds.png" width="1024" height="150"/>
         <image name="noImage.png" width="85" height="100"/>
+        <image name="saveIcon.png" width="62" height="62"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

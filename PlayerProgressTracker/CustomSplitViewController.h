@@ -6,11 +6,20 @@
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
+/* This is abstract class used to descibe rules for moving table view 
+ */
+
 #import <UIKit/UIKit.h>
-#import "PlayerListViewController.h"
 
-@interface CustomSplitViewController : UIViewController <PlayerListProtocol>
+@interface CustomSplitViewController : UIViewController 
 
-@property (nonatomic) UIViewController *contentController;
+@property (strong, nonatomic) UIPanGestureRecognizer *panRecognizer;
+@property (nonatomic) IBOutlet UIView *sideBarContainerView;
+
+- (IBAction)showSideBarAnimated:(id)sender;
+- (void)hideSideBarAnimated;
+- (void)animateSideBarHidden:(BOOL)hidden;
+
+-(void)hideSideBar:(BOOL)hidden;
 
 @end

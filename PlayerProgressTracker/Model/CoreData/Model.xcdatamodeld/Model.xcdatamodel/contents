@@ -6,7 +6,7 @@
         <attribute name="bulk" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
         <attribute name="characterFinished" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="characterId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="dateCreated" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dateModifed" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pace" attributeType="Integer 16" defaultValueString="2" syncable="YES"/>
