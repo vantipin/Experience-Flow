@@ -113,7 +113,7 @@ static SkillLevelsSetManager *instance = nil;
                               [DefaultSkillTemplates sharedInstance].intelligence.name : @(2),
                               
                               [DefaultSkillTemplates sharedInstance].strength.name : @(2),
-                              [DefaultSkillTemplates sharedInstance].toughness.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].toughness.name : @(3),
                               [DefaultSkillTemplates sharedInstance].reason.name : @(2),
                               [DefaultSkillTemplates sharedInstance].control.name : @(2),
                               [DefaultSkillTemplates sharedInstance].perception.name : @(2),
@@ -126,7 +126,7 @@ static SkillLevelsSetManager *instance = nil;
                               [DefaultSkillTemplates sharedInstance].intelligence.name : @(2),
                               
                               [DefaultSkillTemplates sharedInstance].strength.name : @(2),
-                              [DefaultSkillTemplates sharedInstance].toughness.name : @(4),
+                              [DefaultSkillTemplates sharedInstance].toughness.name : @(5),
                               [DefaultSkillTemplates sharedInstance].reason.name : @(2),
                               [DefaultSkillTemplates sharedInstance].control.name : @(2),
                               [DefaultSkillTemplates sharedInstance].perception.name : @(0),

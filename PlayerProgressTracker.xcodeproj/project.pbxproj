@@ -93,6 +93,7 @@
 		DFCE2A88196F10BE00A9F4C9 /* saveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCE2A86196F10BE00A9F4C9 /* saveIcon.png */; };
 		DFCE2A89196F10BE00A9F4C9 /* saveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */; };
 		DFD6CD191976DFF500046218 /* PlayerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD6CD181976DFF500046218 /* PlayerManagerViewController.m */; };
+		DFD6CD2B197D010500046218 /* CustomImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */; };
 		DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */; };
 		DFDA01BA1961C7BA005D3703 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B41961C7BA005D3703 /* health.png */; };
 		DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B51961C7BA005D3703 /* health@2x.png */; };
@@ -227,7 +228,8 @@
 		DF1F5CC8195B43A1002D7EF2 /* MainContextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainContextObject.h; sourceTree = "<group>"; };
 		DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContextObject.m; sourceTree = "<group>"; };
 		DF24B1291874B75900B57855 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		DFAED0FC186309B40039D17B /* Xp Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xp Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Experience Flow.entitlements"; sourceTree = "<group>"; };
+		DFAED0FC186309B40039D17B /* Experience Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Experience Flow.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DFAED103186309B40039D17B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -252,6 +254,8 @@
 		DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saveIcon@2x.png"; sourceTree = "<group>"; };
 		DFD6CD171976DFF500046218 /* PlayerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManagerViewController.h; sourceTree = "<group>"; };
 		DFD6CD181976DFF500046218 /* PlayerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerManagerViewController.m; sourceTree = "<group>"; };
+		DFD6CD29197D010500046218 /* CustomImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomImagePickerViewController.h; path = PlayerProgressTracker/CustomImagePickerViewController.h; sourceTree = SOURCE_ROOT; };
+		DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomImagePickerViewController.m; path = PlayerProgressTracker/CustomImagePickerViewController.m; sourceTree = SOURCE_ROOT; };
 		DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatViewController.storyboard; sourceTree = "<group>"; };
 		DFDA01B41961C7BA005D3703 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
 		DFDA01B51961C7BA005D3703 /* health@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "health@2x.png"; sourceTree = "<group>"; };
@@ -497,7 +501,7 @@
 		DFAED0FD186309B40039D17B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DFAED0FC186309B40039D17B /* Xp Tracker.app */,
+				DFAED0FC186309B40039D17B /* Experience Flow.app */,
 				DFAED11D186309B40039D17B /* PlayerProgressTrackerTests.xctest */,
 			);
 			name = Products;
@@ -517,12 +521,15 @@
 		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */,
 				DFD6CD1A1978322500046218 /* SkillTableViewController(Deprecated) */,
 				DFDA01EB19632BF8005D3703 /* TipViewController */,
 				DF1F5C6B195B432D002D7EF2 /* Views */,
 				DF1F5C79195B432D002D7EF2 /* SkillTree */,
 				DF1F5C82195B432D002D7EF2 /* DropDownControllers */,
 				DF24B1291874B75900B57855 /* Constants.h */,
+				DFD6CD29197D010500046218 /* CustomImagePickerViewController.h */,
+				DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */,
 				DFAED111186309B40039D17B /* Main.storyboard */,
 				DFAED10E186309B40039D17B /* AppDelegate.h */,
 				DFAED10F186309B40039D17B /* AppDelegate.m */,
@@ -641,7 +648,7 @@
 			);
 			name = PlayerProgressTracker;
 			productName = PlayerProgressTracker;
-			productReference = DFAED0FC186309B40039D17B /* Xp Tracker.app */;
+			productReference = DFAED0FC186309B40039D17B /* Experience Flow.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DFAED11C186309B40039D17B /* PlayerProgressTrackerTests */ = {
@@ -671,6 +678,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = WierdMasks;
 				TargetAttributes = {
+					DFAED0FB186309B40039D17B = {
+						DevelopmentTeam = AXT7HT56A4;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
 					DFAED11C186309B40039D17B = {
 						TestTargetID = DFAED0FB186309B40039D17B;
 					};
@@ -776,6 +791,7 @@
 				DF1F5C62195B431E002D7EF2 /* RangeSkill.m in Sources */,
 				DF0995E6196843B50025A76A /* PlayerViewCell.m in Sources */,
 				DF1F5C5D195B431E002D7EF2 /* AdvancedSkill.m in Sources */,
+				DFD6CD2B197D010500046218 /* CustomImagePickerViewController.m in Sources */,
 				DF1F5C98195B432D002D7EF2 /* DropDownViewController.m in Sources */,
 				DF1F5C89195B432D002D7EF2 /* AddSkillViewCellTableViewCell.m in Sources */,
 				DF1F5C8D195B432D002D7EF2 /* SkillViewCell.m in Sources */,
@@ -939,11 +955,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Evgeny Mikhalkov (9MMMNMSQM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
-				PRODUCT_NAME = "Xp Tracker";
+				PRODUCT_NAME = "Experience Flow";
+				PROVISIONING_PROFILE = "75D8C2E3-D16F-4B93-8CEB-F8E69D2B2C28";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -952,11 +970,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YAUHEN MIKHALKOU (AXT7HT56A4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
-				PRODUCT_NAME = "Xp Tracker";
+				PRODUCT_NAME = "Experience Flow";
+				PROVISIONING_PROFILE = "B39F861D-FA77-4BA5-828A-040C1CAB9A03";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -13,7 +13,7 @@
 
 @interface NodeViewController ()
 
-@property (nonatomic) IBOutlet UIButton *skillLevelButton;
+@property (nonatomic) IBOutlet UILabel *skillLevelLabel;
 @property (nonatomic) IBOutlet UIImageView *xpAuraImageView;
 
 @property (nonatomic) CGPoint anchorPoint;
@@ -98,6 +98,7 @@
     _skill = skill;
     if (_skill) {
         self.skillTemplate = _skill.skillTemplate;
+        
         [self updateInterface];
     }
 }
@@ -153,7 +154,7 @@
 -(void)updateInterface
 {
     [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
-    [self.skillLevelButton setTitle:[NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill]] forState:UIControlStateNormal];
+    self.skillLevelLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill]];
     [self processXPAura];
 }
 

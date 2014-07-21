@@ -35,12 +35,12 @@ static float SIDEBAR_HIDDEN_ACCESS_LAYOUT = 30;
     [super viewDidLoad];
     self.sideBarHidden = false;
     self.panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self.view addGestureRecognizer:self.panRecognizer];
+    [self.sideBarContainerView addGestureRecognizer:self.panRecognizer];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideSideBar) name:SHOULD_HIDE_CUSTOM_SIDEBAR object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideSideBarAnimated) name:SHOULD_HIDE_CUSTOM_SIDEBAR object:nil];
     [self.view bringSubviewToFront:self.sideBarContainerView];
 }
 

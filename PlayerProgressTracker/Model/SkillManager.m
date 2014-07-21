@@ -404,6 +404,7 @@ static SkillManager *instance = nil;
     for (SkillTemplate *skillTemplate in coreSkillTemplates) {
         [self getOrAddSkillWithTemplate:skillTemplate withCharacter:character];
     }
+    [character saveCharacterWithContext:self.context];
 }
 
 -(SkillSet *)cloneSkillsWithSkillSet:(SkillSet *)skillSetToClone

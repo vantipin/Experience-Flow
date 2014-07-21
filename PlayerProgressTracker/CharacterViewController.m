@@ -16,6 +16,7 @@
 #import "Constants.h"
 #import "SkillLevelsSetManager.h"
 #import "SkillLevelsSet.h"
+#import "CustomImagePickerViewController.h"
 
 static NSString *DEFAULT_RACE = @"Human";
 static const float HEADER_LAYOUT_HIDDEN = 20;
@@ -64,6 +65,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
 {
     [super viewDidLoad];
     
+    [[SkillManager sharedInstance] checkAllCharacterCoreSkills:self.character];
     self.isNewCharacterMode = false;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -525,16 +527,16 @@ static const float HEADER_LAYOUT_SHOWN = 100;
 
 -(IBAction)imageTap:(id)sender
 {
-    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    CustomImagePickerViewController * picker = [[CustomImagePickerViewController alloc] init];
     picker.view.frame = self.view.bounds;
     
 	picker.delegate = self;
     
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     
+    //[[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
 	[self presentViewController:picker animated:true completion:^{
-        
-        
+        //[[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
     }];
 }
 

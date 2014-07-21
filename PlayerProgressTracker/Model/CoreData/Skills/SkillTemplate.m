@@ -30,6 +30,8 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 @dynamic basicSkillTemplate;
 @dynamic subSkillsTemplate;
 @dynamic icon;
+@dynamic isMediator;
+
 
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
                                      withRules:(NSString *)rules
@@ -42,6 +44,34 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
                                  withSkillType:(SkillClassesType)skillClassType
                         withDefaultStartingLvl:(int)startingLvl
                        withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
+                                   withContext:(NSManagedObjectContext *)context;
+{
+    return [SkillTemplate newSkillTemplateWithUniqName:name
+                                             withRules:rules
+                                     withRulesExamples:examples
+                                       withDescription:skillDescription
+                                         withSkillIcon:icon
+                                    withBasicXpBarrier:basicXpBarrier
+                                  withSkillProgression:skillProgression
+                              withBasicSkillGrowthGoes:basicSkillGrowthGoes
+                                         withSkillType:skillClassType
+                                withDefaultStartingLvl:startingLvl
+                               withParentSkillTemplate:basicSkillTemplate
+                                            isMediator:false withContext:context];
+}
+
++(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                                     withRules:(NSString *)rules
+                             withRulesExamples:(NSString *)examples
+                               withDescription:(NSString *)skillDescription
+                                 withSkillIcon:(UIImage *)icon
+                            withBasicXpBarrier:(float)basicXpBarrier
+                          withSkillProgression:(float)skillProgression
+                      withBasicSkillGrowthGoes:(float)basicSkillGrowthGoes
+                                 withSkillType:(SkillClassesType)skillClassType
+                        withDefaultStartingLvl:(int)startingLvl
+                       withParentSkillTemplate:(SkillTemplate *)basicSkillTemplate
+                                    isMediator:(BOOL)isMediatorSkill
                                    withContext:(NSManagedObjectContext *)context;
 {
     if (name && (basicXpBarrier || skillProgression))
@@ -64,6 +94,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
         skillTemplate.levelProgression = skillProgression;
         skillTemplate.skillEnumType = skillClassType;
         skillTemplate.defaultLevel = startingLvl;
+        skillTemplate.isMediator = isMediatorSkill;
         
         if (icon)
         {

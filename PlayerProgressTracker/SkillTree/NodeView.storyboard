@@ -32,24 +32,19 @@
                                     <outletCollection property="gestureRecognizers" destination="PUG-t6-Dks" appends="YES" id="Lcz-kr-H5f"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y1H-T2-Du3">
-                                <rect key="frame" x="75" y="122" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
-                                <size key="titleShadowOffset" width="0.0" height="-2"/>
-                                <state key="normal" title="10">
-                                    <color key="titleColor" red="0.51372551918029785" green="0.72549021244049072" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" red="0.31413580515136491" green="0.42161029563289149" blue="0.68128188775510212" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTabSkillLevelButton:" destination="HRk-67-RWO" eventType="touchUpInside" id="DwU-X8-lTS"/>
-                                    <outletCollection property="gestureRecognizers" destination="PUG-t6-Dks" appends="YES" id="kYj-Y9-Wty"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xpAura.png" id="Tsu-YH-jEj">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3MA-ns-RYM">
+                                <rect key="frame" x="74" y="121" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                <color key="textColor" red="0.51372551919999998" green="0.7254902124" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.31413580520000001" green="0.42161029560000002" blue="0.68128188779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="0.0" height="-2"/>
+                            </label>
                         </subviews>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -59,7 +54,7 @@
                     <size key="freeformSize" width="200" height="200"/>
                     <connections>
                         <outlet property="skillButton" destination="PMw-TF-v4Y" id="K7M-os-Qgw"/>
-                        <outlet property="skillLevelButton" destination="Y1H-T2-Du3" id="JgU-tc-V00"/>
+                        <outlet property="skillLevelLabel" destination="3MA-ns-RYM" id="4ch-GL-V3n"/>
                         <outlet property="xpAuraImageView" destination="Tsu-YH-jEj" id="YDj-5G-rsF"/>
                     </connections>
                 </viewController>

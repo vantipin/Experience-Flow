@@ -237,8 +237,8 @@ static NSString *emptyParentKey = @"emptyParent";
     
     self.statHeaderController.bulkLabel.text = [NSString stringWithFormat:@"%d",self.character.bulk];
     self.statHeaderController.movementLabel.text = [NSString stringWithFormat:@"%d",self.character.pace + physiqueSkill.currentLevel];
-    self.statHeaderController.healthCurrentLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 3];
-    self.statHeaderController.healthMaxLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 3];
+    self.statHeaderController.healthCurrentLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 2];
+    self.statHeaderController.healthMaxLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 2];
     self.statHeaderController.inventoryCurrentLabel.text = [NSString stringWithFormat:@"%d",0];
     self.statHeaderController.inventoryMaxLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:strenghtSkill] * 3];
 }
