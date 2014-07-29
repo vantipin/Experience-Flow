@@ -10,13 +10,15 @@
 
 #import "SkillSet.h"
 #import "DefaultSkillTemplates.h"
-#import "SkillTemplateDiskData.h"
+#import "SkillTemplateDataArchiver.h"
 #import "SkillTreeViewController.h"
 #import "MainContextObject.h"
 #import "Constants.h"
 #import "SkillLevelsSetManager.h"
 #import "SkillLevelsSet.h"
 #import "CustomImagePickerViewController.h"
+#import "CharacterProgressDataArchiver.h"
+#import "CharacterDocManager.h"
 
 static NSString *DEFAULT_RACE = @"Human";
 static const float HEADER_LAYOUT_HIDDEN = 20;
@@ -40,9 +42,11 @@ static const float HEADER_LAYOUT_SHOWN = 100;
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) UITextField *currentlyEditingField; //for applying changes when (save) buttons tapped
 @property (nonatomic) SkillTreeViewController *skillTreeController;
+@property (nonatomic) CharacterProgressDataArchiver *progressArchiver;
 
 @property (nonatomic) UIAlertView *statSaveAlert;
 @property (nonatomic) UIAlertView *characterSaveAlert;
+@property (nonatomic) UIAlertView *progressReplaceAlert;
 
 @property (nonatomic,strong) Character *character;
 
@@ -90,7 +94,6 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     CALayer *textViewLayer = self.nameTextField.layer;
     [textViewLayer setCornerRadius:5];
     [textViewLayer setMasksToBounds:YES];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -98,6 +101,12 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
     [self updateRaceButtonWithName:[self.raceNames lastObject]];
     [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];
+    
+    
+//    [CharacterProgressDataArchiver saveData:self.character toPath:self.myUbiquityContainer.absoluteString];
+//    self.progressArchiver = [CharacterProgressDataArchiver newCharacterWithDocPath:[self.myUbiquityContainer.absoluteString stringByAppendingString:[NSString stringWithFormat:@"/%@.plist",self.character.characterId]]
+//                                                    withConflictResolverController:self
+//                                                                       withContext:self.context];
     
     //    for (SkillTemplate *skillTemplate in [DefaultSkillTemplates sharedInstance].allNoneCoreSkillTemplates) {
     //        [SkillTemplateDiskData saveData:skillTemplate toPath:[SkillTemplateDiskData getPrivateDocsDir]];
@@ -209,6 +218,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     }
 
 }
+
 
 -(void)selectCharacter:(Character *)character
 {
@@ -400,6 +410,10 @@ static const float HEADER_LAYOUT_SHOWN = 100;
             [[NSNotificationCenter defaultCenter]
              postNotificationName:DID_UPDATE_CHARACTER_LIST object:self];
         }
+        else if (alertView == self.progressReplaceAlert) {
+            [self.progressArchiver updateCharacter:self.character withContext:self.context];
+            [self selectCharacter:self.character];
+        }
         
     }
     
@@ -548,6 +562,21 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     }];
 }
 
-
+#pragma mark CharacterProgressArchiverProtocol
+-(BOOL)shouldReplaceCharacterProgress:(Character *)character
+{
+    [self resignCurrentTextFieldResponder];
+    
+    NSString *archiveCharacterModified = [Character standartDateFormat:self.progressArchiver.dateModified];
+    NSString *currentCharacterModified = [Character standartDateFormat:self.character.dateModifed];
+    self.progressReplaceAlert = [[UIAlertView alloc]initWithTitle: @"Reset Skills?"
+                                                          message: [NSString stringWithFormat:@"Are you sure you want to replace current progress (%@) from archive (%@)?",currentCharacterModified,archiveCharacterModified]
+                                                         delegate: self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Replace",nil];
+    self.progressReplaceAlert.delegate = self;
+    [self.progressReplaceAlert show];
+    return false;
+}
 
 @end

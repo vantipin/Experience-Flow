@@ -39,7 +39,7 @@
 		DF1F5C67195B431E002D7EF2 /* DefaultSkillTemplates.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C4D195B431E002D7EF2 /* DefaultSkillTemplates.m */; };
 		DF1F5C68195B431E002D7EF2 /* SkillLevelsSetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C4F195B431E002D7EF2 /* SkillLevelsSetManager.m */; };
 		DF1F5C69195B431E002D7EF2 /* SkillManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C51195B431E002D7EF2 /* SkillManager.m */; };
-		DF1F5C6A195B431E002D7EF2 /* SkillTemplateDiskData.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C53195B431E002D7EF2 /* SkillTemplateDiskData.m */; };
+		DF1F5C6A195B431E002D7EF2 /* SkillTemplateDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C53195B431E002D7EF2 /* SkillTemplateDataArchiver.m */; };
 		DF1F5C89195B432D002D7EF2 /* AddSkillViewCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C6D195B432D002D7EF2 /* AddSkillViewCellTableViewCell.m */; };
 		DF1F5C8A195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C6E195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib */; };
 		DF1F5C8B195B432D002D7EF2 /* CustomXpRaisingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C70195B432D002D7EF2 /* CustomXpRaisingBtnView.m */; };
@@ -75,6 +75,14 @@
 		DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAF195B4338002D7EF2 /* xpAura.png */; };
 		DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */; };
 		DF1F5CCA195B43A1002D7EF2 /* MainContextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */; };
+		DF2900EF197EDE9F00861A4F /* CharacterProgressDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2900EE197EDE9F00861A4F /* CharacterProgressDataArchiver.m */; };
+		DF3C0EDA1986CB900016AFF2 /* CharacterDocManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3C0ED91986CB900016AFF2 /* CharacterDocManager.m */; };
+		DF3C0EE219881F5C0016AFF2 /* iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3C0EDF19881F5C0016AFF2 /* iCloud.m */; };
+		DF3C0EE319881F5C0016AFF2 /* iCloudDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3C0EE119881F5C0016AFF2 /* iCloudDocument.m */; };
+		DF3C0EE8198824240016AFF2 /* icloudAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE4198824240016AFF2 /* icloudAvailable.png */; };
+		DF3C0EE9198824240016AFF2 /* icloudAvailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */; };
+		DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */; };
+		DF3C0EEB198824240016AFF2 /* icloudIsntAvailible@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */; };
 		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
 		DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED101186309B40039D17B /* CoreGraphics.framework */; };
 		DFAED104186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
@@ -180,8 +188,8 @@
 		DF1F5C4F195B431E002D7EF2 /* SkillLevelsSetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillLevelsSetManager.m; sourceTree = "<group>"; };
 		DF1F5C50195B431E002D7EF2 /* SkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillManager.h; sourceTree = "<group>"; };
 		DF1F5C51195B431E002D7EF2 /* SkillManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillManager.m; sourceTree = "<group>"; };
-		DF1F5C52195B431E002D7EF2 /* SkillTemplateDiskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTemplateDiskData.h; sourceTree = "<group>"; };
-		DF1F5C53195B431E002D7EF2 /* SkillTemplateDiskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTemplateDiskData.m; sourceTree = "<group>"; };
+		DF1F5C52195B431E002D7EF2 /* SkillTemplateDataArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTemplateDataArchiver.h; sourceTree = "<group>"; };
+		DF1F5C53195B431E002D7EF2 /* SkillTemplateDataArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTemplateDataArchiver.m; sourceTree = "<group>"; };
 		DF1F5C6C195B432D002D7EF2 /* AddSkillViewCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSkillViewCellTableViewCell.h; sourceTree = "<group>"; };
 		DF1F5C6D195B432D002D7EF2 /* AddSkillViewCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSkillViewCellTableViewCell.m; sourceTree = "<group>"; };
 		DF1F5C6E195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddSkillViewCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -229,6 +237,19 @@
 		DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContextObject.m; sourceTree = "<group>"; };
 		DF24B1291874B75900B57855 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Experience Flow.entitlements"; sourceTree = "<group>"; };
+		DF2900ED197EDE9F00861A4F /* CharacterProgressDataArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterProgressDataArchiver.h; sourceTree = "<group>"; };
+		DF2900EE197EDE9F00861A4F /* CharacterProgressDataArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterProgressDataArchiver.m; sourceTree = "<group>"; };
+		DF3C0ED81986CB900016AFF2 /* CharacterDocManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDocManager.h; sourceTree = "<group>"; };
+		DF3C0ED91986CB900016AFF2 /* CharacterDocManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterDocManager.m; sourceTree = "<group>"; };
+		DF3C0EDD19881F5C0016AFF2 /* iCloud-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iCloud-Prefix.pch"; sourceTree = "<group>"; };
+		DF3C0EDE19881F5C0016AFF2 /* iCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCloud.h; sourceTree = "<group>"; };
+		DF3C0EDF19881F5C0016AFF2 /* iCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCloud.m; sourceTree = "<group>"; };
+		DF3C0EE019881F5C0016AFF2 /* iCloudDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCloudDocument.h; sourceTree = "<group>"; };
+		DF3C0EE119881F5C0016AFF2 /* iCloudDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCloudDocument.m; sourceTree = "<group>"; };
+		DF3C0EE4198824240016AFF2 /* icloudAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icloudAvailable.png; sourceTree = "<group>"; };
+		DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icloudAvailable@2x.png"; sourceTree = "<group>"; };
+		DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icloudIsntAvailible.png; sourceTree = "<group>"; };
+		DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icloudIsntAvailible@2x.png"; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Experience Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Experience Flow.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -316,6 +337,7 @@
 		DF1F5C21195B431E002D7EF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DF2900EC197EDE7500861A4F /* DataArchiver */,
 				DF1F5C22195B431E002D7EF2 /* CoreData */,
 				DF1F5C4C195B431E002D7EF2 /* DefaultSkillTemplates.h */,
 				DF1F5C4D195B431E002D7EF2 /* DefaultSkillTemplates.m */,
@@ -323,8 +345,6 @@
 				DF1F5C51195B431E002D7EF2 /* SkillManager.m */,
 				DF1F5C4E195B431E002D7EF2 /* SkillLevelsSetManager.h */,
 				DF1F5C4F195B431E002D7EF2 /* SkillLevelsSetManager.m */,
-				DF1F5C52195B431E002D7EF2 /* SkillTemplateDiskData.h */,
-				DF1F5C53195B431E002D7EF2 /* SkillTemplateDiskData.m */,
 				DF1F5CC8195B43A1002D7EF2 /* MainContextObject.h */,
 				DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */,
 			);
@@ -438,6 +458,10 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DF3C0EE4198824240016AFF2 /* icloudAvailable.png */,
+				DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */,
+				DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */,
+				DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */,
 				DFCE2A86196F10BE00A9F4C9 /* saveIcon.png */,
 				DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */,
 				DF0995DA196462140025A76A /* tipBackground@2x.png */,
@@ -485,6 +509,31 @@
 			path = ImagesResources;
 			sourceTree = "<group>";
 		};
+		DF2900EC197EDE7500861A4F /* DataArchiver */ = {
+			isa = PBXGroup;
+			children = (
+				DF1F5C52195B431E002D7EF2 /* SkillTemplateDataArchiver.h */,
+				DF1F5C53195B431E002D7EF2 /* SkillTemplateDataArchiver.m */,
+				DF2900ED197EDE9F00861A4F /* CharacterProgressDataArchiver.h */,
+				DF2900EE197EDE9F00861A4F /* CharacterProgressDataArchiver.m */,
+				DF3C0ED81986CB900016AFF2 /* CharacterDocManager.h */,
+				DF3C0ED91986CB900016AFF2 /* CharacterDocManager.m */,
+			);
+			name = DataArchiver;
+			sourceTree = "<group>";
+		};
+		DF3C0EDC19881F5C0016AFF2 /* iCloud */ = {
+			isa = PBXGroup;
+			children = (
+				DF3C0EDD19881F5C0016AFF2 /* iCloud-Prefix.pch */,
+				DF3C0EDE19881F5C0016AFF2 /* iCloud.h */,
+				DF3C0EDF19881F5C0016AFF2 /* iCloud.m */,
+				DF3C0EE019881F5C0016AFF2 /* iCloudDocument.h */,
+				DF3C0EE119881F5C0016AFF2 /* iCloudDocument.m */,
+			);
+			path = iCloud;
+			sourceTree = "<group>";
+		};
 		DFAED0F3186309B40039D17B = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +570,7 @@
 		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DF3C0EDC19881F5C0016AFF2 /* iCloud */,
 				DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */,
 				DFD6CD1A1978322500046218 /* SkillTableViewController(Deprecated) */,
 				DFDA01EB19632BF8005D3703 /* TipViewController */,
@@ -731,6 +781,7 @@
 				DF1F5CB2195B4338002D7EF2 /* addButton@2x.png in Resources */,
 				DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */,
 				DFDA01E119631A51005D3703 /* headerWallPic@2x.png in Resources */,
+				DF3C0EE9198824240016AFF2 /* icloudAvailable@2x.png in Resources */,
 				DFCE2A89196F10BE00A9F4C9 /* saveIcon@2x.png in Resources */,
 				DFDA01EA19632507005D3703 /* headerCreatingCharacter.png in Resources */,
 				DF1F5C8E195B432D002D7EF2 /* SkillViewCell.xib in Resources */,
@@ -741,6 +792,7 @@
 				DFCE2A88196F10BE00A9F4C9 /* saveIcon.png in Resources */,
 				DF1F5CB7195B4338002D7EF2 /* link.png in Resources */,
 				DF1F5CBE195B4338002D7EF2 /* noImage.png in Resources */,
+				DF3C0EEB198824240016AFF2 /* icloudIsntAvailible@2x.png in Resources */,
 				DF0995D5196460900025A76A /* headerCharacterStats@2x.png in Resources */,
 				DF1F5CC1195B4338002D7EF2 /* raiseXp@2x.png in Resources */,
 				DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */,
@@ -758,10 +810,12 @@
 				DF1F5C94195B432D002D7EF2 /* SkillLinkView.storyboard in Resources */,
 				DF1F5CC3195B4338002D7EF2 /* skillNode@2x.png in Resources */,
 				DFDA01BE1961C7BA005D3703 /* movement.png in Resources */,
+				DF3C0EE8198824240016AFF2 /* icloudAvailable.png in Resources */,
 				DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */,
 				DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */,
 				DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
+				DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
 				DF1F5CC4195B4338002D7EF2 /* skillNodeHighlited.png in Resources */,
 				DF0995D9196460C70025A76A /* cloudBackground.png in Resources */,
@@ -786,6 +840,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF3C0EDA1986CB900016AFF2 /* CharacterDocManager.m in Sources */,
 				DFDA01C61961D1B6005D3703 /* StatViewController.m in Sources */,
 				DF1F5C63195B431E002D7EF2 /* Skill.m in Sources */,
 				DF1F5C62195B431E002D7EF2 /* RangeSkill.m in Sources */,
@@ -811,7 +866,9 @@
 				DF1F5C5B195B431E002D7EF2 /* Model.xcdatamodeld in Sources */,
 				DF1F5C91195B432D002D7EF2 /* NodeLinkController.m in Sources */,
 				DF1F5C68195B431E002D7EF2 /* SkillLevelsSetManager.m in Sources */,
+				DF3C0EE319881F5C0016AFF2 /* iCloudDocument.m in Sources */,
 				DF1F5C60195B431E002D7EF2 /* MeleeSkill.m in Sources */,
+				DF3C0EE219881F5C0016AFF2 /* iCloud.m in Sources */,
 				DF1F5C58195B431E002D7EF2 /* Item.m in Sources */,
 				DFC63F0E196DBAF10000AAAD /* CustomSplitViewController.m in Sources */,
 				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
@@ -822,13 +879,14 @@
 				DF1F5C59195B431E002D7EF2 /* WeaponMelee.m in Sources */,
 				DF1F5C5F195B431E002D7EF2 /* MagicSkill.m in Sources */,
 				DFAED10C186309B40039D17B /* main.m in Sources */,
+				DF2900EF197EDE9F00861A4F /* CharacterProgressDataArchiver.m in Sources */,
 				DF1F5C5E195B431E002D7EF2 /* BasicSkill.m in Sources */,
 				DF1F5C67195B431E002D7EF2 /* DefaultSkillTemplates.m in Sources */,
 				DFDA01F119633043005D3703 /* CustomPopoverViewController.m in Sources */,
 				DF1F5C55195B431E002D7EF2 /* CharacterConditionAttributes.m in Sources */,
 				DF1F5C64195B431E002D7EF2 /* SkillLevelsSet.m in Sources */,
 				DFDA01EE19632C1E005D3703 /* TipViewController.m in Sources */,
-				DF1F5C6A195B431E002D7EF2 /* SkillTemplateDiskData.m in Sources */,
+				DF1F5C6A195B431E002D7EF2 /* SkillTemplateDataArchiver.m in Sources */,
 				DFD6CD191976DFF500046218 /* PlayerManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

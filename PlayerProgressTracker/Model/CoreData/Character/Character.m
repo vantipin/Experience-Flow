@@ -34,7 +34,9 @@
 +(Character *)newCharacterWithContext:(NSManagedObjectContext *)context
 {
     Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:context];
-    character.characterId = [NSString stringWithFormat:@"%@",character.objectID];
+    character.characterId = [Character generateId];
+    character.dateCreated = [[NSDate date] timeIntervalSince1970];
+    character.dateModifed = [[NSDate date] timeIntervalSince1970];
     SkillSet *skillSet = [NSEntityDescription insertNewObjectForEntityForName:@"SkillSet" inManagedObjectContext:context];
     character.skillSet = skillSet;
     
@@ -59,11 +61,6 @@
         CharacterConditionAttributes *characterCondition = [NSEntityDescription insertNewObjectForEntityForName:@"CharacterConditionAttributes" inManagedObjectContext:context];
         characterCondition.character = self;
         self.characterCondition = characterCondition;
-    }
-    
-    if (!self.dateCreated)
-    {
-        self.dateCreated = [[NSDate date] timeIntervalSince1970];
     }
     
     self.dateModifed = [[NSDate date] timeIntervalSince1970];

@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "CoreDataClass.h"
 
-@class Skill, SkillTemplate, WeaponMelee;
+@class Skill, SkillTemplate, WeaponMelee, SkillSet;
 
 @interface Skill : CoreDataClass
 
@@ -21,7 +21,7 @@
 @property (nonatomic) float currentProgress;
 @property (nonatomic, retain) Skill *basicSkill;
 @property (nonatomic, retain) WeaponMelee *items;
-@property (nonatomic, retain) NSManagedObject *skillSet;
+@property (nonatomic, retain) SkillSet *skillSet;
 @property (nonatomic, retain) SkillTemplate *skillTemplate;
 @property (nonatomic, retain) NSSet *subSkills;
 @end

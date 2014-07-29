@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomSplitViewController.h"
+#import "iCloud.h"
 
-@interface PlayerManagerViewController : CustomSplitViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface PlayerManagerViewController : CustomSplitViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, iCloudDelegate>
 
 @property (nonatomic) UIViewController *contentController;
 

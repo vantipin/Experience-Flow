@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SkillManager.h"
 #import "ClassesDropViewController.h"
+#import "CharacterProgressDataArchiver.h"
 
-@interface CharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,UIImagePickerControllerDelegate, UINavigationControllerDelegate,SkillChangeProtocol>
+@interface CharacterViewController : UIViewController <UITextFieldDelegate,DropDownViewDelegate,UIAlertViewDelegate,DeleteStatSetProtocol,UIImagePickerControllerDelegate, UINavigationControllerDelegate,SkillChangeProtocol, CharacterProgressArchiverProtocol>
 
 -(void)selectNewCharacter;
 -(void)selectCharacter:(Character *)character;

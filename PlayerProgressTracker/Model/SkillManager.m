@@ -128,157 +128,6 @@ static SkillManager *instance = nil;
 
 #pragma mark game mechanics interpretation methods
 
--(int)hitpointsForSkillWithTemplate:(SkillTemplate *)skillTemplate withSkillLevel:(int)skillLevel
-{
-    NSInteger Hp = 0;
-    
-    NSInteger value = skillTemplate.defaultLevel;
-    if (value < skillLevel){
-        if ([skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].toughness.name]){
-            Hp = 5 * (skillLevel - value);
-        }
-        else if ([skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].physique.name]){
-            Hp = 5 * (skillLevel - value);
-        }
-        else{
-            Hp = 1 * (skillLevel - value);
-        }
-        
-    }
-    
-    return (int)Hp;
-}
-
--(int)countHpWithCharacter:(Character *)character
-{
-    int Hp = 0;
-    
-    if (character)
-    {
-        Hp += character.skillSet.bulk * 25;
-        
-        NSArray *skills = [character.skillSet.skills allObjects];
-        NSMutableArray *skillNames = [NSMutableArray new];
-        for (Skill *singleSkill in skills) {
-            [skillNames addObject:singleSkill.skillTemplate.name];
-        }
-        
-        NSArray *skillsTemplates = [[DefaultSkillTemplates sharedInstance] allCoreSkillTemplates];
-        for (SkillTemplate *template in skillsTemplates)
-        {
-            Skill *skill = [self getOrAddSkillWithTemplate:template withCharacter:character];
-            
-            Hp += [self hitpointsForSkillWithTemplate:template withSkillLevel:skill.currentLevel];
-        }
-    }
-    
-    return Hp;
-}
-
--(int)countAttacksForMeleeSkill:(NSSet *)skills
-{
-    int bonus = 0;
-    
-    if (skills) {
-        NSArray *skillsArray = [skills allObjects];
-        int tempWs = 0;
-        int tempWsCount = 0;
-        for (Skill *skill in skillsArray) {
-            int skillLvl = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
-            if (skillLvl > 3) {
-                tempWs += skillLvl - 3;
-                tempWsCount ++;
-            }
-        }
-        
-        if (tempWs) {
-            tempWs = tempWs / tempWsCount;
-            bonus = tempWs / 2;
-        }
-    }
-        
-    return bonus;
-}
-
--(int)countAttacksForRangeSkill:(RangeSkill *)skill;
-{
-    int bonus = 0;
-    
-    if (skill) {
-        int skillLvl = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
-        if (skillLvl > 3) {
-            int temp = skillLvl- 3;
-            bonus = temp / 3;
-        }
-    }
-    
-    return bonus;
-}
-
--(int)countWSforMeleeSkill:(NSSet *)skills
-{
-    int ws = 0;// = skill.thisLvl;
-    
-    if (skills) {
-        NSArray *skillsArray = [skills allObjects];
-        int wsPenalty = 0;
-        int wsPenaltiesCount = 0;
-        for (Skill *skill in skillsArray) {
-            
-            int skillLvl = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
-            ws += skillLvl;
-            if (skillLvl > 4) {
-                int tempSkill = skillLvl;
-                if (!(tempSkill % 2)) {
-                    tempSkill --; //even
-                }
-                wsPenalty += tempSkill / 3;
-                wsPenaltiesCount ++;
-            }
-        }
-        
-        if (wsPenalty) {
-            wsPenalty = wsPenalty / wsPenaltiesCount;
-        }
-        ws = ws / skillsArray.count;
-        ws -= wsPenalty;
-    }
-    
-    return ws;
-}
-
--(int)countBSforRangeSkill:(RangeSkill *)skill
-{
-    int bs = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
-    
-    if (skill) {
-        if (bs > 3) {
-            int tempSkill = bs;
-            if (tempSkill % 2) {
-                tempSkill --; //odd
-            }
-            bs -= tempSkill / 3;
-        }
-    }
-    
-    return bs;
-}
-
--(int)countDCBonusForRangeSkill:(RangeSkill *)skill
-{
-    int bonus = 0;
-    
-    if (skill) {
-        int skillLvl = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
-        if (skillLvl > 3) {
-            int temp = skillLvl - 3;
-            bonus = temp / 2;
-        }
-    }
-    
-    return bonus;
-}
-
 -(int)countUsableLevelValueForSkill:(Skill *)skill
 {
     int overAllLevel = skill.currentLevel + (skill.basicSkill ? [self countUsableLevelValueForSkill:skill.basicSkill] : 0);
@@ -294,6 +143,21 @@ static SkillManager *instance = nil;
 -(float)countXpNeededForNextLevel:(Skill *)skill;
 {
     return (skill.currentLevel * skill.skillTemplate.levelProgression + skill.skillTemplate.levelBasicBarrier);
+}
+
+-(float)countXpSpentOnSkillWithTemplate:(SkillTemplate *)skillTemplate forCharacter:(Character *)character;
+{
+    float xpPoints = 0;
+    Skill *skill = [self getOrAddSkillWithTemplate:skillTemplate withCharacter:character];
+    
+    xpPoints += skill.currentProgress;
+    
+    for (int i = 0; i < skill.currentLevel; i++) {
+        xpPoints += skill.skillTemplate.levelBasicBarrier;
+        xpPoints += skill.skillTemplate.levelProgression * i;
+    }
+    
+    return xpPoints;
 }
 
 -(NSInteger)countPositionXInATreeForSkill:(SkillTemplate *)skillTemplate;
@@ -684,6 +548,9 @@ static SkillManager *instance = nil;
         skill.currentLevel = skill.skillTemplate.defaultLevel;
     }
     
+    Character *character = skill.skillSet.character;
+    character.dateModifed = [NSDate new].timeIntervalSince1970;
+    
     return skill;
 }
 
@@ -729,6 +596,9 @@ static SkillManager *instance = nil;
         skill.currentProgress += xpPrevLvl;
         [self calculateRemovingXpPointsForSkill:skill];
     }
+    
+    Character *character = skill.skillSet.character;
+    character.dateModifed = [NSDate new].timeIntervalSince1970;
 
     return skill;
 }

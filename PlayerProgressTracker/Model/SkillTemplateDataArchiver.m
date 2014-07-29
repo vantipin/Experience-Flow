@@ -6,18 +6,35 @@
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
-#import "SkillTemplateDiskData.h"
+#import "SkillTemplateDataArchiver.h"
 #import "MainContextObject.h"
 #import <objc/runtime.h>
 
 #define defaultTitle @"SkillTemplate"
 #define defaultDataFile @"SkillTemplate.plist"
 
-@implementation SkillTemplateDiskData
+@interface SkillTemplateDataArchiver()
+
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * skillDescription;
+@property (nonatomic, retain) NSString * skillRules;
+@property (nonatomic, retain) NSString * skillRulesExamples;
+@property (nonatomic, retain) NSString *icon;
+@property (nonatomic) float levelBasicBarrier;
+@property (nonatomic) float levelProgression;
+@property (nonatomic) float levelGrowthGoesToBasicSkill;
+@property (nonatomic) int16_t defaultLevel;
+@property (nonatomic) SkillClassesType skillEnumType;
+@property (nonatomic) NSString *nameForBasicSkillTemplate;
+@property (nonatomic) NSArray *namesForSubSkillTemplates;
+
+@end
+
+@implementation SkillTemplateDataArchiver
 
 +(SkillTemplate *)newSkillTemplateWithDocPath:(NSString *)docPath withContext:(NSManagedObjectContext *)context;
 {
-    SkillTemplateDiskData *skillTemplateDisk = [SkillTemplateDiskData new];
+    SkillTemplateDataArchiver *skillTemplateDisk = [SkillTemplateDataArchiver new];
     NSDictionary *codedData = [[NSDictionary alloc] initWithContentsOfFile:docPath]; //was NSData
     if (codedData) {
 //        NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
@@ -25,7 +42,7 @@
 //        [decoder finishDecoding];
         
         
-        skillTemplateDisk = [SkillTemplateDiskData objectWithKeysOfDictionary:codedData];
+        skillTemplateDisk = [SkillTemplateDataArchiver objectWithKeysOfDictionary:codedData];
         
         SkillTemplate *skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:skillTemplateDisk.name
                                                                          withRules:skillTemplateDisk.skillRules
@@ -74,7 +91,7 @@
 
 +(void)saveData:(SkillTemplate *)skillTemplate toPath:(NSString *)docPath;
 {
-    SkillTemplateDiskData *skillTemplateDisk = [SkillTemplateDiskData new];
+    SkillTemplateDataArchiver *skillTemplateDisk = [SkillTemplateDataArchiver new];
     skillTemplateDisk.name = skillTemplate.name;
     skillTemplateDisk.skillEnumType = skillTemplate.skillEnumType;
     skillTemplateDisk.skillDescription = skillTemplate.skillDescription;
@@ -94,7 +111,7 @@
     
     BOOL success;
     if (docPath) {
-        if ([SkillTemplateDiskData createDataPathWith:docPath]) {
+        if ([SkillTemplateDataArchiver createDataPathWith:docPath]) {
             NSString *filePath = [docPath stringByAppendingString: [NSString stringWithFormat:@"/%@.plist",skillTemplateDisk.name]];
             
 //            NSMutableData *data = [NSMutableData new];
@@ -103,7 +120,7 @@
 //            [encoder finishEncoding];
 //            success = [data writeToFile:filePath atomically:true];
             
-            NSDictionary *dictinary = [SkillTemplateDiskData dictionaryWithPropertiesOfObject:skillTemplateDisk];
+            NSDictionary *dictinary = [SkillTemplateDataArchiver dictionaryWithPropertiesOfObject:skillTemplateDisk];
             success = [dictinary writeToFile:filePath atomically:true];
         }
     }
@@ -147,7 +164,7 @@
 
 +(NSMutableArray *)loadSkillTemplates
 {
-    NSString *documentsDirectory = [SkillTemplateDiskData getPrivateDocsDir];
+    NSString *documentsDirectory = [SkillTemplateDataArchiver getPrivateDocsDir];
     NSLog(@"Loading bugs from %@", documentsDirectory);
     
     // Get contents of documents directory
@@ -161,8 +178,8 @@
     //create files
     NSMutableArray *retval = [NSMutableArray new];
     for (NSString *file in files) {
-        NSString *path = [[SkillTemplateDiskData getPrivateDocsDir] stringByAppendingString:[NSString stringWithFormat:@"/%@",file]];
-        SkillTemplate *skillTemplate = [SkillTemplateDiskData newSkillTemplateWithDocPath:path withContext:[MainContextObject sharedInstance].managedObjectContext];
+        NSString *path = [[SkillTemplateDataArchiver getPrivateDocsDir] stringByAppendingString:[NSString stringWithFormat:@"/%@",file]];
+        SkillTemplate *skillTemplate = [SkillTemplateDataArchiver newSkillTemplateWithDocPath:path withContext:[MainContextObject sharedInstance].managedObjectContext];
         if (skillTemplate) {
             [retval addObject:skillTemplate];
         }
@@ -189,9 +206,9 @@
     return [NSDictionary dictionaryWithDictionary:dict];
 }
 
-+(SkillTemplateDiskData *)objectWithKeysOfDictionary:(NSDictionary *)dictionary;
++(SkillTemplateDataArchiver *)objectWithKeysOfDictionary:(NSDictionary *)dictionary;
 {
-    SkillTemplateDiskData *skillTemplateDiskData = [SkillTemplateDiskData new];
+    SkillTemplateDataArchiver *skillTemplateDiskData = [SkillTemplateDataArchiver new];
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
         [skillTemplateDiskData setValue:obj forKey:(NSString *)key];
     }];

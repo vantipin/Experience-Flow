@@ -90,6 +90,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.059999999999999998" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icloudAvailable.png" id="ToS-rR-7Ps">
+                                <rect key="frame" x="65" y="0.0" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -97,13 +101,14 @@
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="contentContainerView" destination="rkX-Xq-eJk" id="Pq8-Z1-1vE"/>
+                        <outlet property="iclouavailabilityIcon" destination="ToS-rR-7Ps" id="NNq-jW-ICW"/>
                         <outlet property="sideBarContainerView" destination="k2t-SZ-JGZ" id="AnJ-Vr-Kbg"/>
                         <outlet property="tableView" destination="CVd-fj-Zv5" id="73q-bp-pvC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnC-ms-Z8E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1648" y="-2893"/>
+            <point key="canvasLocation" x="-1755" y="-2870"/>
         </scene>
         <!--Character View Controller - New character-->
         <scene sceneID="QYY-IU-ABS">
@@ -255,6 +260,7 @@
     </scenes>
     <resources>
         <image name="headerClouds.png" width="1024" height="150"/>
+        <image name="icloudAvailable.png" width="20" height="14"/>
         <image name="noImage.png" width="85" height="100"/>
         <image name="saveIcon.png" width="62" height="62"/>
     </resources>

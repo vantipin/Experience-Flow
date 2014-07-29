@@ -40,6 +40,27 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+//    id currentiCloudToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
+//    if (currentiCloudToken) {
+//        NSData *newTokenData =
+//        [NSKeyedArchiver archivedDataWithRootObject: currentiCloudToken];
+//        [[NSUserDefaults standardUserDefaults]
+//         setObject: newTokenData
+//         forKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
+//    } else {
+//        [[NSUserDefaults standardUserDefaults]
+//         removeObjectForKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
+//    }
+//    
+//    [[NSNotificationCenter defaultCenter]
+//     addObserver: self
+//     selector: @selector (iCloudAccountAvailabilityChanged:)
+//     name: NSUbiquityIdentityDidChangeNotification
+//     object: nil];
+    
+    
+    
+    
     NSManagedObjectContext *context = [[MainContextObject sharedInstance] managedObjectContext];
     
     NSArray *unfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:context];
@@ -71,6 +92,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)iCloudAccountAvailabilityChanged:(BOOL)accessable
+{
+    NSLog(@"iCloud is accessable %d",accessable);
 }
 
 @end

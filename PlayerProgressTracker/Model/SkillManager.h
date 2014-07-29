@@ -28,9 +28,6 @@
 @end
 
 
-
-
-
 @interface SkillManager : NSObject <SkillChangeProtocol>
 
 //@property (nonatomic,assign) id<SkillChangeProtocol> delegateSkillChange;
@@ -40,15 +37,10 @@
 -(void)subscribeForSkillsChangeNotifications:(id<SkillChangeProtocol>)objectToSubscribe;
 -(void)unsubscribeForSkillChangeNotifications:(id<SkillChangeProtocol>)objectToUnsubscribe;
 
--(int)countHpWithCharacter:(Character *)character;
 
--(int)countAttacksForMeleeSkill:(NSSet *)skills;
--(int)countAttacksForRangeSkill:(RangeSkill *)skill;
--(int)countWSforMeleeSkill:(NSSet *)skill;
--(int)countBSforRangeSkill:(RangeSkill *)skill;
--(int)countDCBonusForRangeSkill:(RangeSkill *)skill;
 -(int)countUsableLevelValueForSkill:(Skill *)skill;
 -(float)countXpNeededForNextLevel:(Skill *)skill;
+-(float)countXpSpentOnSkillWithTemplate:(SkillTemplate *)skillTemplate forCharacter:(Character *)character;
 
 -(int)countPositionYInATreeForSkill:(SkillTemplate *)skillTemplate;
 -(NSInteger)countPositionXInATreeForSkill:(SkillTemplate *)skillTemplate;
@@ -81,6 +73,12 @@
            toSkill:(Skill *)skill;
 -(void)removeXpPoints:(float)xpPoints
               toSkill:(Skill *)skill;
+
+/**
+ Add xp points without counting parent skills. Use for archiving.
+ */
+-(Skill *)calculateAddingXpPointsForSkill:(Skill *)skill;
+-(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill;
 
 
 //FETCH

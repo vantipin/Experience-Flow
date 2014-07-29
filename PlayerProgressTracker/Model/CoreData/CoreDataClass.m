@@ -7,6 +7,7 @@
 //
 
 #import "CoreDataClass.h"
+#import <CommonCrypto/CommonHMAC.h>
 
 @implementation CoreDataClass
 
@@ -52,6 +53,10 @@
     return true;
 }
 
++ (NSString *)generateId;
+{
+    return [[NSProcessInfo processInfo] globallyUniqueString];
+}
 
 + (BOOL)clearEntityForNameWithObjName:(NSString *)name withPredicate:(NSPredicate *)predicate withGivenContext:(NSManagedObjectContext *)context
 {

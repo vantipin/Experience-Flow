@@ -23,6 +23,7 @@
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) IBOutlet UIView *contentContainerView;
+@property (nonatomic) IBOutlet UIImageView *iclouavailabilityIcon;
 
 @property (nonatomic) UINavigationController   *contentNavigationController;
 @property (nonatomic) CharacterViewController  *contentCharacterController;
@@ -51,6 +52,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    BOOL isiCloudAvailable = [[iCloud sharedCloud] checkCloudAvailability];
+    if (isiCloudAvailable) {
+        [self.iclouavailabilityIcon setImage:[UIImage imageWithContentsOfFile:filePathWithName(@"icloudAvailable.png")]];
+    }
+    else {
+        [self.iclouavailabilityIcon setImage:[UIImage imageWithContentsOfFile:filePathWithName(@"icloudIsntAvailible.png")]];
+    }
     
     [self updateDataSource];
     [self setNeedsStatusBarAppearanceUpdate];
@@ -172,9 +180,6 @@
             self.sideBarContainerView.frame = newFrame;
             [self hideSideBar:true];
         }];
-        
-        
-
     }
 }
 
@@ -300,5 +305,17 @@
     }
     return true;
 }
+
+#pragma marl icloud protocol
+-(void)iCloudAvailabilityDidChangeToState:(BOOL)cloudIsAvailable withUbiquityToken:(id)ubiquityToken withUbiquityContainer:(NSURL *)ubiquityContainer
+{
+    if (cloudIsAvailable) {
+        [self.iclouavailabilityIcon setImage:[UIImage imageWithContentsOfFile:filePathWithName(@"icloudAvailable.png")]];
+    }
+    else {
+        [self.iclouavailabilityIcon setImage:[UIImage imageWithContentsOfFile:filePathWithName(@"icloudIsntAvailible.png")]];
+    }
+}
+
 
 @end
