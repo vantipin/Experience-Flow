@@ -11,7 +11,11 @@
 #import "Skill.h"
 #import "SkillSet.h"
 #import "SkillTemplate.h"
+#import "SkillManager.h"
 #import "MainContextObject.h"
+#import "iCloud.h"
+#import "UserDefaultsHelper.h"
+#import "CharacterDataArchiver.h"
 
 @implementation AppDelegate
 
@@ -40,28 +44,58 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-//    id currentiCloudToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
-//    if (currentiCloudToken) {
-//        NSData *newTokenData =
-//        [NSKeyedArchiver archivedDataWithRootObject: currentiCloudToken];
-//        [[NSUserDefaults standardUserDefaults]
-//         setObject: newTokenData
-//         forKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
-//    } else {
-//        [[NSUserDefaults standardUserDefaults]
-//         removeObjectForKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
-//    }
-//    
-//    [[NSNotificationCenter defaultCenter]
-//     addObserver: self
-//     selector: @selector (iCloudAccountAvailabilityChanged:)
-//     name: NSUbiquityIdentityDidChangeNotification
-//     object: nil];
-    
-    
-    
     
     NSManagedObjectContext *context = [[MainContextObject sharedInstance] managedObjectContext];
+    
+    if ([[iCloud sharedCloud] checkCloudAvailability]) {
+        
+        NSMutableArray *toDelete = [UserDefaultsHelper fileNamesToDelete];
+        NSMutableArray *toSave = [UserDefaultsHelper characterIdsToSave];
+        
+        if (toDelete || toDelete.count) {
+            for (NSString *str in toDelete) {
+                NSString *fileName = str;
+                [[iCloud sharedCloud] deleteDocumentWithName:fileName completion:^(NSError *error) {
+                    if (!error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            NSLog(@"Successfully removed file named %@ from iCloud",str);
+                            NSMutableArray *currentCollection = [UserDefaultsHelper fileNamesToDelete];
+                            if ([currentCollection indexOfObject:fileName] != NSNotFound) {
+                                [currentCollection removeObjectAtIndex:[currentCollection indexOfObject:fileName]];
+                            }
+                            [UserDefaultsHelper setFilenamesToDelete:currentCollection];
+                        });
+                    }
+                }];
+            }
+        }
+        
+        if (toSave || toSave.count) {
+            for (NSString *str in toSave) {
+                NSArray *characterObjs = [Character fetchCharacterWithId:str withContext:context];
+                if (characterObjs && characterObjs.count) {
+                    NSString *fileName = [NSString stringWithFormat:@"%@.plist",str];
+                    Character *character = characterObjs.lastObject;
+                    NSData *content = [CharacterDataArchiver chracterToDictionaryData:character];
+                    [[iCloud sharedCloud] saveAndCloseDocumentWithName:fileName withContent:content completion:^(UIDocument *cloudDocument, NSData *documentData, NSError *error) {
+                        if (!error) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [UserDefaultsHelper setUpdateDate:cloudDocument.fileModificationDate forFileName:cloudDocument.localizedName];
+                                NSLog(@"Successfully saved character with id %@ on iCloud",str);
+                                NSMutableArray *currentCollection = [UserDefaultsHelper characterIdsToSave];
+                                if ([currentCollection indexOfObject:str] != NSNotFound) {
+                                    [currentCollection removeObjectAtIndex:[currentCollection indexOfObject:str]];
+                                }
+                                [UserDefaultsHelper setCharacterIdsToSave:currentCollection];
+                            });
+                        }
+                    }];
+                    
+                }
+            }
+        }
+        
+    }
     
     NSArray *unfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:context];
     for (Character *unfinishedOne in unfinishedCharacters){

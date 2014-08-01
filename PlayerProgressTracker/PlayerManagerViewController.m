@@ -12,11 +12,11 @@
 #import "MainContextObject.h"
 #import "Constants.h"
 #import "PlayerViewCell.h"
-
+#import "CharacterDataArchiver.h"
 #import "Character.h"
 #import "Pic.h"
 #import "SkillSet.h"
-
+#import "UserDefaultsHelper.h"
 #import "SkillManager.h"
 
 @interface PlayerManagerViewController ()
@@ -52,6 +52,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //iCloud setup
     BOOL isiCloudAvailable = [[iCloud sharedCloud] checkCloudAvailability];
     if (isiCloudAvailable) {
         [self.iclouavailabilityIcon setImage:[UIImage imageWithContentsOfFile:filePathWithName(@"icloudAvailable.png")]];
@@ -59,6 +61,12 @@
     else {
         [self.iclouavailabilityIcon setImage:[UIImage imageWithContentsOfFile:filePathWithName(@"icloudIsntAvailible.png")]];
     }
+    iCloud *icloudManager = [iCloud sharedCloud];
+    icloudManager.delegate = self;
+    icloudManager.verboseLogging = true; // We want detailed feedback about what's going on with iCloud, this is OFF by default
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudIsReady) name:@"iCloud Ready" object:nil];
+    //
+    
     
     [self updateDataSource];
     [self setNeedsStatusBarAppearanceUpdate];
@@ -91,6 +99,8 @@
     else {
         [self didTapNewPlayer];
     }
+    
+    [[iCloud sharedCloud] updateFiles];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -273,6 +283,7 @@
 {
     if (buttonIndex == 0) // delete
     {
+        [self deleteCharacter:self.characterToDelete];
         [self.context deleteObject:self.characterToDelete];
         
         if (self.dataSource.count < 1) {
@@ -306,7 +317,14 @@
     return true;
 }
 
-#pragma marl icloud protocol
+#pragma mark icloud protocol and managin methods
+-(void)iCloudIsReady
+{
+    // Reclaim delegate and then update files
+    [[iCloud sharedCloud] setDelegate:self];
+    [[iCloud sharedCloud] updateFiles];
+}
+
 -(void)iCloudAvailabilityDidChangeToState:(BOOL)cloudIsAvailable withUbiquityToken:(id)ubiquityToken withUbiquityContainer:(NSURL *)ubiquityContainer
 {
     if (cloudIsAvailable) {
@@ -317,5 +335,46 @@
     }
 }
 
+
+-(void)iCloudFilesDidChange:(NSMutableArray *)files withNewFileNames:(NSMutableArray *)fileNames
+{
+    for (NSString *name in fileNames) {
+        int index = (int)[fileNames indexOfObject:name];
+        NSMetadataItem *document = files[index];
+        NSDate *date = [UserDefaultsHelper lastiCloudUpdateForFileName:name];
+        NSDate *iCloudDate = [document valueForAttribute:@"kMDItemFSContentChangeDate"];
+        
+        if (!date || (iCloudDate.timeIntervalSince1970 > date.timeIntervalSince1970)) {
+            iCloudDocument *document = [[iCloud sharedCloud] retrieveCloudDocumentObjectWithName:name];
+            if (document.contents.length) {
+                [UserDefaultsHelper setUpdateDate:iCloudDate forFileName:name];
+                [CharacterDataArchiver loadCharacterFromDictionaryData:document.contents withContext:self.context];
+                [self didUpdateCharacterList];
+            }
+        }
+
+    }
+}
+
+
+-(void)deleteCharacter:(Character *)character
+{
+    //TODO character should be remebered to be deleted if offline
+    NSString *fileName = [NSString stringWithFormat:@"%@.plist",character.characterId];
+    [[iCloud sharedCloud] deleteDocumentWithName:fileName completion:^(NSError *error) {
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSMutableArray *toDelete = [UserDefaultsHelper fileNamesToDelete];
+                if (!toDelete) {
+                    toDelete = [NSMutableArray new];
+                }
+                if ([toDelete indexOfObject:fileName] == NSNotFound) {
+                    [toDelete addObject:fileName];
+                }
+                [UserDefaultsHelper setFilenamesToDelete:toDelete];
+            });
+        }
+    }];
+}
 
 @end

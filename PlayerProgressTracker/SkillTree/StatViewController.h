@@ -17,6 +17,7 @@
 @property (nonatomic) IBOutlet UILabel *inventoryCurrentLabel;
 @property (nonatomic) IBOutlet UILabel *inventoryMaxLabel;
 @property (nonatomic) IBOutlet UILabel *movementLabel;
-@property (nonatomic) IBOutlet UILabel *bulkLabel;
+@property (nonatomic) IBOutlet UILabel *initiativeLabel;
+
 
 @end

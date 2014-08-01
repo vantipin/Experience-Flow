@@ -17,8 +17,9 @@
 #import "SkillLevelsSetManager.h"
 #import "SkillLevelsSet.h"
 #import "CustomImagePickerViewController.h"
-#import "CharacterProgressDataArchiver.h"
-#import "CharacterDocManager.h"
+#import "CharacterDataArchiver.h"
+#import "iCloud.h"
+#import "UserDefaultsHelper.h"
 
 static NSString *DEFAULT_RACE = @"Human";
 static const float HEADER_LAYOUT_HIDDEN = 20;
@@ -42,7 +43,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
 @property (nonatomic) NSManagedObjectContext *context;
 @property (nonatomic) UITextField *currentlyEditingField; //for applying changes when (save) buttons tapped
 @property (nonatomic) SkillTreeViewController *skillTreeController;
-@property (nonatomic) CharacterProgressDataArchiver *progressArchiver;
+@property (nonatomic) CharacterDataArchiver *progressArchiver;
 
 @property (nonatomic) UIAlertView *statSaveAlert;
 @property (nonatomic) UIAlertView *characterSaveAlert;
@@ -99,7 +100,6 @@ static const float HEADER_LAYOUT_SHOWN = 100;
 -(void)viewWillAppear:(BOOL)animated
 {
     [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
-    [self updateRaceButtonWithName:[self.raceNames lastObject]];
     [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];
     
     
@@ -265,7 +265,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     [self refreshRaceNames];
     
     BOOL isAPartOfSkillSets = ([self.raceNames indexOfObject:self.character.skillSet.name] == NSNotFound);
-    if (self.raceNames.count == 0 || !isAPartOfSkillSets) {
+    if (self.raceNames.count == 0 || isAPartOfSkillSets) {
         //no statSet is available or character's skills set statSet
         currentTitle = self.character.skillSet.name;
         [self prepareViewForSavingNewClass];
@@ -406,13 +406,13 @@ static const float HEADER_LAYOUT_SHOWN = 100;
             self.character.characterFinished = true;
             [self.character saveCharacterWithContext:self.context];
             
+            if ([[iCloud sharedCloud] checkCloudAvailability]) {
+                [self saveCharacterAsArchiveOniCloud];
+            }
+            
             [self.navigationController popToRootViewControllerAnimated:true];
             [[NSNotificationCenter defaultCenter]
              postNotificationName:DID_UPDATE_CHARACTER_LIST object:self];
-        }
-        else if (alertView == self.progressReplaceAlert) {
-            [self.progressArchiver updateCharacter:self.character withContext:self.context];
-            [self selectCharacter:self.character];
         }
         
     }
@@ -493,38 +493,15 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     }
 }
 
-#pragma mark AddNewSkillControllerProtocol delegate methods
-
--(BOOL)addNewSkillWithTemplate:(SkillTemplate *)skillTemplate
-{
-    Skill *skill = [[SkillManager sharedInstance] addNewSkillWithTempate:skillTemplate toSkillSet:self.character.skillSet withContext:self.context];
-    if (skill) {
-        [self prepareViewForSavingNewClass];
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-
--(BOOL)deleteNewSkillWithTemplate:(SkillTemplate *)skillTemplate
-{
-    BOOL deleted = [[SkillManager sharedInstance] removeSkillWithTemplate:skillTemplate fromSkillSet:self.character.skillSet withContext:self.context];
-    if (deleted) {
-        [self prepareViewForSavingNewClass];
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-
 #pragma mark SkillChangeProtocol
 -(void)didFinishChangingExperiencePointsForSkill:(Skill *)skill
 {
-    [self prepareViewForSavingNewClass];
+    if (self.isNewCharacterMode) {
+        [self prepareViewForSavingNewClass];
+    }
+    else {
+        [self saveCharacterAsArchiveOniCloud];
+    }
 }
 
 -(void)allFontsToConsole
@@ -547,10 +524,9 @@ static const float HEADER_LAYOUT_SHOWN = 100;
 	picker.delegate = self;
     
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    
-    //[[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
+
 	[self presentViewController:picker animated:true completion:^{
-        //[[NSNotificationCenter defaultCenter] postNotificationName:UIDeviceOrientationDidChangeNotification object:nil];
+        
     }];
 }
 
@@ -562,21 +538,32 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     }];
 }
 
-#pragma mark CharacterProgressArchiverProtocol
--(BOOL)shouldReplaceCharacterProgress:(Character *)character
+
+#pragma mark saving onicloud methods
+-(void)saveCharacterAsArchiveOniCloud
 {
-    [self resignCurrentTextFieldResponder];
-    
-    NSString *archiveCharacterModified = [Character standartDateFormat:self.progressArchiver.dateModified];
-    NSString *currentCharacterModified = [Character standartDateFormat:self.character.dateModifed];
-    self.progressReplaceAlert = [[UIAlertView alloc]initWithTitle: @"Reset Skills?"
-                                                          message: [NSString stringWithFormat:@"Are you sure you want to replace current progress (%@) from archive (%@)?",currentCharacterModified,archiveCharacterModified]
-                                                         delegate: self
-                                                cancelButtonTitle:@"Cancel"
-                                                otherButtonTitles:@"Replace",nil];
-    self.progressReplaceAlert.delegate = self;
-    [self.progressReplaceAlert show];
-    return false;
+    NSString *characterId = self.character.characterId;
+    NSString *documentName = [NSString stringWithFormat:@"%@.plist",characterId];
+    NSData *content = [CharacterDataArchiver chracterToDictionaryData:self.character];
+    [[iCloud sharedCloud] saveAndCloseDocumentWithName:documentName withContent:content completion:^(UIDocument *cloudDocument, NSData *documentData, NSError *error){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (!error) {
+                [UserDefaultsHelper setUpdateDate:cloudDocument.fileModificationDate forFileName:cloudDocument.localizedName];
+            }
+            else {
+                NSMutableArray *toSave = [UserDefaultsHelper characterIdsToSave];
+                if (!toSave) {
+                    toSave = [NSMutableArray new];
+                }
+                if ([toSave indexOfObject:characterId] == NSNotFound) {
+                    [toSave addObject:characterId];
+                }
+                [UserDefaultsHelper setCharacterIdsToSave:toSave];
+            }
+            
+        });
+    }];
 }
 
 @end

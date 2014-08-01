@@ -234,8 +234,10 @@ static NSString *emptyParentKey = @"emptyParent";
     Skill *toughnessSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].toughness withCharacter:self.character];
     Skill *strenghtSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].strength withCharacter:self.character];
     Skill *physiqueSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].physique withCharacter:self.character];
+    Skill *perception = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].perception withCharacter:self.character];
     
-    self.statHeaderController.bulkLabel.text = [NSString stringWithFormat:@"%d",self.character.bulk];
+    int percFloat = [[SkillManager sharedInstance] countUsableLevelValueForSkill:perception] / 2;
+    self.statHeaderController.initiativeLabel.text = [NSString stringWithFormat:@"%d",percFloat ? percFloat : 1];
     self.statHeaderController.movementLabel.text = [NSString stringWithFormat:@"%d",self.character.pace + physiqueSkill.currentLevel];
     self.statHeaderController.healthCurrentLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 2];
     self.statHeaderController.healthMaxLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 2];

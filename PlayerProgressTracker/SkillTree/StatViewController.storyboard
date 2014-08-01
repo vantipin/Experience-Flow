@@ -52,21 +52,21 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9t-Rl-Y75">
-                                        <rect key="frame" x="27" y="14" width="21" height="21"/>
+                                        <rect key="frame" x="26" y="14" width="21" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r6k-uY-ZAH">
-                                        <rect key="frame" x="38" y="14" width="30" height="21"/>
+                                        <rect key="frame" x="37" y="14" width="30" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KCe-Yg-3ck">
-                                        <rect key="frame" x="56" y="14" width="32" height="21"/>
+                                        <rect key="frame" x="55" y="14" width="32" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,7 +75,7 @@
                                 </subviews>
                             </view>
                             <view contentMode="scaleToFill" id="Tu6-GT-kAN">
-                                <rect key="frame" x="254" y="0.0" width="67" height="41"/>
+                                <rect key="frame" x="248" y="0.0" width="67" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movement.png" id="evO-EV-2Hw">
@@ -83,7 +83,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fug-BZ-yz2">
-                                        <rect key="frame" x="43" y="13" width="24" height="23"/>
+                                        <rect key="frame" x="45" y="13" width="24" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,16 +91,16 @@
                                     </label>
                                 </subviews>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" id="UB5-go-4Nc">
-                                <rect key="frame" x="365" y="-2" width="69" height="42"/>
+                            <view contentMode="scaleToFill" id="Xvh-Uc-1JZ">
+                                <rect key="frame" x="347" y="0.0" width="67" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.84999999999999987" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bulk.png" id="AJJ-sl-g35">
-                                        <rect key="frame" x="0.0" y="2" width="54" height="38"/>
+                                    <imageView userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="initiative.png" id="vLf-C6-6GX">
+                                        <rect key="frame" x="0.0" y="8" width="41" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DiF-hp-KE7">
-                                        <rect key="frame" x="45" y="13" width="24" height="23"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fxh-8M-Dgk">
+                                        <rect key="frame" x="38" y="13" width="24" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,9 +118,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="40"/>
                     <connections>
-                        <outlet property="bulkLabel" destination="DiF-hp-KE7" id="KF4-4I-SNP"/>
                         <outlet property="healthCurrentLabel" destination="n9t-Rl-Y75" id="AI6-kX-cIg"/>
                         <outlet property="healthMaxLabel" destination="KCe-Yg-3ck" id="Du6-jE-in0"/>
+                        <outlet property="initiativeLabel" destination="fxh-8M-Dgk" id="zf4-q0-fmu"/>
                         <outlet property="inventoryCurrentLabel" destination="84w-8h-w2L" id="azg-Q9-xi5"/>
                         <outlet property="inventoryMaxLabel" destination="zJB-DR-nmE" id="vG7-rl-I5V"/>
                         <outlet property="movementLabel" destination="fug-BZ-yz2" id="CRf-Rf-3yM"/>
@@ -132,10 +132,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bulk.png" width="75" height="96"/>
         <image name="health.png" width="35" height="26"/>
+        <image name="initiative.png" width="29" height="44"/>
         <image name="inventoryIcon.png" width="36" height="56"/>
-        <image name="movement.png" width="64" height="46"/>
+        <image name="movement.png" width="63" height="46"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

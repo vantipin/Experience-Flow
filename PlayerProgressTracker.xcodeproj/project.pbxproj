@@ -75,8 +75,10 @@
 		DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAF195B4338002D7EF2 /* xpAura.png */; };
 		DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */; };
 		DF1F5CCA195B43A1002D7EF2 /* MainContextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */; };
-		DF2900EF197EDE9F00861A4F /* CharacterProgressDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2900EE197EDE9F00861A4F /* CharacterProgressDataArchiver.m */; };
-		DF3C0EDA1986CB900016AFF2 /* CharacterDocManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3C0ED91986CB900016AFF2 /* CharacterDocManager.m */; };
+		DF2900EF197EDE9F00861A4F /* CharacterDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2900EE197EDE9F00861A4F /* CharacterDataArchiver.m */; };
+		DF296447198A9EB90024E070 /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF296446198A9EB90024E070 /* UserDefaultsHelper.m */; };
+		DF29644A198C095A0024E070 /* initiative.png in Resources */ = {isa = PBXBuildFile; fileRef = DF296448198C095A0024E070 /* initiative.png */; };
+		DF29644B198C095A0024E070 /* initiative@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF296449198C095A0024E070 /* initiative@2x.png */; };
 		DF3C0EE219881F5C0016AFF2 /* iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3C0EDF19881F5C0016AFF2 /* iCloud.m */; };
 		DF3C0EE319881F5C0016AFF2 /* iCloudDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3C0EE119881F5C0016AFF2 /* iCloudDocument.m */; };
 		DF3C0EE8198824240016AFF2 /* icloudAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE4198824240016AFF2 /* icloudAvailable.png */; };
@@ -237,10 +239,12 @@
 		DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContextObject.m; sourceTree = "<group>"; };
 		DF24B1291874B75900B57855 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Experience Flow.entitlements"; sourceTree = "<group>"; };
-		DF2900ED197EDE9F00861A4F /* CharacterProgressDataArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterProgressDataArchiver.h; sourceTree = "<group>"; };
-		DF2900EE197EDE9F00861A4F /* CharacterProgressDataArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterProgressDataArchiver.m; sourceTree = "<group>"; };
-		DF3C0ED81986CB900016AFF2 /* CharacterDocManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDocManager.h; sourceTree = "<group>"; };
-		DF3C0ED91986CB900016AFF2 /* CharacterDocManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterDocManager.m; sourceTree = "<group>"; };
+		DF2900ED197EDE9F00861A4F /* CharacterDataArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDataArchiver.h; sourceTree = "<group>"; };
+		DF2900EE197EDE9F00861A4F /* CharacterDataArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterDataArchiver.m; sourceTree = "<group>"; };
+		DF296445198A9EB90024E070 /* UserDefaultsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsHelper.h; sourceTree = "<group>"; };
+		DF296446198A9EB90024E070 /* UserDefaultsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsHelper.m; sourceTree = "<group>"; };
+		DF296448198C095A0024E070 /* initiative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initiative.png; sourceTree = "<group>"; };
+		DF296449198C095A0024E070 /* initiative@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "initiative@2x.png"; sourceTree = "<group>"; };
 		DF3C0EDD19881F5C0016AFF2 /* iCloud-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iCloud-Prefix.pch"; sourceTree = "<group>"; };
 		DF3C0EDE19881F5C0016AFF2 /* iCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCloud.h; sourceTree = "<group>"; };
 		DF3C0EDF19881F5C0016AFF2 /* iCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCloud.m; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 				DF1F5C4F195B431E002D7EF2 /* SkillLevelsSetManager.m */,
 				DF1F5CC8195B43A1002D7EF2 /* MainContextObject.h */,
 				DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */,
+				DF296445198A9EB90024E070 /* UserDefaultsHelper.h */,
+				DF296446198A9EB90024E070 /* UserDefaultsHelper.m */,
 			);
 			name = Model;
 			path = PlayerProgressTracker/Model;
@@ -458,6 +464,8 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DF296448198C095A0024E070 /* initiative.png */,
+				DF296449198C095A0024E070 /* initiative@2x.png */,
 				DF3C0EE4198824240016AFF2 /* icloudAvailable.png */,
 				DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */,
 				DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */,
@@ -514,10 +522,8 @@
 			children = (
 				DF1F5C52195B431E002D7EF2 /* SkillTemplateDataArchiver.h */,
 				DF1F5C53195B431E002D7EF2 /* SkillTemplateDataArchiver.m */,
-				DF2900ED197EDE9F00861A4F /* CharacterProgressDataArchiver.h */,
-				DF2900EE197EDE9F00861A4F /* CharacterProgressDataArchiver.m */,
-				DF3C0ED81986CB900016AFF2 /* CharacterDocManager.h */,
-				DF3C0ED91986CB900016AFF2 /* CharacterDocManager.m */,
+				DF2900ED197EDE9F00861A4F /* CharacterDataArchiver.h */,
+				DF2900EE197EDE9F00861A4F /* CharacterDataArchiver.m */,
 			);
 			name = DataArchiver;
 			sourceTree = "<group>";
@@ -810,10 +816,12 @@
 				DF1F5C94195B432D002D7EF2 /* SkillLinkView.storyboard in Resources */,
 				DF1F5CC3195B4338002D7EF2 /* skillNode@2x.png in Resources */,
 				DFDA01BE1961C7BA005D3703 /* movement.png in Resources */,
+				DF29644B198C095A0024E070 /* initiative@2x.png in Resources */,
 				DF3C0EE8198824240016AFF2 /* icloudAvailable.png in Resources */,
 				DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */,
 				DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */,
 				DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
+				DF29644A198C095A0024E070 /* initiative.png in Resources */,
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
 				DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
@@ -840,7 +848,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF3C0EDA1986CB900016AFF2 /* CharacterDocManager.m in Sources */,
 				DFDA01C61961D1B6005D3703 /* StatViewController.m in Sources */,
 				DF1F5C63195B431E002D7EF2 /* Skill.m in Sources */,
 				DF1F5C62195B431E002D7EF2 /* RangeSkill.m in Sources */,
@@ -879,7 +886,8 @@
 				DF1F5C59195B431E002D7EF2 /* WeaponMelee.m in Sources */,
 				DF1F5C5F195B431E002D7EF2 /* MagicSkill.m in Sources */,
 				DFAED10C186309B40039D17B /* main.m in Sources */,
-				DF2900EF197EDE9F00861A4F /* CharacterProgressDataArchiver.m in Sources */,
+				DF296447198A9EB90024E070 /* UserDefaultsHelper.m in Sources */,
+				DF2900EF197EDE9F00861A4F /* CharacterDataArchiver.m in Sources */,
 				DF1F5C5E195B431E002D7EF2 /* BasicSkill.m in Sources */,
 				DF1F5C67195B431E002D7EF2 /* DefaultSkillTemplates.m in Sources */,
 				DFDA01F119633043005D3703 /* CustomPopoverViewController.m in Sources */,
