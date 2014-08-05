@@ -545,6 +545,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     NSString *characterId = self.character.characterId;
     NSString *documentName = [NSString stringWithFormat:@"%@.plist",characterId];
     NSData *content = [CharacterDataArchiver chracterToDictionaryData:self.character];
+    
     [[iCloud sharedCloud] saveAndCloseDocumentWithName:documentName withContent:content completion:^(UIDocument *cloudDocument, NSData *documentData, NSError *error){
         dispatch_async(dispatch_get_main_queue(), ^{
             

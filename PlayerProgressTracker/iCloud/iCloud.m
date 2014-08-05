@@ -117,13 +117,10 @@
         
         return YES;
     } else {
-        if (self.verboseAvailabilityLogging == YES) {
+        if (self.verboseAvailabilityLogging == YES)
             NSLog(@"iCloud is not available. iCloud may be unavailable for a number of reasons:\n• The device has not yet been configured with an iCloud account, or the Documents & Data option is disabled\n• Your app, %@, does not have properly configured entitlements\nGo to http://bit.ly/18HkxPp for more information on setting up iCloud", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]);
-        }
-        else {
+        else
             NSLog(@"iCloud unavailable");
-        }
-        
         
         if ([self.delegate respondsToSelector:@selector(iCloudAvailabilityDidChangeToState:withUbiquityToken:withUbiquityContainer:)])
             [self.delegate iCloudAvailabilityDidChangeToState:NO withUbiquityToken:nil withUbiquityContainer:ubiquityContainer];

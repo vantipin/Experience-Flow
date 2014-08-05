@@ -345,12 +345,21 @@
         NSDate *iCloudDate = [document valueForAttribute:@"kMDItemFSContentChangeDate"];
         
         if (!date || (iCloudDate.timeIntervalSince1970 > date.timeIntervalSince1970)) {
-            iCloudDocument *document = [[iCloud sharedCloud] retrieveCloudDocumentObjectWithName:name];
-            if (document.contents.length) {
-                [UserDefaultsHelper setUpdateDate:iCloudDate forFileName:name];
-                [CharacterDataArchiver loadCharacterFromDictionaryData:document.contents withContext:self.context];
-                [self didUpdateCharacterList];
-            }
+            [[iCloud sharedCloud] retrieveCloudDocumentWithName:name completion:^(UIDocument *cloudDocument, NSData *documentData, NSError *error) {
+                if (documentData.length) {
+                    [UserDefaultsHelper setUpdateDate:iCloudDate forFileName:name];
+                    [CharacterDataArchiver loadCharacterFromDictionaryData:documentData withContext:self.context];
+                    [self didUpdateCharacterList];
+                }
+            }];
+            
+            
+//            iCloudDocument *document = [[iCloud sharedCloud] retrieveCloudDocumentObjectWithName:name];
+//            if (document.contents.length) {
+//                [UserDefaultsHelper setUpdateDate:iCloudDate forFileName:name];
+//                [CharacterDataArchiver loadCharacterFromDictionaryData:document.contents withContext:self.context];
+//                [self didUpdateCharacterList];
+//            }
         }
 
     }
