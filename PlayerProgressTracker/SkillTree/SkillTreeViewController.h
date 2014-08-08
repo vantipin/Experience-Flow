@@ -32,4 +32,6 @@
 -(void)refreshSkillvalues;
 -(void)refreshSkillvaluesWithReloadingSkills:(BOOL)needReload;
 -(void)changeYStatLayout:(float)newYLayout animated:(BOOL)animated;
+
+-(void)resetPointsLeftProgress;
 @end

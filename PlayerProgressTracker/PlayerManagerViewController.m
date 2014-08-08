@@ -360,6 +360,7 @@
 
 -(void)iCloudFilesDidChange:(NSMutableArray *)files withNewFileNames:(NSMutableArray *)fileNames
 {
+    int allCount = fileNames.count;
     for (NSString *name in fileNames) {
         int index = (int)[fileNames indexOfObject:name];
         NSMetadataItem *document = files[index];
@@ -368,7 +369,9 @@
         
         if (!date || (iCloudDate.timeIntervalSince1970 > date.timeIntervalSince1970)) {
             [[iCloud sharedCloud] retrieveCloudDocumentWithName:name completion:^(UIDocument *cloudDocument, NSData *documentData, NSError *error) {
-                if (documentData.length) {
+                
+                NSDate *checkUponArrivalDate = [UserDefaultsHelper lastiCloudUpdateForFileName:name];
+                if ((documentData.length && !date) || (documentData.length && (iCloudDate.timeIntervalSince1970 > checkUponArrivalDate.timeIntervalSince1970))) {
                     
                     if (!self.shadowView.superview) {
                         [self invokeActivityIndicatorWork];
@@ -377,7 +380,7 @@
                     [UserDefaultsHelper setUpdateDate:iCloudDate forFileName:name];
                     [CharacterDataArchiver loadCharacterFromDictionaryData:documentData withContext:self.context];
                     
-                    if (index == fileNames.count - 1) {
+                    if (index == allCount - 1) {
                         [self stopActivityIndicatorWork];
                         [self updateDataSource];
                         [self.tableView reloadData];

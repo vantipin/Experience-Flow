@@ -517,10 +517,6 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)refreshSkillvaluesWithReloadingSkills:(BOOL)needReload;
 {
-    if (self.isInCreatingNewCharacterMod) {
-        [UserDefaultsHelper clearTempDataForCharacterId:self.character.characterId];
-        self.isInCreatingNewCharacterMod = true;
-    }
     for (NodeViewController *node in self.allExistingNodes) {
         if (needReload) {
             node.skill = nil;
@@ -528,6 +524,15 @@ static NSString *emptyParentKey = @"emptyParent";
         [node updateInterface];
     }
     [self updateStatHeader];
+}
+
+
+-(void)resetPointsLeftProgress
+{
+    if (self.isInCreatingNewCharacterMod) {
+        [UserDefaultsHelper clearTempDataForCharacterId:self.character.characterId];
+        self.isInCreatingNewCharacterMod = true;
+    }
 }
 
 -(void)changeYStatLayout:(float)newYLayout animated:(BOOL)animated;

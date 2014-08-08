@@ -191,6 +191,12 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     return _classesDropController;
 }
 
+-(void)setIsNewCharacterMode:(BOOL)isNewCharacterMode
+{
+    _isNewCharacterMode = isNewCharacterMode;
+    [self triggerInterfaceModes];
+}
+
 #pragma mark ViewControllers modes
 -(void)selectNewCharacter
 {
@@ -198,19 +204,20 @@ static const float HEADER_LAYOUT_SHOWN = 100;
         Character *newCharacter;
         NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.context];
         [self refreshRaceNames];
-        self.isNewCharacterMode = true;
         if (arrayOfUnfinishedCharacters.count != 0){
             newCharacter = [arrayOfUnfinishedCharacters lastObject];
+            self.character = newCharacter;
+            self.isNewCharacterMode = true;
             [self updateRaceButtonWithName:nil];
         }
         else{
             newCharacter = [Character newCharacterWithContext:self.context];
+            self.character = newCharacter;
+            self.isNewCharacterMode = true;
             [self updateRaceButtonWithName:nameHuman];
         }
-        [[SkillManager sharedInstance] checkAllCharacterCoreSkills:newCharacter];
         self.character = newCharacter;
         self.nameTextField.text = @"";
-        [self triggerInterfaceModes];
     }
 
 }
@@ -221,7 +228,6 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     if (character) {
         self.character = character;
         self.isNewCharacterMode = false;
-        [self triggerInterfaceModes];
     }
     else {
         [self selectNewCharacter];
@@ -284,6 +290,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     
     [self.character saveCharacterWithContext:self.context];
     [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];                //update skill tree
+    [self.skillTreeController resetPointsLeftProgress];
 }
 
 
