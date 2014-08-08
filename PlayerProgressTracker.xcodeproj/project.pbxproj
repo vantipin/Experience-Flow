@@ -79,6 +79,8 @@
 		DF296447198A9EB90024E070 /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF296446198A9EB90024E070 /* UserDefaultsHelper.m */; };
 		DF29644A198C095A0024E070 /* initiative.png in Resources */ = {isa = PBXBuildFile; fileRef = DF296448198C095A0024E070 /* initiative.png */; };
 		DF29644B198C095A0024E070 /* initiative@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF296449198C095A0024E070 /* initiative@2x.png */; };
+		DF3611001993F8EC00B6B78A /* PointCountLeft.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF3610FF1993F8EC00B6B78A /* PointCountLeft.storyboard */; };
+		DF3611041993FB9700B6B78A /* PointsCountLeftController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3611031993FB9700B6B78A /* PointsCountLeftController.m */; };
 		DF3C0EE219881F5C0016AFF2 /* iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3C0EDF19881F5C0016AFF2 /* iCloud.m */; };
 		DF3C0EE319881F5C0016AFF2 /* iCloudDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3C0EE119881F5C0016AFF2 /* iCloudDocument.m */; };
 		DF3C0EE8198824240016AFF2 /* icloudAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE4198824240016AFF2 /* icloudAvailable.png */; };
@@ -245,6 +247,9 @@
 		DF296446198A9EB90024E070 /* UserDefaultsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsHelper.m; sourceTree = "<group>"; };
 		DF296448198C095A0024E070 /* initiative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initiative.png; sourceTree = "<group>"; };
 		DF296449198C095A0024E070 /* initiative@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "initiative@2x.png"; sourceTree = "<group>"; };
+		DF3610FF1993F8EC00B6B78A /* PointCountLeft.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PointCountLeft.storyboard; sourceTree = "<group>"; };
+		DF3611021993FB9700B6B78A /* PointsCountLeftController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsCountLeftController.h; sourceTree = "<group>"; };
+		DF3611031993FB9700B6B78A /* PointsCountLeftController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsCountLeftController.m; sourceTree = "<group>"; };
 		DF3C0EDD19881F5C0016AFF2 /* iCloud-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iCloud-Prefix.pch"; sourceTree = "<group>"; };
 		DF3C0EDE19881F5C0016AFF2 /* iCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCloud.h; sourceTree = "<group>"; };
 		DF3C0EDF19881F5C0016AFF2 /* iCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCloud.m; sourceTree = "<group>"; };
@@ -440,6 +445,7 @@
 		DF1F5C79195B432D002D7EF2 /* SkillTree */ = {
 			isa = PBXGroup;
 			children = (
+				DF3611011993F8F200B6B78A /* PointsCountLeft */,
 				DFDA01C81961D2FA005D3703 /* headerStatView */,
 				DFDA01C71961D2E2005D3703 /* nodes */,
 				DF1F5C80195B432D002D7EF2 /* SkillTreeViewController.h */,
@@ -526,6 +532,16 @@
 				DF2900EE197EDE9F00861A4F /* CharacterDataArchiver.m */,
 			);
 			name = DataArchiver;
+			sourceTree = "<group>";
+		};
+		DF3611011993F8F200B6B78A /* PointsCountLeft */ = {
+			isa = PBXGroup;
+			children = (
+				DF3610FF1993F8EC00B6B78A /* PointCountLeft.storyboard */,
+				DF3611021993FB9700B6B78A /* PointsCountLeftController.h */,
+				DF3611031993FB9700B6B78A /* PointsCountLeftController.m */,
+			);
+			name = PointsCountLeft;
 			sourceTree = "<group>";
 		};
 		DF3C0EDC19881F5C0016AFF2 /* iCloud */ = {
@@ -829,6 +845,7 @@
 				DF0995D9196460C70025A76A /* cloudBackground.png in Resources */,
 				DF0995DD196462140025A76A /* tipBackground.png in Resources */,
 				DFDA01BA1961C7BA005D3703 /* health.png in Resources */,
+				DF3611001993F8EC00B6B78A /* PointCountLeft.storyboard in Resources */,
 				DF1F5CB4195B4338002D7EF2 /* deleteButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,6 +867,7 @@
 			files = (
 				DFDA01C61961D1B6005D3703 /* StatViewController.m in Sources */,
 				DF1F5C63195B431E002D7EF2 /* Skill.m in Sources */,
+				DF3611041993FB9700B6B78A /* PointsCountLeftController.m in Sources */,
 				DF1F5C62195B431E002D7EF2 /* RangeSkill.m in Sources */,
 				DF0995E6196843B50025A76A /* PlayerViewCell.m in Sources */,
 				DF1F5C5D195B431E002D7EF2 /* AdvancedSkill.m in Sources */,
@@ -1023,9 +1041,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Evgeny Mikhalkov (9MMMNMSQM9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Evgeny Mikhalkov (9MMMNMSQM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Experience Flow";
 				PROVISIONING_PROFILE = "75D8C2E3-D16F-4B93-8CEB-F8E69D2B2C28";
 				WRAPPER_EXTENSION = app;
@@ -1038,11 +1058,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: YAUHEN MIKHALKOU (AXT7HT56A4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YAUHEN MIKHALKOU (AXT7HT56A4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Experience Flow";
-				PROVISIONING_PROFILE = "B39F861D-FA77-4BA5-828A-040C1CAB9A03";
+				PROVISIONING_PROFILE = "2578F6BD-FF7E-4118-A399-75E2C5A4FD6F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

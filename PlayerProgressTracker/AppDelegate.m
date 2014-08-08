@@ -57,14 +57,12 @@
                 NSString *fileName = str;
                 [[iCloud sharedCloud] deleteDocumentWithName:fileName completion:^(NSError *error) {
                     if (!error) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            NSLog(@"Successfully removed file named %@ from iCloud",str);
-                            NSMutableArray *currentCollection = [UserDefaultsHelper fileNamesToDelete];
-                            if ([currentCollection indexOfObject:fileName] != NSNotFound) {
-                                [currentCollection removeObjectAtIndex:[currentCollection indexOfObject:fileName]];
-                            }
-                            [UserDefaultsHelper setFilenamesToDelete:currentCollection];
-                        });
+                        NSLog(@"Successfully removed file named %@ from iCloud",str);
+                        NSMutableArray *currentCollection = [UserDefaultsHelper fileNamesToDelete];
+                        if ([currentCollection indexOfObject:fileName] != NSNotFound) {
+                            [currentCollection removeObjectAtIndex:[currentCollection indexOfObject:fileName]];
+                        }
+                        [UserDefaultsHelper setFilenamesToDelete:currentCollection];
                     }
                 }];
             }
@@ -79,15 +77,13 @@
                     NSData *content = [CharacterDataArchiver chracterToDictionaryData:character];
                     [[iCloud sharedCloud] saveAndCloseDocumentWithName:fileName withContent:content completion:^(UIDocument *cloudDocument, NSData *documentData, NSError *error) {
                         if (!error) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [UserDefaultsHelper setUpdateDate:cloudDocument.fileModificationDate forFileName:cloudDocument.localizedName];
-                                NSLog(@"Successfully saved character with id %@ on iCloud",str);
-                                NSMutableArray *currentCollection = [UserDefaultsHelper characterIdsToSave];
-                                if ([currentCollection indexOfObject:str] != NSNotFound) {
-                                    [currentCollection removeObjectAtIndex:[currentCollection indexOfObject:str]];
-                                }
-                                [UserDefaultsHelper setCharacterIdsToSave:currentCollection];
-                            });
+                            [UserDefaultsHelper setUpdateDate:cloudDocument.fileModificationDate forFileName:cloudDocument.localizedName];
+                            NSLog(@"Successfully saved character with id %@ on iCloud",str);
+                            NSMutableArray *currentCollection = [UserDefaultsHelper characterIdsToSave];
+                            if ([currentCollection indexOfObject:str] != NSNotFound) {
+                                [currentCollection removeObjectAtIndex:[currentCollection indexOfObject:str]];
+                            }
+                            [UserDefaultsHelper setCharacterIdsToSave:currentCollection];
                         }
                     }];
                     

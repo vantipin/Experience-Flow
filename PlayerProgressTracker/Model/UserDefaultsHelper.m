@@ -46,5 +46,42 @@
     [[NSUserDefaults standardUserDefaults] setObject:collection forKey:SHOULD_DELETE_FROM_ICLOUD];
 }
 
++(void)setPointsLeft:(float)points andOperationStack:(NSMutableDictionary *)operationStack forCharacterWithId:(NSString *)characterId;
+{
+    NSDictionary *data = @{keyForPointsLeft : @(points),
+                           keyForOperationStack : operationStack};
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:characterId];
+
+}
+
++(NSDictionary *)infoForUnfinishedCharacterWithId:(NSString *)characterId;
+{
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:characterId];
+    if (dict) {
+        NSMutableDictionary *stack = [NSMutableDictionary new];
+        NSDictionary *stackDict = [dict objectForKey:keyForOperationStack];
+        for (NSString *unmutableArrayKeys in stackDict.allKeys) {
+            NSMutableArray *mutableOne = [NSMutableArray new];
+            
+            for (NSNumber *portion in [stackDict objectForKey:unmutableArrayKeys]) {
+                [mutableOne addObject:portion];
+            }
+            
+            [stack setObject:mutableOne forKey:unmutableArrayKeys];
+        }
+        
+        return @{keyForPointsLeft : [dict objectForKey:keyForPointsLeft],
+                 keyForOperationStack : stack};
+    }
+    else {
+        return nil;
+    }
+}
+
++(void)clearTempDataForCharacterId:(NSString *)characterId;
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:characterId];
+}
 
 @end

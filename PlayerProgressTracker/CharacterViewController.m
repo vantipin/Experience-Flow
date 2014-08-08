@@ -21,7 +21,6 @@
 #import "iCloud.h"
 #import "UserDefaultsHelper.h"
 
-static NSString *DEFAULT_RACE = @"Human";
 static const float HEADER_LAYOUT_HIDDEN = 20;
 static const float HEADER_LAYOUT_SHOWN = 100;
 
@@ -141,6 +140,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
         
         _skillTreeController = [[SkillTreeViewController alloc] initWithCharacter:self.character];
         _skillTreeController.customHeaderStatLayoutY = 20;
+        _skillTreeController.isInCreatingNewCharacterMod = false;
         [self addChildViewController:_skillTreeController];
         [self.view addSubview:_skillTreeController.view];
         _skillTreeController.view.frame = self.view.bounds;
@@ -198,22 +198,18 @@ static const float HEADER_LAYOUT_SHOWN = 100;
         Character *newCharacter;
         NSArray *arrayOfUnfinishedCharacters = [Character fetchUnfinishedCharacterWithContext:self.context];
         [self refreshRaceNames];
+        self.isNewCharacterMode = true;
         if (arrayOfUnfinishedCharacters.count != 0){
             newCharacter = [arrayOfUnfinishedCharacters lastObject];
+            [self updateRaceButtonWithName:nil];
         }
         else{
             newCharacter = [Character newCharacterWithContext:self.context];
-            newCharacter.skillSet.name = DEFAULT_RACE;
-            [self updateRaceButtonWithName:DEFAULT_RACE];
+            [self updateRaceButtonWithName:nameHuman];
         }
         [[SkillManager sharedInstance] checkAllCharacterCoreSkills:newCharacter];
-        
         self.character = newCharacter;
-        self.isNewCharacterMode = true;
-        
         self.nameTextField.text = @"";
-        
-        
         [self triggerInterfaceModes];
     }
 
@@ -225,7 +221,6 @@ static const float HEADER_LAYOUT_SHOWN = 100;
     if (character) {
         self.character = character;
         self.isNewCharacterMode = false;
-        
         [self triggerInterfaceModes];
     }
     else {
@@ -242,6 +237,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
         self.headerView.frame = newHeaderFrame;
         self.headerView.alpha = alpha;
         
+        self.skillTreeController.isInCreatingNewCharacterMod = self.isNewCharacterMode;
         float newLayout = self.isNewCharacterMode ? HEADER_LAYOUT_SHOWN : HEADER_LAYOUT_HIDDEN;
         [self.skillTreeController changeYStatLayout:newLayout animated:false];
     }];
@@ -257,42 +253,36 @@ static const float HEADER_LAYOUT_SHOWN = 100;
         if (set.name) {
             [_raceNames addObject:set.name];
         }
-        
     }
 }
 - (void)updateRaceButtonWithName:(NSString *)currentTitle
 {
-    [self refreshRaceNames];
-    
-    BOOL isAPartOfSkillSets = ([self.raceNames indexOfObject:self.character.skillSet.name] == NSNotFound);
-    if (self.raceNames.count == 0 || isAPartOfSkillSets) {
-        //no statSet is available or character's skills set statSet
-        currentTitle = self.character.skillSet.name;
-        [self prepareViewForSavingNewClass];
-    }
-    else {
-        if ([self.raceNames indexOfObject:currentTitle] == NSNotFound) {
-            currentTitle = [self.raceNames lastObject];
+    if (self.isNewCharacterMode) {
+        [self refreshRaceNames];
+        
+        BOOL isAPartOfSkillSets = ([self.raceNames indexOfObject:currentTitle] != NSNotFound);
+        if (self.raceNames.count == 0 || !isAPartOfSkillSets || !currentTitle) {
+            //no statSet is available or character's skills set statSet
+            currentTitle = self.character.skillSet.name;
+            [self prepareViewForSavingNewClass];
+        }
+        else {
+            [self setSkillSet:currentTitle];
+            [self dissmissSavingNewRace];
         }
         
-        [self setSkillSet:currentTitle forCharacter:self.character];
+        currentTitle = self.character.skillSet.name ? self.character.skillSet.name : @"Choose Set";
         
-        [self dissmissSavingNewRace];
+        [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
     }
-    
-    if (!currentTitle) {
-        currentTitle = @"Choose Set";
-    }
-    [self.raceBtn setTitle:currentTitle forState:UIControlStateNormal];
 }
 
--(void)setSkillSet:(NSString *)skillSet forCharacter:(Character *)character;
+-(void)setSkillSet:(NSString *)skillSet
 {
     [[SkillLevelsSetManager sharedInstance] loadLevelsSetNamed:skillSet forCharacter:self.character];
-    character.skillSet.name = skillSet;
+    self.character.skillSet.name = skillSet;
     
-    [character saveCharacterWithContext:self.context];
-    
+    [self.character saveCharacterWithContext:self.context];
     [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];                //update skill tree
 }
 
@@ -366,13 +356,24 @@ static const float HEADER_LAYOUT_SHOWN = 100;
 {
     [self resignCurrentTextFieldResponder];
     
-    self.characterSaveAlert = [[UIAlertView alloc]initWithTitle: @"Save Character?"
-                                                        message: @"Are you sure you want to save this character?"
-                                                       delegate: self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Save",nil];
-    
-    [self.characterSaveAlert show];
+    if (self.nameTextField.text.length) {
+        self.characterSaveAlert = [[UIAlertView alloc]initWithTitle: @"Save Character?"
+                                                            message: @"Are you sure you want to save this character?"
+                                                           delegate: self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Save",nil];
+        
+        [self.characterSaveAlert show];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Name Missing."
+                                                            message: @"Please, give a name to your character."
+                                                           delegate: self
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles: nil];
+        
+        [alert show];
+    }
 }
 
 
@@ -405,6 +406,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
         else if (alertView == self.characterSaveAlert) {
             self.character.characterFinished = true;
             [self.character saveCharacterWithContext:self.context];
+            [UserDefaultsHelper clearTempDataForCharacterId:self.character.characterId];
             
             if ([[iCloud sharedCloud] checkCloudAvailability]) {
                 [self saveCharacterAsArchiveOniCloud];
@@ -441,7 +443,6 @@ static const float HEADER_LAYOUT_SHOWN = 100;
 {
     if (dropDown == self.classesDropController) {
         NSString *name = self.raceNames[returnIndex.row];
-        self.character.skillSet.name = nil;
         [self updateRaceButtonWithName:name];
     }
 }
@@ -489,7 +490,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
         }
         [self.classesDropController openAnimation];
         [self refreshRaceNames];
-        [self updateRaceButtonWithName:[self.raceNames lastObject]];
+        [self updateRaceButtonWithName:nil];
     }
 }
 

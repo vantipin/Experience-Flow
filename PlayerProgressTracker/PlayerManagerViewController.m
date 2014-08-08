@@ -20,6 +20,10 @@
 #import "SkillManager.h"
 
 @interface PlayerManagerViewController ()
+{
+    NSURL * _iCloudRoot;
+    BOOL _iCloudAvailable;
+}
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) IBOutlet UIView *contentContainerView;
@@ -34,6 +38,8 @@
 @property (nonatomic) Character *characterToDelete;
 @property (nonatomic) Character *selectedCharacter;
 
+@property (nonatomic) UIView *shadowView;
+@property (nonatomic) UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation PlayerManagerViewController
@@ -52,6 +58,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        _iCloudRoot = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+        if (_iCloudRoot != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"iCloud available at: %@", _iCloudRoot);
+            });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"iCloud not available");
+            });
+        }
+    });
+    
     
     //iCloud setup
     BOOL isiCloudAvailable = [[iCloud sharedCloud] checkCloudAvailability];
@@ -347,19 +369,26 @@
         if (!date || (iCloudDate.timeIntervalSince1970 > date.timeIntervalSince1970)) {
             [[iCloud sharedCloud] retrieveCloudDocumentWithName:name completion:^(UIDocument *cloudDocument, NSData *documentData, NSError *error) {
                 if (documentData.length) {
+                    
+                    if (!self.shadowView.superview) {
+                        [self invokeActivityIndicatorWork];
+                    }
+                    
                     [UserDefaultsHelper setUpdateDate:iCloudDate forFileName:name];
                     [CharacterDataArchiver loadCharacterFromDictionaryData:documentData withContext:self.context];
-                    [self didUpdateCharacterList];
+                    
+                    if (index == fileNames.count - 1) {
+                        [self stopActivityIndicatorWork];
+                        [self updateDataSource];
+                        [self.tableView reloadData];
+                        
+                        Character *character = [self.dataSource lastObject];
+                        [self didTabPlayer:character];
+                        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:([self.dataSource count] - 1) inSection:0];
+                        [self.tableView selectRowAtIndexPath:newIndexPath animated:true scrollPosition:UITableViewScrollPositionBottom];
+                    }
                 }
             }];
-            
-            
-//            iCloudDocument *document = [[iCloud sharedCloud] retrieveCloudDocumentObjectWithName:name];
-//            if (document.contents.length) {
-//                [UserDefaultsHelper setUpdateDate:iCloudDate forFileName:name];
-//                [CharacterDataArchiver loadCharacterFromDictionaryData:document.contents withContext:self.context];
-//                [self didUpdateCharacterList];
-//            }
         }
 
     }
@@ -368,22 +397,46 @@
 
 -(void)deleteCharacter:(Character *)character
 {
-    //TODO character should be remebered to be deleted if offline
     NSString *fileName = [NSString stringWithFormat:@"%@.plist",character.characterId];
     [[iCloud sharedCloud] deleteDocumentWithName:fileName completion:^(NSError *error) {
         if (error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSMutableArray *toDelete = [UserDefaultsHelper fileNamesToDelete];
-                if (!toDelete) {
-                    toDelete = [NSMutableArray new];
-                }
-                if ([toDelete indexOfObject:fileName] == NSNotFound) {
-                    [toDelete addObject:fileName];
-                }
-                [UserDefaultsHelper setFilenamesToDelete:toDelete];
-            });
+            NSMutableArray *toDelete = [UserDefaultsHelper fileNamesToDelete];
+            if (!toDelete) {
+                toDelete = [NSMutableArray new];
+            }
+            if ([toDelete indexOfObject:fileName] == NSNotFound) {
+                [toDelete addObject:fileName];
+            }
+            [UserDefaultsHelper setFilenamesToDelete:toDelete];
         }
     }];
+}
+
+-(void)invokeActivityIndicatorWork;
+{
+    self.shadowView = [[UIView alloc] initWithFrame:self.view.bounds];
+    self.shadowView.backgroundColor = kRGB(20, 20, 20, 0.4);
+    [self.view addSubview:self.shadowView];
+    
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.shadowView addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+    self.activityIndicator.center = self.shadowView.center;
+}
+
+-(void)stopActivityIndicatorWork;
+{
+    [self.shadowView removeFromSuperview];
+    [self.activityIndicator removeFromSuperview];
+    
+    self.shadowView = nil;
+    self.activityIndicator = nil;
+}
+
+
+- (void)iCloudDocumentErrorOccured:(NSError *)error
+{
+    NSLog(@"error %@",error);
 }
 
 @end

@@ -65,16 +65,16 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self nodeAnimationInvokeWithPoint1:CGPointMake([self getRandomPointWithAnchor:self.anchorPoint.x], [self getRandomPointWithAnchor:self.anchorPoint.y])
-                             withPoint2:CGPointMake([self getRandomPointWithAnchor:self.anchorPoint.x], [self getRandomPointWithAnchor:self.anchorPoint.y])];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+//    [self nodeAnimationInvokeWithPoint1:CGPointMake([self getRandomPointWithAnchor:self.anchorPoint.x], [self getRandomPointWithAnchor:self.anchorPoint.y])
+//                             withPoint2:CGPointMake([self getRandomPointWithAnchor:self.anchorPoint.x], [self getRandomPointWithAnchor:self.anchorPoint.y])];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.view.layer removeAllAnimations];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+//    [self.view.layer removeAllAnimations];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
 
 }
 

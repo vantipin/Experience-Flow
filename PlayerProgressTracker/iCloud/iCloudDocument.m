@@ -15,17 +15,16 @@ NSFileVersion *laterVersion (NSFileVersion *first, NSFileVersion *second) {
 }
 
 @implementation iCloudDocument
-@synthesize contents, delegate;
 
 //----------------------------------------------------------------------------------------------------------------//
 //------------  Document Life Cycle ------------------------------------------------------------------------------//
 //----------------------------------------------------------------------------------------------------------------//
 #pragma mark - Document Life Cycle
 
-- (id)initWithFileURL:(NSURL *)url {
+- (instancetype)initWithFileURL:(NSURL *)url {
 	self = [super initWithFileURL:url];
 	if (self) {
-		self.contents = [[NSData alloc] init];
+		_contents = [[NSData alloc] init];
 	}
 	return self;
 }
@@ -33,6 +32,8 @@ NSFileVersion *laterVersion (NSFileVersion *first, NSFileVersion *second) {
 - (NSString *)localizedName {
 	return [self.fileURL lastPathComponent];
 }
+
+
 
 - (NSString *)stateDescription {
     if (!self.documentState) return @"Document state is normal";
@@ -57,11 +58,11 @@ NSFileVersion *laterVersion (NSFileVersion *first, NSFileVersion *second) {
         self.contents = [[NSData alloc] init];
     }
     
-	NSData *data = self.contents;
-	return data;
+	return self.contents;
 }
 
 - (BOOL)loadFromContents:(id)fileContents ofType:(NSString *)typeName error:(NSError **)outError {
+    //id someResult = [super contentsForType:typeName error:outError];
     if ([fileContents length] > 0) {
         self.contents = [[NSData alloc] initWithData:fileContents];
     } else {
@@ -72,8 +73,8 @@ NSFileVersion *laterVersion (NSFileVersion *first, NSFileVersion *second) {
 }
 
 - (void)setDocumentData:(NSData *)newData {
-    NSData *oldData = contents;
-    contents = [newData copy];
+    NSData *oldData = self.contents;
+    self.contents = [newData copy];
         
     // Register the undo operation
     [self.undoManager setActionName:@"Data Change"];
@@ -89,7 +90,7 @@ NSFileVersion *laterVersion (NSFileVersion *first, NSFileVersion *second) {
     [super handleError:error userInteractionPermitted:userInteractionPermitted];
 	NSLog(@"[iCloudDocument] %@", error);
     
-    if ([delegate respondsToSelector:@selector(iCloudDocumentErrorOccured:)]) [delegate iCloudDocumentErrorOccured:error];
+    if ([self.delegate respondsToSelector:@selector(iCloudDocumentErrorOccured:)]) [self.delegate iCloudDocumentErrorOccured:error];
 }
 
 @end

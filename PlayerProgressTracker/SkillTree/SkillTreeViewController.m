@@ -13,6 +13,8 @@
 #import "StatViewController.h"
 #import "TipViewController.h"
 #import "CustomPopoverViewController.h"
+#import "PointsCountLeftController.h"
+#import "UserDefaultsHelper.h"
 
 static float minimalMarginBetweenTrees = 100;
 static float minimalMarginBetweenNodesX = 50;
@@ -20,6 +22,7 @@ static float minimalMarginBetweenNodesY = 110;
 static float borderSize = 100;
 static float nodeDiameter = 200;
 static float headerHeight = 40;
+static int xpPointsToCreateCharacter = 100;
 
 static NSString *emptyParentKey = @"emptyParent";
 
@@ -37,8 +40,10 @@ static NSString *emptyParentKey = @"emptyParent";
 @property (nonatomic) NSMutableDictionary *nodeIndexesForSkillNames;
 @property (nonatomic) long treeHeight;
 @property (nonatomic) NSMutableArray *allExistingNodes;
-
+@property (nonatomic) NSMutableDictionary *operationStack;
 @property (nonatomic) StatViewController *statHeaderController;
+@property (nonatomic) PointsCountLeftController *pointsLeftController;
+@property (nonatomic) float xpPointsLeft;
 
 @end
 
@@ -88,6 +93,8 @@ static NSString *emptyParentKey = @"emptyParent";
     
     self.containerView.frame = CGRectMake(0, 0, width, height);
     self.containerForContainerView.frame = self.containerView.frame;
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -123,6 +130,44 @@ static NSString *emptyParentKey = @"emptyParent";
     [self updateScrollViewZoomAnimated:true];
 }
 
+#pragma mark custom setters/getters
+
+-(void)setIsInCreatingNewCharacterMod:(BOOL)isInCreatingNewCharacterMod
+{
+    _isInCreatingNewCharacterMod = isInCreatingNewCharacterMod;
+    
+    if (isInCreatingNewCharacterMod) {
+        self.pointsLeftController.view.alpha = 1;
+        NSDictionary *temporaryData = [UserDefaultsHelper infoForUnfinishedCharacterWithId:self.character.characterId];
+        if (temporaryData) {
+            NSNumber *numberVal = [temporaryData objectForKey:keyForPointsLeft];
+            NSMutableDictionary *dict = [temporaryData objectForKey:keyForOperationStack];
+            if (numberVal && dict) {
+                self.xpPointsLeft = numberVal.floatValue;
+                self.operationStack = dict;
+            }
+            else {
+                self.xpPointsLeft = xpPointsToCreateCharacter;
+                self.operationStack = nil;
+            }
+        }
+        else {
+            self.xpPointsLeft = xpPointsToCreateCharacter;
+            self.operationStack = nil;
+        }
+    }
+    else {
+        self.pointsLeftController.view.alpha = 0;
+    }
+}
+
+-(void)setXpPointsLeft:(float)xpPointsLeft
+{
+    _xpPointsLeft = xpPointsLeft;
+    
+    self.pointsLeftController.pointsLeft.text = (fmod(xpPointsLeft, 1.0) > 0) ? [NSString stringWithFormat:@"%.1f",_xpPointsLeft] : [NSString stringWithFormat:@"%.0f",_xpPointsLeft];
+}
+
 -(UIScrollView *)scrollView
 {
     if (!_scrollView) {
@@ -156,6 +201,7 @@ static NSString *emptyParentKey = @"emptyParent";
 -(void)setCharacter:(Character *)character
 {
     if (character) {
+        self.isInCreatingNewCharacterMod = false; //by default;
         _character = character;
     }
 }
@@ -229,13 +275,38 @@ static NSString *emptyParentKey = @"emptyParent";
     return _statHeaderController;
 }
 
+-(PointsCountLeftController *)pointsLeftController
+{
+    if (!_pointsLeftController) {
+        
+        _pointsLeftController = [PointsCountLeftController getInstanceFromStoryboardWithFrame:CGRectMake(0,
+                                                                                                         self.view.bounds.size.width - sizeHeightPointsLeft,
+                                                                                                         sizeWidthPointsLeft,
+                                                                                                         sizeHeightPointsLeft)];
+        [self.view addSubview:_pointsLeftController.view];
+    }
+    
+    return _pointsLeftController;
+}
+
+-(NSMutableDictionary *)operationStack
+{
+    if (!_operationStack) {
+        _operationStack = [NSMutableDictionary new];
+    }
+    
+    return _operationStack;
+}
+
+#pragma mark -
+
 -(void)updateStatHeader
 {
     Skill *toughnessSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].toughness withCharacter:self.character];
     Skill *strenghtSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].strength withCharacter:self.character];
     Skill *physiqueSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].physique withCharacter:self.character];
     Skill *perception = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].perception withCharacter:self.character];
-    
+
     int percFloat = [[SkillManager sharedInstance] countUsableLevelValueForSkill:perception] / 2;
     self.statHeaderController.initiativeLabel.text = [NSString stringWithFormat:@"%d",percFloat ? percFloat : 1];
     self.statHeaderController.movementLabel.text = [NSString stringWithFormat:@"%d",self.character.pace + physiqueSkill.currentLevel];
@@ -446,6 +517,10 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)refreshSkillvaluesWithReloadingSkills:(BOOL)needReload;
 {
+    if (self.isInCreatingNewCharacterMod) {
+        [UserDefaultsHelper clearTempDataForCharacterId:self.character.characterId];
+        self.isInCreatingNewCharacterMod = true;
+    }
     for (NodeViewController *node in self.allExistingNodes) {
         if (needReload) {
             node.skill = nil;
@@ -519,13 +594,60 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)didSwipNodeDown:(NodeViewController *)node
 {
-    [[SkillManager sharedInstance] removeXpPoints:1.0f toSkill:node.skill];
+    if (!node.skill.skillTemplate.isMediator) {
+        float xpPointsToTake;
+        if (self.isInCreatingNewCharacterMod) {
+            if ([self.operationStack valueForKey:node.skill.skillTemplate.name]) {
+                NSMutableArray *skillStack = [self.operationStack valueForKey:node.skill.skillTemplate.name];
+                NSNumber *lastPoints = skillStack.lastObject;
+                if (lastPoints) {
+                    xpPointsToTake = lastPoints.floatValue;
+                    [skillStack removeObject:lastPoints];
+                    self.xpPointsLeft = self.xpPointsLeft + xpPointsToTake;
+                    [[SkillManager sharedInstance] removeXpPoints:xpPointsToTake toSkill:node.skill];
+                    [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
+                }
+            }
+        }
+        else {
+            [[SkillManager sharedInstance] removeXpPoints:1.0f toSkill:node.skill];
+        }
+    }
 }
 
 -(void)didSwipNodeUp:(NodeViewController *)node
 {
-    
-    [[SkillManager sharedInstance] addXpPoints:1.0f toSkill:node.skill];
+    if (!node.skill.skillTemplate.isMediator) {
+        if (self.isInCreatingNewCharacterMod) {
+            if (self.xpPointsLeft > 0) {
+                float xpPointsToGive;
+                xpPointsToGive = [[SkillManager sharedInstance] countXpNeededForNextLevel:node.skill];
+                xpPointsToGive -= node.skill.currentProgress;
+                
+                if (self.xpPointsLeft > xpPointsToGive) {
+                    self.xpPointsLeft = self.xpPointsLeft - xpPointsToGive;
+                }
+                else {
+                    xpPointsToGive = self.xpPointsLeft;
+                    self.xpPointsLeft = 0;
+                }
+                
+                //registrate progress
+                NSMutableArray *skillStack = [self.operationStack valueForKey:node.skill.skillTemplate.name];
+                if (!skillStack) {
+                    skillStack = [NSMutableArray new];
+                    [self.operationStack setObject:skillStack forKey:node.skill.skillTemplate.name];
+                }
+                [skillStack addObject:@(xpPointsToGive)];
+                
+                [[SkillManager sharedInstance] addXpPoints:xpPointsToGive toSkill:node.skill];
+                [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
+            }
+        }
+        else {
+            [[SkillManager sharedInstance] addXpPoints:1.0f toSkill:node.skill];
+        }
+    }
 }
 
 -(void)didTapNode:(NodeViewController *)node

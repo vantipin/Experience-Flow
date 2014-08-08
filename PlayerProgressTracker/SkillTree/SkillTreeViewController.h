@@ -17,6 +17,7 @@
 
 @property (nonatomic) Character *character;
 @property (nonatomic) float customHeaderStatLayoutY;
+@property (nonatomic) BOOL isInCreatingNewCharacterMod;
 
 -(id)initWithCharacter:(Character *)character;
 

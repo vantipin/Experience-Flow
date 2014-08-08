@@ -1,29 +1,26 @@
 //
-//  NodeLink.m
+//  PointsCountLeftController.m
 //  PlayerProgressTracker
 //
-//  Created by Vlad Antipin on 23.05.14.
+//  Created by Vlad Antipin on 07/08/14.
 //  Copyright (c) 2014 WierdMasks. All rights reserved.
 //
 
-#import "NodeLinkController.h"
+#import "PointsCountLeftController.h"
+#import "Constants.h"
 
-@interface NodeLinkController ()
-
-@property (nonatomic) CAKeyframeAnimation *driftAnimation;
-@property (nonatomic) CAKeyframeAnimation *stretchAnimation;
+@interface PointsCountLeftController ()
 
 @end
 
-@implementation NodeLinkController
+@implementation PointsCountLeftController
 
-+(NodeLinkController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
++(PointsCountLeftController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SkillLinkView" bundle:nil];
-    NodeLinkController *controller = [storyboard instantiateInitialViewController];
-    controller.view.autoresizesSubviews = true;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PointCountLeft" bundle:nil];
+    PointsCountLeftController *controller = [storyboard instantiateInitialViewController];
     controller.view.frame =  frame;
-    //controller.imageView.frame = controller.view.bounds;
+    
     return controller;
 }
 
@@ -41,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = kRGB(240, 240, 240, 0.1);
     // Do any additional setup after loading the view.
 }
 
@@ -60,10 +58,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
--(CAKeyframeAnimation *)nodeAnimationInvoke
-{
-    return nil;
-}
 
 @end

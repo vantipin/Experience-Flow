@@ -86,13 +86,13 @@ static float SIDEBAR_HIDDEN_ACCESS_LAYOUT = 30;
     //__block CGRect bounds = self.view.bounds;
     __block CGRect sideBarFrame = self.sideBarContainerView.frame;
     
-    sideBarFrame.size.width += 5.0f;
+    //sideBarFrame.size.width += 5.0f;
     sideBarFrame.origin.x = self.view.bounds.size.width - self.sideBarContainerView.bounds.size.width;
     
     [UIView animateWithDuration:0.2 animations:^(void){
         [self.sideBarContainerView setFrame:sideBarFrame];
     } completion:^(BOOL finished) {
-        sideBarFrame.size.width -= 5.0f;
+        //sideBarFrame.size.width -= 5.0f;
         
         if (sideBarHidden) {
             sideBarFrame.origin.x = self.view.bounds.size.width - SIDEBAR_HIDDEN_ACCESS_LAYOUT;

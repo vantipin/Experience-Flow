@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *nameEmpty = @"Empty";
+static NSString *nameHuman = @"Human";
+static NSString *nameDwarf = @"Dwarf";
+
 @class Character, SkillLevelsSet;
 
 @interface SkillLevelsSetManager : NSObject

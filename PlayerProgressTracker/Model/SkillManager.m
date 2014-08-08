@@ -540,7 +540,10 @@ static SkillManager *instance = nil;
     
     if (skill.currentProgress >= xpNextLvl) {
         skill.currentProgress -= xpNextLvl;
+        skill.currentProgress = ceilf(skill.currentProgress * 1000) / 1000;
+
         skill.currentLevel ++;
+        
         [self didChangeSkillLevel:skill];
         [self calculateAddingXpPointsForSkill:skill]; //check if more than 1 lvl
     }

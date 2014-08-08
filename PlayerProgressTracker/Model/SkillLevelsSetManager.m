@@ -15,10 +15,6 @@
 #import "Character.h"
 #import "SkillSet.h"
 
-
-static NSString *nameEmpty = @"Empty";
-static NSString *nameHuman = @"Human";
-static NSString *nameDwarf = @"Dwarf";
 static SkillLevelsSetManager *instance = nil;
 
 @interface SkillLevelsSetManager()
