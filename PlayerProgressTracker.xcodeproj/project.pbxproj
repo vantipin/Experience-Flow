@@ -75,6 +75,7 @@
 		DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAF195B4338002D7EF2 /* xpAura.png */; };
 		DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */; };
 		DF1F5CCA195B43A1002D7EF2 /* MainContextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */; };
+		DF22150A1999372900E1DC90 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2215091999372900E1DC90 /* Main_iPhone.storyboard */; };
 		DF2900EF197EDE9F00861A4F /* CharacterDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2900EE197EDE9F00861A4F /* CharacterDataArchiver.m */; };
 		DF296447198A9EB90024E070 /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF296446198A9EB90024E070 /* UserDefaultsHelper.m */; };
 		DF29644A198C095A0024E070 /* initiative.png in Resources */ = {isa = PBXBuildFile; fileRef = DF296448198C095A0024E070 /* initiative.png */; };
@@ -239,6 +240,7 @@
 		DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xpAura@2x.png"; sourceTree = "<group>"; };
 		DF1F5CC8195B43A1002D7EF2 /* MainContextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainContextObject.h; sourceTree = "<group>"; };
 		DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContextObject.m; sourceTree = "<group>"; };
+		DF2215091999372900E1DC90 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		DF24B1291874B75900B57855 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Experience Flow.entitlements"; sourceTree = "<group>"; };
 		DF2900ED197EDE9F00861A4F /* CharacterDataArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDataArchiver.h; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 				DF24B1291874B75900B57855 /* Constants.h */,
 				DFD6CD29197D010500046218 /* CustomImagePickerViewController.h */,
 				DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */,
+				DF2215091999372900E1DC90 /* Main_iPhone.storyboard */,
 				DFAED111186309B40039D17B /* Main.storyboard */,
 				DFAED10E186309B40039D17B /* AppDelegate.h */,
 				DFAED10F186309B40039D17B /* AppDelegate.m */,
@@ -816,6 +819,7 @@
 				DF1F5CBE195B4338002D7EF2 /* noImage.png in Resources */,
 				DF3C0EEB198824240016AFF2 /* icloudIsntAvailible@2x.png in Resources */,
 				DF0995D5196460900025A76A /* headerCharacterStats@2x.png in Resources */,
+				DF22150A1999372900E1DC90 /* Main_iPhone.storyboard in Resources */,
 				DF1F5CC1195B4338002D7EF2 /* raiseXp@2x.png in Resources */,
 				DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */,
 				DFDA01BD1961C7BA005D3703 /* inventoryIcon@2x.png in Resources */,

@@ -40,6 +40,8 @@
 
 @property (nonatomic) UIView *shadowView;
 @property (nonatomic) UIActivityIndicatorView *activityIndicator;
+
+@property (nonatomic) NSInteger index;
 @end
 
 @implementation PlayerManagerViewController
@@ -305,25 +307,24 @@
 {
     if (buttonIndex == 0) // delete
     {
-        [self deleteCharacter:self.characterToDelete];
-        [self.context deleteObject:self.characterToDelete];
+        Character *toDelete = self.characterToDelete;
         
-        if (self.dataSource.count < 1) {
-            [self didTapNewPlayer];
-        }
-        else if (self.characterToDelete == self.selectedCharacter) {
-            Character *anotherOne = [self.dataSource lastObject];
-            [self didTabPlayer:anotherOne];
-        }
-        
-        [self updateDataSource];
-        
-        if (self.dataSource.count) {
-            [self didTabPlayer:[self.dataSource lastObject]];
+        if (self.dataSource.count > 1) {
+            for (Character *character in self.dataSource) {
+                if (character != toDelete) {
+                    [self didTabPlayer:character];
+                }
+            }
         }
         else {
             [self didTapNewPlayer];
         }
+
+        [self deleteCharacter:toDelete];
+        [self.context deleteObject:toDelete];
+        [CoreDataClass saveContext:self.context];
+        
+        [self updateDataSource];
     }
     
     self.characterToDelete = nil;
@@ -360,7 +361,7 @@
 
 -(void)iCloudFilesDidChange:(NSMutableArray *)files withNewFileNames:(NSMutableArray *)fileNames
 {
-    int allCount = fileNames.count;
+    self.index = fileNames.count;
     for (NSString *name in fileNames) {
         int index = (int)[fileNames indexOfObject:name];
         NSMetadataItem *document = files[index];
@@ -369,10 +370,8 @@
         
         if (!date || (iCloudDate.timeIntervalSince1970 > date.timeIntervalSince1970)) {
             [[iCloud sharedCloud] retrieveCloudDocumentWithName:name completion:^(UIDocument *cloudDocument, NSData *documentData, NSError *error) {
-                
-                NSDate *checkUponArrivalDate = [UserDefaultsHelper lastiCloudUpdateForFileName:name];
-                if ((documentData.length && !date) || (documentData.length && (iCloudDate.timeIntervalSince1970 > checkUponArrivalDate.timeIntervalSince1970))) {
-                    
+    
+                if (self.index) {
                     if (!self.shadowView.superview) {
                         [self invokeActivityIndicatorWork];
                     }
@@ -380,7 +379,8 @@
                     [UserDefaultsHelper setUpdateDate:iCloudDate forFileName:name];
                     [CharacterDataArchiver loadCharacterFromDictionaryData:documentData withContext:self.context];
                     
-                    if (index == allCount - 1) {
+                    self.index --;
+                    if (!self.index) {
                         [self stopActivityIndicatorWork];
                         [self updateDataSource];
                         [self.tableView reloadData];
@@ -402,16 +402,16 @@
 {
     NSString *fileName = [NSString stringWithFormat:@"%@.plist",character.characterId];
     [[iCloud sharedCloud] deleteDocumentWithName:fileName completion:^(NSError *error) {
-        if (error) {
-            NSMutableArray *toDelete = [UserDefaultsHelper fileNamesToDelete];
-            if (!toDelete) {
-                toDelete = [NSMutableArray new];
-            }
-            if ([toDelete indexOfObject:fileName] == NSNotFound) {
-                [toDelete addObject:fileName];
-            }
-            [UserDefaultsHelper setFilenamesToDelete:toDelete];
-        }
+//        if (error) {
+//            NSMutableArray *toDelete = [UserDefaultsHelper fileNamesToDelete];
+//            if (!toDelete) {
+//                toDelete = [NSMutableArray new];
+//            }
+//            if ([toDelete indexOfObject:fileName] == NSNotFound) {
+//                [toDelete addObject:fileName];
+//            }
+//            [UserDefaultsHelper setFilenamesToDelete:toDelete];
+//        }
     }];
 }
 

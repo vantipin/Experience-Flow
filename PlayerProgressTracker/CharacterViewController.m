@@ -561,14 +561,14 @@ static const float HEADER_LAYOUT_SHOWN = 100;
                 [UserDefaultsHelper setUpdateDate:cloudDocument.fileModificationDate forFileName:cloudDocument.localizedName];
             }
             else {
-                NSMutableArray *toSave = [UserDefaultsHelper characterIdsToSave];
-                if (!toSave) {
-                    toSave = [NSMutableArray new];
-                }
-                if ([toSave indexOfObject:characterId] == NSNotFound) {
-                    [toSave addObject:characterId];
-                }
-                [UserDefaultsHelper setCharacterIdsToSave:toSave];
+//                NSMutableArray *toSave = [UserDefaultsHelper characterIdsToSave];
+//                if (!toSave) {
+//                    toSave = [NSMutableArray new];
+//                }
+//                if ([toSave indexOfObject:characterId] == NSNotFound) {
+//                    [toSave addObject:characterId];
+//                }
+//                [UserDefaultsHelper setCharacterIdsToSave:toSave];
             }
             
         });

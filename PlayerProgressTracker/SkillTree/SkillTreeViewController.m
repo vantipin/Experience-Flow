@@ -523,6 +523,7 @@ static NSString *emptyParentKey = @"emptyParent";
         }
         [node updateInterface];
     }
+    
     [self updateStatHeader];
 }
 
