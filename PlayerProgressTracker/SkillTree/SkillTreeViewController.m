@@ -269,6 +269,7 @@ static NSString *emptyParentKey = @"emptyParent";
                                                                                                   0 + self.customHeaderStatLayoutY,
                                                                                                   self.scrollView.frame.size.width,
                                                                                                   [StatViewController headerHeight])];
+        _statHeaderController.delegate = self;
         [self.view addSubview:_statHeaderController.view];
     }
     
@@ -707,14 +708,7 @@ static NSString *emptyParentKey = @"emptyParent";
     NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:skill.skillTemplate.name];
     if (node) {
         [node updateInterface];
-        
-        [UIView animateWithDuration:0.5 animations:^{
-            node.skillButton.highlighted = true;
-        } completion:^(BOOL success){
-            [UIView animateWithDuration:0.1 animations:^{
-                node.skillButton.highlighted = false;
-            }];
-        }];
+        [node lightUp];
         
         for (Skill *subSkill in node.skill.subSkills) {
             [self checkForUpdateSubskillsOf:subSkill];
@@ -722,7 +716,41 @@ static NSString *emptyParentKey = @"emptyParent";
     }
 }
 
+#pragma mark StatSet protocol
+-(void)didTapHealth;
+{
+    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:[DefaultSkillTemplates sharedInstance].toughness.name];
+    [self centerScrollViewOnNode:node];
+    [node lightUp];
+}
 
+-(void)didTapInventory;
+{
+    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:[DefaultSkillTemplates sharedInstance].strength.name];
+    [self centerScrollViewOnNode:node];
+    [node lightUp];
+}
+
+-(void)didTapMovement;
+{
+    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:[DefaultSkillTemplates sharedInstance].physique.name];
+    [self centerScrollViewOnNode:node];
+    [node lightUp];
+}
+
+-(void)didTapInitiative;
+{
+    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:[DefaultSkillTemplates sharedInstance].perception.name];
+    [self centerScrollViewOnNode:node];
+    [node lightUp];
+}
+
+-(void)centerScrollViewOnNode:(NodeViewController *)node
+{
+    CGPoint centerOnNode = CGPointMake((node.view.frame.origin.x + node.view.bounds.size.width) * self.scrollView.zoomScale - self.scrollView.frame.size.width / 2,
+                                       (node.view.frame.origin.y + node.view.bounds.size.height) * self.scrollView.zoomScale - self.scrollView.frame.size.height / 2);
+    [self.scrollView setContentOffset:centerOnNode animated:true];
+}
 
 /*
 #pragma mark - Navigation

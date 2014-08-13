@@ -51,18 +51,36 @@
 
 +(float)headerHeight
 {
-    return isiPad ? 40 : 25;
+    return isiPad ? 90 : 25;
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(IBAction)tapHealth:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (self.delegate) {
+        [self.delegate didTapHealth];
+    }
 }
-*/
+
+-(IBAction)tapInventory:(id)sender
+{
+    if (self.delegate) {
+        [self.delegate didTapInventory];
+    }
+}
+
+-(IBAction)tapMovement:(id)sender
+{
+    if (self.delegate) {
+        [self.delegate didTapMovement];
+    }
+}
+
+-(IBAction)tapInitiative:(id)sender
+{
+    if (self.delegate) {
+        [self.delegate didTapInitiative];
+    }
+}
 
 @end

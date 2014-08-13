@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "NodeViewController.h"
 #import "Character.h"
+#import "StatViewController.h"
 
 
-@interface SkillTreeViewController : UIViewController <UIScrollViewDelegate, NodeViewControllerProtocol, SkillChangeProtocol>
-
-
+@interface SkillTreeViewController : UIViewController <UIScrollViewDelegate, NodeViewControllerProtocol, SkillChangeProtocol, StatViewProtocol>
 
 @property (nonatomic) Character *character;
 @property (nonatomic) float customHeaderStatLayoutY;

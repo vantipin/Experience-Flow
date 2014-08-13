@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol StatViewProtocol <NSObject>
+
+-(void)didTapHealth;
+-(void)didTapInventory;
+-(void)didTapMovement;
+-(void)didTapInitiative;
+
+@end
+
 @interface StatViewController : UIViewController
 
 +(StatViewController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 +(float)headerHeight;
+
+@property (nonatomic,assign) id<StatViewProtocol> delegate;
 
 @property (nonatomic) IBOutlet UILabel *healthCurrentLabel;
 @property (nonatomic) IBOutlet UILabel *healthMaxLabel;

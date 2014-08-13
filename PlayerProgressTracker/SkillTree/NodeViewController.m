@@ -21,6 +21,8 @@
 
 @property (nonatomic) SkillTemplate *skillTemplate;
 
+@property (nonatomic) BOOL isLightUp;
+
 @end
 
 @implementation NodeViewController
@@ -32,6 +34,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"NodeView" bundle:nil];
     NodeViewController *controller = [storyboard instantiateInitialViewController];
     controller.view.frame =  frame;
+    controller.isLightUp = false;
     
     return controller;
 }
@@ -249,6 +252,21 @@
     return bearingRadians;
 }
 
+
+-(void)lightUp;
+{
+    if (!self.isLightUp) {
+        self.isLightUp = true;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.skillButton.highlighted = true;
+        } completion:^(BOOL success){
+            [UIView animateWithDuration:0.1 animations:^{
+                self.skillButton.highlighted = false;
+                self.isLightUp = false;
+            }];
+        }];
+    }
+}
 
 #pragma mark animations
 
