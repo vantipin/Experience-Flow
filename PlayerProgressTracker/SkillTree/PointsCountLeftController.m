@@ -17,7 +17,8 @@
 
 +(PointsCountLeftController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PointCountLeft" bundle:nil];
+    NSString *storyboardName = isiPad ? @"PointCountLeft" : @"PointCountLeft_iphone";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     PointsCountLeftController *controller = [storyboard instantiateInitialViewController];
     controller.view.frame =  frame;
     
@@ -46,6 +47,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
++(float)sizeHeightPointsLeft;
+{
+    return isiPad ? 129 : 85;
+}
+
++(float)sizeWidthPointsLeft;
+{
+    return isiPad ? 116 : 75;
 }
 
 /*

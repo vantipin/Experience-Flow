@@ -10,6 +10,7 @@
 #import "Constants.h"
 
 static float SIDEBAR_HIDDEN_ACCESS_LAYOUT = 30;
+static float SIDEBAR_HIDDEN_ACCESS_LAYOUT_IPHONE = 20;
 
 @interface CustomSplitViewController ()
 
@@ -69,7 +70,7 @@ static float SIDEBAR_HIDDEN_ACCESS_LAYOUT = 30;
     __block CGRect sideBarFrame = self.sideBarContainerView.frame;
     
     if (sideBarHidden) {
-        sideBarFrame.origin.x = self.view.bounds.size.width - SIDEBAR_HIDDEN_ACCESS_LAYOUT;
+        sideBarFrame.origin.x = self.view.bounds.size.width - (isiPad ? SIDEBAR_HIDDEN_ACCESS_LAYOUT : SIDEBAR_HIDDEN_ACCESS_LAYOUT_IPHONE);
     } else {
         sideBarFrame.origin.x = self.view.bounds.size.width - sideBarFrame.size.width;
     }
@@ -95,7 +96,7 @@ static float SIDEBAR_HIDDEN_ACCESS_LAYOUT = 30;
         //sideBarFrame.size.width -= 5.0f;
         
         if (sideBarHidden) {
-            sideBarFrame.origin.x = self.view.bounds.size.width - SIDEBAR_HIDDEN_ACCESS_LAYOUT;
+            sideBarFrame.origin.x = self.view.bounds.size.width - (isiPad ? SIDEBAR_HIDDEN_ACCESS_LAYOUT : SIDEBAR_HIDDEN_ACCESS_LAYOUT_IPHONE);
         } else {
             sideBarFrame.origin.x = self.view.bounds.size.width - sideBarFrame.size.width;
         }
@@ -113,7 +114,7 @@ static float SIDEBAR_HIDDEN_ACCESS_LAYOUT = 30;
     __block CGRect sideBarFrame = self.sideBarContainerView.frame;
     
     if (hidden) {
-        sideBarFrame.origin.x = self.view.bounds.size.width - SIDEBAR_HIDDEN_ACCESS_LAYOUT;
+        sideBarFrame.origin.x = self.view.bounds.size.width - (isiPad ? SIDEBAR_HIDDEN_ACCESS_LAYOUT : SIDEBAR_HIDDEN_ACCESS_LAYOUT_IPHONE);
     } else {
         sideBarFrame.origin.x = self.view.bounds.size.width - sideBarFrame.size.width;
     }

@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-static float sizeHeightPointsLeft = 129;
-static float sizeWidthPointsLeft = 116;
-
 @interface PointsCountLeftController : UIViewController
 
 +(PointsCountLeftController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
++(float)sizeHeightPointsLeft;
++(float)sizeWidthPointsLeft;
+
 
 @property (nonatomic) IBOutlet UILabel *pointsLeft;
 

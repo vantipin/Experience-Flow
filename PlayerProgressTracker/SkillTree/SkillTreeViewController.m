@@ -21,7 +21,7 @@ static float minimalMarginBetweenNodesX = 50;
 static float minimalMarginBetweenNodesY = 110;
 static float borderSize = 100;
 static float nodeDiameter = 200;
-static float headerHeight = 40;
+
 static int xpPointsToCreateCharacter = 100;
 
 static NSString *emptyParentKey = @"emptyParent";
@@ -268,7 +268,7 @@ static NSString *emptyParentKey = @"emptyParent";
                                                                                                   0,
                                                                                                   0 + self.customHeaderStatLayoutY,
                                                                                                   self.scrollView.frame.size.width,
-                                                                                                  headerHeight)];
+                                                                                                  [StatViewController headerHeight])];
         [self.view addSubview:_statHeaderController.view];
     }
     
@@ -280,9 +280,9 @@ static NSString *emptyParentKey = @"emptyParent";
     if (!_pointsLeftController) {
         
         _pointsLeftController = [PointsCountLeftController getInstanceFromStoryboardWithFrame:CGRectMake(0,
-                                                                                                         self.view.bounds.size.width - sizeHeightPointsLeft,
-                                                                                                         sizeWidthPointsLeft,
-                                                                                                         sizeHeightPointsLeft)];
+                                                                                                         self.view.bounds.size.width - [PointsCountLeftController sizeHeightPointsLeft],
+                                                                                                         [PointsCountLeftController sizeWidthPointsLeft],
+                                                                                                         [PointsCountLeftController sizeHeightPointsLeft])];
         [self.view addSubview:_pointsLeftController.view];
     }
     
@@ -721,6 +721,8 @@ static NSString *emptyParentKey = @"emptyParent";
         }
     }
 }
+
+
 
 /*
 #pragma mark - Navigation

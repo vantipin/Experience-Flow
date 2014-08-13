@@ -76,6 +76,8 @@
 		DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */; };
 		DF1F5CCA195B43A1002D7EF2 /* MainContextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */; };
 		DF22150A1999372900E1DC90 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2215091999372900E1DC90 /* Main_iPhone.storyboard */; };
+		DF22154A199A80D900E1DC90 /* PointCountLeft_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF221549199A80D900E1DC90 /* PointCountLeft_iphone.storyboard */; };
+		DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF22154B199A81F300E1DC90 /* StatViewController_iphone.storyboard */; };
 		DF2900EF197EDE9F00861A4F /* CharacterDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2900EE197EDE9F00861A4F /* CharacterDataArchiver.m */; };
 		DF296447198A9EB90024E070 /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF296446198A9EB90024E070 /* UserDefaultsHelper.m */; };
 		DF29644A198C095A0024E070 /* initiative.png in Resources */ = {isa = PBXBuildFile; fileRef = DF296448198C095A0024E070 /* initiative.png */; };
@@ -241,6 +243,8 @@
 		DF1F5CC8195B43A1002D7EF2 /* MainContextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainContextObject.h; sourceTree = "<group>"; };
 		DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContextObject.m; sourceTree = "<group>"; };
 		DF2215091999372900E1DC90 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+		DF221549199A80D900E1DC90 /* PointCountLeft_iphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PointCountLeft_iphone.storyboard; sourceTree = "<group>"; };
+		DF22154B199A81F300E1DC90 /* StatViewController_iphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatViewController_iphone.storyboard; sourceTree = "<group>"; };
 		DF24B1291874B75900B57855 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Experience Flow.entitlements"; sourceTree = "<group>"; };
 		DF2900ED197EDE9F00861A4F /* CharacterDataArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDataArchiver.h; sourceTree = "<group>"; };
@@ -540,6 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				DF3610FF1993F8EC00B6B78A /* PointCountLeft.storyboard */,
+				DF221549199A80D900E1DC90 /* PointCountLeft_iphone.storyboard */,
 				DF3611021993FB9700B6B78A /* PointsCountLeftController.h */,
 				DF3611031993FB9700B6B78A /* PointsCountLeftController.m */,
 			);
@@ -689,6 +694,7 @@
 			isa = PBXGroup;
 			children = (
 				DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */,
+				DF22154B199A81F300E1DC90 /* StatViewController_iphone.storyboard */,
 				DFDA01C41961D1B6005D3703 /* StatViewController.h */,
 				DFDA01C51961D1B6005D3703 /* StatViewController.m */,
 			);
@@ -802,6 +808,7 @@
 				DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */,
 				DFDA01E51963245A005D3703 /* headerClouds.png in Resources */,
 				DF1F5CBB195B4338002D7EF2 /* mentalSkillNode@2x.png in Resources */,
+				DF22154A199A80D900E1DC90 /* PointCountLeft_iphone.storyboard in Resources */,
 				DF1F5C92195B432D002D7EF2 /* NodeView.storyboard in Resources */,
 				DF1F5CB2195B4338002D7EF2 /* addButton@2x.png in Resources */,
 				DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */,
@@ -842,6 +849,7 @@
 				DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */,
 				DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
 				DF29644A198C095A0024E070 /* initiative.png in Resources */,
+				DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */,
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
 				DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
@@ -1052,6 +1060,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Experience Flow";
 				PROVISIONING_PROFILE = "75D8C2E3-D16F-4B93-8CEB-F8E69D2B2C28";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1069,6 +1078,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "Experience Flow";
 				PROVISIONING_PROFILE = "2578F6BD-FF7E-4118-A399-75E2C5A4FD6F";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

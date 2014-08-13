@@ -7,6 +7,7 @@
 //
 
 #import "StatViewController.h"
+#import "Constants.h"
 
 @interface StatViewController ()
 
@@ -17,7 +18,8 @@
 
 +(StatViewController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"StatViewController" bundle:nil];
+    NSString *storyboardName = isiPad ? @"StatViewController" : @"StatViewController_iphone";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     StatViewController *controller = [storyboard instantiateInitialViewController];
     controller.view.frame =  frame;
     
@@ -45,6 +47,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
++(float)headerHeight
+{
+    return isiPad ? 40 : 25;
 }
 
 /*

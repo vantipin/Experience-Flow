@@ -19,6 +19,16 @@
 #import "UserDefaultsHelper.h"
 #import "SkillManager.h"
 
+const float CONTAINER_Y_NORMAL_iPAD = 20;
+const float CONTAINER_HEIGHT_NORMAL_iPAD = 748;
+const float CONTAINER_Y_NORMAL_iPHONE = 20;
+const float CONTAINER_HEIGHT_NORMAL_iPHONE = 300;
+
+const float CONTAINER_Y_CREATE_CH_iPAD = 97;
+const float CONTAINER_HEIGHT_CREATE_CH_iPAD = 671;
+const float CONTAINER_Y_CREATE_CH_iPHONE = 54;
+const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
+
 @interface PlayerManagerViewController ()
 {
     NSURL * _iCloudRoot;
@@ -194,8 +204,8 @@
         self.selectedCharacter = character;
         [UIView animateWithDuration:0.2 animations:^{
             CGRect newFrame = self.sideBarContainerView.frame;
-            newFrame.origin.y = 20;
-            newFrame.size.height = 748;
+            newFrame.origin.y = isiPad ? CONTAINER_Y_NORMAL_iPAD : CONTAINER_Y_NORMAL_iPHONE;
+            newFrame.size.height = isiPad ? CONTAINER_HEIGHT_NORMAL_iPAD : CONTAINER_HEIGHT_NORMAL_iPHONE;
             self.sideBarContainerView.frame = newFrame;
         }];
     }
@@ -209,8 +219,8 @@
         self.selectedCharacter = nil;
         [UIView animateWithDuration:0.2 animations:^{
             CGRect newFrame = self.sideBarContainerView.frame;
-            newFrame.origin.y = 97;
-            newFrame.size.height = 671;
+            newFrame.origin.y = isiPad ? CONTAINER_Y_CREATE_CH_iPAD : CONTAINER_Y_CREATE_CH_iPHONE;
+            newFrame.size.height = isiPad ? CONTAINER_HEIGHT_CREATE_CH_iPAD : CONTAINER_HEIGHT_CREATE_CH_iPHONE;
             self.sideBarContainerView.frame = newFrame;
             [self hideSideBar:true];
         }];
@@ -421,7 +431,7 @@
     self.shadowView.backgroundColor = kRGB(20, 20, 20, 0.4);
     [self.view addSubview:self.shadowView];
     
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:isiPad ? UIActivityIndicatorViewStyleWhiteLarge : UIActivityIndicatorViewStyleWhite];
     [self.shadowView addSubview:self.activityIndicator];
     [self.activityIndicator startAnimating];
     self.activityIndicator.center = self.shadowView.center;

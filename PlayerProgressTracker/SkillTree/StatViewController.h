@@ -11,6 +11,7 @@
 @interface StatViewController : UIViewController
 
 +(StatViewController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
++(float)headerHeight;
 
 @property (nonatomic) IBOutlet UILabel *healthCurrentLabel;
 @property (nonatomic) IBOutlet UILabel *healthMaxLabel;

@@ -23,6 +23,7 @@
 
 static const float HEADER_LAYOUT_HIDDEN = 20;
 static const float HEADER_LAYOUT_SHOWN = 100;
+static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 
 @interface CharacterViewController ()
 
@@ -244,7 +245,7 @@ static const float HEADER_LAYOUT_SHOWN = 100;
         self.headerView.alpha = alpha;
         
         self.skillTreeController.isInCreatingNewCharacterMod = self.isNewCharacterMode;
-        float newLayout = self.isNewCharacterMode ? HEADER_LAYOUT_SHOWN : HEADER_LAYOUT_HIDDEN;
+        float newLayout = self.isNewCharacterMode ? (isiPad ? HEADER_LAYOUT_SHOWN : HEADER_LAYOUT_SHOWN_iPHONE) : HEADER_LAYOUT_HIDDEN;
         [self.skillTreeController changeYStatLayout:newLayout animated:false];
     }];
 }

@@ -46,7 +46,7 @@
         }
         
         [self.tipTextView setText:description];
-        [self.tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:16]];
+        [self.tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:(isiPad ? 16 : 12)]];
         self.tipTextView.textColor = kRGB(20, 20, 20, 1);
 
         self.tipTextView.scrollEnabled = true;
