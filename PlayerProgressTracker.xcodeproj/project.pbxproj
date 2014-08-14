@@ -78,10 +78,6 @@
 		DF22150A1999372900E1DC90 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2215091999372900E1DC90 /* Main_iPhone.storyboard */; };
 		DF22154A199A80D900E1DC90 /* PointCountLeft_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF221549199A80D900E1DC90 /* PointCountLeft_iphone.storyboard */; };
 		DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF22154B199A81F300E1DC90 /* StatViewController_iphone.storyboard */; };
-		DF22159B199BD37000E1DC90 /* intelligenceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF221597199BD37000E1DC90 /* intelligenceIcon.png */; };
-		DF22159C199BD37000E1DC90 /* intelligenceIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF221598199BD37000E1DC90 /* intelligenceIcon@2x.png */; };
-		DF22159D199BD37000E1DC90 /* physiqueIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF221599199BD37000E1DC90 /* physiqueIcon.png */; };
-		DF22159E199BD37000E1DC90 /* physiqueIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF22159A199BD37000E1DC90 /* physiqueIcon@2x.png */; };
 		DF2900EF197EDE9F00861A4F /* CharacterDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2900EE197EDE9F00861A4F /* CharacterDataArchiver.m */; };
 		DF296447198A9EB90024E070 /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF296446198A9EB90024E070 /* UserDefaultsHelper.m */; };
 		DF29644A198C095A0024E070 /* initiative.png in Resources */ = {isa = PBXBuildFile; fileRef = DF296448198C095A0024E070 /* initiative.png */; };
@@ -249,10 +245,6 @@
 		DF2215091999372900E1DC90 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		DF221549199A80D900E1DC90 /* PointCountLeft_iphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PointCountLeft_iphone.storyboard; sourceTree = "<group>"; };
 		DF22154B199A81F300E1DC90 /* StatViewController_iphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatViewController_iphone.storyboard; sourceTree = "<group>"; };
-		DF221597199BD37000E1DC90 /* intelligenceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intelligenceIcon.png; sourceTree = "<group>"; };
-		DF221598199BD37000E1DC90 /* intelligenceIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "intelligenceIcon@2x.png"; sourceTree = "<group>"; };
-		DF221599199BD37000E1DC90 /* physiqueIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = physiqueIcon.png; sourceTree = "<group>"; };
-		DF22159A199BD37000E1DC90 /* physiqueIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "physiqueIcon@2x.png"; sourceTree = "<group>"; };
 		DF24B1291874B75900B57855 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Experience Flow.entitlements"; sourceTree = "<group>"; };
 		DF2900ED197EDE9F00861A4F /* CharacterDataArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDataArchiver.h; sourceTree = "<group>"; };
@@ -484,10 +476,6 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
-				DF221597199BD37000E1DC90 /* intelligenceIcon.png */,
-				DF221598199BD37000E1DC90 /* intelligenceIcon@2x.png */,
-				DF221599199BD37000E1DC90 /* physiqueIcon.png */,
-				DF22159A199BD37000E1DC90 /* physiqueIcon@2x.png */,
 				DF296448198C095A0024E070 /* initiative.png */,
 				DF296449198C095A0024E070 /* initiative@2x.png */,
 				DF3C0EE4198824240016AFF2 /* icloudAvailable.png */,
@@ -810,9 +798,7 @@
 			files = (
 				DFDA01C21961CE7F005D3703 /* bulk.png in Resources */,
 				DF1F5CB8195B4338002D7EF2 /* link@2x.png in Resources */,
-				DF22159E199BD37000E1DC90 /* physiqueIcon@2x.png in Resources */,
 				DF1F5CBD195B4338002D7EF2 /* nightSky@2x.png in Resources */,
-				DF22159B199BD37000E1DC90 /* intelligenceIcon.png in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
 				DF1F5CB1195B4338002D7EF2 /* addButton.png in Resources */,
 				DF1F5CB3195B4338002D7EF2 /* deleteButton.png in Resources */,
@@ -823,7 +809,6 @@
 				DFDA01E51963245A005D3703 /* headerClouds.png in Resources */,
 				DF1F5CBB195B4338002D7EF2 /* mentalSkillNode@2x.png in Resources */,
 				DF22154A199A80D900E1DC90 /* PointCountLeft_iphone.storyboard in Resources */,
-				DF22159C199BD37000E1DC90 /* intelligenceIcon@2x.png in Resources */,
 				DF1F5C92195B432D002D7EF2 /* NodeView.storyboard in Resources */,
 				DF1F5CB2195B4338002D7EF2 /* addButton@2x.png in Resources */,
 				DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */,
@@ -871,7 +856,6 @@
 				DF1F5CC4195B4338002D7EF2 /* skillNodeHighlited.png in Resources */,
 				DF0995D9196460C70025A76A /* cloudBackground.png in Resources */,
 				DF0995DD196462140025A76A /* tipBackground.png in Resources */,
-				DF22159D199BD37000E1DC90 /* physiqueIcon.png in Resources */,
 				DFDA01BA1961C7BA005D3703 /* health.png in Resources */,
 				DF3611001993F8EC00B6B78A /* PointCountLeft.storyboard in Resources */,
 				DF1F5CB4195B4338002D7EF2 /* deleteButton@2x.png in Resources */,

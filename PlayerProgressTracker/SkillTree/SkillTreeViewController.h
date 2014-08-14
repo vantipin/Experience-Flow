@@ -33,4 +33,11 @@
 -(void)changeYStatLayout:(float)newYLayout animated:(BOOL)animated;
 
 -(void)resetPointsLeftProgress;
+
+//Focus scrollView methods
+-(void)didTapHealth;
+-(void)didTapInventory;
+-(void)didTapMovement;
+-(void)didTapInitiative;
+
 @end

@@ -747,8 +747,8 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)centerScrollViewOnNode:(NodeViewController *)node
 {
-    CGPoint centerOnNode = CGPointMake((node.view.frame.origin.x + node.view.bounds.size.width) * self.scrollView.zoomScale - self.scrollView.frame.size.width / 2,
-                                       (node.view.frame.origin.y + node.view.bounds.size.height) * self.scrollView.zoomScale - self.scrollView.frame.size.height / 2);
+    CGPoint centerOnNode = CGPointMake((node.view.center.x) * self.scrollView.zoomScale - self.scrollView.frame.size.width / 2,
+                                       (node.view.center.y) * self.scrollView.zoomScale - self.scrollView.frame.size.height / 2);
     [self.scrollView setContentOffset:centerOnNode animated:true];
 }
 

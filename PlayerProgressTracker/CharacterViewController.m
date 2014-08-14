@@ -576,4 +576,24 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
     }];
 }
 
+-(IBAction)tapHealthArea:(id)sender
+{
+    [self.skillTreeController didTapHealth];
+}
+
+-(IBAction)tapInventoryArea:(id)sender
+{
+    [self.skillTreeController didTapInventory];
+}
+
+-(IBAction)tapMovementArea:(id)sender
+{
+    [self.skillTreeController didTapMovement];
+}
+
+-(IBAction)tapInitiativeArea:(id)sender
+{
+    [self.skillTreeController didTapInitiative];
+}
+
 @end
