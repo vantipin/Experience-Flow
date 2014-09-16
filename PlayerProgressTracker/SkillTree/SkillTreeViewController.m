@@ -22,7 +22,7 @@ static float minimalMarginBetweenNodesY = 110;
 static float borderSize = 100;
 static float nodeDiameter = 200;
 
-static int xpPointsToCreateCharacter = 100;
+static int xpPointsToCreateCharacter = 50;//100;
 
 static NSString *emptyParentKey = @"emptyParent";
 

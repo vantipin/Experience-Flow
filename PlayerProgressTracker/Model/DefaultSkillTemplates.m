@@ -101,10 +101,10 @@ static float defaultRangeWeaponProgression = 5;
 static float defaultRangeWeaponBasicBarrier = 8;
 static float defaultRangeWeaponGrowhtGoes = 0.3;
 
-
-static float defaultMagicSubSkillProgression = 5;
-static float defaultMagicSubSkillBasicBarrier = 18;
-static float defaultMagicSubSkillGrowhtGoes = 0.2;
+//
+//static float defaultMagicSubSkillProgression = 5;
+//static float defaultMagicSubSkillBasicBarrier = 18;
+//static float defaultMagicSubSkillGrowhtGoes = 0.2;
 
 static int defaultEncumbrancePenalties = 10;
 
@@ -156,10 +156,6 @@ static DefaultSkillTemplates *instance = nil;
                          self.perception,
                          self.magic,
                          
-                         self.dhar,
-                         self.aqshy,
-                         self.hysh,
-                         self.ghyran,
                          self.blunt,
                          self.cutting,
                          self.piercing,
@@ -372,11 +368,11 @@ static DefaultSkillTemplates *instance = nil;
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:12
                                                    withSkillProgression:5
-                                               withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
+                                               withBasicSkillGrowthGoes:defaultAdvGrowhtGoesHight
                                                           withSkillType:AdvancedSkillType
                                                  withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.intelligence
-                                                             isMediator:true
+                                                withParentSkillTemplate:self.reason
+                                                             isMediator:false
                                                             withContext:self.context];
         }
         else{
@@ -919,112 +915,6 @@ static DefaultSkillTemplates *instance = nil;
         _heal = skillTemplate;
     }
     return _heal;
-}
-
-
-
--(SkillTemplate *)dhar{
-    if (!_dhar){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",dharName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:dharName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Dark Arts. Dude, don't go there.."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMagicSubSkillBasicBarrier
-                                                   withSkillProgression:defaultMagicSubSkillProgression
-                                               withBasicSkillGrowthGoes:defaultMagicSubSkillGrowhtGoes
-                                                          withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.magic
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _dhar = skillTemplate;
-    }
-    return _dhar;
-}
-
--(SkillTemplate *)ghyran{
-    if (!_ghyran){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",ghyranName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:ghyranName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Life magic. Make road for the healers!"
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMagicSubSkillBasicBarrier
-                                                   withSkillProgression:defaultMagicSubSkillProgression
-                                               withBasicSkillGrowthGoes:defaultMagicSubSkillGrowhtGoes
-                                                          withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.magic
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _ghyran = skillTemplate;
-    }
-    return _ghyran;
-}
-
--(SkillTemplate *)hysh{
-    if (!_hysh){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",hyshName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:hyshName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Light magic. So illuminating!"
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMagicSubSkillBasicBarrier
-                                                   withSkillProgression:defaultMagicSubSkillProgression
-                                               withBasicSkillGrowthGoes:defaultMagicSubSkillGrowhtGoes
-                                                          withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.magic
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _hysh = skillTemplate;
-    }
-    return _hysh;
-}
-
--(SkillTemplate *)aqshy{
-    if (!_aqshy){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",aqshyName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:aqshyName
-                                                              withRules:nil
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Fire magic. Hot! Hot!"
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultMagicSubSkillBasicBarrier
-                                                   withSkillProgression:defaultMagicSubSkillProgression
-                                               withBasicSkillGrowthGoes:defaultMagicSubSkillGrowhtGoes
-                                                          withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.magic
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _aqshy = skillTemplate;
-    }
-    return _aqshy;
 }
 
 

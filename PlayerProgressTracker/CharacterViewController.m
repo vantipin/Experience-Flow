@@ -20,6 +20,7 @@
 #import "CharacterDataArchiver.h"
 #import "iCloud.h"
 #import "UserDefaultsHelper.h"
+#import "PicManager.h"
 
 static const float HEADER_LAYOUT_HIDDEN = 20;
 static const float HEADER_LAYOUT_SHOWN = 100;
@@ -215,7 +216,7 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
             newCharacter = [Character newCharacterWithContext:self.context];
             self.character = newCharacter;
             self.isNewCharacterMode = true;
-            [self updateRaceButtonWithName:nameHuman];
+            [self updateRaceButtonWithName:nameBeggar];
         }
         self.character = newCharacter;
         self.nameTextField.text = @"";
@@ -519,7 +520,8 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
         NSLog(@"%@", family);
         
         for (NSString* name in [UIFont fontNamesForFamilyName: family]) {
-            NSLog(@"  %@", name);
+            NSString *fontName = name;
+            NSLog(@"  %@", fontName);
         }
     }
 }
@@ -543,7 +545,10 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:true completion:^{
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        [self.icon setImage:image];
+        NSData *imageData = UIImagePNGRepresentation(image);
+        UIImage *scaled = [PicManager scaleImage:image toSize:self.icon.frame.size];
+        imageData = UIImagePNGRepresentation(scaled);
+        [self.icon setImage:scaled];
     }];
 }
 

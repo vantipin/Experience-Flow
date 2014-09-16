@@ -99,35 +99,73 @@ static SkillLevelsSetManager *instance = nil;
 
 -(void)synchroniseTemplatesWithDefaultValues
 {
-    if (![self fetchSetNamed:nameEmpty]) {
-        NSDictionary *set = @{};
-        [self saveSkillLevelsSet:set withName:nameEmpty];
+    if (![self fetchSetNamed:nameBeggar]) {
+        NSDictionary *set = @{[DefaultSkillTemplates sharedInstance].physique.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].intelligence.name : @(2),
+                              
+                              [DefaultSkillTemplates sharedInstance].strength.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].toughness.name : @(4),
+                              [DefaultSkillTemplates sharedInstance].agility.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].reason.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].control.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].perception.name : @(3)};
+        [self saveSkillLevelsSet:set withName:nameBeggar];
     }
     
-    if (![self fetchSetNamed:nameHuman]) {
+    if (![self fetchSetNamed:nameMage]) {
+        NSDictionary *set = @{[DefaultSkillTemplates sharedInstance].physique.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].intelligence.name : @(3),
+                              
+                              [DefaultSkillTemplates sharedInstance].strength.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].toughness.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].agility.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].reason.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].control.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].perception.name : @(2),
+                              
+                              [DefaultSkillTemplates sharedInstance].magic.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].blackpowder.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].bow.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].thrown.name : @(1)};
+        [self saveSkillLevelsSet:set withName:nameMage];
+    }
+    
+    if (![self fetchSetNamed:nameHunter]) {
         NSDictionary *set = @{[DefaultSkillTemplates sharedInstance].physique.name : @(2),
                               [DefaultSkillTemplates sharedInstance].intelligence.name : @(2),
                               
                               [DefaultSkillTemplates sharedInstance].strength.name : @(2),
                               [DefaultSkillTemplates sharedInstance].toughness.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].agility.name : @(4),
+                              [DefaultSkillTemplates sharedInstance].reason.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].control.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].perception.name : @(4),
+                              
+                              [DefaultSkillTemplates sharedInstance].weaponSkill.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].ballisticSkill.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].blackpowder.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].bow.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].thrown.name : @(1)};
+        [self saveSkillLevelsSet:set withName:nameHunter];
+    }
+    
+    if (![self fetchSetNamed:nameMercenary]) {
+        NSDictionary *set = @{[DefaultSkillTemplates sharedInstance].physique.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].intelligence.name : @(2),
+                              
+                              [DefaultSkillTemplates sharedInstance].strength.name : @(3),
+                              [DefaultSkillTemplates sharedInstance].toughness.name : @(4),
+                              [DefaultSkillTemplates sharedInstance].agility.name : @(2),
                               [DefaultSkillTemplates sharedInstance].reason.name : @(2),
                               [DefaultSkillTemplates sharedInstance].control.name : @(2),
                               [DefaultSkillTemplates sharedInstance].perception.name : @(2),
-                              [DefaultSkillTemplates sharedInstance].agility.name : @(2)};
-        [self saveSkillLevelsSet:set withName:nameHuman];
-    }
-    
-    if (![self fetchSetNamed:nameDwarf]) {
-        NSDictionary *set = @{[DefaultSkillTemplates sharedInstance].physique.name : @(2),
-                              [DefaultSkillTemplates sharedInstance].intelligence.name : @(2),
                               
-                              [DefaultSkillTemplates sharedInstance].strength.name : @(2),
-                              [DefaultSkillTemplates sharedInstance].toughness.name : @(5),
-                              [DefaultSkillTemplates sharedInstance].reason.name : @(2),
-                              [DefaultSkillTemplates sharedInstance].control.name : @(2),
-                              [DefaultSkillTemplates sharedInstance].perception.name : @(0),
-                              [DefaultSkillTemplates sharedInstance].agility.name : @(2)};
-        [self saveSkillLevelsSet:set withName:nameDwarf];
+                              [DefaultSkillTemplates sharedInstance].ballisticSkill.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].weaponSkill.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].cutting.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].blunt.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].piercing.name : @(1)};
+        [self saveSkillLevelsSet:set withName:nameMercenary];
     }
 }
 

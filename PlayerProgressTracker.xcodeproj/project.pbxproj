@@ -78,6 +78,7 @@
 		DF22150A1999372900E1DC90 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF2215091999372900E1DC90 /* Main_iPhone.storyboard */; };
 		DF22154A199A80D900E1DC90 /* PointCountLeft_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF221549199A80D900E1DC90 /* PointCountLeft_iphone.storyboard */; };
 		DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF22154B199A81F300E1DC90 /* StatViewController_iphone.storyboard */; };
+		DF22164819A3BC4B00E1DC90 /* PicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DF22164719A3BC4B00E1DC90 /* PicManager.m */; };
 		DF2900EF197EDE9F00861A4F /* CharacterDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2900EE197EDE9F00861A4F /* CharacterDataArchiver.m */; };
 		DF296447198A9EB90024E070 /* UserDefaultsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF296446198A9EB90024E070 /* UserDefaultsHelper.m */; };
 		DF29644A198C095A0024E070 /* initiative.png in Resources */ = {isa = PBXBuildFile; fileRef = DF296448198C095A0024E070 /* initiative.png */; };
@@ -90,6 +91,7 @@
 		DF3C0EE9198824240016AFF2 /* icloudAvailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */; };
 		DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */; };
 		DF3C0EEB198824240016AFF2 /* icloudIsntAvailible@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */; };
+		DF532A0419AF8BB50037BF06 /* BranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF532A0319AF8BB50037BF06 /* BranchViewController.m */; };
 		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
 		DFAED102186309B40039D17B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED101186309B40039D17B /* CoreGraphics.framework */; };
 		DFAED104186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
@@ -107,6 +109,10 @@
 		DFC63F0E196DBAF10000AAAD /* CustomSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC63F0D196DBAF10000AAAD /* CustomSplitViewController.m */; };
 		DFCE2A88196F10BE00A9F4C9 /* saveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCE2A86196F10BE00A9F4C9 /* saveIcon.png */; };
 		DFCE2A89196F10BE00A9F4C9 /* saveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */; };
+		DFD0F79E19C8B42F0097933A /* skillNodeMediator.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79A19C8B42F0097933A /* skillNodeMediator.png */; };
+		DFD0F79F19C8B42F0097933A /* skillNodeMediator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */; };
+		DFD0F7A019C8B42F0097933A /* xpMediatorAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */; };
+		DFD0F7A119C8B42F0097933A /* xpMediatorAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79D19C8B42F0097933A /* xpMediatorAura@2x.png */; };
 		DFD6CD191976DFF500046218 /* PlayerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD6CD181976DFF500046218 /* PlayerManagerViewController.m */; };
 		DFD6CD2B197D010500046218 /* CustomImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */; };
 		DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */; };
@@ -245,6 +251,8 @@
 		DF2215091999372900E1DC90 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		DF221549199A80D900E1DC90 /* PointCountLeft_iphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PointCountLeft_iphone.storyboard; sourceTree = "<group>"; };
 		DF22154B199A81F300E1DC90 /* StatViewController_iphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatViewController_iphone.storyboard; sourceTree = "<group>"; };
+		DF22164619A3BC4B00E1DC90 /* PicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicManager.h; sourceTree = "<group>"; };
+		DF22164719A3BC4B00E1DC90 /* PicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicManager.m; sourceTree = "<group>"; };
 		DF24B1291874B75900B57855 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Experience Flow.entitlements"; sourceTree = "<group>"; };
 		DF2900ED197EDE9F00861A4F /* CharacterDataArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDataArchiver.h; sourceTree = "<group>"; };
@@ -265,6 +273,8 @@
 		DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icloudAvailable@2x.png"; sourceTree = "<group>"; };
 		DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icloudIsntAvailible.png; sourceTree = "<group>"; };
 		DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icloudIsntAvailible@2x.png"; sourceTree = "<group>"; };
+		DF532A0219AF8BB50037BF06 /* BranchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchViewController.h; sourceTree = "<group>"; };
+		DF532A0319AF8BB50037BF06 /* BranchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchViewController.m; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Experience Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Experience Flow.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -288,6 +298,10 @@
 		DFC63F0D196DBAF10000AAAD /* CustomSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSplitViewController.m; sourceTree = "<group>"; };
 		DFCE2A86196F10BE00A9F4C9 /* saveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveIcon.png; sourceTree = "<group>"; };
 		DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saveIcon@2x.png"; sourceTree = "<group>"; };
+		DFD0F79A19C8B42F0097933A /* skillNodeMediator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeMediator.png; sourceTree = "<group>"; };
+		DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeMediator@2x.png"; sourceTree = "<group>"; };
+		DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xpMediatorAura.png; sourceTree = "<group>"; };
+		DFD0F79D19C8B42F0097933A /* xpMediatorAura@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xpMediatorAura@2x.png"; sourceTree = "<group>"; };
 		DFD6CD171976DFF500046218 /* PlayerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManagerViewController.h; sourceTree = "<group>"; };
 		DFD6CD181976DFF500046218 /* PlayerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerManagerViewController.m; sourceTree = "<group>"; };
 		DFD6CD29197D010500046218 /* CustomImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomImagePickerViewController.h; path = PlayerProgressTracker/CustomImagePickerViewController.h; sourceTree = SOURCE_ROOT; };
@@ -364,6 +378,8 @@
 				DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */,
 				DF296445198A9EB90024E070 /* UserDefaultsHelper.h */,
 				DF296446198A9EB90024E070 /* UserDefaultsHelper.m */,
+				DF22164619A3BC4B00E1DC90 /* PicManager.h */,
+				DF22164719A3BC4B00E1DC90 /* PicManager.m */,
 			);
 			name = Model;
 			path = PlayerProgressTracker/Model;
@@ -476,6 +492,10 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DFD0F79A19C8B42F0097933A /* skillNodeMediator.png */,
+				DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */,
+				DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */,
+				DFD0F79D19C8B42F0097933A /* xpMediatorAura@2x.png */,
 				DF296448198C095A0024E070 /* initiative.png */,
 				DF296449198C095A0024E070 /* initiative@2x.png */,
 				DF3C0EE4198824240016AFF2 /* icloudAvailable.png */,
@@ -563,6 +583,15 @@
 			path = iCloud;
 			sourceTree = "<group>";
 		};
+		DF532A0119AF8BB50037BF06 /* FabulousSkillTree */ = {
+			isa = PBXGroup;
+			children = (
+				DF532A0219AF8BB50037BF06 /* BranchViewController.h */,
+				DF532A0319AF8BB50037BF06 /* BranchViewController.m */,
+			);
+			path = FabulousSkillTree;
+			sourceTree = "<group>";
+		};
 		DFAED0F3186309B40039D17B = {
 			isa = PBXGroup;
 			children = (
@@ -599,6 +628,7 @@
 		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
 			isa = PBXGroup;
 			children = (
+				DF532A0119AF8BB50037BF06 /* FabulousSkillTree */,
 				DF3C0EDC19881F5C0016AFF2 /* iCloud */,
 				DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */,
 				DFD6CD1A1978322500046218 /* SkillTableViewController(Deprecated) */,
@@ -819,6 +849,7 @@
 				DF1F5C8E195B432D002D7EF2 /* SkillViewCell.xib in Resources */,
 				DFDA01E61963245A005D3703 /* headerClouds@2x.png in Resources */,
 				DF1F5CC2195B4338002D7EF2 /* skillNode.png in Resources */,
+				DFD0F7A019C8B42F0097933A /* xpMediatorAura.png in Resources */,
 				DFDA01BF1961C7BA005D3703 /* movement@2x.png in Resources */,
 				DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */,
 				DFCE2A88196F10BE00A9F4C9 /* saveIcon.png in Resources */,
@@ -830,6 +861,7 @@
 				DF1F5CC1195B4338002D7EF2 /* raiseXp@2x.png in Resources */,
 				DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */,
 				DFDA01BD1961C7BA005D3703 /* inventoryIcon@2x.png in Resources */,
+				DFD0F79E19C8B42F0097933A /* skillNodeMediator.png in Resources */,
 				DF0995D8196460C70025A76A /* cloudBackground@2x.png in Resources */,
 				DF0995DC196462140025A76A /* tipBackground@2x.png in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
@@ -849,9 +881,11 @@
 				DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */,
 				DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
 				DF29644A198C095A0024E070 /* initiative.png in Resources */,
+				DFD0F7A119C8B42F0097933A /* xpMediatorAura@2x.png in Resources */,
 				DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */,
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
 				DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */,
+				DFD0F79F19C8B42F0097933A /* skillNodeMediator@2x.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
 				DF1F5CC4195B4338002D7EF2 /* skillNodeHighlited.png in Resources */,
 				DF0995D9196460C70025A76A /* cloudBackground.png in Resources */,
@@ -902,11 +936,13 @@
 				DF1F5C66195B431E002D7EF2 /* SkillTemplate.m in Sources */,
 				DF1F5C5B195B431E002D7EF2 /* Model.xcdatamodeld in Sources */,
 				DF1F5C91195B432D002D7EF2 /* NodeLinkController.m in Sources */,
+				DF532A0419AF8BB50037BF06 /* BranchViewController.m in Sources */,
 				DF1F5C68195B431E002D7EF2 /* SkillLevelsSetManager.m in Sources */,
 				DF3C0EE319881F5C0016AFF2 /* iCloudDocument.m in Sources */,
 				DF1F5C60195B431E002D7EF2 /* MeleeSkill.m in Sources */,
 				DF3C0EE219881F5C0016AFF2 /* iCloud.m in Sources */,
 				DF1F5C58195B431E002D7EF2 /* Item.m in Sources */,
+				DF22164819A3BC4B00E1DC90 /* PicManager.m in Sources */,
 				DFC63F0E196DBAF10000AAAD /* CustomSplitViewController.m in Sources */,
 				DFAED110186309B40039D17B /* AppDelegate.m in Sources */,
 				DF1F5C5C195B431E002D7EF2 /* Pic.m in Sources */,
@@ -1057,7 +1093,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Experience Flow";
 				PROVISIONING_PROFILE = "75D8C2E3-D16F-4B93-8CEB-F8E69D2B2C28";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1075,7 +1111,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Experience Flow";
 				PROVISIONING_PROFILE = "2578F6BD-FF7E-4118-A399-75E2C5A4FD6F";
 				TARGETED_DEVICE_FAMILY = "1,2";

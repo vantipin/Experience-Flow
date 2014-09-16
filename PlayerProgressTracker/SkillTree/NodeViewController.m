@@ -156,7 +156,24 @@
 
 -(void)updateInterface
 {
-    [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
+    
+    if (self.skill.skillTemplate.isMediator) {
+        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeMediator"] forState:UIControlStateNormal];
+        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeMediator"] forState:UIControlStateHighlighted];
+        [self.skillButton setTitle:nil forState:UIControlStateNormal];
+        self.skillLevelLabel.center = CGPointMake(self.skillButton.bounds.size.width/2, self.skillButton.bounds.size.height/2);
+        self.skillLevelLabel.textColor = [UIColor whiteColor];
+        self.xpAuraImageView.image = [UIImage imageNamed:@"xpMediatorAura"];
+    }
+    else {
+        [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
+        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNode"] forState:UIControlStateNormal];
+        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeHighlited"] forState:UIControlStateHighlighted];
+        self.skillLevelLabel.frame = CGRectMake(74, 121, 50, 50);
+        self.xpAuraImageView.image = [UIImage imageNamed:@"xpAura"];
+    }
+    
+   // [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
     self.skillLevelLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill]];
     [self processXPAura];
 }
@@ -212,7 +229,7 @@
 -(NodeLinkController *)addLinkWithParent:(NodeViewController *)parent andChild:(NodeViewController *)child placeInView:(UIView *)containerView addToController:(UIViewController *)controller;
 {
     CGPoint parentCenter = parent.view.center;
-    CGPoint childCenter  = CGPointMake(child.view.center.x, child.view.center.y - (child.view.frame.size.height / 5));
+    CGPoint childCenter  = CGPointMake(child.view.center.x, child.view.center.y - (child.view.frame.size.height / 6));
     
     float originX = parentCenter.x;
     float originY = parentCenter.y;

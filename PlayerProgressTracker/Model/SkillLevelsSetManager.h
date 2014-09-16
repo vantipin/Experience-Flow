@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *nameEmpty = @"Empty";
-static NSString *nameHuman = @"Human";
-static NSString *nameDwarf = @"Dwarf";
+static NSString *nameBeggar = @"Beggar";
+static NSString *nameMage = @"Mage";
+static NSString *nameHunter = @"Hunter";
+static NSString *nameMercenary = @"Mercenary";
 
 @class Character, SkillLevelsSet;
 

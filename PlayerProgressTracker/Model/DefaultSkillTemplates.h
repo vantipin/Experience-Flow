@@ -52,12 +52,6 @@
 
 @property (nonatomic) SkillTemplate *magic;
 
-@property (nonatomic) SkillTemplate *dhar;
-//sub magic
-@property (nonatomic) SkillTemplate *ghyran;
-@property (nonatomic) SkillTemplate *aqshy;
-@property (nonatomic) SkillTemplate *hysh;
-
 @property (nonatomic) SkillTemplate *weaponSkill;
 //sub melee
 @property (nonatomic) SkillTemplate *blunt;
