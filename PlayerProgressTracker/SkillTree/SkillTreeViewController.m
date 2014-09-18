@@ -498,6 +498,7 @@ static NSString *emptyParentKey = @"emptyParent";
                             }
                         }
                         [self.allExistingNodes addObject:newSkillNode];
+
                         
                     }
                     sectionMargin += section.count * (nodeDiameter + minimalMarginBetweenNodesX) + minimalMarginBetweenNodesX;
@@ -680,14 +681,7 @@ static NSString *emptyParentKey = @"emptyParent";
     NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:skill.skillTemplate.name];
     if (node) {
         [node updateInterface];
-        
-        [UIView animateWithDuration:0.5 animations:^{
-            node.skillButton.highlighted = true;
-        } completion:^(BOOL success){
-            [UIView animateWithDuration:0.1 animations:^{
-                node.skillButton.highlighted = false;
-            }];
-        }];
+        [node lightUp];
     }
 }
 

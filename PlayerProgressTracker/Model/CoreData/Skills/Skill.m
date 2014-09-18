@@ -51,6 +51,7 @@
         
         skill.skillId = [NSString stringWithFormat:@"%@",skill.objectID];
         
+        //skill.startingLevel = skillTemplate.defaultLevel;
         skill.currentLevel = skillTemplate.defaultLevel;
         skill.currentProgress = curentPoints ? curentPoints : 0.0;
         skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];

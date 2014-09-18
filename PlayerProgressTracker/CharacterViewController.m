@@ -185,7 +185,7 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 {
     if(!_classesDropController) {
         _classesDropController = [[ClassesDropViewController alloc] initWithArrayData:self.raceNames
-                                                                           cellHeight:30
+                                                                           cellHeight:isiPad ? 40 : 30
                                                                        widthTableView:self.raceBtn.frame.size.width
                                                                               refView:self.raceBtn animation:AlphaChange
                                                                       backGroundColor:kRGB(240, 240, 240, 0.6)];

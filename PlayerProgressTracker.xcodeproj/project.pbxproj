@@ -113,6 +113,12 @@
 		DFD0F79F19C8B42F0097933A /* skillNodeMediator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */; };
 		DFD0F7A019C8B42F0097933A /* xpMediatorAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */; };
 		DFD0F7A119C8B42F0097933A /* xpMediatorAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79D19C8B42F0097933A /* xpMediatorAura@2x.png */; };
+		DFD0F7A419C9F3150097933A /* skillNodeMediatorHightlited.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7A219C9F3150097933A /* skillNodeMediatorHightlited.png */; };
+		DFD0F7A519C9F3150097933A /* skillNodeMediatorHightlited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7A319C9F3150097933A /* skillNodeMediatorHightlited@2x.png */; };
+		DFD0F7A819C9F9100097933A /* skillNodeUndeveloped.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7A619C9F9100097933A /* skillNodeUndeveloped.png */; };
+		DFD0F7A919C9F9100097933A /* skillNodeUndeveloped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7A719C9F9100097933A /* skillNodeUndeveloped@2x.png */; };
+		DFD0F7D119CB33DD0097933A /* skillNodeMediatorUndeveloped.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7CF19CB33DD0097933A /* skillNodeMediatorUndeveloped.png */; };
+		DFD0F7D219CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7D019CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png */; };
 		DFD6CD191976DFF500046218 /* PlayerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD6CD181976DFF500046218 /* PlayerManagerViewController.m */; };
 		DFD6CD2B197D010500046218 /* CustomImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */; };
 		DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */; };
@@ -302,6 +308,12 @@
 		DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeMediator@2x.png"; sourceTree = "<group>"; };
 		DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xpMediatorAura.png; sourceTree = "<group>"; };
 		DFD0F79D19C8B42F0097933A /* xpMediatorAura@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xpMediatorAura@2x.png"; sourceTree = "<group>"; };
+		DFD0F7A219C9F3150097933A /* skillNodeMediatorHightlited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeMediatorHightlited.png; sourceTree = "<group>"; };
+		DFD0F7A319C9F3150097933A /* skillNodeMediatorHightlited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeMediatorHightlited@2x.png"; sourceTree = "<group>"; };
+		DFD0F7A619C9F9100097933A /* skillNodeUndeveloped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeUndeveloped.png; sourceTree = "<group>"; };
+		DFD0F7A719C9F9100097933A /* skillNodeUndeveloped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeUndeveloped@2x.png"; sourceTree = "<group>"; };
+		DFD0F7CF19CB33DD0097933A /* skillNodeMediatorUndeveloped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeMediatorUndeveloped.png; sourceTree = "<group>"; };
+		DFD0F7D019CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeMediatorUndeveloped@2x.png"; sourceTree = "<group>"; };
 		DFD6CD171976DFF500046218 /* PlayerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManagerViewController.h; sourceTree = "<group>"; };
 		DFD6CD181976DFF500046218 /* PlayerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerManagerViewController.m; sourceTree = "<group>"; };
 		DFD6CD29197D010500046218 /* CustomImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomImagePickerViewController.h; path = PlayerProgressTracker/CustomImagePickerViewController.h; sourceTree = SOURCE_ROOT; };
@@ -492,6 +504,12 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DFD0F7CF19CB33DD0097933A /* skillNodeMediatorUndeveloped.png */,
+				DFD0F7D019CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png */,
+				DFD0F7A619C9F9100097933A /* skillNodeUndeveloped.png */,
+				DFD0F7A719C9F9100097933A /* skillNodeUndeveloped@2x.png */,
+				DFD0F7A219C9F3150097933A /* skillNodeMediatorHightlited.png */,
+				DFD0F7A319C9F3150097933A /* skillNodeMediatorHightlited@2x.png */,
 				DFD0F79A19C8B42F0097933A /* skillNodeMediator.png */,
 				DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */,
 				DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */,
@@ -844,10 +862,13 @@
 				DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */,
 				DFDA01E119631A51005D3703 /* headerWallPic@2x.png in Resources */,
 				DF3C0EE9198824240016AFF2 /* icloudAvailable@2x.png in Resources */,
+				DFD0F7A519C9F3150097933A /* skillNodeMediatorHightlited@2x.png in Resources */,
 				DFCE2A89196F10BE00A9F4C9 /* saveIcon@2x.png in Resources */,
 				DFDA01EA19632507005D3703 /* headerCreatingCharacter.png in Resources */,
 				DF1F5C8E195B432D002D7EF2 /* SkillViewCell.xib in Resources */,
 				DFDA01E61963245A005D3703 /* headerClouds@2x.png in Resources */,
+				DFD0F7A819C9F9100097933A /* skillNodeUndeveloped.png in Resources */,
+				DFD0F7A419C9F3150097933A /* skillNodeMediatorHightlited.png in Resources */,
 				DF1F5CC2195B4338002D7EF2 /* skillNode.png in Resources */,
 				DFD0F7A019C8B42F0097933A /* xpMediatorAura.png in Resources */,
 				DFDA01BF1961C7BA005D3703 /* movement@2x.png in Resources */,
@@ -871,6 +892,7 @@
 				DF1F5C8A195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib in Resources */,
 				DF1F5CBA195B4338002D7EF2 /* lowerXp@2x.png in Resources */,
 				DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */,
+				DFD0F7D119CB33DD0097933A /* skillNodeMediatorUndeveloped.png in Resources */,
 				DF1F5CBC195B4338002D7EF2 /* nightSky.png in Resources */,
 				DF1F5C94195B432D002D7EF2 /* SkillLinkView.storyboard in Resources */,
 				DF1F5CC3195B4338002D7EF2 /* skillNode@2x.png in Resources */,
@@ -878,6 +900,7 @@
 				DF29644B198C095A0024E070 /* initiative@2x.png in Resources */,
 				DF3C0EE8198824240016AFF2 /* icloudAvailable.png in Resources */,
 				DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */,
+				DFD0F7D219CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png in Resources */,
 				DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */,
 				DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
 				DF29644A198C095A0024E070 /* initiative.png in Resources */,
@@ -885,6 +908,7 @@
 				DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */,
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
 				DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */,
+				DFD0F7A919C9F9100097933A /* skillNodeUndeveloped@2x.png in Resources */,
 				DFD0F79F19C8B42F0097933A /* skillNodeMediator@2x.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
 				DF1F5CC4195B4338002D7EF2 /* skillNodeHighlited.png in Resources */,

@@ -10,18 +10,21 @@
 #import "NodeLinkController.h"
 #import "SkillTemplate.h"
 #import "SkillManager.h"
+#import "DefaultSkillTemplates.h"
+#import "Constants.h"
+
+#define healthyNodeShiningColor kRGB(128, 181, 231, 1)
+#define undevelopedNodeShiningColor kRGB(208, 215, 231, 1)
 
 @interface NodeViewController ()
 
 @property (nonatomic) IBOutlet UILabel *skillLevelLabel;
 @property (nonatomic) IBOutlet UIImageView *xpAuraImageView;
-
 @property (nonatomic) CGPoint anchorPoint;
 @property (nonatomic) CAKeyframeAnimation *driftAnimation;
-
 @property (nonatomic) SkillTemplate *skillTemplate;
-
 @property (nonatomic) BOOL isLightUp;
+@property (nonatomic) NSInteger expectedMinLevel;
 
 @end
 
@@ -31,6 +34,7 @@
 
 +(NodeViewController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 {
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"NodeView" bundle:nil];
     NodeViewController *controller = [storyboard instantiateInitialViewController];
     controller.view.frame =  frame;
@@ -102,6 +106,25 @@
     if (_skill) {
         self.skillTemplate = _skill.skillTemplate;
         
+        if ([self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].toughness.name]) {
+            self.expectedMinLevel = expectedMinLevelForToughness;
+        }
+        else if ([self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].physique.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].intelligence.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].melee.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].range.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].crashing.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].cutting.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].piercing.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].thrown.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].bow.name] ||
+                 [self.skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].firearm.name]) {
+            self.expectedMinLevel = expectedMinLevelForCoreSkills;
+        }
+        else {
+            self.expectedMinLevel = expectedMinLevelForOtherAdvanced;
+        }
+        
         [self updateInterface];
     }
 }
@@ -156,29 +179,44 @@
 
 -(void)updateInterface
 {
+    NSInteger level = [[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill];
+    self.skillLevelLabel.text = [NSString stringWithFormat:@"%ld",(long)level];
+    BOOL isDeveloped = [self isDeveloped];
+    
     
     if (self.skill.skillTemplate.isMediator) {
-        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeMediator"] forState:UIControlStateNormal];
-        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeMediator"] forState:UIControlStateHighlighted];
-        [self.skillButton setTitle:nil forState:UIControlStateNormal];
-        self.skillLevelLabel.center = CGPointMake(self.skillButton.bounds.size.width/2, self.skillButton.bounds.size.height/2);
-        self.skillLevelLabel.textColor = [UIColor whiteColor];
+        UIImage *image = isDeveloped ? [UIImage imageNamed:@"skillNodeMediator"] : [UIImage imageNamed:@"skillNodeMediatorUndeveloped"];
+        [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
+        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeMediatorHightlited"] forState:UIControlStateHighlighted];
         self.xpAuraImageView.image = [UIImage imageNamed:@"xpMediatorAura"];
+        self.skillLevelLabel.hidden = true;
     }
     else {
-        [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
-        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNode"] forState:UIControlStateNormal];
+        UIImage *image = isDeveloped ? [UIImage imageNamed:@"skillNode"] : [UIImage imageNamed:@"skillNodeUndeveloped"];
+        [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
         [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeHighlited"] forState:UIControlStateHighlighted];
-        self.skillLevelLabel.frame = CGRectMake(74, 121, 50, 50);
         self.xpAuraImageView.image = [UIImage imageNamed:@"xpAura"];
+        self.skillLevelLabel.hidden = false;
+        self.skillLevelLabel.textColor = isDeveloped ? healthyNodeShiningColor : undevelopedNodeShiningColor;
     }
     
-   // [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
-    self.skillLevelLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill]];
+    [self processLinkVisibility];
+    self.view.alpha = isDeveloped ? 1 : 0.95;
+    [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
+    
     [self processXPAura];
 }
 
+-(void)processLinkVisibility
+{
+    self.nodeLinkParent.view.alpha = [self isDeveloped] ? 1 : 0.4;
+}
 
+-(BOOL)isDeveloped
+{
+    NSInteger level = self.skillLevelLabel.text.integerValue;
+    return (self.expectedMinLevel >= level) ? false : true;
+}
 
 -(IBAction)didTabSkillButton:(id)sender
 {
@@ -218,6 +256,8 @@
         [self removeLink:self.nodeLinkParent];
     }
     self.nodeLinkParent = [self addLinkWithParent:parentNodeLink andChild:self placeInView:containerView addToController:controller];
+    
+    [self processLinkVisibility];
 }
 
 -(void)removeLink:(NodeLinkController *)link;
@@ -257,7 +297,7 @@
     [containerView addSubview:newNodeLink.view];
     [containerView sendSubviewToBack:newNodeLink.view];
     [controller addChildViewController:newNodeLink];
-
+    
     return newNodeLink;
 }
 
@@ -361,5 +401,7 @@
         }];
     }];
 }
+
+
 
 @end

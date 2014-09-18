@@ -49,7 +49,7 @@
 //get instance of animation used by Group animation
 -(CAKeyframeAnimation *)nodeAnimationInvokeWithPoint1:(CGPoint)point1 withPoint2:(CGPoint)point2;
 
-
+-(BOOL)isDeveloped;
 -(void)lightUp;
 
 @end

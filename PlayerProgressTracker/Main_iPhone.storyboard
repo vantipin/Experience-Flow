@@ -126,20 +126,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="83"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <button opaque="NO" alpha="1.3877787807814457e-17" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="opY-Xt-eDD">
-                                        <rect key="frame" x="120" y="21" width="115" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni SvtyTwo SC ITC TT" pointSize="14"/>
-                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Save new stat set">
-                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveStatSetBtn:" destination="0q4-Jg-XzR" eventType="touchUpInside" id="bMO-33-mfe"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="amv-Kg-NlF">
-                                        <rect key="frame" x="40" y="21" width="86" height="30"/>
+                                        <rect key="frame" x="44" y="21" width="86" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="16"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -271,7 +259,6 @@
                         <outlet property="raceBtn" destination="amv-Kg-NlF" id="gzP-Nc-Mpy"/>
                         <outlet property="raceLabel" destination="dQt-wG-5PW" id="N3U-Z6-Y31"/>
                         <outlet property="saveCharacter" destination="Ty6-hh-asR" id="Jck-AJ-Mqz"/>
-                        <outlet property="saveSet" destination="opY-Xt-eDD" id="S9p-cO-6G2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Md-6N-jP8" userLabel="First Responder" sceneMemberID="firstResponder"/>

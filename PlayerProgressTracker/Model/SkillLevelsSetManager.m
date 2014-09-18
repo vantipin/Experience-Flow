@@ -85,9 +85,7 @@ static SkillLevelsSetManager *instance = nil;
                     SkillTemplate *template = [templateArray lastObject];
                     Skill *skill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:template withCharacter:character];
                     
-                    
                     skill.currentLevel = [levelValue integerValue];
-                    
                 }
             }
         }
@@ -106,9 +104,15 @@ static SkillLevelsSetManager *instance = nil;
                               [DefaultSkillTemplates sharedInstance].strength.name : @(3),
                               [DefaultSkillTemplates sharedInstance].toughness.name : @(4),
                               [DefaultSkillTemplates sharedInstance].agility.name : @(3),
-                              [DefaultSkillTemplates sharedInstance].reason.name : @(3),
+                              
+                              [DefaultSkillTemplates sharedInstance].reason.name : @(2),
                               [DefaultSkillTemplates sharedInstance].control.name : @(3),
-                              [DefaultSkillTemplates sharedInstance].perception.name : @(3)};
+                              [DefaultSkillTemplates sharedInstance].perception.name : @(3),
+                              
+                              [DefaultSkillTemplates sharedInstance].bluff.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].thrown.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].crashing.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].climb.name : @(1)};
         [self saveSkillLevelsSet:set withName:nameBeggar];
     }
     
@@ -123,8 +127,8 @@ static SkillLevelsSetManager *instance = nil;
                               [DefaultSkillTemplates sharedInstance].control.name : @(3),
                               [DefaultSkillTemplates sharedInstance].perception.name : @(2),
                               
-                              [DefaultSkillTemplates sharedInstance].magic.name : @(1),
-                              [DefaultSkillTemplates sharedInstance].blackpowder.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].magic.name : @(2),
+                              [DefaultSkillTemplates sharedInstance].firearm.name : @(1),
                               [DefaultSkillTemplates sharedInstance].bow.name : @(1),
                               [DefaultSkillTemplates sharedInstance].thrown.name : @(1)};
         [self saveSkillLevelsSet:set withName:nameMage];
@@ -141,11 +145,13 @@ static SkillLevelsSetManager *instance = nil;
                               [DefaultSkillTemplates sharedInstance].control.name : @(3),
                               [DefaultSkillTemplates sharedInstance].perception.name : @(4),
                               
-                              [DefaultSkillTemplates sharedInstance].weaponSkill.name : @(1),
-                              [DefaultSkillTemplates sharedInstance].ballisticSkill.name : @(1),
-                              [DefaultSkillTemplates sharedInstance].blackpowder.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].melee.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].range.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].firearm.name : @(1),
                               [DefaultSkillTemplates sharedInstance].bow.name : @(1),
-                              [DefaultSkillTemplates sharedInstance].thrown.name : @(1)};
+                              [DefaultSkillTemplates sharedInstance].thrown.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].climb.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].stealth.name : @(1)};
         [self saveSkillLevelsSet:set withName:nameHunter];
     }
     
@@ -160,10 +166,10 @@ static SkillLevelsSetManager *instance = nil;
                               [DefaultSkillTemplates sharedInstance].control.name : @(2),
                               [DefaultSkillTemplates sharedInstance].perception.name : @(2),
                               
-                              [DefaultSkillTemplates sharedInstance].ballisticSkill.name : @(1),
-                              [DefaultSkillTemplates sharedInstance].weaponSkill.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].range.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].melee.name : @(1),
                               [DefaultSkillTemplates sharedInstance].cutting.name : @(1),
-                              [DefaultSkillTemplates sharedInstance].blunt.name : @(1),
+                              [DefaultSkillTemplates sharedInstance].crashing.name : @(1),
                               [DefaultSkillTemplates sharedInstance].piercing.name : @(1)};
         [self saveSkillLevelsSet:set withName:nameMercenary];
     }

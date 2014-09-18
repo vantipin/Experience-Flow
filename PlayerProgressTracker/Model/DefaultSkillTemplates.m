@@ -25,7 +25,7 @@
 #define weaponSkillName @"Melee"
 #define ballisticSkillName @"Range"
 
-#define magicName @"Magic"
+#define magicName @"Azure Magic"
 
 #define bluntName @"Crashing"
 #define ordinaryName @"Cutting"
@@ -87,7 +87,7 @@ static float perceptionBasicBarrier = 4.8;
 static float perceptionProgression = 4.8;
 
 //third level skills
-static float defaultAdvGrowhtGoesHight = 0.6;
+//static float defaultAdvGrowhtGoesHight = 0.6;
 static float defaultAdvGrowhtGoesLow = 0.4;
 static float defaultAdvBasicBarrierHight = 7;
 static float defaultAdvBasicBarrierLow = 5;
@@ -100,11 +100,6 @@ static float defaultMeleeWeaponGrowhtGoes = 0.3;
 static float defaultRangeWeaponProgression = 5;
 static float defaultRangeWeaponBasicBarrier = 8;
 static float defaultRangeWeaponGrowhtGoes = 0.3;
-
-//
-//static float defaultMagicSubSkillProgression = 5;
-//static float defaultMagicSubSkillBasicBarrier = 18;
-//static float defaultMagicSubSkillGrowhtGoes = 0.2;
 
 static int defaultEncumbrancePenalties = 10;
 
@@ -146,8 +141,8 @@ static DefaultSkillTemplates *instance = nil;
     allDefaultSkills = @[self.physique,
                          self.intelligence,
                          
-                         self.weaponSkill,
-                         self.ballisticSkill,
+                         self.melee,
+                         self.range,
                          self.strength,
                          self.toughness,
                          self.agility,
@@ -156,16 +151,15 @@ static DefaultSkillTemplates *instance = nil;
                          self.perception,
                          self.magic,
                          
-                         self.blunt,
+                         self.crashing,
                          self.cutting,
                          self.piercing,
                          self.bow,
-                         self.blackpowder,
+                         self.firearm,
                          self.thrown,
                          self.stealth,
                          self.escapeArtist,
                          self.animalHandling,
-                         self.education,
                          self.swimming,
                          self.climb,
                          self.knavery,
@@ -195,8 +189,8 @@ static DefaultSkillTemplates *instance = nil;
 {
     NSArray *allCharacterSkills;
     
-    allCharacterSkills = @[self.weaponSkill,
-                           self.ballisticSkill,
+    allCharacterSkills = @[self.melee,
+                           self.range,
                            self.strength,
                            self.toughness,
                            self.agility,
@@ -214,7 +208,7 @@ static DefaultSkillTemplates *instance = nil;
 {
     NSArray *allCharacterSkills;
     
-    allCharacterSkills = @[self.blunt,
+    allCharacterSkills = @[self.crashing,
                            self.cutting,
                            self.piercing];
     
@@ -226,7 +220,7 @@ static DefaultSkillTemplates *instance = nil;
     NSArray *allCharacterSkills;
     
     allCharacterSkills = @[self.bow,
-                           self.blackpowder,
+                           self.firearm,
                            self.thrown];
     
     return allCharacterSkills;
@@ -250,7 +244,7 @@ static DefaultSkillTemplates *instance = nil;
                                                    withSkillProgression:defaultCoreSkillProgression
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:BasicSkillType
-                                                 withDefaultStartingLvl:1
+                                                 withDefaultStartingLvl:2
                                                 withParentSkillTemplate:nil
                                                              isMediator:true
                                                             withContext:self.context];
@@ -280,7 +274,7 @@ static DefaultSkillTemplates *instance = nil;
                                                    withSkillProgression:defaultCoreSkillProgression
                                                withBasicSkillGrowthGoes:0
                                                           withSkillType:BasicSkillType
-                                                 withDefaultStartingLvl:1
+                                                 withDefaultStartingLvl:2
                                                 withParentSkillTemplate:nil
                                                              isMediator:true
                                                             withContext:self.context];
@@ -296,8 +290,8 @@ static DefaultSkillTemplates *instance = nil;
 }
 
 //weaponSkill
--(SkillTemplate *)weaponSkill{
-    if (!_weaponSkill){
+-(SkillTemplate *)melee{
+    if (!_melee){
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",weaponSkillName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
@@ -319,15 +313,15 @@ static DefaultSkillTemplates *instance = nil;
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
         }
         
-        _weaponSkill = skillTemplate;
+        _melee = skillTemplate;
         
     }
-    return _weaponSkill;
+    return _melee;
 }
 
 //ballisticSkill
--(SkillTemplate *)ballisticSkill{
-    if (!_ballisticSkill){
+-(SkillTemplate *)range{
+    if (!_range){
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",ballisticSkillName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
@@ -349,10 +343,10 @@ static DefaultSkillTemplates *instance = nil;
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
         }
         
-        _ballisticSkill = skillTemplate;
+        _range = skillTemplate;
         
     }
-    return _ballisticSkill;
+    return _range;
 }
 
 
@@ -366,9 +360,9 @@ static DefaultSkillTemplates *instance = nil;
                                                       withRulesExamples:nil
                                                         withDescription:@"Magic!"
                                                           withSkillIcon:nil
-                                                     withBasicXpBarrier:12
-                                                   withSkillProgression:5
-                                               withBasicSkillGrowthGoes:defaultAdvGrowhtGoesHight
+                                                     withBasicXpBarrier:6
+                                                   withSkillProgression:4
+                                               withBasicSkillGrowthGoes:defaultAdvGrowhtGoesLow
                                                           withSkillType:AdvancedSkillType
                                                  withDefaultStartingLvl:0
                                                 withParentSkillTemplate:self.reason
@@ -401,7 +395,7 @@ static DefaultSkillTemplates *instance = nil;
                                                    withSkillProgression:defaultPhsAndMnsProgression
                                                withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
                                                           withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
+                                                 withDefaultStartingLvl:2
                                                 withParentSkillTemplate:self.physique
                                                             withContext:self.context];
         }
@@ -429,7 +423,7 @@ static DefaultSkillTemplates *instance = nil;
                                                    withSkillProgression:toughnessProgression
                                                withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
                                                           withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
+                                                 withDefaultStartingLvl:3
                                                 withParentSkillTemplate:self.physique
                                                             withContext:self.context];
         }
@@ -457,7 +451,7 @@ static DefaultSkillTemplates *instance = nil;
                                                    withSkillProgression:defaultPhsAndMnsProgression
                                                withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
                                                           withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
+                                                 withDefaultStartingLvl:2
                                                 withParentSkillTemplate:self.physique
                                                             withContext:self.context];
         }
@@ -479,13 +473,13 @@ static DefaultSkillTemplates *instance = nil;
             skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:reasonName
                                                               withRules:nil
                                                       withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. Defines a character’s general intellect, reasoning, and powers of deduction. Intelligence is used for a variety of academic and knowledge-based skills, and is important for arcane spellcasting."
+                                                        withDescription:@"Advanced skill. Defines a character’s knowledge, and powers of deduction. Reason is used for a variety of academic and knowledge-based skills, and is important for controlling azure magic. With level you gain more rear and complex knowledge.\nBy passing varied education tests you might recall facts about actual topic which can help the situation.\n- When you can call to reason of a person to reassure or convince him change his mind you can use education for this test."
                                                           withSkillIcon:nil
                                                      withBasicXpBarrier:defaultPhsAndMnsBasicBarrier
                                                    withSkillProgression:defaultPhsAndMnsProgression
                                                withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
                                                           withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
+                                                 withDefaultStartingLvl:2
                                                 withParentSkillTemplate:self.intelligence
                                                             withContext:self.context];
         }
@@ -512,7 +506,7 @@ static DefaultSkillTemplates *instance = nil;
                                                    withSkillProgression:defaultPhsAndMnsProgression
                                                withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
                                                           withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
+                                                 withDefaultStartingLvl:2
                                                 withParentSkillTemplate:self.intelligence
                                                             withContext:self.context];
         }
@@ -539,7 +533,7 @@ static DefaultSkillTemplates *instance = nil;
                                                    withSkillProgression:perceptionProgression
                                                withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
                                                           withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
+                                                 withDefaultStartingLvl:2
                                                 withParentSkillTemplate:self.intelligence
                                                             withContext:self.context];
         }
@@ -863,33 +857,6 @@ static DefaultSkillTemplates *instance = nil;
     return _hackDevice;
 }
 
-//education
--(SkillTemplate *)education{
-    if (!_education){
-        SkillTemplate *skillTemplate;
-        NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",educationName] withContext:self.context];
-        if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
-            skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:educationName
-                                                              withRules:@"Rules:\n- By passing varied education tests you might recall facts about actual topic which can help the situation.\n- When you can call to reason of a person to reassure or convince him change his mind you can use education for this test. \n\nThis skill gives you following advantages: \nLevel 1 - Training in education confers basic literacy. Now you can read and have basic knowledge in arithmetics. With level you gain more rear and complex knowledge.  \nLevel 2 etc. every level - You can tutor others in any skill more efficient - time between skill tests goes shorter by times equal to education level (default 1 hour - 1 test)."
-                                                      withRulesExamples:nil
-                                                        withDescription:@"Advanced skill. This skill is a broad category covering a variety of knowledges and disciplines. Specialisation options: History, geography, reason, language skills, philosophy."
-                                                          withSkillIcon:nil
-                                                     withBasicXpBarrier:defaultAdvBasicBarrierLow
-                                                   withSkillProgression:defaultAdvProgression
-                                               withBasicSkillGrowthGoes:defaultAdvGrowhtGoesHight
-                                                          withSkillType:AdvancedSkillType
-                                                 withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.reason
-                                                            withContext:self.context];
-        }
-        else{
-            skillTemplate = [existingSkillsTemplateWithThisName lastObject];
-        }
-        _education = skillTemplate;
-    }
-    return _education;
-}
-
 //heal
 -(SkillTemplate *)heal{
     if (!_heal){
@@ -1003,8 +970,8 @@ static DefaultSkillTemplates *instance = nil;
 
 #pragma mark melee weapons skills
 //blunt
--(SkillTemplate *)blunt{
-    if (!_blunt){
+-(SkillTemplate *)crashing{
+    if (!_crashing){
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",bluntName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
@@ -1018,15 +985,15 @@ static DefaultSkillTemplates *instance = nil;
                                                withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
                                                           withSkillType:MeleeSkillType
                                                  withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.weaponSkill
+                                                withParentSkillTemplate:self.melee
                                                             withContext:self.context];
         }
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
         }
-        _blunt = skillTemplate;
+        _crashing = skillTemplate;
     }
-    return _blunt;
+    return _crashing;
 }
 
 //cutting
@@ -1045,7 +1012,7 @@ static DefaultSkillTemplates *instance = nil;
                                                withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
                                                           withSkillType:MeleeSkillType
                                                  withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.weaponSkill
+                                                withParentSkillTemplate:self.melee
                                                             withContext:self.context];
         }
         else{
@@ -1072,7 +1039,7 @@ static DefaultSkillTemplates *instance = nil;
                                                withBasicSkillGrowthGoes:defaultMeleeWeaponGrowhtGoes
                                                           withSkillType:MeleeSkillType
                                                  withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.weaponSkill
+                                                withParentSkillTemplate:self.melee
                                                             withContext:self.context];
         }
         else{
@@ -1100,7 +1067,7 @@ static DefaultSkillTemplates *instance = nil;
                                                withBasicSkillGrowthGoes:defaultRangeWeaponGrowhtGoes
                                                           withSkillType:RangeSkillType
                                                  withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.ballisticSkill
+                                                withParentSkillTemplate:self.range
                                                             withContext:self.context];
         }
         else{
@@ -1112,8 +1079,8 @@ static DefaultSkillTemplates *instance = nil;
 }
 
 //blackpowder
--(SkillTemplate *)blackpowder{
-    if (!_blackpowder){
+-(SkillTemplate *)firearm{
+    if (!_firearm){
         SkillTemplate *skillTemplate;
         NSArray *existingSkillsTemplateWithThisName = [SkillTemplate fetchRequestForObjectName:@"SkillTemplate" withPredicate:[NSPredicate predicateWithFormat:@"name = %@",blackpowderName] withContext:self.context];
         if (!existingSkillsTemplateWithThisName || existingSkillsTemplateWithThisName.count==0 || self.shouldUpdate){
@@ -1127,15 +1094,15 @@ static DefaultSkillTemplates *instance = nil;
                                                withBasicSkillGrowthGoes:defaultRangeWeaponGrowhtGoes
                                                           withSkillType:RangeSkillType
                                                  withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.ballisticSkill
+                                                withParentSkillTemplate:self.range
                                                             withContext:self.context];
         }
         else{
             skillTemplate = [existingSkillsTemplateWithThisName lastObject];
         }
-        _blackpowder = skillTemplate;
+        _firearm = skillTemplate;
     }
-    return _blackpowder;
+    return _firearm;
 }
 
 //thrown
@@ -1154,7 +1121,7 @@ static DefaultSkillTemplates *instance = nil;
                                                withBasicSkillGrowthGoes:defaultRangeWeaponGrowhtGoes
                                                           withSkillType:RangeSkillType
                                                  withDefaultStartingLvl:0
-                                                withParentSkillTemplate:self.ballisticSkill
+                                                withParentSkillTemplate:self.range
                                                             withContext:self.context];
         }
         else{

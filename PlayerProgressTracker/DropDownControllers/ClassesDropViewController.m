@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     
-    self.font = defaultFont;
+    self.font = isiPad ? [UIFont fontWithName:@"Bodoni 72 Smallcaps" size:21] : [UIFont fontWithName:@"Bodoni 72 Smallcaps" size:16];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
     
