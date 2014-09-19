@@ -1112,14 +1112,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Evgeny Mikhalkov (9MMMNMSQM9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Evgeny Mikhalkov (9MMMNMSQM9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Experience Flow";
-				PROVISIONING_PROFILE = "75D8C2E3-D16F-4B93-8CEB-F8E69D2B2C28";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1130,14 +1130,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: YAUHEN MIKHALKOU (AXT7HT56A4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YAUHEN MIKHALKOU (AXT7HT56A4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Experience Flow";
-				PROVISIONING_PROFILE = "2578F6BD-FF7E-4118-A399-75E2C5A4FD6F";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

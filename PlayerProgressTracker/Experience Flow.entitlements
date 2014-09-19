@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>$(TeamIdentifierPrefix)com.wierdmasks.Experience-Flow</string>
+		<string>$(TeamIdentifierPrefix).$(CFBundleIdentifier)</string>
 	</array>
 </dict>
 </plist>

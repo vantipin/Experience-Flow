@@ -100,6 +100,8 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
     [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];
     
@@ -119,10 +121,6 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
     //    [_character setCurrentRangeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] bow] withContext:self.context];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-
-}
 
 -(void)viewWillDisappear:(BOOL)animated
 {

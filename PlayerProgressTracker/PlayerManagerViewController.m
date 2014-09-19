@@ -122,7 +122,7 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateCharacterList) name:DID_UPDATE_CHARACTER_LIST object:nil];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];

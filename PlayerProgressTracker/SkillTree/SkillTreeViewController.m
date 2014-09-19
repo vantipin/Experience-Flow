@@ -99,17 +99,23 @@ static NSString *emptyParentKey = @"emptyParent";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     [self resetSkillNodes];
     [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     [self updateScrollViewZoomAnimated:true];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+    
     [[SkillManager sharedInstance] unsubscribeForSkillChangeNotifications:self];
 }
 
