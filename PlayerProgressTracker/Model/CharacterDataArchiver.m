@@ -44,7 +44,8 @@
     }
     
     charcterArchiver.skillExperienceDictionary = dict;
-    NSData *result = [NSKeyedArchiver archivedDataWithRootObject:[CharacterDataArchiver dictionaryWithPropertiesOfObject:charcterArchiver]];
+    NSDictionary *characterDictionary = [CharacterDataArchiver dictionaryWithPropertiesOfObject:charcterArchiver];
+    NSData *result = [NSKeyedArchiver archivedDataWithRootObject:characterDictionary];
     return result;
 }
 

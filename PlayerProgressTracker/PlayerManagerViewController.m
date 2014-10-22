@@ -118,6 +118,41 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     }
     
     self.panRecognizer.delegate = self;
+    
+    
+    //
+//    NSDictionary *dict = @{
+//                           @"characterId" : @"6181FCAE-87A1-4C19-A99E-8EEE6833CBFE-2766-0000016F60B040D7",
+//                           @"characterName" : @"Ranolph",
+//                           @"dateCreated" : @"1412351641.219524",
+//                           @"dateModified" : @"1412687211.482723",
+//                           @"skillExperienceDictionary" : @{
+//                                   @"Agility" : @"16.799999",
+//                                   @"Bluff" : @"6.000000",
+//                                   @"Control" : @"30.601002",
+//                                   @"Crashing" : @"56.000000",
+//                                   @"Cutting" : @"8.000000",
+//                                   @"Diplomacy" : @"9.000000",
+//                                   @"Hack Device" : @"2.000000",
+//                                   @"Intelligence" : @"38.391998",
+//                                   @"Intimidate" : @"9.000000",
+//                                   @"Melee" : @"22.400003",
+//                                   @"Perception" : @"15.800000",
+//                                   @"Physique" : @"56.152000",
+//                                   @"Piercing" : @"8.000000",
+//                                   @"Range" : @"8.600000",
+//                                   @"Reason" : @"44.799999",
+//                                   @"Sense Motive" : @"1.000000",
+//                                   @"Stealth" : @"2.000000",
+//                                   @"Strength" : @"25.000000",
+//                                   @"Thrown" : @"2.000000",
+//                                   @"Toughness" : @"48.000000"}
+//                           };
+//    
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dict];
+//    [CharacterDataArchiver loadCharacterFromDictionaryData:data withContext:self.context];
+//    
+    //
 }
 
 -(void)viewWillAppear:(BOOL)animated

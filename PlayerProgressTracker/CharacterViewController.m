@@ -105,20 +105,7 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
     [[SkillManager sharedInstance] subscribeForSkillsChangeNotifications:self];
     [self.skillTreeController refreshSkillvaluesWithReloadingSkills:true];
     
-    
-//    [CharacterProgressDataArchiver saveData:self.character toPath:self.myUbiquityContainer.absoluteString];
-//    self.progressArchiver = [CharacterProgressDataArchiver newCharacterWithDocPath:[self.myUbiquityContainer.absoluteString stringByAppendingString:[NSString stringWithFormat:@"/%@.plist",self.character.characterId]]
-//                                                    withConflictResolverController:self
-//                                                                       withContext:self.context];
-    
-    //    for (SkillTemplate *skillTemplate in [DefaultSkillTemplates sharedInstance].allNoneCoreSkillTemplates) {
-    //        [SkillTemplateDiskData saveData:skillTemplate toPath:[SkillTemplateDiskData getPrivateDocsDir]];
-    //    }
-    
-    //NSMutableArray *allskill = [SkillTemplateDiskData loadSkillTemplates];
-    //    //TODO
-    //    [_character addToCurrentMeleeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] ordinary] withContext:self.context];
-    //    [_character setCurrentRangeSkillWithTempate:[[DefaultSkillTemplates sharedInstance] bow] withContext:self.context];
+    //[CharacterDataArchiver chracterToDictionaryData:self.character];
 }
 
 
@@ -216,6 +203,7 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
             self.isNewCharacterMode = true;
             [self updateRaceButtonWithName:nameBeggar];
         }
+        
         self.character = newCharacter;
         self.nameTextField.text = @"";
     }
@@ -373,8 +361,8 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
         [self.characterSaveAlert show];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Name Missing."
-                                                            message: @"Please, give a name to your character."
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Name Missing"
+                                                            message: @"Please, give a name to your character"
                                                            delegate: self
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles: nil];
