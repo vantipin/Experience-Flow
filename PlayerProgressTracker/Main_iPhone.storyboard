@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="cO0-ku-ibD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="cO0-ku-ibD">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Player Manager View Controller-->
@@ -95,10 +96,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="contentContainerView" destination="YjR-tZ-a5T" id="E7m-D7-mGu"/>
                         <outlet property="iclouavailabilityIcon" destination="cjC-0V-ZG7" id="r0S-it-UVa"/>
@@ -110,7 +109,7 @@
             </objects>
             <point key="canvasLocation" x="-1753" y="-2870"/>
         </scene>
-        <!--Character View Controller - New character-->
+        <!--New character-->
         <scene sceneID="Mah-Rs-ZYJ">
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="0q4-Jg-XzR" customClass="CharacterViewController" sceneMemberID="viewController">
@@ -127,7 +126,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="amv-Kg-NlF">
-                                        <rect key="frame" x="44" y="21" width="86" height="30"/>
+                                        <rect key="frame" x="44" y="21" width="113" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="16"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -158,7 +157,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="light" returnKeyType="done"/>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mDR-oA-hdt">
                                         <rect key="frame" x="374" y="11" width="92" height="14"/>
@@ -170,7 +169,7 @@
                                         <rect key="frame" x="248" y="8" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="KcF-bG-mjT">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noCharacterIcon.png" id="KcF-bG-mjT">
                                                 <rect key="frame" x="7" y="11" width="55" height="54"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
@@ -230,7 +229,6 @@
                             </view>
                         </subviews>
                         <gestureRecognizers/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="New character" id="8GH-rK-xrt">
                         <barButtonItem key="rightBarButtonItem" style="done" id="clA-cg-w71">
@@ -251,7 +249,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="headerView" destination="sfQ-Dp-E8b" id="ID4-xX-t79"/>
                         <outlet property="icon" destination="KcF-bG-mjT" id="sJe-C4-cfe"/>
@@ -287,6 +284,7 @@
     <resources>
         <image name="headerClouds.png" width="1024" height="150"/>
         <image name="icloudAvailable.png" width="20" height="14"/>
+        <image name="noCharacterIcon.png" width="134" height="134"/>
         <image name="noImage.png" width="85" height="100"/>
         <image name="saveIcon.png" width="55" height="51"/>
     </resources>

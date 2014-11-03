@@ -16,9 +16,6 @@ static int expectedMinLevelForOtherAdvanced = 4;
 
 @interface DefaultSkillTemplates : NSObject
 
-//default false. On true will reload current skillTemplates params from this obj
-@property (nonatomic) BOOL shouldUpdate;
-
 @property (nonatomic) SkillTemplate *physique;
 @property (nonatomic) SkillTemplate *intelligence;
 
@@ -44,6 +41,7 @@ static int expectedMinLevelForOtherAdvanced = 4;
 
 @property (nonatomic) SkillTemplate *senseMotive;
 @property (nonatomic) SkillTemplate *disguise;
+@property (nonatomic) SkillTemplate *survival;
 
 @property (nonatomic) SkillTemplate *animalHandling;
 @property (nonatomic) SkillTemplate *bluff;
@@ -54,7 +52,7 @@ static int expectedMinLevelForOtherAdvanced = 4;
 @property (nonatomic) SkillTemplate *heal;
 @property (nonatomic) SkillTemplate *appraise;
 @property (nonatomic) SkillTemplate *magic;
-
+@property (nonatomic) SkillTemplate *craft;
 
 @property (nonatomic) SkillTemplate *crashing;
 @property (nonatomic) SkillTemplate *cutting;

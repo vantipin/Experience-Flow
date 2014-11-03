@@ -1,4 +1,4 @@
- //
+//
 //  CustomPopoverViewController.h
 //  BookShelf
 //
@@ -16,6 +16,7 @@
 
 @interface CustomPopoverViewController : UIViewController <UIGestureRecognizerDelegate>
 
+@property (nonatomic) float customCornerRadius;
 @property (nonatomic) CGSize popoverContentSize;
 @property (nonatomic,assign) id<PopoverDelegate> delegate;
 

@@ -40,6 +40,9 @@
     controller.view.frame =  frame;
     controller.isLightUp = false;
     
+    [controller.skillLevelLabel setFont:[UIFont fontWithName:BodoniSvtyTwoITCTTBold size:isiPad ? 26 : 13]];
+    [controller.skillButton.titleLabel setFont:[UIFont fontWithName:BodoniSvtyTwoOSITCTTBook size:isiPad ? 25 : 12]];
+    
     return controller;
 }
 

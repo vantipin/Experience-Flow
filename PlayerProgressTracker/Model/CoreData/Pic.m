@@ -8,6 +8,7 @@
 
 #import "Pic.h"
 #import "Skill.h"
+#import "MainContextObject.h"
 
 
 @implementation Pic
@@ -18,21 +19,26 @@
 @dynamic items;
 @dynamic picId;
 
-//[UIImage imageWithContentsOfFile:url]
 
-
-+(Pic *)addPicWithImage:(UIImage *)image
++(Pic *)picWithPath:(NSString *)path;
 {
-    //TODO
+    UIImage *image = [UIImage imageNamed:path];
+    if (image && path) {
+        Pic *pic;
+        NSArray *pics = [Pic fetchRequestForObjectName:@"Pic" withPredicate:[NSPredicate predicateWithFormat:@"picId = %@",path] withContext:[MainContextObject sharedInstance].managedObjectContext];
+        if (pics && pics.count) {
+            pic = pics.lastObject;
+        }
+        else {
+            pic = [NSEntityDescription insertNewObjectForEntityForName:@"Pic" inManagedObjectContext:[MainContextObject sharedInstance].managedObjectContext];
+            pic.picId = path;
+        }
+        
+        return pic;
+    }
+    
     return nil;
 }
-
--(UIImage *)imageFromPic
-{
-    //TODO
-    return nil;
-}
-
 
 
 @end

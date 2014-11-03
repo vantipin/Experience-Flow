@@ -57,7 +57,7 @@ typedef enum SkillClassType : int16_t
                                      withRules:(NSString *)rules
                              withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription
-                                 withSkillIcon:(UIImage *)icon
+                                 withSkillIcon:(Pic *)icon
                             withBasicXpBarrier:(float)basicXpBarrier
                           withSkillProgression:(float)skillProgression
                       withBasicSkillGrowthGoes:(float)basicSkillGrowthGoes
@@ -70,7 +70,7 @@ typedef enum SkillClassType : int16_t
                                      withRules:(NSString *)rules
                              withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription
-                                 withSkillIcon:(UIImage *)icon
+                                 withSkillIcon:(Pic *)icon
                             withBasicXpBarrier:(float)basicXpBarrier
                           withSkillProgression:(float)skillProgression
                       withBasicSkillGrowthGoes:(float)basicSkillGrowthGoes

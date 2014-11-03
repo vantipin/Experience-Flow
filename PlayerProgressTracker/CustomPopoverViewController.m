@@ -13,7 +13,6 @@
 
 @property (nonatomic) UIView *contentView;
 @property (nonatomic) UIViewController *contentController;
-
 @property (nonatomic) UIWindow *popupWindow;
 
 @end
@@ -37,10 +36,13 @@
         [self.contentView addSubview:controller.view];
         controller.view.center = self.contentView.center;
         [self addChildViewController:controller];
+        self.customCornerRadius = 26;
     }
     
     return self;
 }
+
+
 
 - (void)viewDidLoad
 {
@@ -49,8 +51,6 @@
     self.view.contentMode = UIViewContentModeScaleAspectFill;
     self.view.layer.contents = (id)[UIImage imageWithContentsOfFile:filePathWithName(@"cloudBackground.png")].CGImage;
     self.view.layer.masksToBounds = true;
-
-
     
     UITapGestureRecognizer *panRecognizer;
     panRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPopoverAnimated:)];
@@ -61,11 +61,14 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     [UIView animateWithDuration:0 animations:^{
         self.view.layer.opaque = false;
         self.view.layer.opacity = 0.95;
     }];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -73,14 +76,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setCustomCornerRadius:(float)customCornerRadius
+{
+    self.contentView.layer.cornerRadius = customCornerRadius;
+    _customCornerRadius = customCornerRadius;
+}
+
 -(UIWindow *)popupWindow
 {
     if (!_popupWindow) {
-        CGRect windowFrame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height , [[UIScreen mainScreen] bounds].size.width);
+        CGRect windowFrame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height);
         _popupWindow = [[UIWindow alloc] initWithFrame:windowFrame];
         _popupWindow.backgroundColor = [UIColor clearColor];
         _popupWindow.rootViewController = self;
-        _popupWindow.windowLevel = UIWindowLevelAlert;
+        _popupWindow.windowLevel = UIWindowLevelNormal;
     }
     
     return _popupWindow;
@@ -91,9 +100,9 @@
     if (!_contentView) {
         _contentView = [UIView new];
         CALayer *viewLayer = _contentView.layer;
-//        viewLayer.cornerRadius = 26;
-//        viewLayer.shadowRadius = 2;
-//        viewLayer.shadowOpacity = 0.5;
+        viewLayer.cornerRadius = self.customCornerRadius;
+        viewLayer.shadowRadius = 2;
+        viewLayer.shadowOpacity = 0.5;
         [viewLayer setMasksToBounds:true];
         [self.view addSubview:_contentView];
     }
@@ -120,7 +129,7 @@
         
         self.contentView.frame = CGRectMake(0, 0, self.popoverContentSize.width, self.popoverContentSize.height );
         
-        CGPoint center = CGPointMake(self.view.center.y, self.view.center.x);
+        CGPoint center = CGPointMake(self.view.center.x, self.view.center.y);
         
         self.contentView.center = center;
         
@@ -164,15 +173,5 @@
     return YES;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

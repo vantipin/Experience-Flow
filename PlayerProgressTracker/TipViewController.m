@@ -13,6 +13,9 @@
 
 @property (nonatomic) UITextView *tipTextView;
 
+@property (nonatomic) UIWindow *popupWindow;
+
+
 @end
 
 @implementation TipViewController

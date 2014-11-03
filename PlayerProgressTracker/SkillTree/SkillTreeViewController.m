@@ -15,18 +15,19 @@
 #import "CustomPopoverViewController.h"
 #import "PointsCountLeftController.h"
 #import "UserDefaultsHelper.h"
-
-static float minimalMarginBetweenTrees = 100;
-static float minimalMarginBetweenNodesX = 50;
-static float minimalMarginBetweenNodesY = 110;
-static float borderSize = 100;
-static float nodeDiameter = 200;
+#import "Constants.h"
 
 static int xpPointsToCreateCharacter = 50;//100;
-
 static NSString *emptyParentKey = @"emptyParent";
 
 @interface SkillTreeViewController ()
+{
+    float minimalMarginBetweenTrees;
+    float minimalMarginBetweenNodesX;
+    float minimalMarginBetweenNodesY;
+    float borderSize;
+    float nodeDiameter;
+}
 
 @property (nonatomic) UIScrollView *scrollView;
 @property (nonatomic) UIView *containerView;
@@ -70,6 +71,13 @@ static NSString *emptyParentKey = @"emptyParent";
 
 - (void)viewDidLoad
 {
+    minimalMarginBetweenTrees = isiPad ? 100 : 50;
+    minimalMarginBetweenNodesX = isiPad ? 50 : 25;
+    minimalMarginBetweenNodesY = isiPad ? 110 : 55;
+    borderSize = isiPad ? 100 : 50;
+    nodeDiameter = isiPad ? 200 : 100;
+    
+    
     [super viewDidLoad];
     [self initTree];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;

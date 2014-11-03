@@ -37,7 +37,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
                                      withRules:(NSString *)rules
                              withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription
-                                 withSkillIcon:(UIImage *)icon
+                                 withSkillIcon:(Pic *)icon
                             withBasicXpBarrier:(float)basicXpBarrier
                           withSkillProgression:(float)skillProgression
                       withBasicSkillGrowthGoes:(float)basicSkillGrowthGoes
@@ -64,7 +64,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
                                      withRules:(NSString *)rules
                              withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription
-                                 withSkillIcon:(UIImage *)icon
+                                 withSkillIcon:(Pic *)icon
                             withBasicXpBarrier:(float)basicXpBarrier
                           withSkillProgression:(float)skillProgression
                       withBasicSkillGrowthGoes:(float)basicSkillGrowthGoes
@@ -98,7 +98,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
         
         if (icon)
         {
-            skillTemplate.icon = [Pic addPicWithImage:icon];
+            skillTemplate.icon = icon;
         }
         
         if (basicSkillTemplate)

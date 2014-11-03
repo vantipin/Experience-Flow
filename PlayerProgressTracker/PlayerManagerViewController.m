@@ -292,7 +292,7 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
         cell.name.text = character.name;
         cell.dateChanged.text = [Character standartDateFormat:character.dateModifed];
         if (character.icon) {
-            UIImage *image = [character.icon imageFromPic];
+            UIImage *image = [UIImage imageNamed:character.icon.picId];
             cell.icon.image = image;
         }
         cell.backgroundColor = [UIColor clearColor];
@@ -426,14 +426,7 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
                     
                     self.index --;
                     if (!self.index) {
-                        [self stopActivityIndicatorWork];
-                        [self updateDataSource];
-                        [self.tableView reloadData];
-                        
-                        Character *character = [self.dataSource lastObject];
-                        [self didTabPlayer:character];
-                        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:([self.dataSource count] - 1) inSection:0];
-                        [self.tableView selectRowAtIndexPath:newIndexPath animated:true scrollPosition:UITableViewScrollPositionBottom];
+                        [self finishUpdateFromIcloud];
                     }
                 }
             }];
@@ -460,6 +453,18 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     }];
 }
 
+-(void)finishUpdateFromIcloud
+{
+    [self stopActivityIndicatorWork];
+    [self updateDataSource];
+    [self.tableView reloadData];
+    
+    Character *character = [self.dataSource lastObject];
+    [self didTabPlayer:character];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:([self.dataSource count] - 1) inSection:0];
+    [self.tableView selectRowAtIndexPath:newIndexPath animated:true scrollPosition:UITableViewScrollPositionBottom];
+}
+
 -(void)invokeActivityIndicatorWork;
 {
     self.shadowView = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -470,6 +475,13 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     [self.shadowView addSubview:self.activityIndicator];
     [self.activityIndicator startAnimating];
     self.activityIndicator.center = self.shadowView.center;
+    
+    // Some times request from icloud get lost and screen will block user unteraction dead
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        if (self.shadowView.superview) {
+            [self finishUpdateFromIcloud];
+        }
+    });
 }
 
 -(void)stopActivityIndicatorWork;

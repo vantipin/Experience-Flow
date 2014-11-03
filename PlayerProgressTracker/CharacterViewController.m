@@ -21,6 +21,8 @@
 #import "iCloud.h"
 #import "UserDefaultsHelper.h"
 #import "PicManager.h"
+#import "CharacterImagePickerViewController.h"
+#import "CustomPopoverViewController.h"
 
 static const float HEADER_LAYOUT_HIDDEN = 20;
 static const float HEADER_LAYOUT_SHOWN = 100;
@@ -71,15 +73,13 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 {
     [super viewDidLoad];
     
+    //[self allFontsToConsole];
+    
     [[SkillManager sharedInstance] checkAllCharacterCoreSkills:self.character];
     self.isNewCharacterMode = false;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
-    
-    //[self allFontsToConsole];
-    
-    [DefaultSkillTemplates sharedInstance].shouldUpdate = true;
     
     
     self.classesDropController.delegateDropDown = self;
@@ -515,16 +515,21 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 
 -(IBAction)imageTap:(id)sender
 {
-    CustomImagePickerViewController * picker = [[CustomImagePickerViewController alloc] init];
-    picker.view.frame = self.view.bounds;
+//    CustomImagePickerViewController * picker = [[CustomImagePickerViewController alloc] init];
+//    picker.view.frame = self.view.bounds;
+//    
+//	picker.delegate = self;
+//    
+//    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//
+//	[self presentViewController:picker animated:true completion:^{
+//        
+//    }];
+    CharacterImagePickerViewController *picker = [CharacterImagePickerViewController getInstanceFromStoryboard];
+    CustomPopoverViewController *popover = [[CustomPopoverViewController alloc] initWithContentViewController:picker];
+    popover.popoverContentSize = CGSizeMake(picker.view.bounds.size.width, picker.view.bounds.size.height);
     
-	picker.delegate = self;
-    
-    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-
-	[self presentViewController:picker animated:true completion:^{
-        
-    }];
+    [popover presentPopoverInView:self.view];
 }
 
 #pragma mark image picker delegate

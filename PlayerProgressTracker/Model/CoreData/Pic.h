@@ -39,8 +39,5 @@
 - (void)removeItems:(NSSet *)values;
 
 
-+(Pic *)addPicWithImage:(UIImage *)image;
-
-
--(UIImage *)imageFromPic;
++(Pic *)picWithPath:(NSString *)path;
 @end

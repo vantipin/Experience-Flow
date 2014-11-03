@@ -16,6 +16,8 @@ static NSString *SHOULD_SAVE_TO_ICLOUD      = @"SHOULD_SAVE_TO_ICLOUD";
 
 #define kRGB(r, g, b, a) [UIColor colorWithRed:(r)/255. green:(g)/255. blue:(b)/255. alpha:(a)]
 
+#define BodoniSvtyTwoOSITCTTBook  @"BodoniSvtyTwoOSITCTT-Book"
+#define BodoniSvtyTwoITCTTBold @"BodoniSvtyTwoITCTT-Bold"
 #define defaultFont      [UIFont fontWithName:@"Bodoni 72 Smallcaps" size:17]
 
 #define lightBodyColor   kRGB(225., 225., 235.,0.8)//kRGB(255., 249., 239.,1.)
