@@ -101,8 +101,8 @@
         _contentView = [UIView new];
         CALayer *viewLayer = _contentView.layer;
         viewLayer.cornerRadius = self.customCornerRadius;
-        viewLayer.shadowRadius = 2;
-        viewLayer.shadowOpacity = 0.5;
+        viewLayer.shadowRadius = 0;
+        viewLayer.shadowOpacity = 0.0;
         [viewLayer setMasksToBounds:true];
         [self.view addSubview:_contentView];
     }

@@ -295,7 +295,7 @@ static NSString *emptyParentKey = @"emptyParent";
     if (!_pointsLeftController) {
         
         _pointsLeftController = [PointsCountLeftController getInstanceFromStoryboardWithFrame:CGRectMake(0,
-                                                                                                         self.view.bounds.size.width - [PointsCountLeftController sizeHeightPointsLeft],
+                                                                                                         self.view.bounds.size.height - [PointsCountLeftController sizeHeightPointsLeft],
                                                                                                          [PointsCountLeftController sizeWidthPointsLeft],
                                                                                                          [PointsCountLeftController sizeHeightPointsLeft])];
         [self.view addSubview:_pointsLeftController.view];
@@ -674,7 +674,7 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)didTapNode:(NodeViewController *)node
 {
-    NSLog(@"did tap node %@",node.skill.skillTemplate.name);
+    //NSLog(@"did tap node %@",node.skill.skillTemplate.name);
     TipViewController *tipController = [[TipViewController alloc] initWithSkillTemplate:node.skill.skillTemplate];
     CustomPopoverViewController *popover = [[CustomPopoverViewController alloc] initWithContentViewController:tipController];
     popover.popoverContentSize = CGSizeMake(self.view.frame.size.width * 0.7, self.view.frame.size.height * 0.7);
@@ -685,7 +685,7 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)didTapNodeLevel:(NodeViewController *)node
 {
-    NSLog(@"did tap level of node %@",node.skill.skillTemplate.name);
+    //NSLog(@"did tap level of node %@",node.skill.skillTemplate.name);
 }
 
 

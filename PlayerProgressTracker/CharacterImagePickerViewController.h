@@ -17,7 +17,8 @@
 
 @interface CharacterImagePickerViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>
 
-+(CharacterImagePickerViewController *)getInstanceFromStoryboard;
++(CharacterImagePickerViewController *)getInstanceFromStoryboardWithStaringName:(NSString *)startingName;
++(NSString *)defaultIcon;
 
 @property (nonatomic,assign) id<CharacterImagePickerProtocol> delegate;
 

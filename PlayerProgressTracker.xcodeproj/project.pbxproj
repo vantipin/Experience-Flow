@@ -155,6 +155,10 @@
 		DF8CEE621A041AF3008504A9 /* av_wizard5.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8CEE261A041AF3008504A9 /* av_wizard5.png */; };
 		DF8CEE631A041AF3008504A9 /* av_wizard5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8CEE271A041AF3008504A9 /* av_wizard5@2x.png */; };
 		DF8CEE641A041AF3008504A9 /* av_wizard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8CEE281A041AF3008504A9 /* av_wizard@2x.png */; };
+		DF8CEE6E1A07F0DA008504A9 /* arrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8CEE6A1A07F0DA008504A9 /* arrowLeft.png */; };
+		DF8CEE6F1A07F0DA008504A9 /* arrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8CEE6B1A07F0DA008504A9 /* arrowLeft@2x.png */; };
+		DF8CEE701A07F0DA008504A9 /* arrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8CEE6C1A07F0DA008504A9 /* arrowRight.png */; };
+		DF8CEE711A07F0DA008504A9 /* arrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF8CEE6D1A07F0DA008504A9 /* arrowRight@2x.png */; };
 		DF99F82E1A000C7100D17A34 /* noCharacterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF99F82C1A000C7100D17A34 /* noCharacterIcon.png */; };
 		DF99F82F1A000C7100D17A34 /* noCharacterIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF99F82D1A000C7100D17A34 /* noCharacterIcon@2x.png */; };
 		DFAED100186309B40039D17B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED0FF186309B40039D17B /* Foundation.framework */; };
@@ -410,6 +414,10 @@
 		DF8CEE261A041AF3008504A9 /* av_wizard5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = av_wizard5.png; sourceTree = "<group>"; };
 		DF8CEE271A041AF3008504A9 /* av_wizard5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "av_wizard5@2x.png"; sourceTree = "<group>"; };
 		DF8CEE281A041AF3008504A9 /* av_wizard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "av_wizard@2x.png"; sourceTree = "<group>"; };
+		DF8CEE6A1A07F0DA008504A9 /* arrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowLeft.png; sourceTree = "<group>"; };
+		DF8CEE6B1A07F0DA008504A9 /* arrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowLeft@2x.png"; sourceTree = "<group>"; };
+		DF8CEE6C1A07F0DA008504A9 /* arrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowRight.png; sourceTree = "<group>"; };
+		DF8CEE6D1A07F0DA008504A9 /* arrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowRight@2x.png"; sourceTree = "<group>"; };
 		DF99F82C1A000C7100D17A34 /* noCharacterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noCharacterIcon.png; sourceTree = "<group>"; };
 		DF99F82D1A000C7100D17A34 /* noCharacterIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noCharacterIcon@2x.png"; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Experience Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Experience Flow.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -626,6 +634,10 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DF8CEE6A1A07F0DA008504A9 /* arrowLeft.png */,
+				DF8CEE6B1A07F0DA008504A9 /* arrowLeft@2x.png */,
+				DF8CEE6C1A07F0DA008504A9 /* arrowRight.png */,
+				DF8CEE6D1A07F0DA008504A9 /* arrowRight@2x.png */,
 				DF8CEDEC1A041AF3008504A9 /* characterPics */,
 				DF99F82C1A000C7100D17A34 /* noCharacterIcon.png */,
 				DF99F82D1A000C7100D17A34 /* noCharacterIcon@2x.png */,
@@ -848,6 +860,8 @@
 				DF1F5C79195B432D002D7EF2 /* SkillTree */,
 				DF1F5C82195B432D002D7EF2 /* DropDownControllers */,
 				DF24B1291874B75900B57855 /* Constants.h */,
+				DFDA01EC19632C1E005D3703 /* TipViewController.h */,
+				DFDA01ED19632C1E005D3703 /* TipViewController.m */,
 				DFD6CD29197D010500046218 /* CustomImagePickerViewController.h */,
 				DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */,
 				DF2215091999372900E1DC90 /* Main_iPhone.storyboard */,
@@ -947,8 +961,6 @@
 			children = (
 				DF22FB7F19F825A400E4EE47 /* CustomPopoverViewController.h */,
 				DF22FB8019F825A400E4EE47 /* CustomPopoverViewController.m */,
-				DFDA01EC19632C1E005D3703 /* TipViewController.h */,
-				DFDA01ED19632C1E005D3703 /* TipViewController.m */,
 			);
 			name = PopoverControllers;
 			sourceTree = "<group>";
@@ -1049,6 +1061,7 @@
 				DF8CEE291A041AF3008504A9 /* av_aristocracyFem.png in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
 				DF8CEE611A041AF3008504A9 /* av_wizard4@2x.png in Resources */,
+				DF8CEE701A07F0DA008504A9 /* arrowRight.png in Resources */,
 				DF8CEE5A1A041AF3008504A9 /* av_whitebearded@2x.png in Resources */,
 				DF1F5CB1195B4338002D7EF2 /* addButton.png in Resources */,
 				DF1F5CB3195B4338002D7EF2 /* deleteButton.png in Resources */,
@@ -1095,6 +1108,7 @@
 				DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */,
 				DF8CEE461A041AF3008504A9 /* av_warlock_f@x.png in Resources */,
 				DFCE2A88196F10BE00A9F4C9 /* saveIcon.png in Resources */,
+				DF8CEE711A07F0DA008504A9 /* arrowRight@2x.png in Resources */,
 				DF8CEE491A041AF3008504A9 /* av_warrior.png in Resources */,
 				DF8CEE5D1A041AF3008504A9 /* av_wizard.png in Resources */,
 				DF8CEE311A041AF3008504A9 /* av_illthinker.png in Resources */,
@@ -1143,6 +1157,7 @@
 				DF8CEE2E1A041AF3008504A9 /* av_baron@2x.png in Resources */,
 				DF8CEE601A041AF3008504A9 /* av_wizard4.png in Resources */,
 				DF3C0EE8198824240016AFF2 /* icloudAvailable.png in Resources */,
+				DF8CEE6E1A07F0DA008504A9 /* arrowLeft.png in Resources */,
 				DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */,
 				DFD0F7D219CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png in Resources */,
 				DF8CEE321A041AF3008504A9 /* av_illthinker@2x.png in Resources */,
@@ -1155,6 +1170,7 @@
 				DF8CEE351A041AF3008504A9 /* av_pirat.png in Resources */,
 				DFD0F7A119C8B42F0097933A /* xpMediatorAura@2x.png in Resources */,
 				DF8CEE581A041AF3008504A9 /* av_warrior@2x.png in Resources */,
+				DF8CEE6F1A07F0DA008504A9 /* arrowLeft@2x.png in Resources */,
 				DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */,
 				DF8CEE561A041AF3008504A9 /* av_warrior8.png in Resources */,
 				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,

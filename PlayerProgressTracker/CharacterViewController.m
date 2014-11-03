@@ -21,8 +21,8 @@
 #import "iCloud.h"
 #import "UserDefaultsHelper.h"
 #import "PicManager.h"
-#import "CharacterImagePickerViewController.h"
 #import "CustomPopoverViewController.h"
+#import "Pic.h"
 
 static const float HEADER_LAYOUT_HIDDEN = 20;
 static const float HEADER_LAYOUT_SHOWN = 100;
@@ -55,6 +55,8 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 @property (nonatomic,strong) Character *character;
 
 @property (nonatomic) BOOL isNewCharacterMode;
+
+@property (nonatomic) CustomPopoverViewController *currentPopover;
 
 @end
 
@@ -90,12 +92,14 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
     self.nameTextField.text = self.character.name;
     
     CALayer *imageLayer = self.icon.layer;
-    [imageLayer setCornerRadius:14];
+    [imageLayer setCornerRadius:5];
     [imageLayer setMasksToBounds:YES];
     
     CALayer *textViewLayer = self.nameTextField.layer;
-    [textViewLayer setCornerRadius:5];
+    [textViewLayer setCornerRadius:2];
     [textViewLayer setMasksToBounds:YES];
+    
+    self.nameTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -196,16 +200,20 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
             self.character = newCharacter;
             self.isNewCharacterMode = true;
             [self updateRaceButtonWithName:nil];
+            self.icon.image = [UIImage imageWithContentsOfFile:filePathWithName(self.character.icon.picId ? self.character.icon.picId : [CharacterImagePickerViewController defaultIcon])];
+            self.nameTextField.text = self.character.name ? self.character.name : @"";
         }
         else{
             newCharacter = [Character newCharacterWithContext:self.context];
             self.character = newCharacter;
             self.isNewCharacterMode = true;
             [self updateRaceButtonWithName:nameBeggar];
+            self.icon.image = [UIImage imageWithContentsOfFile:filePathWithName([CharacterImagePickerViewController defaultIcon])];
+            self.nameTextField.text = @"";
         }
         
         self.character = newCharacter;
-        self.nameTextField.text = @"";
+        
     }
 
 }
@@ -450,7 +458,7 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
     if (textField) {
         if (textField == self.nameTextField) {
             self.character.name = textField.text;
-            [Character saveContext:self.context];
+            [self.character saveCharacterWithContext:self.context];
         }
         return true;
     }
@@ -513,7 +521,7 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 }
 
 
--(IBAction)imageTap:(id)sender
+-(IBAction)changePlayerIconTap:(id)sender
 {
 //    CustomImagePickerViewController * picker = [[CustomImagePickerViewController alloc] init];
 //    picker.view.frame = self.view.bounds;
@@ -525,11 +533,29 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 //	[self presentViewController:picker animated:true completion:^{
 //        
 //    }];
-    CharacterImagePickerViewController *picker = [CharacterImagePickerViewController getInstanceFromStoryboard];
-    CustomPopoverViewController *popover = [[CustomPopoverViewController alloc] initWithContentViewController:picker];
-    popover.popoverContentSize = CGSizeMake(picker.view.bounds.size.width, picker.view.bounds.size.height);
+    CharacterImagePickerViewController *picker = [CharacterImagePickerViewController getInstanceFromStoryboardWithStaringName:self.character.icon.picId];
+    picker.delegate = self;
+    self.currentPopover = [[CustomPopoverViewController alloc] initWithContentViewController:picker];
+    self.currentPopover.popoverContentSize = CGSizeMake(picker.view.bounds.size.width, picker.view.bounds.size.height);
     
-    [popover presentPopoverInView:self.view];
+    [self.currentPopover presentPopoverInView:self.view];
+}
+
+#pragma mark CharacterImagePickerProtocol
+-(void)didPickImageNamed:(NSString *)name
+{
+    if (name) {
+        self.icon.image = [UIImage imageWithContentsOfFile:filePathWithName(name)];
+        
+        if (self.icon.image) {
+            self.character.icon = [Pic picWithPath:name];
+            [self.character saveCharacterWithContext:self.context];
+            if (!self.isNewCharacterMode && self.delegate) {
+                [self.delegate didUpdateCharacter:self.character];
+            }
+        }
+    }
+    [self.currentPopover dismissPopoverAnimated:true];
 }
 
 #pragma mark image picker delegate

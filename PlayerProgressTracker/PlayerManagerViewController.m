@@ -8,7 +8,6 @@
 
 #import "CustomSplitViewController.h"
 #import "PlayerManagerViewController.h"
-#import "CharacterViewController.h"
 #import "MainContextObject.h"
 #import "Constants.h"
 #import "PlayerViewCell.h"
@@ -41,7 +40,6 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
 
 @property (nonatomic) UINavigationController   *contentNavigationController;
 @property (nonatomic) CharacterViewController  *contentCharacterController;
-
 @property (nonatomic) NSMutableArray *dataSource;
 @property (nonatomic) NSManagedObjectContext *context;
 
@@ -114,12 +112,16 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
         if ([controller isKindOfClass:[UINavigationController class]]) {
             self.contentNavigationController = (UINavigationController *)controller;
             self.contentCharacterController  = (CharacterViewController *)self.contentNavigationController.topViewController;
+            self.contentCharacterController.delegate = self;
         }
     }
     
     self.panRecognizer.delegate = self;
     
-    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 2;
+    [self.tableView addGestureRecognizer:lpgr];
     //
 //    NSDictionary *dict = @{
 //                           @"characterId" : @"6181FCAE-87A1-4C19-A99E-8EEE6833CBFE-2766-0000016F60B040D7",
@@ -292,7 +294,7 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
         cell.name.text = character.name;
         cell.dateChanged.text = [Character standartDateFormat:character.dateModifed];
         if (character.icon) {
-            UIImage *image = [UIImage imageNamed:character.icon.picId];
+            UIImage *image = [UIImage imageWithContentsOfFile:filePathWithName(character.icon.picId)];
             cell.icon.image = image;
         }
         cell.backgroundColor = [UIColor clearColor];
@@ -383,6 +385,23 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
         return false;
     }
     return true;
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint point = [gestureRecognizer locationInView:self.tableView];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    if (!indexPath) {
+
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        [self didTabPlayer:self.dataSource[indexPath.row]];
+        [self.contentCharacterController changePlayerIconTap:nil];
+        [self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionNone];
+        
+    } else {
+        //NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+    }
 }
 
 #pragma mark icloud protocol and managin methods
@@ -497,6 +516,15 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
 - (void)iCloudDocumentErrorOccured:(NSError *)error
 {
     NSLog(@"error %@",error);
+}
+
+#pragma mark CharacterControllerProtocol
+-(void)didUpdateCharacter:(Character *)character
+{
+    if ([self.dataSource containsObject:character]) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.dataSource indexOfObject:character] inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 @end

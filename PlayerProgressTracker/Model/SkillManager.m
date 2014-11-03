@@ -370,7 +370,7 @@ static SkillManager *instance = nil;
 
                         
                         if (xpModifier > xpForSkill) {
-                            NSLog(@"xpModifier %f! for skill %@",xpModifier,subSkill.skillTemplate.name);
+                            //NSLog(@"xpModifier %f! for skill %@",xpModifier,subSkill.skillTemplate.name);
                             return;
                         }
                         
@@ -403,7 +403,7 @@ static SkillManager *instance = nil;
                     subSkill.currentProgress = 0;
                     float xpPointsForSkill = [xpPointsForEachSkill[i] floatValue];
                     if (xpPointsForSkill < 0) {
-                        NSLog(@"xpPointsForSkill %f!",xpPointsForSkill);
+                        //NSLog(@"xpPointsForSkill %f!",xpPointsForSkill);
                         continue;
                     }
                     
@@ -434,7 +434,7 @@ static SkillManager *instance = nil;
                     if (needEncreaseParentSkill) {
                         int modifier = [[hardFix lastObject] intValue];
                         parentSkill.currentLevel += modifier;
-                        NSLog(@"modify parent skill %@ by %d",parentSkill.skillTemplate.name,modifier);
+                        //NSLog(@"modify parent skill %@ by %d",parentSkill.skillTemplate.name,modifier);
                         [self didChangeExperiencePointsForSkill:parentSkill];
                     }
                     else {
@@ -442,7 +442,7 @@ static SkillManager *instance = nil;
                             Skill *skill = skillsToWorkWith[i];
                             int modifier = [hardFix[i] intValue];
                             skill.currentLevel += modifier;
-                            NSLog(@"modify skill %@ by %d",skill.skillTemplate.name,modifier);
+                            //NSLog(@"modify skill %@ by %d",skill.skillTemplate.name,modifier);
                             [self didChangeExperiencePointsForSkill:skill];
                         }
                     }
