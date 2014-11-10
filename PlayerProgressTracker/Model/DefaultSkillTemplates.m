@@ -514,8 +514,8 @@ static DefaultSkillTemplates *instance = nil;
                                          withRulesExamples:nil
                                            withDescription:@"Defines a character’s knowledge, and powers of deduction. Reason is used for a variety of academic and knowledge-based skills, and is important for controlling azure magic. With level you gain more rear and complex knowledge.\nBy passing varied education tests you might recall facts about actual topic which can help the situation.\n- When you can call to reason of a person to reassure or convince him change his mind you can use education for this test."
                                              withSkillIcon:nil
-                                        withBasicXpBarrier:defaultPhsAndMnsBasicBarrier
-                                      withSkillProgression:defaultPhsAndMnsProgression
+                                        withBasicXpBarrier:mentalSkillHightBasicBarrier
+                                      withSkillProgression:mentalSkillHightProgression
                                   withBasicSkillGrowthGoes:defaultPhsAndMnsGrowhtGoes
                                              withSkillType:AdvancedSkillType
                                     withDefaultStartingLvl:2
