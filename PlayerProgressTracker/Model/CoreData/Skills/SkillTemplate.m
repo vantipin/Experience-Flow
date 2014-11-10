@@ -91,6 +91,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
             skillTemplate = [NSEntityDescription insertNewObjectForEntityForName:@"SkillTemplate" inManagedObjectContext:context];
         }
         skillTemplate.name = name;
+        skillTemplate.nameForDisplay = nameForDisplay;
         skillTemplate.skillRules = rules;
         skillTemplate.skillRulesExamples = examples;
         skillTemplate.skillDescription = skillDescription;
