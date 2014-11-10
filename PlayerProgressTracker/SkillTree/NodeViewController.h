@@ -34,7 +34,7 @@
 @property (nonatomic) Skill *skill;
 @property (nonatomic,assign) id<NodeViewControllerProtocol> delegate;
 
-@property (nonatomic) IBOutlet UIButton *skillButton;
+@property (nonatomic, weak) IBOutlet UIButton *skillButton;
 
 //current animation points used by related Links objects
 @property (nonatomic) CGPoint point1;

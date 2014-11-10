@@ -552,7 +552,9 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
             [self.character saveCharacterWithContext:self.context];
             if (!self.isNewCharacterMode && self.delegate) {
                 [self.delegate didUpdateCharacter:self.character];
+
             }
+            [self saveCharacterAsArchiveOniCloud];
         }
     }
     [self.currentPopover dismissPopoverAnimated:true];

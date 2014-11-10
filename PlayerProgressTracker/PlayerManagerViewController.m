@@ -120,7 +120,7 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 2;
+    lpgr.minimumPressDuration = 1.5;
     [self.tableView addGestureRecognizer:lpgr];
     //
 //    NSDictionary *dict = @{
@@ -496,7 +496,7 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     self.activityIndicator.center = self.shadowView.center;
     
     // Some times request from icloud get lost and screen will block user unteraction dead
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         if (self.shadowView.superview) {
             [self finishUpdateFromIcloud];
         }

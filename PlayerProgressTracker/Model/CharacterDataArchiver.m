@@ -11,12 +11,14 @@
 #import "Skill.h"
 #import "SkillTemplate.h"
 #import "SkillManager.h"
+#import "Pic.h"
 #import <objc/runtime.h>
 
 @interface CharacterDataArchiver()
 
 @property (nonatomic) NSString *characterId;
 @property (nonatomic) NSString *characterName;
+@property (nonatomic) NSString *characterPic;
 @property (nonatomic) NSTimeInterval dateModified;
 @property (nonatomic) NSTimeInterval dateCreated;
 @property (nonatomic) NSDictionary *skillExperienceDictionary;
@@ -32,6 +34,10 @@
     charcterArchiver.characterName = character.name;
     charcterArchiver.dateModified = character.dateModifed;
     charcterArchiver.dateCreated = character.dateCreated;
+    if (character.icon) {
+        charcterArchiver.characterPic = character.icon.picId;
+    }
+    
     
     NSMutableDictionary *dict = [NSMutableDictionary new];
     
@@ -66,6 +72,10 @@
     else {
         character = [Character newCharacterWithContext:context];
         character.characterFinished = true;
+    }
+    
+    if (characterArchiver.characterPic) {
+        character.icon = [Pic picWithPath:characterArchiver.characterPic];
     }
     
     character.characterId = characterArchiver.characterId;
@@ -151,11 +161,13 @@
 
 #define kid   @"id"
 #define kname @"name"
+#define kicon @"iconName"
 #define kskillDict @"skillExperience"
 #define kdateModified @"dateModified"
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.characterId forKey:kid];
+    [encoder encodeObject:self.characterPic forKey:kicon];
     [encoder encodeObject:self.characterName forKey:kname];
     [encoder encodeDouble:self.dateModified forKey:kdateModified];
     [encoder encodeObject:self.skillExperienceDictionary forKey:kskillDict];
@@ -163,6 +175,7 @@
 
 - (id)initWithCoder:(NSCoder *)decoder {
     self.characterId = [decoder decodeObjectForKey:kid];
+    self.characterPic = [decoder decodeObjectForKey:kicon];
     self.characterName = [decoder decodeObjectForKey:kname];
     self.dateModified = [decoder decodeDoubleForKey:kdateModified];
     self.skillExperienceDictionary = [decoder decodeObjectForKey:kskillDict];

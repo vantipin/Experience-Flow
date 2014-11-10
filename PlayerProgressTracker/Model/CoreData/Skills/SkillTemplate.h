@@ -26,6 +26,7 @@ typedef enum SkillClassType : int16_t
 } SkillClassesType;
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * nameForDisplay;
 @property (nonatomic, retain) NSString * skillDescription;
 @property (nonatomic, retain) NSString * skillRules;
 @property (nonatomic, retain) NSString * skillRulesExamples;
@@ -54,6 +55,7 @@ typedef enum SkillClassType : int16_t
 - (void)removeSubSkillsTemplate:(NSSet *)values;
 
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                            withNameForDisplay:(NSString *)nameForDisplay
                                      withRules:(NSString *)rules
                              withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription
@@ -67,6 +69,7 @@ typedef enum SkillClassType : int16_t
                                    withContext:(NSManagedObjectContext *)context;
 
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                            withNameForDisplay:(NSString *)nameForDisplay
                                      withRules:(NSString *)rules
                              withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription

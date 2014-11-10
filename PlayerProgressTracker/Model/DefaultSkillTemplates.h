@@ -47,12 +47,14 @@ static int expectedMinLevelForOtherAdvanced = 4;
 @property (nonatomic) SkillTemplate *bluff;
 @property (nonatomic) SkillTemplate *diplomacy;
 @property (nonatomic) SkillTemplate *intimidate;
+@property (nonatomic) SkillTemplate *wishMagic;
 
 @property (nonatomic) SkillTemplate *hackDevice;
 @property (nonatomic) SkillTemplate *heal;
 @property (nonatomic) SkillTemplate *appraise;
 @property (nonatomic) SkillTemplate *magic;
 @property (nonatomic) SkillTemplate *craft;
+@property (nonatomic) SkillTemplate *alchemy;
 
 @property (nonatomic) SkillTemplate *crashing;
 @property (nonatomic) SkillTemplate *cutting;

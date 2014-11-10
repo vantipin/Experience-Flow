@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AdvancedSkill" representedClassName="AdvancedSkill" parentEntity="Skill" syncable="YES"/>
+    <entity name="BasicSkill" representedClassName="BasicSkill" parentEntity="Skill" syncable="YES"/>
+    <entity name="Character" representedClassName="Character" syncable="YES">
+        <attribute name="bulk" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
+        <attribute name="characterFinished" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="characterId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateCreated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateModifed" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pace" attributeType="Integer 16" defaultValueString="2" syncable="YES"/>
+        <relationship name="characterCondition" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CharacterConditionAttributes" inverseName="character" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
+        <relationship name="icon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pic" inverseName="characters" inverseEntity="Pic" syncable="YES"/>
+        <relationship name="skillSet" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SkillSet" inverseName="character" inverseEntity="SkillSet" syncable="YES"/>
+    </entity>
+    <entity name="CharacterConditionAttributes" representedClassName="CharacterConditionAttributes" syncable="YES">
+        <attribute name="adrenalinPoints" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="favor" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="mutationPoints" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="stress" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <relationship name="character" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Character" inverseName="characterCondition" inverseEntity="Character" syncable="YES"/>
+        <relationship name="currentMagicSkills" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MagicSkill" inverseName="currentlyUsedByCharacter" inverseEntity="MagicSkill" syncable="YES"/>
+        <relationship name="currentMeleeSkills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MeleeSkill" inverseName="currentlyUsedByCharacter" inverseEntity="MeleeSkill" syncable="YES"/>
+        <relationship name="currentPietySkills" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PietySkill" inverseName="currentlyUsedByCharacter" inverseEntity="PietySkill" syncable="YES"/>
+        <relationship name="currentRangeSkills" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RangeSkill" inverseName="currentlyUsedByCharacter" inverseEntity="RangeSkill" syncable="YES"/>
+        <relationship name="insanaties" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Insanity" inverseName="characterConditions" inverseEntity="Insanity" syncable="YES"/>
+        <relationship name="weaponMelee" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WeaponMelee" inverseName="characterConditions" inverseEntity="WeaponMelee" syncable="YES"/>
+        <relationship name="weaponRanged" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="WeaponRanged" inverseName="relationship" inverseEntity="WeaponRanged" syncable="YES"/>
+    </entity>
+    <entity name="Insanity" representedClassName="Insanity" syncable="YES">
+        <attribute name="insanityDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="characterConditions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CharacterConditionAttributes" inverseName="insanaties" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="cost" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="encumbrance" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="itemDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rarity" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="5" defaultValueString="0" syncable="YES"/>
+        <relationship name="icon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pic" inverseName="items" inverseEntity="Pic" syncable="YES"/>
+    </entity>
+    <entity name="MagicSkill" representedClassName="MagicSkill" parentEntity="Skill" syncable="YES">
+        <relationship name="currentlyUsedByCharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="currentMagicSkills" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
+    </entity>
+    <entity name="MeleeSkill" representedClassName="MeleeSkill" parentEntity="Skill" syncable="YES">
+        <relationship name="currentlyUsedByCharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="currentMeleeSkills" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
+    </entity>
+    <entity name="Pic" representedClassName="Pic" syncable="YES">
+        <attribute name="pathToDisk" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="icon" inverseEntity="Character" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="icon" inverseEntity="Item" syncable="YES"/>
+        <relationship name="skills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="icon" inverseEntity="SkillTemplate" syncable="YES"/>
+    </entity>
+    <entity name="PietySkill" representedClassName="PietySkill" parentEntity="Skill" syncable="YES">
+        <relationship name="currentlyUsedByCharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="currentPietySkills" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
+    </entity>
+    <entity name="RangeSkill" representedClassName="RangeSkill" parentEntity="Skill" syncable="YES">
+        <relationship name="currentlyUsedByCharacter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="currentRangeSkills" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
+    </entity>
+    <entity name="Skill" representedClassName="Skill" isAbstract="YES" syncable="YES">
+        <attribute name="currentLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="currentProgress" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="dateXpAdded" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="skillId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startingLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="basicSkill" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Skill" inverseName="subSkills" inverseEntity="Skill" syncable="YES"/>
+        <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeaponMelee" inverseName="skillRequired" inverseEntity="WeaponMelee" syncable="YES"/>
+        <relationship name="skillSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillSet" inverseName="skills" inverseEntity="SkillSet" syncable="YES"/>
+        <relationship name="skillTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="skillsFromThisTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
+        <relationship name="subSkills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skill" inverseName="basicSkill" inverseEntity="Skill" syncable="YES"/>
+    </entity>
+    <entity name="SkillLevelsSet" representedClassName="SkillLevelsSet" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SkillSet" representedClassName="SkillSet" syncable="YES">
+        <attribute name="bulk" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="modifierAMelee" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="modifierARange" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="modifierArmorSave" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="modifierHp" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pace" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="skillSet" inverseEntity="Character" syncable="YES"/>
+        <relationship name="skills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Skill" inverseName="skillSet" inverseEntity="Skill" syncable="YES"/>
+    </entity>
+    <entity name="SkillTemplate" representedClassName="SkillTemplate" syncable="YES">
+        <attribute name="defaultLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isMediator" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="levelBasicBarrier" optional="YES" attributeType="Float" defaultValueString="1" syncable="YES"/>
+        <attribute name="levelGrowthGoesToBasicSkill" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="levelProgression" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameForDisplay" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skillDescription" optional="YES" attributeType="String" defaultValueString="No description" syncable="YES"/>
+        <attribute name="skillEnumType" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="skillRules" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skillRulesExamples" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="basicSkillTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="subSkillsTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
+        <relationship name="icon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pic" inverseName="skills" inverseEntity="Pic" syncable="YES"/>
+        <relationship name="skillsFromThisTemplate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Skill" inverseName="skillTemplate" inverseEntity="Skill" syncable="YES"/>
+        <relationship name="subSkillsTemplate" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SkillTemplate" inverseName="basicSkillTemplate" inverseEntity="SkillTemplate" syncable="YES"/>
+    </entity>
+    <entity name="WeaponMelee" representedClassName="WeaponMelee" parentEntity="Item" syncable="YES">
+        <attribute name="damageClass" optional="YES" attributeType="Integer 16" minValueString="2" defaultValueString="2" syncable="YES"/>
+        <attribute name="damageCritClass" optional="YES" attributeType="Integer 16" minValueString="1" defaultValueString="1" syncable="YES"/>
+        <attribute name="qualities" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="characterConditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="weaponMelee" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
+        <relationship name="skillRequired" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Skill" inverseName="items" inverseEntity="Skill" syncable="YES"/>
+    </entity>
+    <entity name="WeaponRanged" representedClassName="WeaponRanged" parentEntity="WeaponMelee" syncable="YES">
+        <attribute name="rangeClass" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterConditionAttributes" inverseName="weaponRanged" inverseEntity="CharacterConditionAttributes" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AdvancedSkill" positionX="0" positionY="0" width="128" height="45"/>
+        <element name="BasicSkill" positionX="0" positionY="0" width="128" height="45"/>
+        <element name="Character" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="CharacterConditionAttributes" positionX="0" positionY="0" width="128" height="225"/>
+        <element name="Insanity" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Item" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="MagicSkill" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="MeleeSkill" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="Pic" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="PietySkill" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="RangeSkill" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="Skill" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="SkillLevelsSet" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="SkillSet" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="SkillTemplate" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="WeaponMelee" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="WeaponRanged" positionX="0" positionY="0" width="128" height="75"/>
+    </elements>
+</model>

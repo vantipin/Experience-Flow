@@ -31,9 +31,11 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 @dynamic subSkillsTemplate;
 @dynamic icon;
 @dynamic isMediator;
+@dynamic nameForDisplay;
 
 
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                            withNameForDisplay:(NSString *)nameForDisplay
                                      withRules:(NSString *)rules
                              withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription
@@ -47,6 +49,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
                                    withContext:(NSManagedObjectContext *)context;
 {
     return [SkillTemplate newSkillTemplateWithUniqName:name
+                                    withNameForDisplay:nameForDisplay
                                              withRules:rules
                                      withRulesExamples:examples
                                        withDescription:skillDescription
@@ -61,6 +64,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
 }
 
 +(SkillTemplate *)newSkillTemplateWithUniqName:(NSString *)name
+                            withNameForDisplay:(NSString *)nameForDisplay
                                      withRules:(NSString *)rules
                              withRulesExamples:(NSString *)examples
                                withDescription:(NSString *)skillDescription

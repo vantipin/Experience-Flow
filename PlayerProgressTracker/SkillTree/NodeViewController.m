@@ -12,14 +12,19 @@
 #import "SkillManager.h"
 #import "DefaultSkillTemplates.h"
 #import "Constants.h"
+#import "Pic.h"
 
 #define healthyNodeShiningColor kRGB(128, 181, 231, 1)
 #define undevelopedNodeShiningColor kRGB(208, 215, 231, 1)
 
 @interface NodeViewController ()
 
-@property (nonatomic) IBOutlet UILabel *skillLevelLabel;
-@property (nonatomic) IBOutlet UIImageView *xpAuraImageView;
+@property (nonatomic, weak) IBOutlet UILabel     *skillLevelLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *xpAuraImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *iconView;
+@property (nonatomic, weak) IBOutlet UILabel     *skillName;
+@property (nonatomic, weak) IBOutlet UIImageView *skillNeckless;
+
 @property (nonatomic) CGPoint anchorPoint;
 @property (nonatomic) CAKeyframeAnimation *driftAnimation;
 @property (nonatomic) SkillTemplate *skillTemplate;
@@ -41,7 +46,7 @@
     controller.isLightUp = false;
     
     [controller.skillLevelLabel setFont:[UIFont fontWithName:BodoniSvtyTwoITCTTBold size:isiPad ? 26 : 13]];
-    [controller.skillButton.titleLabel setFont:[UIFont fontWithName:BodoniSvtyTwoOSITCTTBook size:isiPad ? 25 : 12]];
+    [controller.skillName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:isiPad ? 25 : 12]];
     
     return controller;
 }
@@ -58,13 +63,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -186,26 +189,35 @@
     self.skillLevelLabel.text = [NSString stringWithFormat:@"%ld",(long)level];
     BOOL isDeveloped = [self isDeveloped];
     
-    
     if (self.skill.skillTemplate.isMediator) {
-        UIImage *image = isDeveloped ? [UIImage imageNamed:@"skillNodeMediator"] : [UIImage imageNamed:@"skillNodeMediatorUndeveloped"];
+        UIImage *image = isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeMediator")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped")];
         [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
-        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeMediatorHightlited"] forState:UIControlStateHighlighted];
-        self.xpAuraImageView.image = [UIImage imageNamed:@"xpMediatorAura"];
         self.skillLevelLabel.hidden = true;
+        self.skillNeckless.hidden = true;
     }
     else {
-        UIImage *image = isDeveloped ? [UIImage imageNamed:@"skillNode"] : [UIImage imageNamed:@"skillNodeUndeveloped"];
+        UIImage *image = isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNode")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped")];
+        UIImage *imageNeckless = isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped")];
         [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
-        [self.skillButton setBackgroundImage:[UIImage imageNamed:@"skillNodeHighlited"] forState:UIControlStateHighlighted];
-        self.xpAuraImageView.image = [UIImage imageNamed:@"xpAura"];
+        self.skillNeckless.image = imageNeckless;
         self.skillLevelLabel.hidden = false;
+        self.skillNeckless.hidden = false;
         self.skillLevelLabel.textColor = isDeveloped ? healthyNodeShiningColor : undevelopedNodeShiningColor;
     }
+    [self.skillButton setBackgroundImage:[UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeHighlited")] forState:UIControlStateHighlighted];
+    self.xpAuraImageView.image = [UIImage imageWithContentsOfFile:filePathWithName(@"xpAura")];
     
     [self processLinkVisibility];
     self.view.alpha = isDeveloped ? 1 : 0.95;
-    [self.skillButton setTitle:self.skill.skillTemplate.name forState:UIControlStateNormal];
+    self.skillName.text = self.skill.skillTemplate.nameForDisplay;
+    
+    if (self.skill.skillTemplate.icon && self.skill.skillTemplate.icon.picId) {
+        self.iconView.image = [UIImage imageWithContentsOfFile:filePathWithName(self.skill.skillTemplate.icon.picId)];
+    }
+    else {
+        self.iconView.image = nil;
+    }
+    
     
     [self processXPAura];
 }
@@ -232,6 +244,15 @@
     [self.delegate didTapNodeLevel:self];
 }
 
+-(IBAction)didButtonUp:(id)sender
+{
+    self.skillNeckless.image = [self isDeveloped] ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped")];
+}
+
+-(IBAction)didButtonDown:(id)sender
+{
+    self.skillNeckless.image = [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessHighlited")];
+}
 
 - (IBAction)pan:(UIPanGestureRecognizer *)gestureRecognizer
 {
@@ -319,9 +340,11 @@
         self.isLightUp = true;
         [UIView animateWithDuration:0.5 animations:^{
             self.skillButton.highlighted = true;
+            [self didButtonDown:self.skillButton];
         } completion:^(BOOL success){
             [UIView animateWithDuration:0.1 animations:^{
                 self.skillButton.highlighted = false;
+                [self didButtonUp:self.skillButton];
                 self.isLightUp = false;
             }];
         }];

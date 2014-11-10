@@ -8,6 +8,7 @@
 
 #import "SkillTemplateDataArchiver.h"
 #import "MainContextObject.h"
+#import "Pic.h"
 #import <objc/runtime.h>
 
 #define defaultTitle @"SkillTemplate"
@@ -16,6 +17,7 @@
 @interface SkillTemplateDataArchiver()
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * nameForDisplay;
 @property (nonatomic, retain) NSString * skillDescription;
 @property (nonatomic, retain) NSString * skillRules;
 @property (nonatomic, retain) NSString * skillRulesExamples;
@@ -45,10 +47,11 @@
         skillTemplateDisk = [SkillTemplateDataArchiver objectWithKeysOfDictionary:codedData];
         
         SkillTemplate *skillTemplate = [SkillTemplate newSkillTemplateWithUniqName:skillTemplateDisk.name
+                                                                withNameForDisplay:skillTemplateDisk.nameForDisplay
                                                                          withRules:skillTemplateDisk.skillRules
                                                                  withRulesExamples:skillTemplateDisk.skillRulesExamples
                                                                    withDescription:skillTemplateDisk.skillDescription
-                                                                     withSkillIcon:nil
+                                                                     withSkillIcon:skillTemplateDisk.icon ? [Pic picWithPath:skillTemplateDisk.icon] : nil
                                                                 withBasicXpBarrier:skillTemplateDisk.levelBasicBarrier
                                                               withSkillProgression:skillTemplateDisk.levelProgression
                                                           withBasicSkillGrowthGoes:skillTemplateDisk.levelGrowthGoesToBasicSkill
@@ -93,6 +96,7 @@
 {
     SkillTemplateDataArchiver *skillTemplateDisk = [SkillTemplateDataArchiver new];
     skillTemplateDisk.name = skillTemplate.name;
+    skillTemplateDisk.nameForDisplay = skillTemplate.nameForDisplay;
     skillTemplateDisk.skillEnumType = skillTemplate.skillEnumType;
     skillTemplateDisk.skillDescription = skillTemplate.skillDescription;
     skillTemplateDisk.skillRules = skillTemplate.skillRules;
@@ -102,6 +106,7 @@
     skillTemplateDisk.levelGrowthGoesToBasicSkill = skillTemplate.levelGrowthGoesToBasicSkill;
     skillTemplateDisk.levelProgression = skillTemplate.levelProgression;
     skillTemplateDisk.nameForBasicSkillTemplate = skillTemplate.basicSkillTemplate.name;
+    skillTemplateDisk.icon = skillTemplate.icon ? skillTemplate.icon.picId : nil;
     
     NSMutableArray *array = [NSMutableArray new];
     for (SkillTemplate *subSkill in skillTemplate.subSkillsTemplate) {
@@ -232,6 +237,7 @@
 #define kbasicSkillTemplate @"basicSkillTemplate"
 #define ksubSkillsTemplate @"subSkillsTemplate"
 #define kicon @"icon"
+#define knameForDisplay @"nameForDisplay"
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.name forKey:kname];
@@ -245,6 +251,8 @@
     [encoder encodeFloat:self.levelProgression forKey:klevelProgression];
     [encoder encodeObject:self.namesForSubSkillTemplates forKey:ksubSkillsTemplate];
     [encoder encodeObject:self.nameForBasicSkillTemplate forKey:kbasicSkillTemplate];
+    [encoder encodeObject:self.nameForDisplay forKey:knameForDisplay];
+    [encoder encodeObject:self.icon forKey:kicon];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -259,6 +267,8 @@
     self.levelProgression = [decoder decodeFloatForKey:klevelProgression];
     self.namesForSubSkillTemplates = [decoder decodeObjectForKey:ksubSkillsTemplate];
     self.nameForBasicSkillTemplate = [decoder decodeObjectForKey:kbasicSkillTemplate];
+    self.nameForDisplay = [decoder decodeObjectForKey:knameForDisplay];
+    self.icon = [decoder decodeObjectForKey:kicon];
     
     return self;
 }

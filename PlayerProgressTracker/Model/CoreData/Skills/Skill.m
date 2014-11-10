@@ -59,7 +59,7 @@
         
         [Skill saveContext:context];
         
-        NSLog(@"New skill created with name %@.",skill.skillTemplate.name);
+        //NSLog(@"New skill created with name %@.",skill.skillTemplate.name);
         return skill;
     }
     

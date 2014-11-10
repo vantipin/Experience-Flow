@@ -15,7 +15,7 @@
 @property (nonatomic) NodeViewController *parent;
 @property (nonatomic) NodeViewController *child;
 
-@property (nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
 
 +(NodeLinkController *)getInstanceFromStoryboardWithFrame:(CGRect)frame;
 

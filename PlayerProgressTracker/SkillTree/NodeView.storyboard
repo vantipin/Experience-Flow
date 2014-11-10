@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="HRk-67-RWO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="HRk-67-RWO">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -20,7 +20,7 @@
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="24"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <size key="titleShadowOffset" width="1" height="-1"/>
-                                <state key="normal" title="Control" backgroundImage="skillNode.png">
+                                <state key="normal" backgroundImage="skillNode.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.4745098352432251" green="0.55294120311737061" blue="0.7450980544090271" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
@@ -28,6 +28,10 @@
                                     <color key="titleShadowColor" red="0.1764705926" green="0.18431372939999999" blue="0.180392161" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="didButtonDown:" destination="HRk-67-RWO" eventType="touchDown" id="Q1U-M0-c1V"/>
+                                    <action selector="didButtonUp:" destination="HRk-67-RWO" eventType="touchCancel" id="Oqk-eB-VDx"/>
+                                    <action selector="didButtonUp:" destination="HRk-67-RWO" eventType="touchUpInside" id="hL1-sh-fJq"/>
+                                    <action selector="didButtonUp:" destination="HRk-67-RWO" eventType="touchUpOutside" id="oQe-gH-hpE"/>
                                     <action selector="didTabSkillButton:" destination="HRk-67-RWO" eventType="touchUpInside" id="h0I-LA-TMl"/>
                                     <outletCollection property="gestureRecognizers" destination="PUG-t6-Dks" appends="YES" id="Lcz-kr-H5f"/>
                                 </connections>
@@ -36,14 +40,29 @@
                                 <rect key="frame" x="2" y="2" width="196" height="196"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="control.png" id="nZy-UM-Teg">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skillNodeNeckless.png" id="Iuf-xN-gQ2">
+                                <rect key="frame" x="0.0" y="111" width="200" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3MA-ns-RYM">
-                                <rect key="frame" x="74" y="121" width="50" height="50"/>
+                                <rect key="frame" x="74" y="129" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Bold" family="Bodoni 72" pointSize="26"/>
                                 <color key="textColor" red="0.51372551919999998" green="0.7254902124" blue="0.9450981021" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.41914461096938771" green="0.37611982354499052" blue="0.35171420228746103" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="-2"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V6B-xV-lFU">
+                                <rect key="frame" x="16" y="83" width="168" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </view>
@@ -53,8 +72,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="200" height="200"/>
                     <connections>
+                        <outlet property="iconView" destination="nZy-UM-Teg" id="nKo-cC-kVr"/>
                         <outlet property="skillButton" destination="PMw-TF-v4Y" id="K7M-os-Qgw"/>
                         <outlet property="skillLevelLabel" destination="3MA-ns-RYM" id="4ch-GL-V3n"/>
+                        <outlet property="skillName" destination="V6B-xV-lFU" id="ZE7-ns-U5g"/>
+                        <outlet property="skillNeckless" destination="Iuf-xN-gQ2" id="xqt-Xf-hr1"/>
                         <outlet property="xpAuraImageView" destination="Tsu-YH-jEj" id="YDj-5G-rsF"/>
                     </connections>
                 </viewController>
@@ -69,8 +91,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="control.png" width="86" height="107"/>
         <image name="skillNode.png" width="197" height="197"/>
         <image name="skillNodeHighlited.png" width="197" height="197"/>
+        <image name="skillNodeNeckless.png" width="133" height="86"/>
         <image name="xpAura.png" width="195" height="195"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

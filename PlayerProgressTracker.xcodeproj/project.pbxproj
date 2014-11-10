@@ -11,8 +11,6 @@
 		DF0995D5196460900025A76A /* headerCharacterStats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995D1196460900025A76A /* headerCharacterStats@2x.png */; };
 		DF0995D8196460C70025A76A /* cloudBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995D6196460C70025A76A /* cloudBackground@2x.png */; };
 		DF0995D9196460C70025A76A /* cloudBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995D7196460C70025A76A /* cloudBackground.png */; };
-		DF0995DC196462140025A76A /* tipBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995DA196462140025A76A /* tipBackground@2x.png */; };
-		DF0995DD196462140025A76A /* tipBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0995DB196462140025A76A /* tipBackground.png */; };
 		DF0995E01968303E0025A76A /* CharacterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0995DF1968303E0025A76A /* CharacterViewController.m */; };
 		DF0995E6196843B50025A76A /* PlayerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0995E5196843B50025A76A /* PlayerViewCell.m */; };
 		DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F57241954C0E4002D7EF2 /* appIcon.png */; };
@@ -53,25 +51,10 @@
 		DF1F5C96195B432D002D7EF2 /* AddSkillDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C84195B432D002D7EF2 /* AddSkillDropViewController.m */; };
 		DF1F5C97195B432D002D7EF2 /* ClassesDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C86195B432D002D7EF2 /* ClassesDropViewController.m */; };
 		DF1F5C98195B432D002D7EF2 /* DropDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C88195B432D002D7EF2 /* DropDownViewController.m */; };
-		DF1F5CB1195B4338002D7EF2 /* addButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9A195B4338002D7EF2 /* addButton.png */; };
-		DF1F5CB2195B4338002D7EF2 /* addButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9B195B4338002D7EF2 /* addButton@2x.png */; };
-		DF1F5CB3195B4338002D7EF2 /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9C195B4338002D7EF2 /* deleteButton.png */; };
-		DF1F5CB4195B4338002D7EF2 /* deleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C9D195B4338002D7EF2 /* deleteButton@2x.png */; };
 		DF1F5CB7195B4338002D7EF2 /* link.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA0195B4338002D7EF2 /* link.png */; };
 		DF1F5CB8195B4338002D7EF2 /* link@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA1195B4338002D7EF2 /* link@2x.png */; };
-		DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA2195B4338002D7EF2 /* lowerXp.png */; };
-		DF1F5CBA195B4338002D7EF2 /* lowerXp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA3195B4338002D7EF2 /* lowerXp@2x.png */; };
-		DF1F5CBB195B4338002D7EF2 /* mentalSkillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA4195B4338002D7EF2 /* mentalSkillNode@2x.png */; };
 		DF1F5CBC195B4338002D7EF2 /* nightSky.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA5195B4338002D7EF2 /* nightSky.png */; };
 		DF1F5CBD195B4338002D7EF2 /* nightSky@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA6195B4338002D7EF2 /* nightSky@2x.png */; };
-		DF1F5CBE195B4338002D7EF2 /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA7195B4338002D7EF2 /* noImage.png */; };
-		DF1F5CBF195B4338002D7EF2 /* noImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA8195B4338002D7EF2 /* noImage@2x.png */; };
-		DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CA9195B4338002D7EF2 /* raiseXp.png */; };
-		DF1F5CC1195B4338002D7EF2 /* raiseXp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAA195B4338002D7EF2 /* raiseXp@2x.png */; };
-		DF1F5CC2195B4338002D7EF2 /* skillNode.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAB195B4338002D7EF2 /* skillNode.png */; };
-		DF1F5CC3195B4338002D7EF2 /* skillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAC195B4338002D7EF2 /* skillNode@2x.png */; };
-		DF1F5CC4195B4338002D7EF2 /* skillNodeHighlited.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAD195B4338002D7EF2 /* skillNodeHighlited.png */; };
-		DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAE195B4338002D7EF2 /* skillNodeHighlited@2x.png */; };
 		DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CAF195B4338002D7EF2 /* xpAura.png */; };
 		DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */; };
 		DF1F5CCA195B43A1002D7EF2 /* MainContextObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5CC9195B43A1002D7EF2 /* MainContextObject.m */; };
@@ -92,6 +75,90 @@
 		DF3C0EE9198824240016AFF2 /* icloudAvailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */; };
 		DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */; };
 		DF3C0EEB198824240016AFF2 /* icloudIsntAvailible@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */; };
+		DF755CD71A1127E10061E3D6 /* agility.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C8F1A1127E10061E3D6 /* agility.png */; };
+		DF755CD81A1127E10061E3D6 /* agility@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C901A1127E10061E3D6 /* agility@2x.png */; };
+		DF755CD91A1127E10061E3D6 /* alchemy.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C911A1127E10061E3D6 /* alchemy.png */; };
+		DF755CDA1A1127E10061E3D6 /* alchemy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C921A1127E10061E3D6 /* alchemy@2x.png */; };
+		DF755CDB1A1127E10061E3D6 /* apprise.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C931A1127E10061E3D6 /* apprise.png */; };
+		DF755CDC1A1127E10061E3D6 /* apprise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C941A1127E10061E3D6 /* apprise@2x.png */; };
+		DF755CDD1A1127E10061E3D6 /* azure magic.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C951A1127E10061E3D6 /* azure magic.png */; };
+		DF755CDE1A1127E10061E3D6 /* azure magic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C961A1127E10061E3D6 /* azure magic@2x.png */; };
+		DF755CDF1A1127E10061E3D6 /* bluff.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C971A1127E10061E3D6 /* bluff.png */; };
+		DF755CE01A1127E10061E3D6 /* bluff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C981A1127E10061E3D6 /* bluff@2x.png */; };
+		DF755CE11A1127E10061E3D6 /* climb.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C991A1127E10061E3D6 /* climb.png */; };
+		DF755CE21A1127E10061E3D6 /* climb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C9A1A1127E10061E3D6 /* climb@2x.png */; };
+		DF755CE31A1127E10061E3D6 /* control.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C9B1A1127E10061E3D6 /* control.png */; };
+		DF755CE41A1127E10061E3D6 /* control@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C9C1A1127E10061E3D6 /* control@2x.png */; };
+		DF755CE51A1127E10061E3D6 /* craft.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C9D1A1127E10061E3D6 /* craft.png */; };
+		DF755CE61A1127E10061E3D6 /* craft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C9E1A1127E10061E3D6 /* craft@2x.png */; };
+		DF755CE71A1127E10061E3D6 /* crushing.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C9F1A1127E10061E3D6 /* crushing.png */; };
+		DF755CE81A1127E10061E3D6 /* crushing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA01A1127E10061E3D6 /* crushing@2x.png */; };
+		DF755CE91A1127E10061E3D6 /* cutting.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA11A1127E10061E3D6 /* cutting.png */; };
+		DF755CEA1A1127E10061E3D6 /* cutting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA21A1127E10061E3D6 /* cutting@2x.png */; };
+		DF755CEB1A1127E10061E3D6 /* diplomacy.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA31A1127E10061E3D6 /* diplomacy.png */; };
+		DF755CEC1A1127E10061E3D6 /* diplomacy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA41A1127E10061E3D6 /* diplomacy@2x.png */; };
+		DF755CED1A1127E10061E3D6 /* disguise.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA51A1127E10061E3D6 /* disguise.png */; };
+		DF755CEE1A1127E10061E3D6 /* disguise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA61A1127E10061E3D6 /* disguise@2x.png */; };
+		DF755CEF1A1127E10061E3D6 /* escape artist.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA71A1127E10061E3D6 /* escape artist.png */; };
+		DF755CF01A1127E10061E3D6 /* escape artist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA81A1127E10061E3D6 /* escape artist@2x.png */; };
+		DF755CF11A1127E10061E3D6 /* firearm.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CA91A1127E10061E3D6 /* firearm.png */; };
+		DF755CF21A1127E10061E3D6 /* firearm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CAA1A1127E10061E3D6 /* firearm@2x.png */; };
+		DF755CF31A1127E10061E3D6 /* hack devices.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CAB1A1127E10061E3D6 /* hack devices.png */; };
+		DF755CF41A1127E10061E3D6 /* hack devices@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CAC1A1127E10061E3D6 /* hack devices@2x.png */; };
+		DF755CF51A1127E10061E3D6 /* handle animal.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CAD1A1127E10061E3D6 /* handle animal.png */; };
+		DF755CF61A1127E10061E3D6 /* handle animal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CAE1A1127E10061E3D6 /* handle animal@2x.png */; };
+		DF755CF71A1127E10061E3D6 /* heal.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CAF1A1127E10061E3D6 /* heal.png */; };
+		DF755CF81A1127E10061E3D6 /* heal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB01A1127E10061E3D6 /* heal@2x.png */; };
+		DF755CF91A1127E10061E3D6 /* inner circle.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB11A1127E10061E3D6 /* inner circle.png */; };
+		DF755CFA1A1127E10061E3D6 /* inner circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB21A1127E10061E3D6 /* inner circle@2x.png */; };
+		DF755CFB1A1127E10061E3D6 /* intellegence.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB31A1127E10061E3D6 /* intellegence.png */; };
+		DF755CFC1A1127E10061E3D6 /* intellegence@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB41A1127E10061E3D6 /* intellegence@2x.png */; };
+		DF755CFD1A1127E10061E3D6 /* intimidate.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB51A1127E10061E3D6 /* intimidate.png */; };
+		DF755CFE1A1127E10061E3D6 /* intimidate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB61A1127E10061E3D6 /* intimidate@2x.png */; };
+		DF755CFF1A1127E10061E3D6 /* knavery.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB71A1127E10061E3D6 /* knavery.png */; };
+		DF755D001A1127E10061E3D6 /* knavery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB81A1127E10061E3D6 /* knavery@2x.png */; };
+		DF755D011A1127E10061E3D6 /* meele.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CB91A1127E10061E3D6 /* meele.png */; };
+		DF755D021A1127E10061E3D6 /* meele@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CBA1A1127E10061E3D6 /* meele@2x.png */; };
+		DF755D031A1127E10061E3D6 /* perception.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CBB1A1127E10061E3D6 /* perception.png */; };
+		DF755D041A1127E10061E3D6 /* perception@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CBC1A1127E10061E3D6 /* perception@2x.png */; };
+		DF755D051A1127E10061E3D6 /* physique.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CBD1A1127E10061E3D6 /* physique.png */; };
+		DF755D061A1127E10061E3D6 /* physique@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CBE1A1127E10061E3D6 /* physique@2x.png */; };
+		DF755D071A1127E10061E3D6 /* piercing.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CBF1A1127E10061E3D6 /* piercing.png */; };
+		DF755D081A1127E10061E3D6 /* piercing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC01A1127E10061E3D6 /* piercing@2x.png */; };
+		DF755D091A1127E10061E3D6 /* range.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC11A1127E10061E3D6 /* range.png */; };
+		DF755D0A1A1127E10061E3D6 /* range@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC21A1127E10061E3D6 /* range@2x.png */; };
+		DF755D0B1A1127E10061E3D6 /* reason.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC31A1127E10061E3D6 /* reason.png */; };
+		DF755D0C1A1127E10061E3D6 /* reason@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC41A1127E10061E3D6 /* reason@2x.png */; };
+		DF755D0D1A1127E10061E3D6 /* ride.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC51A1127E10061E3D6 /* ride.png */; };
+		DF755D0E1A1127E10061E3D6 /* ride@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC61A1127E10061E3D6 /* ride@2x.png */; };
+		DF755D0F1A1127E10061E3D6 /* ritual magic.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC71A1127E10061E3D6 /* ritual magic.png */; };
+		DF755D101A1127E10061E3D6 /* ritual magic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC81A1127E10061E3D6 /* ritual magic@2x.png */; };
+		DF755D111A1127E10061E3D6 /* sense motive.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CC91A1127E10061E3D6 /* sense motive.png */; };
+		DF755D121A1127E10061E3D6 /* sense motive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CCA1A1127E10061E3D6 /* sense motive@2x.png */; };
+		DF755D131A1127E10061E3D6 /* stealth.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CCB1A1127E10061E3D6 /* stealth.png */; };
+		DF755D141A1127E10061E3D6 /* stealth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CCC1A1127E10061E3D6 /* stealth@2x.png */; };
+		DF755D151A1127E10061E3D6 /* strength.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CCD1A1127E10061E3D6 /* strength.png */; };
+		DF755D161A1127E10061E3D6 /* strength@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CCE1A1127E10061E3D6 /* strength@2x.png */; };
+		DF755D171A1127E10061E3D6 /* survival.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CCF1A1127E10061E3D6 /* survival.png */; };
+		DF755D181A1127E10061E3D6 /* survival@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CD01A1127E10061E3D6 /* survival@2x.png */; };
+		DF755D191A1127E10061E3D6 /* swim.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CD11A1127E10061E3D6 /* swim.png */; };
+		DF755D1A1A1127E10061E3D6 /* swim@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CD21A1127E10061E3D6 /* swim@2x.png */; };
+		DF755D1B1A1127E10061E3D6 /* thrown.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CD31A1127E10061E3D6 /* thrown.png */; };
+		DF755D1C1A1127E10061E3D6 /* thrown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CD41A1127E10061E3D6 /* thrown@2x.png */; };
+		DF755D1D1A1127E10061E3D6 /* toughness.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CD51A1127E10061E3D6 /* toughness.png */; };
+		DF755D1E1A1127E10061E3D6 /* toughness@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755CD61A1127E10061E3D6 /* toughness@2x.png */; };
+		DF755D251A1127FD0061E3D6 /* skillNodeNeckless.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D1F1A1127FD0061E3D6 /* skillNodeNeckless.png */; };
+		DF755D261A1127FD0061E3D6 /* skillNodeNeckless@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D201A1127FD0061E3D6 /* skillNodeNeckless@2x.png */; };
+		DF755D271A1127FD0061E3D6 /* skillNodeNecklessHighlited.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D211A1127FD0061E3D6 /* skillNodeNecklessHighlited.png */; };
+		DF755D281A1127FD0061E3D6 /* skillNodeNecklessHighlited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D221A1127FD0061E3D6 /* skillNodeNecklessHighlited@2x.png */; };
+		DF755D291A1127FD0061E3D6 /* skillNodeNecklessUndeveloped.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D231A1127FD0061E3D6 /* skillNodeNecklessUndeveloped.png */; };
+		DF755D2A1A1127FD0061E3D6 /* skillNodeNecklessUndeveloped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D241A1127FD0061E3D6 /* skillNodeNecklessUndeveloped@2x.png */; };
+		DF755D311A112A420061E3D6 /* skillNode.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D2D1A112A420061E3D6 /* skillNode.png */; };
+		DF755D321A112A420061E3D6 /* skillNode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D2E1A112A420061E3D6 /* skillNode@2x.png */; };
+		DF755D331A112A420061E3D6 /* skillNodeHighlited.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D2F1A112A420061E3D6 /* skillNodeHighlited.png */; };
+		DF755D341A112A420061E3D6 /* skillNodeHighlited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D301A112A420061E3D6 /* skillNodeHighlited@2x.png */; };
+		DF755D3B1A1142510061E3D6 /* bow.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D391A1142510061E3D6 /* bow.png */; };
+		DF755D3C1A1142510061E3D6 /* bow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755D3A1A1142510061E3D6 /* bow@2x.png */; };
 		DF8CEDE51A0411BD008504A9 /* CharacterImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8CEDE41A0411BD008504A9 /* CharacterImagePickerViewController.m */; };
 		DF8CEDE81A0412D0008504A9 /* CharacterImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8CEDE71A0412D0008504A9 /* CharacterImagePicker.storyboard */; };
 		DF8CEDEB1A041354008504A9 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8CEDEA1A041354008504A9 /* iCarousel.m */; };
@@ -180,14 +247,8 @@
 		DFCE2A89196F10BE00A9F4C9 /* saveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */; };
 		DFD0F79E19C8B42F0097933A /* skillNodeMediator.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79A19C8B42F0097933A /* skillNodeMediator.png */; };
 		DFD0F79F19C8B42F0097933A /* skillNodeMediator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */; };
-		DFD0F7A019C8B42F0097933A /* xpMediatorAura.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */; };
-		DFD0F7A119C8B42F0097933A /* xpMediatorAura@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F79D19C8B42F0097933A /* xpMediatorAura@2x.png */; };
-		DFD0F7A419C9F3150097933A /* skillNodeMediatorHightlited.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7A219C9F3150097933A /* skillNodeMediatorHightlited.png */; };
-		DFD0F7A519C9F3150097933A /* skillNodeMediatorHightlited@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7A319C9F3150097933A /* skillNodeMediatorHightlited@2x.png */; };
 		DFD0F7A819C9F9100097933A /* skillNodeUndeveloped.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7A619C9F9100097933A /* skillNodeUndeveloped.png */; };
 		DFD0F7A919C9F9100097933A /* skillNodeUndeveloped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7A719C9F9100097933A /* skillNodeUndeveloped@2x.png */; };
-		DFD0F7D119CB33DD0097933A /* skillNodeMediatorUndeveloped.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7CF19CB33DD0097933A /* skillNodeMediatorUndeveloped.png */; };
-		DFD0F7D219CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFD0F7D019CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png */; };
 		DFD6CD191976DFF500046218 /* PlayerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD6CD181976DFF500046218 /* PlayerManagerViewController.m */; };
 		DFD6CD2B197D010500046218 /* CustomImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */; };
 		DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01B21961C6D2005D3703 /* StatViewController.storyboard */; };
@@ -200,8 +261,6 @@
 		DFDA01C21961CE7F005D3703 /* bulk.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01C01961CE7F005D3703 /* bulk.png */; };
 		DFDA01C31961CE7F005D3703 /* bulk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01C11961CE7F005D3703 /* bulk@2x.png */; };
 		DFDA01C61961D1B6005D3703 /* StatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDA01C51961D1B6005D3703 /* StatViewController.m */; };
-		DFDA01E119631A51005D3703 /* headerWallPic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */; };
-		DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01DE19631A51005D3703 /* headerWallPic.png */; };
 		DFDA01E51963245A005D3703 /* headerClouds.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E31963245A005D3703 /* headerClouds.png */; };
 		DFDA01E61963245A005D3703 /* headerClouds@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E41963245A005D3703 /* headerClouds@2x.png */; };
 		DFDA01E919632507005D3703 /* headerCreatingCharacter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E719632507005D3703 /* headerCreatingCharacter@2x.png */; };
@@ -224,8 +283,6 @@
 		DF0995D1196460900025A76A /* headerCharacterStats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerCharacterStats@2x.png"; sourceTree = "<group>"; };
 		DF0995D6196460C70025A76A /* cloudBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudBackground@2x.png"; sourceTree = "<group>"; };
 		DF0995D7196460C70025A76A /* cloudBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudBackground.png; sourceTree = "<group>"; };
-		DF0995DA196462140025A76A /* tipBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tipBackground@2x.png"; sourceTree = "<group>"; };
-		DF0995DB196462140025A76A /* tipBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tipBackground.png; sourceTree = "<group>"; };
 		DF0995DE1968303E0025A76A /* CharacterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharacterViewController.h; path = PlayerProgressTracker/CharacterViewController.h; sourceTree = SOURCE_ROOT; };
 		DF0995DF1968303E0025A76A /* CharacterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharacterViewController.m; path = PlayerProgressTracker/CharacterViewController.m; sourceTree = SOURCE_ROOT; };
 		DF0995E4196843B50025A76A /* PlayerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerViewCell.h; path = ../PlayerViewCell.h; sourceTree = "<group>"; };
@@ -299,25 +356,10 @@
 		DF1F5C86195B432D002D7EF2 /* ClassesDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassesDropViewController.m; sourceTree = "<group>"; };
 		DF1F5C87195B432D002D7EF2 /* DropDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownViewController.h; sourceTree = "<group>"; };
 		DF1F5C88195B432D002D7EF2 /* DropDownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownViewController.m; sourceTree = "<group>"; };
-		DF1F5C9A195B4338002D7EF2 /* addButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addButton.png; sourceTree = "<group>"; };
-		DF1F5C9B195B4338002D7EF2 /* addButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addButton@2x.png"; sourceTree = "<group>"; };
-		DF1F5C9C195B4338002D7EF2 /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
-		DF1F5C9D195B4338002D7EF2 /* deleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButton@2x.png"; sourceTree = "<group>"; };
 		DF1F5CA0195B4338002D7EF2 /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link.png; sourceTree = "<group>"; };
 		DF1F5CA1195B4338002D7EF2 /* link@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "link@2x.png"; sourceTree = "<group>"; };
-		DF1F5CA2195B4338002D7EF2 /* lowerXp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lowerXp.png; sourceTree = "<group>"; };
-		DF1F5CA3195B4338002D7EF2 /* lowerXp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lowerXp@2x.png"; sourceTree = "<group>"; };
-		DF1F5CA4195B4338002D7EF2 /* mentalSkillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mentalSkillNode@2x.png"; sourceTree = "<group>"; };
 		DF1F5CA5195B4338002D7EF2 /* nightSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nightSky.png; sourceTree = "<group>"; };
 		DF1F5CA6195B4338002D7EF2 /* nightSky@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nightSky@2x.png"; sourceTree = "<group>"; };
-		DF1F5CA7195B4338002D7EF2 /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noImage.png; sourceTree = "<group>"; };
-		DF1F5CA8195B4338002D7EF2 /* noImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noImage@2x.png"; sourceTree = "<group>"; };
-		DF1F5CA9195B4338002D7EF2 /* raiseXp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = raiseXp.png; sourceTree = "<group>"; };
-		DF1F5CAA195B4338002D7EF2 /* raiseXp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "raiseXp@2x.png"; sourceTree = "<group>"; };
-		DF1F5CAB195B4338002D7EF2 /* skillNode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNode.png; sourceTree = "<group>"; };
-		DF1F5CAC195B4338002D7EF2 /* skillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNode@2x.png"; sourceTree = "<group>"; };
-		DF1F5CAD195B4338002D7EF2 /* skillNodeHighlited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeHighlited.png; sourceTree = "<group>"; };
-		DF1F5CAE195B4338002D7EF2 /* skillNodeHighlited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeHighlited@2x.png"; sourceTree = "<group>"; };
 		DF1F5CAF195B4338002D7EF2 /* xpAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xpAura.png; sourceTree = "<group>"; };
 		DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xpAura@2x.png"; sourceTree = "<group>"; };
 		DF1F5CC8195B43A1002D7EF2 /* MainContextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainContextObject.h; sourceTree = "<group>"; };
@@ -349,6 +391,91 @@
 		DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icloudAvailable@2x.png"; sourceTree = "<group>"; };
 		DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icloudIsntAvailible.png; sourceTree = "<group>"; };
 		DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icloudIsntAvailible@2x.png"; sourceTree = "<group>"; };
+		DF755C8F1A1127E10061E3D6 /* agility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agility.png; sourceTree = "<group>"; };
+		DF755C901A1127E10061E3D6 /* agility@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "agility@2x.png"; sourceTree = "<group>"; };
+		DF755C911A1127E10061E3D6 /* alchemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemy.png; sourceTree = "<group>"; };
+		DF755C921A1127E10061E3D6 /* alchemy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alchemy@2x.png"; sourceTree = "<group>"; };
+		DF755C931A1127E10061E3D6 /* apprise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apprise.png; sourceTree = "<group>"; };
+		DF755C941A1127E10061E3D6 /* apprise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apprise@2x.png"; sourceTree = "<group>"; };
+		DF755C951A1127E10061E3D6 /* azure magic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "azure magic.png"; sourceTree = "<group>"; };
+		DF755C961A1127E10061E3D6 /* azure magic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "azure magic@2x.png"; sourceTree = "<group>"; };
+		DF755C971A1127E10061E3D6 /* bluff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluff.png; sourceTree = "<group>"; };
+		DF755C981A1127E10061E3D6 /* bluff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluff@2x.png"; sourceTree = "<group>"; };
+		DF755C991A1127E10061E3D6 /* climb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = climb.png; sourceTree = "<group>"; };
+		DF755C9A1A1127E10061E3D6 /* climb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "climb@2x.png"; sourceTree = "<group>"; };
+		DF755C9B1A1127E10061E3D6 /* control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control.png; sourceTree = "<group>"; };
+		DF755C9C1A1127E10061E3D6 /* control@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "control@2x.png"; sourceTree = "<group>"; };
+		DF755C9D1A1127E10061E3D6 /* craft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = craft.png; sourceTree = "<group>"; };
+		DF755C9E1A1127E10061E3D6 /* craft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "craft@2x.png"; sourceTree = "<group>"; };
+		DF755C9F1A1127E10061E3D6 /* crushing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crushing.png; sourceTree = "<group>"; };
+		DF755CA01A1127E10061E3D6 /* crushing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crushing@2x.png"; sourceTree = "<group>"; };
+		DF755CA11A1127E10061E3D6 /* cutting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cutting.png; sourceTree = "<group>"; };
+		DF755CA21A1127E10061E3D6 /* cutting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cutting@2x.png"; sourceTree = "<group>"; };
+		DF755CA31A1127E10061E3D6 /* diplomacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diplomacy.png; sourceTree = "<group>"; };
+		DF755CA41A1127E10061E3D6 /* diplomacy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diplomacy@2x.png"; sourceTree = "<group>"; };
+		DF755CA51A1127E10061E3D6 /* disguise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disguise.png; sourceTree = "<group>"; };
+		DF755CA61A1127E10061E3D6 /* disguise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disguise@2x.png"; sourceTree = "<group>"; };
+		DF755CA71A1127E10061E3D6 /* escape artist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "escape artist.png"; sourceTree = "<group>"; };
+		DF755CA81A1127E10061E3D6 /* escape artist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "escape artist@2x.png"; sourceTree = "<group>"; };
+		DF755CA91A1127E10061E3D6 /* firearm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firearm.png; sourceTree = "<group>"; };
+		DF755CAA1A1127E10061E3D6 /* firearm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firearm@2x.png"; sourceTree = "<group>"; };
+		DF755CAB1A1127E10061E3D6 /* hack devices.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hack devices.png"; sourceTree = "<group>"; };
+		DF755CAC1A1127E10061E3D6 /* hack devices@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hack devices@2x.png"; sourceTree = "<group>"; };
+		DF755CAD1A1127E10061E3D6 /* handle animal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle animal.png"; sourceTree = "<group>"; };
+		DF755CAE1A1127E10061E3D6 /* handle animal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "handle animal@2x.png"; sourceTree = "<group>"; };
+		DF755CAF1A1127E10061E3D6 /* heal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heal.png; sourceTree = "<group>"; };
+		DF755CB01A1127E10061E3D6 /* heal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heal@2x.png"; sourceTree = "<group>"; };
+		DF755CB11A1127E10061E3D6 /* inner circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inner circle.png"; sourceTree = "<group>"; };
+		DF755CB21A1127E10061E3D6 /* inner circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inner circle@2x.png"; sourceTree = "<group>"; };
+		DF755CB31A1127E10061E3D6 /* intellegence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intellegence.png; sourceTree = "<group>"; };
+		DF755CB41A1127E10061E3D6 /* intellegence@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "intellegence@2x.png"; sourceTree = "<group>"; };
+		DF755CB51A1127E10061E3D6 /* intimidate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intimidate.png; sourceTree = "<group>"; };
+		DF755CB61A1127E10061E3D6 /* intimidate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "intimidate@2x.png"; sourceTree = "<group>"; };
+		DF755CB71A1127E10061E3D6 /* knavery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = knavery.png; sourceTree = "<group>"; };
+		DF755CB81A1127E10061E3D6 /* knavery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "knavery@2x.png"; sourceTree = "<group>"; };
+		DF755CB91A1127E10061E3D6 /* meele.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meele.png; sourceTree = "<group>"; };
+		DF755CBA1A1127E10061E3D6 /* meele@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meele@2x.png"; sourceTree = "<group>"; };
+		DF755CBB1A1127E10061E3D6 /* perception.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perception.png; sourceTree = "<group>"; };
+		DF755CBC1A1127E10061E3D6 /* perception@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "perception@2x.png"; sourceTree = "<group>"; };
+		DF755CBD1A1127E10061E3D6 /* physique.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = physique.png; sourceTree = "<group>"; };
+		DF755CBE1A1127E10061E3D6 /* physique@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "physique@2x.png"; sourceTree = "<group>"; };
+		DF755CBF1A1127E10061E3D6 /* piercing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = piercing.png; sourceTree = "<group>"; };
+		DF755CC01A1127E10061E3D6 /* piercing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "piercing@2x.png"; sourceTree = "<group>"; };
+		DF755CC11A1127E10061E3D6 /* range.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = range.png; sourceTree = "<group>"; };
+		DF755CC21A1127E10061E3D6 /* range@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "range@2x.png"; sourceTree = "<group>"; };
+		DF755CC31A1127E10061E3D6 /* reason.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reason.png; sourceTree = "<group>"; };
+		DF755CC41A1127E10061E3D6 /* reason@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reason@2x.png"; sourceTree = "<group>"; };
+		DF755CC51A1127E10061E3D6 /* ride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ride.png; sourceTree = "<group>"; };
+		DF755CC61A1127E10061E3D6 /* ride@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ride@2x.png"; sourceTree = "<group>"; };
+		DF755CC71A1127E10061E3D6 /* ritual magic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ritual magic.png"; sourceTree = "<group>"; };
+		DF755CC81A1127E10061E3D6 /* ritual magic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ritual magic@2x.png"; sourceTree = "<group>"; };
+		DF755CC91A1127E10061E3D6 /* sense motive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sense motive.png"; sourceTree = "<group>"; };
+		DF755CCA1A1127E10061E3D6 /* sense motive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sense motive@2x.png"; sourceTree = "<group>"; };
+		DF755CCB1A1127E10061E3D6 /* stealth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stealth.png; sourceTree = "<group>"; };
+		DF755CCC1A1127E10061E3D6 /* stealth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stealth@2x.png"; sourceTree = "<group>"; };
+		DF755CCD1A1127E10061E3D6 /* strength.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strength.png; sourceTree = "<group>"; };
+		DF755CCE1A1127E10061E3D6 /* strength@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "strength@2x.png"; sourceTree = "<group>"; };
+		DF755CCF1A1127E10061E3D6 /* survival.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = survival.png; sourceTree = "<group>"; };
+		DF755CD01A1127E10061E3D6 /* survival@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "survival@2x.png"; sourceTree = "<group>"; };
+		DF755CD11A1127E10061E3D6 /* swim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swim.png; sourceTree = "<group>"; };
+		DF755CD21A1127E10061E3D6 /* swim@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swim@2x.png"; sourceTree = "<group>"; };
+		DF755CD31A1127E10061E3D6 /* thrown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thrown.png; sourceTree = "<group>"; };
+		DF755CD41A1127E10061E3D6 /* thrown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thrown@2x.png"; sourceTree = "<group>"; };
+		DF755CD51A1127E10061E3D6 /* toughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toughness.png; sourceTree = "<group>"; };
+		DF755CD61A1127E10061E3D6 /* toughness@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toughness@2x.png"; sourceTree = "<group>"; };
+		DF755D1F1A1127FD0061E3D6 /* skillNodeNeckless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeNeckless.png; sourceTree = "<group>"; };
+		DF755D201A1127FD0061E3D6 /* skillNodeNeckless@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeNeckless@2x.png"; sourceTree = "<group>"; };
+		DF755D211A1127FD0061E3D6 /* skillNodeNecklessHighlited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeNecklessHighlited.png; sourceTree = "<group>"; };
+		DF755D221A1127FD0061E3D6 /* skillNodeNecklessHighlited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeNecklessHighlited@2x.png"; sourceTree = "<group>"; };
+		DF755D231A1127FD0061E3D6 /* skillNodeNecklessUndeveloped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeNecklessUndeveloped.png; sourceTree = "<group>"; };
+		DF755D241A1127FD0061E3D6 /* skillNodeNecklessUndeveloped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeNecklessUndeveloped@2x.png"; sourceTree = "<group>"; };
+		DF755D2D1A112A420061E3D6 /* skillNode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNode.png; sourceTree = "<group>"; };
+		DF755D2E1A112A420061E3D6 /* skillNode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNode@2x.png"; sourceTree = "<group>"; };
+		DF755D2F1A112A420061E3D6 /* skillNodeHighlited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeHighlited.png; sourceTree = "<group>"; };
+		DF755D301A112A420061E3D6 /* skillNodeHighlited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeHighlited@2x.png"; sourceTree = "<group>"; };
+		DF755D391A1142510061E3D6 /* bow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bow.png; sourceTree = "<group>"; };
+		DF755D3A1A1142510061E3D6 /* bow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bow@2x.png"; sourceTree = "<group>"; };
+		DF755D3D1A11460C0061E3D6 /* Model 1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 1.1.xcdatamodel"; sourceTree = "<group>"; };
 		DF8CEDE31A0411BD008504A9 /* CharacterImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterImagePickerViewController.h; sourceTree = "<group>"; };
 		DF8CEDE41A0411BD008504A9 /* CharacterImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterImagePickerViewController.m; sourceTree = "<group>"; };
 		DF8CEDE71A0412D0008504A9 /* CharacterImagePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CharacterImagePicker.storyboard; sourceTree = "<group>"; };
@@ -418,8 +545,8 @@
 		DF8CEE6B1A07F0DA008504A9 /* arrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowLeft@2x.png"; sourceTree = "<group>"; };
 		DF8CEE6C1A07F0DA008504A9 /* arrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowRight.png; sourceTree = "<group>"; };
 		DF8CEE6D1A07F0DA008504A9 /* arrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowRight@2x.png"; sourceTree = "<group>"; };
-		DF99F82C1A000C7100D17A34 /* noCharacterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noCharacterIcon.png; sourceTree = "<group>"; };
-		DF99F82D1A000C7100D17A34 /* noCharacterIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noCharacterIcon@2x.png"; sourceTree = "<group>"; };
+		DF99F82C1A000C7100D17A34 /* noCharacterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noCharacterIcon.png; path = ../noCharacterIcon.png; sourceTree = "<group>"; };
+		DF99F82D1A000C7100D17A34 /* noCharacterIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noCharacterIcon@2x.png"; path = "../noCharacterIcon@2x.png"; sourceTree = "<group>"; };
 		DFAED0FC186309B40039D17B /* Experience Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Experience Flow.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAED0FF186309B40039D17B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DFAED101186309B40039D17B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -445,14 +572,8 @@
 		DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saveIcon@2x.png"; sourceTree = "<group>"; };
 		DFD0F79A19C8B42F0097933A /* skillNodeMediator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeMediator.png; sourceTree = "<group>"; };
 		DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeMediator@2x.png"; sourceTree = "<group>"; };
-		DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xpMediatorAura.png; sourceTree = "<group>"; };
-		DFD0F79D19C8B42F0097933A /* xpMediatorAura@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xpMediatorAura@2x.png"; sourceTree = "<group>"; };
-		DFD0F7A219C9F3150097933A /* skillNodeMediatorHightlited.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeMediatorHightlited.png; sourceTree = "<group>"; };
-		DFD0F7A319C9F3150097933A /* skillNodeMediatorHightlited@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeMediatorHightlited@2x.png"; sourceTree = "<group>"; };
 		DFD0F7A619C9F9100097933A /* skillNodeUndeveloped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeUndeveloped.png; sourceTree = "<group>"; };
 		DFD0F7A719C9F9100097933A /* skillNodeUndeveloped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeUndeveloped@2x.png"; sourceTree = "<group>"; };
-		DFD0F7CF19CB33DD0097933A /* skillNodeMediatorUndeveloped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skillNodeMediatorUndeveloped.png; sourceTree = "<group>"; };
-		DFD0F7D019CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skillNodeMediatorUndeveloped@2x.png"; sourceTree = "<group>"; };
 		DFD6CD171976DFF500046218 /* PlayerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManagerViewController.h; sourceTree = "<group>"; };
 		DFD6CD181976DFF500046218 /* PlayerManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerManagerViewController.m; sourceTree = "<group>"; };
 		DFD6CD29197D010500046218 /* CustomImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomImagePickerViewController.h; path = PlayerProgressTracker/CustomImagePickerViewController.h; sourceTree = SOURCE_ROOT; };
@@ -468,8 +589,6 @@
 		DFDA01C11961CE7F005D3703 /* bulk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulk@2x.png"; sourceTree = "<group>"; };
 		DFDA01C41961D1B6005D3703 /* StatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatViewController.h; sourceTree = "<group>"; };
 		DFDA01C51961D1B6005D3703 /* StatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatViewController.m; sourceTree = "<group>"; };
-		DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerWallPic@2x.png"; sourceTree = "<group>"; };
-		DFDA01DE19631A51005D3703 /* headerWallPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerWallPic.png; sourceTree = "<group>"; };
 		DFDA01E31963245A005D3703 /* headerClouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerClouds.png; sourceTree = "<group>"; };
 		DFDA01E41963245A005D3703 /* headerClouds@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerClouds@2x.png"; sourceTree = "<group>"; };
 		DFDA01E719632507005D3703 /* headerCreatingCharacter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headerCreatingCharacter@2x.png"; sourceTree = "<group>"; };
@@ -634,33 +753,14 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
-				DF8CEE6A1A07F0DA008504A9 /* arrowLeft.png */,
-				DF8CEE6B1A07F0DA008504A9 /* arrowLeft@2x.png */,
-				DF8CEE6C1A07F0DA008504A9 /* arrowRight.png */,
-				DF8CEE6D1A07F0DA008504A9 /* arrowRight@2x.png */,
+				DF755D2C1A1129460061E3D6 /* skillSkin */,
+				DF755D2B1A1128330061E3D6 /* buttons */,
+				DF755C8E1A1127E10061E3D6 /* skillIcons */,
 				DF8CEDEC1A041AF3008504A9 /* characterPics */,
-				DF99F82C1A000C7100D17A34 /* noCharacterIcon.png */,
-				DF99F82D1A000C7100D17A34 /* noCharacterIcon@2x.png */,
-				DFD0F7CF19CB33DD0097933A /* skillNodeMediatorUndeveloped.png */,
-				DFD0F7D019CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png */,
-				DFD0F7A619C9F9100097933A /* skillNodeUndeveloped.png */,
-				DFD0F7A719C9F9100097933A /* skillNodeUndeveloped@2x.png */,
-				DFD0F7A219C9F3150097933A /* skillNodeMediatorHightlited.png */,
-				DFD0F7A319C9F3150097933A /* skillNodeMediatorHightlited@2x.png */,
-				DFD0F79A19C8B42F0097933A /* skillNodeMediator.png */,
-				DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */,
-				DFD0F79C19C8B42F0097933A /* xpMediatorAura.png */,
-				DFD0F79D19C8B42F0097933A /* xpMediatorAura@2x.png */,
-				DF296448198C095A0024E070 /* initiative.png */,
-				DF296449198C095A0024E070 /* initiative@2x.png */,
 				DF3C0EE4198824240016AFF2 /* icloudAvailable.png */,
 				DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */,
 				DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */,
 				DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */,
-				DFCE2A86196F10BE00A9F4C9 /* saveIcon.png */,
-				DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */,
-				DF0995DA196462140025A76A /* tipBackground@2x.png */,
-				DF0995DB196462140025A76A /* tipBackground.png */,
 				DF0995D6196460C70025A76A /* cloudBackground@2x.png */,
 				DF0995D7196460C70025A76A /* cloudBackground.png */,
 				DF0995D0196460900025A76A /* headerCharacterStats.png */,
@@ -669,37 +769,10 @@
 				DFDA01E819632507005D3703 /* headerCreatingCharacter.png */,
 				DFDA01E31963245A005D3703 /* headerClouds.png */,
 				DFDA01E41963245A005D3703 /* headerClouds@2x.png */,
-				DFDA01DD19631A51005D3703 /* headerWallPic@2x.png */,
-				DFDA01DE19631A51005D3703 /* headerWallPic.png */,
-				DFDA01C01961CE7F005D3703 /* bulk.png */,
-				DFDA01C11961CE7F005D3703 /* bulk@2x.png */,
-				DFDA01B41961C7BA005D3703 /* health.png */,
-				DFDA01B51961C7BA005D3703 /* health@2x.png */,
-				DFDA01B61961C7BA005D3703 /* inventoryIcon.png */,
-				DFDA01B71961C7BA005D3703 /* inventoryIcon@2x.png */,
-				DFDA01B81961C7BA005D3703 /* movement.png */,
-				DFDA01B91961C7BA005D3703 /* movement@2x.png */,
-				DF1F5C9A195B4338002D7EF2 /* addButton.png */,
-				DF1F5C9B195B4338002D7EF2 /* addButton@2x.png */,
-				DF1F5C9C195B4338002D7EF2 /* deleteButton.png */,
-				DF1F5C9D195B4338002D7EF2 /* deleteButton@2x.png */,
 				DF1F5CA0195B4338002D7EF2 /* link.png */,
 				DF1F5CA1195B4338002D7EF2 /* link@2x.png */,
-				DF1F5CA2195B4338002D7EF2 /* lowerXp.png */,
-				DF1F5CA3195B4338002D7EF2 /* lowerXp@2x.png */,
-				DF1F5CA4195B4338002D7EF2 /* mentalSkillNode@2x.png */,
 				DF1F5CA5195B4338002D7EF2 /* nightSky.png */,
 				DF1F5CA6195B4338002D7EF2 /* nightSky@2x.png */,
-				DF1F5CA7195B4338002D7EF2 /* noImage.png */,
-				DF1F5CA8195B4338002D7EF2 /* noImage@2x.png */,
-				DF1F5CA9195B4338002D7EF2 /* raiseXp.png */,
-				DF1F5CAA195B4338002D7EF2 /* raiseXp@2x.png */,
-				DF1F5CAB195B4338002D7EF2 /* skillNode.png */,
-				DF1F5CAC195B4338002D7EF2 /* skillNode@2x.png */,
-				DF1F5CAD195B4338002D7EF2 /* skillNodeHighlited.png */,
-				DF1F5CAE195B4338002D7EF2 /* skillNodeHighlited@2x.png */,
-				DF1F5CAF195B4338002D7EF2 /* xpAura.png */,
-				DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */,
 			);
 			path = ImagesResources;
 			sourceTree = "<group>";
@@ -738,6 +811,165 @@
 			path = iCloud;
 			sourceTree = "<group>";
 		};
+		DF755C8E1A1127E10061E3D6 /* skillIcons */ = {
+			isa = PBXGroup;
+			children = (
+				DF755D391A1142510061E3D6 /* bow.png */,
+				DF755D3A1A1142510061E3D6 /* bow@2x.png */,
+				DF755C8F1A1127E10061E3D6 /* agility.png */,
+				DF755C901A1127E10061E3D6 /* agility@2x.png */,
+				DF755C911A1127E10061E3D6 /* alchemy.png */,
+				DF755C921A1127E10061E3D6 /* alchemy@2x.png */,
+				DF755C931A1127E10061E3D6 /* apprise.png */,
+				DF755C941A1127E10061E3D6 /* apprise@2x.png */,
+				DF755C951A1127E10061E3D6 /* azure magic.png */,
+				DF755C961A1127E10061E3D6 /* azure magic@2x.png */,
+				DF755C971A1127E10061E3D6 /* bluff.png */,
+				DF755C981A1127E10061E3D6 /* bluff@2x.png */,
+				DF755C991A1127E10061E3D6 /* climb.png */,
+				DF755C9A1A1127E10061E3D6 /* climb@2x.png */,
+				DF755C9B1A1127E10061E3D6 /* control.png */,
+				DF755C9C1A1127E10061E3D6 /* control@2x.png */,
+				DF755C9D1A1127E10061E3D6 /* craft.png */,
+				DF755C9E1A1127E10061E3D6 /* craft@2x.png */,
+				DF755C9F1A1127E10061E3D6 /* crushing.png */,
+				DF755CA01A1127E10061E3D6 /* crushing@2x.png */,
+				DF755CA11A1127E10061E3D6 /* cutting.png */,
+				DF755CA21A1127E10061E3D6 /* cutting@2x.png */,
+				DF755CA31A1127E10061E3D6 /* diplomacy.png */,
+				DF755CA41A1127E10061E3D6 /* diplomacy@2x.png */,
+				DF755CA51A1127E10061E3D6 /* disguise.png */,
+				DF755CA61A1127E10061E3D6 /* disguise@2x.png */,
+				DF755CA71A1127E10061E3D6 /* escape artist.png */,
+				DF755CA81A1127E10061E3D6 /* escape artist@2x.png */,
+				DF755CA91A1127E10061E3D6 /* firearm.png */,
+				DF755CAA1A1127E10061E3D6 /* firearm@2x.png */,
+				DF755CAB1A1127E10061E3D6 /* hack devices.png */,
+				DF755CAC1A1127E10061E3D6 /* hack devices@2x.png */,
+				DF755CAD1A1127E10061E3D6 /* handle animal.png */,
+				DF755CAE1A1127E10061E3D6 /* handle animal@2x.png */,
+				DF755CAF1A1127E10061E3D6 /* heal.png */,
+				DF755CB01A1127E10061E3D6 /* heal@2x.png */,
+				DF755CB11A1127E10061E3D6 /* inner circle.png */,
+				DF755CB21A1127E10061E3D6 /* inner circle@2x.png */,
+				DF755CB31A1127E10061E3D6 /* intellegence.png */,
+				DF755CB41A1127E10061E3D6 /* intellegence@2x.png */,
+				DF755CB51A1127E10061E3D6 /* intimidate.png */,
+				DF755CB61A1127E10061E3D6 /* intimidate@2x.png */,
+				DF755CB71A1127E10061E3D6 /* knavery.png */,
+				DF755CB81A1127E10061E3D6 /* knavery@2x.png */,
+				DF755CB91A1127E10061E3D6 /* meele.png */,
+				DF755CBA1A1127E10061E3D6 /* meele@2x.png */,
+				DF755CBB1A1127E10061E3D6 /* perception.png */,
+				DF755CBC1A1127E10061E3D6 /* perception@2x.png */,
+				DF755CBD1A1127E10061E3D6 /* physique.png */,
+				DF755CBE1A1127E10061E3D6 /* physique@2x.png */,
+				DF755CBF1A1127E10061E3D6 /* piercing.png */,
+				DF755CC01A1127E10061E3D6 /* piercing@2x.png */,
+				DF755CC11A1127E10061E3D6 /* range.png */,
+				DF755CC21A1127E10061E3D6 /* range@2x.png */,
+				DF755CC31A1127E10061E3D6 /* reason.png */,
+				DF755CC41A1127E10061E3D6 /* reason@2x.png */,
+				DF755CC51A1127E10061E3D6 /* ride.png */,
+				DF755CC61A1127E10061E3D6 /* ride@2x.png */,
+				DF755CC71A1127E10061E3D6 /* ritual magic.png */,
+				DF755CC81A1127E10061E3D6 /* ritual magic@2x.png */,
+				DF755CC91A1127E10061E3D6 /* sense motive.png */,
+				DF755CCA1A1127E10061E3D6 /* sense motive@2x.png */,
+				DF755CCB1A1127E10061E3D6 /* stealth.png */,
+				DF755CCC1A1127E10061E3D6 /* stealth@2x.png */,
+				DF755CCD1A1127E10061E3D6 /* strength.png */,
+				DF755CCE1A1127E10061E3D6 /* strength@2x.png */,
+				DF755CCF1A1127E10061E3D6 /* survival.png */,
+				DF755CD01A1127E10061E3D6 /* survival@2x.png */,
+				DF755CD11A1127E10061E3D6 /* swim.png */,
+				DF755CD21A1127E10061E3D6 /* swim@2x.png */,
+				DF755CD31A1127E10061E3D6 /* thrown.png */,
+				DF755CD41A1127E10061E3D6 /* thrown@2x.png */,
+				DF755CD51A1127E10061E3D6 /* toughness.png */,
+				DF755CD61A1127E10061E3D6 /* toughness@2x.png */,
+			);
+			path = skillIcons;
+			sourceTree = "<group>";
+		};
+		DF755D2B1A1128330061E3D6 /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				DFDA01C01961CE7F005D3703 /* bulk.png */,
+				DFDA01C11961CE7F005D3703 /* bulk@2x.png */,
+				DFDA01B41961C7BA005D3703 /* health.png */,
+				DFDA01B51961C7BA005D3703 /* health@2x.png */,
+				DFDA01B61961C7BA005D3703 /* inventoryIcon.png */,
+				DFDA01B71961C7BA005D3703 /* inventoryIcon@2x.png */,
+				DFDA01B81961C7BA005D3703 /* movement.png */,
+				DFDA01B91961C7BA005D3703 /* movement@2x.png */,
+				DFCE2A86196F10BE00A9F4C9 /* saveIcon.png */,
+				DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */,
+				DF8CEE6A1A07F0DA008504A9 /* arrowLeft.png */,
+				DF8CEE6B1A07F0DA008504A9 /* arrowLeft@2x.png */,
+				DF8CEE6C1A07F0DA008504A9 /* arrowRight.png */,
+				DF8CEE6D1A07F0DA008504A9 /* arrowRight@2x.png */,
+				DF296448198C095A0024E070 /* initiative.png */,
+				DF296449198C095A0024E070 /* initiative@2x.png */,
+			);
+			name = buttons;
+			sourceTree = "<group>";
+		};
+		DF755D2C1A1129460061E3D6 /* skillSkin */ = {
+			isa = PBXGroup;
+			children = (
+				DF755D381A112AD20061E3D6 /* mediator */,
+				DF755D371A112A8E0061E3D6 /* undeveloped */,
+				DF755D361A112A7C0061E3D6 /* hightlited */,
+				DF755D351A112A700061E3D6 /* normal */,
+				DF1F5CAF195B4338002D7EF2 /* xpAura.png */,
+				DF1F5CB0195B4338002D7EF2 /* xpAura@2x.png */,
+			);
+			name = skillSkin;
+			sourceTree = "<group>";
+		};
+		DF755D351A112A700061E3D6 /* normal */ = {
+			isa = PBXGroup;
+			children = (
+				DF755D2D1A112A420061E3D6 /* skillNode.png */,
+				DF755D2E1A112A420061E3D6 /* skillNode@2x.png */,
+				DF755D1F1A1127FD0061E3D6 /* skillNodeNeckless.png */,
+				DF755D201A1127FD0061E3D6 /* skillNodeNeckless@2x.png */,
+			);
+			name = normal;
+			sourceTree = "<group>";
+		};
+		DF755D361A112A7C0061E3D6 /* hightlited */ = {
+			isa = PBXGroup;
+			children = (
+				DF755D2F1A112A420061E3D6 /* skillNodeHighlited.png */,
+				DF755D301A112A420061E3D6 /* skillNodeHighlited@2x.png */,
+				DF755D211A1127FD0061E3D6 /* skillNodeNecklessHighlited.png */,
+				DF755D221A1127FD0061E3D6 /* skillNodeNecklessHighlited@2x.png */,
+			);
+			name = hightlited;
+			sourceTree = "<group>";
+		};
+		DF755D371A112A8E0061E3D6 /* undeveloped */ = {
+			isa = PBXGroup;
+			children = (
+				DFD0F7A619C9F9100097933A /* skillNodeUndeveloped.png */,
+				DFD0F7A719C9F9100097933A /* skillNodeUndeveloped@2x.png */,
+				DF755D231A1127FD0061E3D6 /* skillNodeNecklessUndeveloped.png */,
+				DF755D241A1127FD0061E3D6 /* skillNodeNecklessUndeveloped@2x.png */,
+			);
+			name = undeveloped;
+			sourceTree = "<group>";
+		};
+		DF755D381A112AD20061E3D6 /* mediator */ = {
+			isa = PBXGroup;
+			children = (
+				DFD0F79A19C8B42F0097933A /* skillNodeMediator.png */,
+				DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */,
+			);
+			name = mediator;
+			sourceTree = "<group>";
+		};
 		DF8CEDE61A041282008504A9 /* CharacterImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,6 +983,8 @@
 		DF8CEDEC1A041AF3008504A9 /* characterPics */ = {
 			isa = PBXGroup;
 			children = (
+				DF99F82C1A000C7100D17A34 /* noCharacterIcon.png */,
+				DF99F82D1A000C7100D17A34 /* noCharacterIcon@2x.png */,
 				DF8CEDED1A041AF3008504A9 /* av_aristocracyFem.png */,
 				DF8CEDEE1A041AF3008504A9 /* av_aristocracyFem@2x.png */,
 				DF8CEDEF1A041AF3008504A9 /* av_barbarian.png */,
@@ -935,12 +1169,12 @@
 		DFDA01C71961D2E2005D3703 /* nodes */ = {
 			isa = PBXGroup;
 			children = (
+				DF1F5C7F195B432D002D7EF2 /* SkillLinkView.storyboard */,
 				DF1F5C7A195B432D002D7EF2 /* NodeLinkController.h */,
 				DF1F5C7B195B432D002D7EF2 /* NodeLinkController.m */,
 				DF1F5C7C195B432D002D7EF2 /* NodeView.storyboard */,
 				DF1F5C7D195B432D002D7EF2 /* NodeViewController.h */,
 				DF1F5C7E195B432D002D7EF2 /* NodeViewController.m */,
-				DF1F5C7F195B432D002D7EF2 /* SkillLinkView.storyboard */,
 			);
 			name = nodes;
 			sourceTree = "<group>";
@@ -1051,144 +1285,203 @@
 			files = (
 				DF8CEDE81A0412D0008504A9 /* CharacterImagePicker.storyboard in Resources */,
 				DF8CEE4C1A041AF3008504A9 /* av_warrior3.png in Resources */,
+				DF755D191A1127E10061E3D6 /* swim.png in Resources */,
 				DF8CEE521A041AF3008504A9 /* av_warrior6.png in Resources */,
 				DF8CEE2A1A041AF3008504A9 /* av_aristocracyFem@2x.png in Resources */,
 				DFDA01C21961CE7F005D3703 /* bulk.png in Resources */,
 				DF1F5CB8195B4338002D7EF2 /* link@2x.png in Resources */,
+				DF755D0C1A1127E10061E3D6 /* reason@2x.png in Resources */,
+				DF755CFE1A1127E10061E3D6 /* intimidate@2x.png in Resources */,
 				DF1F5CBD195B4338002D7EF2 /* nightSky@2x.png in Resources */,
+				DF755CEC1A1127E10061E3D6 /* diplomacy@2x.png in Resources */,
 				DF99F82E1A000C7100D17A34 /* noCharacterIcon.png in Resources */,
+				DF755CE21A1127E10061E3D6 /* climb@2x.png in Resources */,
 				DF8CEE3D1A041AF3008504A9 /* av_scolar@2x.png in Resources */,
 				DF8CEE291A041AF3008504A9 /* av_aristocracyFem.png in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
+				DF755D261A1127FD0061E3D6 /* skillNodeNeckless@2x.png in Resources */,
 				DF8CEE611A041AF3008504A9 /* av_wizard4@2x.png in Resources */,
 				DF8CEE701A07F0DA008504A9 /* arrowRight.png in Resources */,
 				DF8CEE5A1A041AF3008504A9 /* av_whitebearded@2x.png in Resources */,
-				DF1F5CB1195B4338002D7EF2 /* addButton.png in Resources */,
-				DF1F5CB3195B4338002D7EF2 /* deleteButton.png in Resources */,
 				DFDA01C31961CE7F005D3703 /* bulk@2x.png in Resources */,
 				DFDA01E919632507005D3703 /* headerCreatingCharacter@2x.png in Resources */,
 				DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */,
 				DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */,
 				DFDA01E51963245A005D3703 /* headerClouds.png in Resources */,
+				DF755CDB1A1127E10061E3D6 /* apprise.png in Resources */,
 				DF8CEE4A1A041AF3008504A9 /* av_warrior2.png in Resources */,
-				DF1F5CBB195B4338002D7EF2 /* mentalSkillNode@2x.png in Resources */,
+				DF755CF01A1127E10061E3D6 /* escape artist@2x.png in Resources */,
+				DF755CF81A1127E10061E3D6 /* heal@2x.png in Resources */,
+				DF755CE81A1127E10061E3D6 /* crushing@2x.png in Resources */,
 				DF22154A199A80D900E1DC90 /* PointCountLeft_iphone.storyboard in Resources */,
+				DF755D0E1A1127E10061E3D6 /* ride@2x.png in Resources */,
 				DF8CEE591A041AF3008504A9 /* av_whitebearded.png in Resources */,
 				DF8CEE631A041AF3008504A9 /* av_wizard5@2x.png in Resources */,
+				DF755D021A1127E10061E3D6 /* meele@2x.png in Resources */,
 				DF8CEE541A041AF3008504A9 /* av_warrior7.png in Resources */,
 				DF8CEE2B1A041AF3008504A9 /* av_barbarian.png in Resources */,
 				DF8CEE451A041AF3008504A9 /* av_travaler@2x.png in Resources */,
+				DF755D091A1127E10061E3D6 /* range.png in Resources */,
 				DF1F5C92195B432D002D7EF2 /* NodeView.storyboard in Resources */,
-				DF1F5CB2195B4338002D7EF2 /* addButton@2x.png in Resources */,
+				DF755CF91A1127E10061E3D6 /* inner circle.png in Resources */,
 				DF8CEE511A041AF3008504A9 /* av_warrior5@2x.png in Resources */,
 				DF8CEE331A041AF3008504A9 /* av_laughingman.png in Resources */,
+				DF755CED1A1127E10061E3D6 /* disguise.png in Resources */,
 				DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */,
-				DFDA01E119631A51005D3703 /* headerWallPic@2x.png in Resources */,
+				DF755CE41A1127E10061E3D6 /* control@2x.png in Resources */,
 				DF3C0EE9198824240016AFF2 /* icloudAvailable@2x.png in Resources */,
 				DF8CEE441A041AF3008504A9 /* av_travaler.png in Resources */,
-				DFD0F7A519C9F3150097933A /* skillNodeMediatorHightlited@2x.png in Resources */,
+				DF755CF41A1127E10061E3D6 /* hack devices@2x.png in Resources */,
+				DF755CF51A1127E10061E3D6 /* handle animal.png in Resources */,
 				DFCE2A89196F10BE00A9F4C9 /* saveIcon@2x.png in Resources */,
+				DF755D1D1A1127E10061E3D6 /* toughness.png in Resources */,
 				DF8CEE3C1A041AF3008504A9 /* av_scolar.png in Resources */,
 				DF8CEE571A041AF3008504A9 /* av_warrior8@2x.png in Resources */,
+				DF755D3B1A1142510061E3D6 /* bow.png in Resources */,
+				DF755D151A1127E10061E3D6 /* strength.png in Resources */,
 				DF8CEE411A041AF3008504A9 /* av_socrosses@2x.png in Resources */,
+				DF755CF31A1127E10061E3D6 /* hack devices.png in Resources */,
 				DFDA01EA19632507005D3703 /* headerCreatingCharacter.png in Resources */,
 				DF8CEE621A041AF3008504A9 /* av_wizard5.png in Resources */,
+				DF755D071A1127E10061E3D6 /* piercing.png in Resources */,
 				DF1F5C8E195B432D002D7EF2 /* SkillViewCell.xib in Resources */,
 				DFDA01E61963245A005D3703 /* headerClouds@2x.png in Resources */,
+				DF755CEF1A1127E10061E3D6 /* escape artist.png in Resources */,
 				DFD0F7A819C9F9100097933A /* skillNodeUndeveloped.png in Resources */,
+				DF755D121A1127E10061E3D6 /* sense motive@2x.png in Resources */,
 				DF8CEE3F1A041AF3008504A9 /* av_shooter@2x.png in Resources */,
 				DF8CEE401A041AF3008504A9 /* av_socrosses.png in Resources */,
-				DFD0F7A419C9F3150097933A /* skillNodeMediatorHightlited.png in Resources */,
+				DF755D061A1127E10061E3D6 /* physique@2x.png in Resources */,
+				DF755CF11A1127E10061E3D6 /* firearm.png in Resources */,
+				DF755CDF1A1127E10061E3D6 /* bluff.png in Resources */,
+				DF755CFF1A1127E10061E3D6 /* knavery.png in Resources */,
+				DF755CD71A1127E10061E3D6 /* agility.png in Resources */,
 				DF8CEE2D1A041AF3008504A9 /* av_baron.png in Resources */,
-				DF1F5CC2195B4338002D7EF2 /* skillNode.png in Resources */,
+				DF755CD81A1127E10061E3D6 /* agility@2x.png in Resources */,
 				DF8CEE3B1A041AF3008504A9 /* av_rogue@2x.png in Resources */,
-				DFD0F7A019C8B42F0097933A /* xpMediatorAura.png in Resources */,
 				DF8CEE2F1A041AF3008504A9 /* av_firewizard.png in Resources */,
 				DFDA01BF1961C7BA005D3703 /* movement@2x.png in Resources */,
 				DF1F5CC6195B4338002D7EF2 /* xpAura.png in Resources */,
+				DF755D281A1127FD0061E3D6 /* skillNodeNecklessHighlited@2x.png in Resources */,
 				DF8CEE461A041AF3008504A9 /* av_warlock_f@x.png in Resources */,
 				DFCE2A88196F10BE00A9F4C9 /* saveIcon.png in Resources */,
+				DF755CE61A1127E10061E3D6 /* craft@2x.png in Resources */,
 				DF8CEE711A07F0DA008504A9 /* arrowRight@2x.png in Resources */,
 				DF8CEE491A041AF3008504A9 /* av_warrior.png in Resources */,
+				DF755CDD1A1127E10061E3D6 /* azure magic.png in Resources */,
+				DF755D271A1127FD0061E3D6 /* skillNodeNecklessHighlited.png in Resources */,
 				DF8CEE5D1A041AF3008504A9 /* av_wizard.png in Resources */,
 				DF8CEE311A041AF3008504A9 /* av_illthinker.png in Resources */,
+				DF755D081A1127E10061E3D6 /* piercing@2x.png in Resources */,
 				DF8CEE501A041AF3008504A9 /* av_warrior5.png in Resources */,
+				DF755D3C1A1142510061E3D6 /* bow@2x.png in Resources */,
 				DF8CEE531A041AF3008504A9 /* av_warrior6@2x.png in Resources */,
 				DF1F5CB7195B4338002D7EF2 /* link.png in Resources */,
 				DF8CEE4F1A041AF3008504A9 /* av_warrior4@2x.png in Resources */,
-				DF1F5CBE195B4338002D7EF2 /* noImage.png in Resources */,
+				DF755CF21A1127E10061E3D6 /* firearm@2x.png in Resources */,
 				DF8CEE421A041AF3008504A9 /* av_tragicman.png in Resources */,
 				DF3C0EEB198824240016AFF2 /* icloudIsntAvailible@2x.png in Resources */,
 				DF0995D5196460900025A76A /* headerCharacterStats@2x.png in Resources */,
+				DF755CE91A1127E10061E3D6 /* cutting.png in Resources */,
 				DF8CEE5C1A041AF3008504A9 /* av_witch@2x.png in Resources */,
 				DF22150A1999372900E1DC90 /* Main_iPhone.storyboard in Resources */,
 				DF8CEE301A041AF3008504A9 /* av_firewizard@2x.png in Resources */,
+				DF755D171A1127E10061E3D6 /* survival.png in Resources */,
 				DF8CEE2C1A041AF3008504A9 /* av_barbarian@2x.png in Resources */,
 				DF8CEE431A041AF3008504A9 /* av_tragicman@2x.png in Resources */,
-				DF1F5CC1195B4338002D7EF2 /* raiseXp@2x.png in Resources */,
-				DF1F5CB9195B4338002D7EF2 /* lowerXp.png in Resources */,
+				DF755CF61A1127E10061E3D6 /* handle animal@2x.png in Resources */,
+				DF755D331A112A420061E3D6 /* skillNodeHighlited.png in Resources */,
+				DF755CF71A1127E10061E3D6 /* heal.png in Resources */,
+				DF755D001A1127E10061E3D6 /* knavery@2x.png in Resources */,
+				DF755CD91A1127E10061E3D6 /* alchemy.png in Resources */,
 				DF8CEE551A041AF3008504A9 /* av_warrior7@2x.png in Resources */,
 				DFDA01BD1961C7BA005D3703 /* inventoryIcon@2x.png in Resources */,
 				DFD0F79E19C8B42F0097933A /* skillNodeMediator.png in Resources */,
 				DF0995D8196460C70025A76A /* cloudBackground@2x.png in Resources */,
+				DF755D1A1A1127E10061E3D6 /* swim@2x.png in Resources */,
 				DF8CEE4B1A041AF3008504A9 /* av_warrior2@2x.png in Resources */,
-				DF0995DC196462140025A76A /* tipBackground@2x.png in Resources */,
+				DF755D311A112A420061E3D6 /* skillNode.png in Resources */,
+				DF755D251A1127FD0061E3D6 /* skillNodeNeckless.png in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
+				DF755D0A1A1127E10061E3D6 /* range@2x.png in Resources */,
+				DF755D131A1127E10061E3D6 /* stealth.png in Resources */,
 				DF0995D4196460900025A76A /* headerCharacterStats.png in Resources */,
+				DF755D051A1127E10061E3D6 /* physique.png in Resources */,
 				DF8CEE381A041AF3008504A9 /* av_rogue.png in Resources */,
-				DF1F5CBF195B4338002D7EF2 /* noImage@2x.png in Resources */,
+				DF755D101A1127E10061E3D6 /* ritual magic@2x.png in Resources */,
+				DF755D181A1127E10061E3D6 /* survival@2x.png in Resources */,
+				DF755CE31A1127E10061E3D6 /* control.png in Resources */,
+				DF755D341A112A420061E3D6 /* skillNodeHighlited@2x.png in Resources */,
 				DF1F5C8A195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib in Resources */,
+				DF755D161A1127E10061E3D6 /* strength@2x.png in Resources */,
 				DF99F82F1A000C7100D17A34 /* noCharacterIcon@2x.png in Resources */,
-				DF1F5CBA195B4338002D7EF2 /* lowerXp@2x.png in Resources */,
+				DF755CE71A1127E10061E3D6 /* crushing.png in Resources */,
+				DF755CDA1A1127E10061E3D6 /* alchemy@2x.png in Resources */,
+				DF755CFC1A1127E10061E3D6 /* intellegence@2x.png in Resources */,
 				DF8CEE341A041AF3008504A9 /* av_laughingman@2x.png in Resources */,
 				DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */,
-				DFD0F7D119CB33DD0097933A /* skillNodeMediatorUndeveloped.png in Resources */,
 				DF1F5CBC195B4338002D7EF2 /* nightSky.png in Resources */,
 				DF1F5C94195B432D002D7EF2 /* SkillLinkView.storyboard in Resources */,
-				DF1F5CC3195B4338002D7EF2 /* skillNode@2x.png in Resources */,
+				DF755CE01A1127E10061E3D6 /* bluff@2x.png in Resources */,
+				DF755CFB1A1127E10061E3D6 /* intellegence.png in Resources */,
+				DF755CFA1A1127E10061E3D6 /* inner circle@2x.png in Resources */,
+				DF755D041A1127E10061E3D6 /* perception@2x.png in Resources */,
 				DF8CEE481A041AF3008504A9 /* av_warlock_m@2x.png in Resources */,
+				DF755CEB1A1127E10061E3D6 /* diplomacy.png in Resources */,
 				DF8CEE4D1A041AF3008504A9 /* av_warrior3@2x.png in Resources */,
 				DFDA01BE1961C7BA005D3703 /* movement.png in Resources */,
+				DF755CDE1A1127E10061E3D6 /* azure magic@2x.png in Resources */,
 				DF8CEE361A041AF3008504A9 /* av_pirat@2x.png in Resources */,
+				DF755CEE1A1127E10061E3D6 /* disguise@2x.png in Resources */,
 				DF8CEE641A041AF3008504A9 /* av_wizard@2x.png in Resources */,
+				DF755CFD1A1127E10061E3D6 /* intimidate.png in Resources */,
 				DF29644B198C095A0024E070 /* initiative@2x.png in Resources */,
+				DF755D0B1A1127E10061E3D6 /* reason.png in Resources */,
 				DF8CEE3A1A041AF3008504A9 /* av_rogue2@2x.png in Resources */,
 				DF8CEE2E1A041AF3008504A9 /* av_baron@2x.png in Resources */,
+				DF755D011A1127E10061E3D6 /* meele.png in Resources */,
+				DF755CE51A1127E10061E3D6 /* craft.png in Resources */,
+				DF755D1C1A1127E10061E3D6 /* thrown@2x.png in Resources */,
 				DF8CEE601A041AF3008504A9 /* av_wizard4.png in Resources */,
 				DF3C0EE8198824240016AFF2 /* icloudAvailable.png in Resources */,
 				DF8CEE6E1A07F0DA008504A9 /* arrowLeft.png in Resources */,
+				DF755D111A1127E10061E3D6 /* sense motive.png in Resources */,
+				DF755D141A1127E10061E3D6 /* stealth@2x.png in Resources */,
 				DFDA01B31961C6D2005D3703 /* StatViewController.storyboard in Resources */,
-				DFD0F7D219CB33DD0097933A /* skillNodeMediatorUndeveloped@2x.png in Resources */,
+				DF755D0F1A1127E10061E3D6 /* ritual magic.png in Resources */,
 				DF8CEE321A041AF3008504A9 /* av_illthinker@2x.png in Resources */,
-				DFDA01E219631A51005D3703 /* headerWallPic.png in Resources */,
 				DF8CEE5B1A041AF3008504A9 /* av_witch.png in Resources */,
+				DF755D1B1A1127E10061E3D6 /* thrown.png in Resources */,
 				DF8CEE391A041AF3008504A9 /* av_rogue2.png in Resources */,
-				DF1F5CC5195B4338002D7EF2 /* skillNodeHighlited@2x.png in Resources */,
+				DF755D031A1127E10061E3D6 /* perception.png in Resources */,
 				DF8CEE5F1A041AF3008504A9 /* av_wizard2@2x.png in Resources */,
 				DF29644A198C095A0024E070 /* initiative.png in Resources */,
 				DF8CEE351A041AF3008504A9 /* av_pirat.png in Resources */,
-				DFD0F7A119C8B42F0097933A /* xpMediatorAura@2x.png in Resources */,
+				DF755CEA1A1127E10061E3D6 /* cutting@2x.png in Resources */,
 				DF8CEE581A041AF3008504A9 /* av_warrior@2x.png in Resources */,
 				DF8CEE6F1A07F0DA008504A9 /* arrowLeft@2x.png in Resources */,
 				DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */,
 				DF8CEE561A041AF3008504A9 /* av_warrior8.png in Resources */,
-				DF1F5CC0195B4338002D7EF2 /* raiseXp.png in Resources */,
+				DF755D0D1A1127E10061E3D6 /* ride.png in Resources */,
 				DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */,
+				DF755D291A1127FD0061E3D6 /* skillNodeNecklessUndeveloped.png in Resources */,
 				DF8CEE3E1A041AF3008504A9 /* av_shooter.png in Resources */,
 				DFD0F7A919C9F9100097933A /* skillNodeUndeveloped@2x.png in Resources */,
 				DFD0F79F19C8B42F0097933A /* skillNodeMediator@2x.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
-				DF1F5CC4195B4338002D7EF2 /* skillNodeHighlited.png in Resources */,
+				DF755CDC1A1127E10061E3D6 /* apprise@2x.png in Resources */,
 				DF8CEE371A041AF3008504A9 /* av_ranger@x.png in Resources */,
 				DF0995D9196460C70025A76A /* cloudBackground.png in Resources */,
+				DF755CE11A1127E10061E3D6 /* climb.png in Resources */,
 				DF8CEE4E1A041AF3008504A9 /* av_warrior4.png in Resources */,
+				DF755D2A1A1127FD0061E3D6 /* skillNodeNecklessUndeveloped@2x.png in Resources */,
+				DF755D1E1A1127E10061E3D6 /* toughness@2x.png in Resources */,
 				DF8CEE471A041AF3008504A9 /* av_warlock_m.png in Resources */,
-				DF0995DD196462140025A76A /* tipBackground.png in Resources */,
+				DF755D321A112A420061E3D6 /* skillNode@2x.png in Resources */,
 				DFDA01BA1961C7BA005D3703 /* health.png in Resources */,
 				DF3611001993F8EC00B6B78A /* PointCountLeft.storyboard in Resources */,
 				DF8CEE5E1A041AF3008504A9 /* av_wizard2.png in Resources */,
-				DF1F5CB4195B4338002D7EF2 /* deleteButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1492,9 +1785,10 @@
 		DF1F5C33195B431E002D7EF2 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DF755D3D1A11460C0061E3D6 /* Model 1.1.xcdatamodel */,
 				DF1F5C34195B431E002D7EF2 /* Model.xcdatamodel */,
 			);
-			currentVersion = DF1F5C34195B431E002D7EF2 /* Model.xcdatamodel */;
+			currentVersion = DF755D3D1A11460C0061E3D6 /* Model 1.1.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
