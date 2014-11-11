@@ -31,6 +31,10 @@
 @property (nonatomic) BOOL isLightUp;
 @property (nonatomic) NSInteger expectedMinLevel;
 
+//optimization
+@property (nonatomic) BOOL isDeveloped;
+@property (nonatomic) NSInteger prevLevel;
+
 @end
 
 @implementation NodeViewController
@@ -45,8 +49,9 @@
     controller.view.frame =  frame;
     controller.isLightUp = false;
     
-    [controller.skillLevelLabel setFont:[UIFont fontWithName:BodoniSvtyTwoITCTTBold size:isiPad ? 26 : 13]];
-    [controller.skillName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:isiPad ? 25 : 12]];
+    controller.prevLevel = -1;
+    [controller.skillLevelLabel setFont:[UIFont fontWithName:BodoniSvtyTwoITCTTBold size:isiPad ? 22 : 13]];
+    [controller.skillName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:isiPad ? 21 : 12]];
     
     return controller;
 }
@@ -63,6 +68,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.skillButton setBackgroundImage:[UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeHighlited")] forState:UIControlStateHighlighted];
+    self.xpAuraImageView.image = [UIImage imageWithContentsOfFile:filePathWithName(@"xpAura")];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,7 +107,7 @@
 {
     if (!_skill) {
         if (self.delegate && self.skillTemplate) {
-            self.skill = [self.delegate needNewSkillObjectWithTemplate:self.skillTemplate];
+            _skill = [self.delegate needNewSkillObjectWithTemplate:self.skillTemplate];
         }
     }
     
@@ -108,6 +116,15 @@
 
 -(void)setSkill:(Skill *)skill
 {
+    if (_skill != skill && skill) {
+        self.skillName.text = skill.skillTemplate.nameForDisplay;
+        if (skill.skillTemplate.icon && skill.skillTemplate.icon.picId) {
+            self.iconView.image = [UIImage imageWithContentsOfFile:filePathWithName(skill.skillTemplate.icon.picId)];
+        }
+        else {
+            self.iconView.image = nil;
+        }
+    }
     _skill = skill;
     if (_skill) {
         self.skillTemplate = _skill.skillTemplate;
@@ -130,8 +147,9 @@
         else {
             self.expectedMinLevel = expectedMinLevelForOtherAdvanced;
         }
-        
+
         [self updateInterface];
+        
     }
 }
 
@@ -187,44 +205,35 @@
 {
     NSInteger level = [[SkillManager sharedInstance] countUsableLevelValueForSkill:self.skill];
     self.skillLevelLabel.text = [NSString stringWithFormat:@"%ld",(long)level];
-    BOOL isDeveloped = [self isDeveloped];
-    
-    if (self.skill.skillTemplate.isMediator) {
-        UIImage *image = isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeMediator")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped")];
-        [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
-        self.skillLevelLabel.hidden = true;
-        self.skillNeckless.hidden = true;
+    self.isDeveloped = [self isDeveloped];
+    if (level != self.prevLevel) {
+        
+        if (self.skill.skillTemplate.isMediator) {
+            UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeMediator")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped")];
+            [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
+            self.skillLevelLabel.hidden = true;
+            self.skillNeckless.hidden = true;
+        }
+        else {
+            UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNode")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped")];
+            UIImage *imageNeckless = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped")];
+            [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
+            self.skillNeckless.image = imageNeckless;
+            self.skillLevelLabel.hidden = false;
+            self.skillNeckless.hidden = false;
+            self.skillLevelLabel.textColor = self.isDeveloped ? healthyNodeShiningColor : undevelopedNodeShiningColor;
+        }
+        
+        [self processLinkVisibility];
     }
-    else {
-        UIImage *image = isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNode")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped")];
-        UIImage *imageNeckless = isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped")];
-        [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
-        self.skillNeckless.image = imageNeckless;
-        self.skillLevelLabel.hidden = false;
-        self.skillNeckless.hidden = false;
-        self.skillLevelLabel.textColor = isDeveloped ? healthyNodeShiningColor : undevelopedNodeShiningColor;
-    }
-    [self.skillButton setBackgroundImage:[UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeHighlited")] forState:UIControlStateHighlighted];
-    self.xpAuraImageView.image = [UIImage imageWithContentsOfFile:filePathWithName(@"xpAura")];
-    
-    [self processLinkVisibility];
-    self.view.alpha = isDeveloped ? 1 : 0.95;
-    self.skillName.text = self.skill.skillTemplate.nameForDisplay;
-    
-    if (self.skill.skillTemplate.icon && self.skill.skillTemplate.icon.picId) {
-        self.iconView.image = [UIImage imageWithContentsOfFile:filePathWithName(self.skill.skillTemplate.icon.picId)];
-    }
-    else {
-        self.iconView.image = nil;
-    }
-    
     
     [self processXPAura];
+    self.prevLevel = level;
 }
 
 -(void)processLinkVisibility
 {
-    self.nodeLinkParent.view.alpha = [self isDeveloped] ? 1 : 0.4;
+    self.nodeLinkParent.view.alpha = self.isDeveloped ? 1 : 0.4;
 }
 
 -(BOOL)isDeveloped
@@ -246,7 +255,7 @@
 
 -(IBAction)didButtonUp:(id)sender
 {
-    self.skillNeckless.image = [self isDeveloped] ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped")];
+    self.skillNeckless.image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped")];
 }
 
 -(IBAction)didButtonDown:(id)sender

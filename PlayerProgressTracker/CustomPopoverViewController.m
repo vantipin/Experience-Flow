@@ -85,11 +85,9 @@
 -(UIWindow *)popupWindow
 {
     if (!_popupWindow) {
-        CGRect windowFrame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , [[UIScreen mainScreen] bounds].size.height);
-        _popupWindow = [[UIWindow alloc] initWithFrame:windowFrame];
-        _popupWindow.backgroundColor = [UIColor clearColor];
-        _popupWindow.rootViewController = self;
-        _popupWindow.windowLevel = UIWindowLevelNormal;
+        _popupWindow = [UIApplication sharedApplication].keyWindow;
+        [_popupWindow.rootViewController.view addSubview:self.view];
+        [_popupWindow.rootViewController addChildViewController:self];
     }
     
     return _popupWindow;
@@ -124,8 +122,7 @@
     else {
         self.view.alpha = 0;
         
-        self.popupWindow.frame = view.window.frame;
-        [self.popupWindow makeKeyAndVisible];
+        [self.popupWindow bringSubviewToFront:self.view];
         
         self.contentView.frame = CGRectMake(0, 0, self.popoverContentSize.width, self.popoverContentSize.height );
         
@@ -153,10 +150,14 @@
             self.view.alpha = 0;
         } completion:^(BOOL success) {
             self.popupWindow = nil;
+            [self removeFromParentViewController];
+            [self.view removeFromSuperview];
         }];
     }
     else {
         self.popupWindow = nil;
+        [self removeFromParentViewController];
+        [self.view removeFromSuperview];
     }
     
     if (self.delegate) {

@@ -72,10 +72,10 @@ static NSString *emptyParentKey = @"emptyParent";
 - (void)viewDidLoad
 {
     minimalMarginBetweenTrees = isiPad ? 100 : 50;
-    minimalMarginBetweenNodesX = isiPad ? 50 : 25;
-    minimalMarginBetweenNodesY = isiPad ? 110 : 55;
-    borderSize = isiPad ? 100 : 50;
-    nodeDiameter = isiPad ? 200 : 100;
+    minimalMarginBetweenNodesX = isiPad ? 40 : 25;
+    minimalMarginBetweenNodesY = isiPad ? 90 : 55;
+    borderSize = isiPad ? 80 : 50;
+    nodeDiameter = isiPad ? 170 : 100;
     
     
     [super viewDidLoad];
@@ -541,6 +541,7 @@ static NSString *emptyParentKey = @"emptyParent";
     }
     
     [self updateStatHeader];
+
 }
 
 

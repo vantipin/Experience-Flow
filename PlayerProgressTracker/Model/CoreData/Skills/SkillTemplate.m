@@ -112,7 +112,7 @@ static NSString *needDefaultSkillsCheckKey = @"needDefualtSkillsCheck";
             skillTemplate.levelGrowthGoesToBasicSkill = basicSkillGrowthGoes;
         }
     
-        NSLog(@"Created new template with name: %@",name);
+        //NSLog(@"Created new template with name: %@",name);
         [SkillTemplate saveContext:context];
         
         //save it Here are

@@ -120,7 +120,7 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 1.5;
+    //lpgr.minimumPressDuration = 1.5;
     [self.tableView addGestureRecognizer:lpgr];
     //
 //    NSDictionary *dict = @{
@@ -395,12 +395,17 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     if (!indexPath) {
 
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        [self didTabPlayer:self.dataSource[indexPath.row]];
-        [self.contentCharacterController changePlayerIconTap:nil];
-        [self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionNone];
         
-    } else {
-        //NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+        if (indexPath.row != self.dataSource.count) {
+            [self.contentCharacterController changePlayerIconTap:nil];
+            
+            [self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionTop];
+            
+            if (self.selectedCharacter != self.dataSource[indexPath.row]) {
+                [self didTabPlayer:self.dataSource[indexPath.row]];
+            }
+        }
+        
     }
 }
 
@@ -478,10 +483,10 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     [self updateDataSource];
     [self.tableView reloadData];
     
-    Character *character = [self.dataSource lastObject];
-    [self didTabPlayer:character];
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:([self.dataSource count] - 1) inSection:0];
-    [self.tableView selectRowAtIndexPath:newIndexPath animated:true scrollPosition:UITableViewScrollPositionBottom];
+//    Character *character = [self.dataSource lastObject];
+//    [self didTabPlayer:character];
+//    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:([self.dataSource count] - 1) inSection:0];
+//    [self.tableView selectRowAtIndexPath:newIndexPath animated:true scrollPosition:UITableViewScrollPositionBottom];
 }
 
 -(void)invokeActivityIndicatorWork;
