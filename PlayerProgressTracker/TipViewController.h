@@ -11,6 +11,6 @@
 
 @interface TipViewController : UIViewController
 
--(id)initWithSkillTemplate:(SkillTemplate *)skillTemplate;
+-(id)initWithSkillTemplate:(Skill *)skillTemplate;
 
 @end

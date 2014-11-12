@@ -40,9 +40,6 @@
 		DF1F5C6A195B431E002D7EF2 /* SkillTemplateDataArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C53195B431E002D7EF2 /* SkillTemplateDataArchiver.m */; };
 		DF1F5C89195B432D002D7EF2 /* AddSkillViewCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C6D195B432D002D7EF2 /* AddSkillViewCellTableViewCell.m */; };
 		DF1F5C8A195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C6E195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib */; };
-		DF1F5C8B195B432D002D7EF2 /* CustomXpRaisingBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C70195B432D002D7EF2 /* CustomXpRaisingBtnView.m */; };
-		DF1F5C8D195B432D002D7EF2 /* SkillViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C74195B432D002D7EF2 /* SkillViewCell.m */; };
-		DF1F5C8E195B432D002D7EF2 /* SkillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C75195B432D002D7EF2 /* SkillViewCell.xib */; };
 		DF1F5C91195B432D002D7EF2 /* NodeLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C7B195B432D002D7EF2 /* NodeLinkController.m */; };
 		DF1F5C92195B432D002D7EF2 /* NodeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1F5C7C195B432D002D7EF2 /* NodeView.storyboard */; };
 		DF1F5C93195B432D002D7EF2 /* NodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1F5C7E195B432D002D7EF2 /* NodeViewController.m */; };
@@ -241,7 +238,6 @@
 		DFAED121186309B40039D17B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAED103186309B40039D17B /* UIKit.framework */; };
 		DFAED129186309B40039D17B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DFAED127186309B40039D17B /* InfoPlist.strings */; };
 		DFAED12B186309B40039D17B /* PlayerProgressTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */; };
-		DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */; };
 		DFC63F0E196DBAF10000AAAD /* CustomSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC63F0D196DBAF10000AAAD /* CustomSplitViewController.m */; };
 		DFCE2A88196F10BE00A9F4C9 /* saveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCE2A86196F10BE00A9F4C9 /* saveIcon.png */; };
 		DFCE2A89196F10BE00A9F4C9 /* saveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFCE2A87196F10BE00A9F4C9 /* saveIcon@2x.png */; };
@@ -337,11 +333,6 @@
 		DF1F5C6C195B432D002D7EF2 /* AddSkillViewCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSkillViewCellTableViewCell.h; sourceTree = "<group>"; };
 		DF1F5C6D195B432D002D7EF2 /* AddSkillViewCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSkillViewCellTableViewCell.m; sourceTree = "<group>"; };
 		DF1F5C6E195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddSkillViewCellTableViewCell.xib; sourceTree = "<group>"; };
-		DF1F5C6F195B432D002D7EF2 /* CustomXpRaisingBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomXpRaisingBtnView.h; path = Views/CustomXpRaisingBtnView.h; sourceTree = "<group>"; };
-		DF1F5C70195B432D002D7EF2 /* CustomXpRaisingBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomXpRaisingBtnView.m; path = Views/CustomXpRaisingBtnView.m; sourceTree = "<group>"; };
-		DF1F5C73195B432D002D7EF2 /* SkillViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkillViewCell.h; path = Views/SkillViewCell.h; sourceTree = "<group>"; };
-		DF1F5C74195B432D002D7EF2 /* SkillViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SkillViewCell.m; path = Views/SkillViewCell.m; sourceTree = "<group>"; };
-		DF1F5C75195B432D002D7EF2 /* SkillViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SkillViewCell.xib; path = Views/SkillViewCell.xib; sourceTree = "<group>"; };
 		DF1F5C7A195B432D002D7EF2 /* NodeLinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeLinkController.h; sourceTree = "<group>"; };
 		DF1F5C7B195B432D002D7EF2 /* NodeLinkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeLinkController.m; sourceTree = "<group>"; };
 		DF1F5C7C195B432D002D7EF2 /* NodeView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NodeView.storyboard; sourceTree = "<group>"; };
@@ -564,8 +555,6 @@
 		DFAED126186309B40039D17B /* PlayerProgressTrackerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlayerProgressTrackerTests-Info.plist"; sourceTree = "<group>"; };
 		DFAED128186309B40039D17B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DFAED12A186309B40039D17B /* PlayerProgressTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerProgressTrackerTests.m; sourceTree = "<group>"; };
-		DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillTableViewController.h; sourceTree = "<group>"; };
-		DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillTableViewController.m; sourceTree = "<group>"; };
 		DFC63F0C196DBAF10000AAAD /* CustomSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSplitViewController.h; sourceTree = "<group>"; };
 		DFC63F0D196DBAF10000AAAD /* CustomSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSplitViewController.m; sourceTree = "<group>"; };
 		DFCE2A86196F10BE00A9F4C9 /* saveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveIcon.png; sourceTree = "<group>"; };
@@ -1088,7 +1077,6 @@
 				DF8CEDE61A041282008504A9 /* CharacterImagePicker */,
 				DF3C0EDC19881F5C0016AFF2 /* iCloud */,
 				DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */,
-				DFD6CD1A1978322500046218 /* SkillTableViewController(Deprecated) */,
 				DFDA01EB19632BF8005D3703 /* PopoverControllers */,
 				DF1F5C6B195B432D002D7EF2 /* Views */,
 				DF1F5C79195B432D002D7EF2 /* SkillTree */,
@@ -1150,20 +1138,6 @@
 				DF1F5C99195B4338002D7EF2 /* ImagesResources */,
 			);
 			name = Resourses;
-			sourceTree = "<group>";
-		};
-		DFD6CD1A1978322500046218 /* SkillTableViewController(Deprecated) */ = {
-			isa = PBXGroup;
-			children = (
-				DFC3B9B818884C7A0026C0A4 /* SkillTableViewController.h */,
-				DFC3B9B918884C7A0026C0A4 /* SkillTableViewController.m */,
-				DF1F5C73195B432D002D7EF2 /* SkillViewCell.h */,
-				DF1F5C74195B432D002D7EF2 /* SkillViewCell.m */,
-				DF1F5C75195B432D002D7EF2 /* SkillViewCell.xib */,
-				DF1F5C6F195B432D002D7EF2 /* CustomXpRaisingBtnView.h */,
-				DF1F5C70195B432D002D7EF2 /* CustomXpRaisingBtnView.m */,
-			);
-			name = "SkillTableViewController(Deprecated)";
 			sourceTree = "<group>";
 		};
 		DFDA01C71961D2E2005D3703 /* nodes */ = {
@@ -1344,7 +1318,6 @@
 				DFDA01EA19632507005D3703 /* headerCreatingCharacter.png in Resources */,
 				DF8CEE621A041AF3008504A9 /* av_wizard5.png in Resources */,
 				DF755D071A1127E10061E3D6 /* piercing.png in Resources */,
-				DF1F5C8E195B432D002D7EF2 /* SkillViewCell.xib in Resources */,
 				DFDA01E61963245A005D3703 /* headerClouds@2x.png in Resources */,
 				DF755CEF1A1127E10061E3D6 /* escape artist.png in Resources */,
 				DFD0F7A819C9F9100097933A /* skillNodeUndeveloped.png in Resources */,
@@ -1511,18 +1484,15 @@
 				DF1F5C98195B432D002D7EF2 /* DropDownViewController.m in Sources */,
 				DF1F5C89195B432D002D7EF2 /* AddSkillViewCellTableViewCell.m in Sources */,
 				DF22FB8119F825A400E4EE47 /* CustomPopoverViewController.m in Sources */,
-				DF1F5C8D195B432D002D7EF2 /* SkillViewCell.m in Sources */,
 				DF0995E01968303E0025A76A /* CharacterViewController.m in Sources */,
 				DF1F5CCA195B43A1002D7EF2 /* MainContextObject.m in Sources */,
 				DF1F5C5A195B431E002D7EF2 /* WeaponRanged.m in Sources */,
 				DF1F5C61195B431E002D7EF2 /* PietySkill.m in Sources */,
-				DFC3B9BA18884C7A0026C0A4 /* SkillTableViewController.m in Sources */,
 				DF1F5C56195B431E002D7EF2 /* Insanity.m in Sources */,
 				DF1F5C57195B431E002D7EF2 /* CoreDataClass.m in Sources */,
 				DF1F5C65195B431E002D7EF2 /* SkillSet.m in Sources */,
 				DF1F5C96195B432D002D7EF2 /* AddSkillDropViewController.m in Sources */,
 				DF8CEDE51A0411BD008504A9 /* CharacterImagePickerViewController.m in Sources */,
-				DF1F5C8B195B432D002D7EF2 /* CustomXpRaisingBtnView.m in Sources */,
 				DF1F5C54195B431E002D7EF2 /* Character.m in Sources */,
 				DF1F5C97195B432D002D7EF2 /* ClassesDropViewController.m in Sources */,
 				DF1F5C66195B431E002D7EF2 /* SkillTemplate.m in Sources */,
@@ -1679,13 +1649,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Evgeny Mikhalkov (9MMMNMSQM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Experience Flow";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "82d3be83-e09c-449b-8b47-a0413c7f0524";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1697,13 +1667,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YAUHEN MIKHALKOU (AXT7HT56A4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
 				INFOPLIST_FILE = "PlayerProgressTracker/PlayerProgressTracker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Experience Flow";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1e8bea2f-58e7-41b4-8f00-e2335c1dd1e6";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

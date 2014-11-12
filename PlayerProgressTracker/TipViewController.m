@@ -8,6 +8,8 @@
 
 #import "TipViewController.h"
 #import "Constants.h"
+#import "Skill.h"
+#import "SkillManager.h"
 
 @interface TipViewController ()
 
@@ -29,28 +31,47 @@
     return self;
 }
 
--(id)initWithSkillTemplate:(SkillTemplate *)skillTemplate
+-(id)initWithSkillTemplate:(Skill *)skill
 {
     self = [super init];
     if (self) {
         
+        NSDictionary * attributes;
+        NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:@""];
         self.tipTextView = [[UITextView alloc] initWithFrame:self.view.bounds];
         
-        NSString *description = [NSString stringWithFormat:@"%@\n\n",skillTemplate.name];
+        NSString *description = [NSString stringWithFormat:@"%@",skill.skillTemplate.nameForDisplay];
+        attributes = @{NSForegroundColorAttributeName : [UIColor blackColor],
+                       NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:20]};
+        [string appendAttributedString:[[NSAttributedString alloc] initWithString:description attributes:[attributes copy]]];
         
-        if (skillTemplate.skillDescription) {
-            description = [description stringByAppendingString:skillTemplate.skillDescription];
+        description = [NSString stringWithFormat:@"\nLevel %d (%d/%d)", skill.currentLevel, (int)skill.currentProgress, (int)[[SkillManager sharedInstance] countXpNeededForNextLevel:skill]];
+        attributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor],
+                       NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14]};
+        [string appendAttributedString:[[NSAttributedString alloc] initWithString:description attributes:[attributes copy]]];
+        
+        if (skill.skillTemplate.skillDescription) {
+            description = [NSString stringWithFormat:@"\n\n%@",skill.skillTemplate.skillDescription];
+            attributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor],
+                           NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14]};
+            [string appendAttributedString:[[NSAttributedString alloc] initWithString:description attributes:[attributes copy]]];
         }
-        if (skillTemplate.skillRules) {
-            description = [description stringByAppendingString:[NSString stringWithFormat:@"\n\n%@",skillTemplate.skillRules]];
+        if (skill.skillTemplate.skillRules) {
+            description = [NSString stringWithFormat:@"\n\n%@",skill.skillTemplate.skillRules];
+            attributes = @{NSForegroundColorAttributeName : kRGB(7, 20, 40, 1),
+                           NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue" size:14]};
+            [string appendAttributedString:[[NSAttributedString alloc] initWithString:description attributes:[attributes copy]]];
         }
-        if (skillTemplate.skillRulesExamples) {
-            description = [description stringByAppendingString:[NSString stringWithFormat:@"\n\n%@",skillTemplate.skillRulesExamples]];
+        if (skill.skillTemplate.skillRulesExamples) {
+            description = [NSString stringWithFormat:@"\n\n%@",skill.skillTemplate.skillRulesExamples];
+            attributes = @{NSForegroundColorAttributeName : kRGB(37, 67, 37, 1),
+                           NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14]};
+            [string appendAttributedString:[[NSAttributedString alloc] initWithString:description attributes:[attributes copy]]];
         }
         
-        [self.tipTextView setText:description];
-        [self.tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:(isiPad ? 16 : 12)]];
-        self.tipTextView.textColor = kRGB(20, 20, 20, 1);
+        [self.tipTextView setAttributedText:string];
+        //[self.tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:(isiPad ? 16 : 12)]];
+        //self.tipTextView.textColor = kRGB(20, 20, 20, 1);
 
         self.tipTextView.scrollEnabled = true;
         
@@ -60,6 +81,7 @@
         
         [self.view addSubview:self.tipTextView];
         self.tipTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        
     }
     return self;
 }
@@ -81,7 +103,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-
+    [self.tipTextView scrollRectToVisible:CGRectMake(0,0,1,1) animated:false];
     //self.tipTextView.center = self.view.center;
 }
 

@@ -137,9 +137,6 @@
         } completion:^(BOOL success) {
         }];
     }
-    
-
-
 }
 
 
@@ -150,14 +147,16 @@
             self.view.alpha = 0;
         } completion:^(BOOL success) {
             self.popupWindow = nil;
-            [self removeFromParentViewController];
             [self.view removeFromSuperview];
+            [self removeFromParentViewController];
+            
         }];
     }
     else {
         self.popupWindow = nil;
-        [self removeFromParentViewController];
         [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+        
     }
     
     if (self.delegate) {
