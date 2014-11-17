@@ -52,6 +52,7 @@
     controller.prevLevel = -1;
     [controller.skillLevelLabel setFont:[UIFont fontWithName:BodoniSvtyTwoITCTTBold size:isiPad ? 22 : 13]];
     [controller.skillName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:isiPad ? 21 : 12]];
+    controller.skillButton.exclusiveTouch = true;
     
     return controller;
 }

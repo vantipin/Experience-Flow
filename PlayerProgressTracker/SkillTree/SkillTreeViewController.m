@@ -46,6 +46,8 @@ static NSString *emptyParentKey = @"emptyParent";
 @property (nonatomic) PointsCountLeftController *pointsLeftController;
 @property (nonatomic) float xpPointsLeft;
 
+@property (nonatomic) BOOL proccessingTap;
+
 @end
 
 @implementation SkillTreeViewController
@@ -71,6 +73,8 @@ static NSString *emptyParentKey = @"emptyParent";
 
 - (void)viewDidLoad
 {
+    self.proccessingTap = false;
+    
     minimalMarginBetweenTrees = isiPad ? 100 : 50;
     minimalMarginBetweenNodesX = isiPad ? 40 : 25;
     minimalMarginBetweenNodesY = isiPad ? 90 : 55;
@@ -618,19 +622,24 @@ static NSString *emptyParentKey = @"emptyParent";
 -(void)didSwipNodeDown:(NodeViewController *)node
 {
     if (!node.skill.skillTemplate.isMediator) {
-        float xpPointsToTake;
-        if (self.isInCreatingNewCharacterMod) {
-            if ([self.operationStack valueForKey:node.skill.skillTemplate.name]) {
-                NSMutableArray *skillStack = [self.operationStack valueForKey:node.skill.skillTemplate.name];
-                NSNumber *lastPoints = skillStack.lastObject;
-                if (lastPoints) {
-                    xpPointsToTake = lastPoints.floatValue;
-                    [skillStack removeObject:lastPoints];
-                    self.xpPointsLeft = self.xpPointsLeft + xpPointsToTake;
-                    [[SkillManager sharedInstance] removeXpPoints:xpPointsToTake toSkill:node.skill];
-                    [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
+        if (!self.proccessingTap) {
+            self.proccessingTap = true;
+            float xpPointsToTake;
+            if (self.isInCreatingNewCharacterMod) {
+                if ([self.operationStack valueForKey:node.skill.skillTemplate.name]) {
+                    NSMutableArray *skillStack = [self.operationStack valueForKey:node.skill.skillTemplate.name];
+                    NSNumber *lastPoints = skillStack.lastObject;
+                    if (lastPoints) {
+                        xpPointsToTake = lastPoints.floatValue;
+                        [skillStack removeObject:lastPoints];
+                        self.xpPointsLeft = self.xpPointsLeft + xpPointsToTake;
+                        [[SkillManager sharedInstance] removeXpPoints:xpPointsToTake toSkill:node.skill];
+                        [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
+                    }
                 }
+                NSLog(@"%@",self.operationStack);
             }
+            self.proccessingTap = false;
         }
         else {
             [[SkillManager sharedInstance] removeXpPoints:1.0f toSkill:node.skill];
@@ -641,32 +650,39 @@ static NSString *emptyParentKey = @"emptyParent";
 -(void)didSwipNodeUp:(NodeViewController *)node
 {
     if (!node.skill.skillTemplate.isMediator) {
-        if (self.isInCreatingNewCharacterMod) {
-            if (self.xpPointsLeft > 0) {
-                float xpPointsToGive;
-                xpPointsToGive = [[SkillManager sharedInstance] countXpNeededForNextLevel:node.skill];
-                xpPointsToGive -= node.skill.currentProgress;
-                
-                if (self.xpPointsLeft > xpPointsToGive) {
-                    self.xpPointsLeft = self.xpPointsLeft - xpPointsToGive;
+        if (!self.proccessingTap) {
+            self.proccessingTap = true;
+            if (self.isInCreatingNewCharacterMod) {
+                if (self.xpPointsLeft > 0) {
+                    float xpPointsToGive;
+                    xpPointsToGive = [[SkillManager sharedInstance] countXpNeededForNextLevel:node.skill];
+                    xpPointsToGive -= node.skill.currentProgress;
+                    
+                    if (self.xpPointsLeft > xpPointsToGive) {
+                        self.xpPointsLeft = self.xpPointsLeft - xpPointsToGive;
+                    }
+                    else {
+                        xpPointsToGive = self.xpPointsLeft;
+                        self.xpPointsLeft = 0;
+                    }
+                    
+                    //registrate progress
+                    NSMutableArray *skillStack = [self.operationStack valueForKey:node.skill.skillTemplate.name];
+                    if (!skillStack) {
+                        skillStack = [NSMutableArray new];
+                        [self.operationStack setObject:skillStack forKey:node.skill.skillTemplate.name];
+                    }
+                    [skillStack addObject:@(xpPointsToGive)];
+                    
+                    [[SkillManager sharedInstance] addXpPoints:xpPointsToGive toSkill:node.skill];
+                    [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
                 }
-                else {
-                    xpPointsToGive = self.xpPointsLeft;
-                    self.xpPointsLeft = 0;
-                }
-                
-                //registrate progress
-                NSMutableArray *skillStack = [self.operationStack valueForKey:node.skill.skillTemplate.name];
-                if (!skillStack) {
-                    skillStack = [NSMutableArray new];
-                    [self.operationStack setObject:skillStack forKey:node.skill.skillTemplate.name];
-                }
-                [skillStack addObject:@(xpPointsToGive)];
-                
-                [[SkillManager sharedInstance] addXpPoints:xpPointsToGive toSkill:node.skill];
-                [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
+                NSLog(@"%@",self.operationStack);
             }
+            self.proccessingTap = false;
+            
         }
+
         else {
             [[SkillManager sharedInstance] addXpPoints:1.0f toSkill:node.skill];
         }
