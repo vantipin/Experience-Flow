@@ -622,10 +622,10 @@ static NSString *emptyParentKey = @"emptyParent";
 -(void)didSwipNodeDown:(NodeViewController *)node
 {
     if (!node.skill.skillTemplate.isMediator) {
-        if (!self.proccessingTap) {
-            self.proccessingTap = true;
-            float xpPointsToTake;
-            if (self.isInCreatingNewCharacterMod) {
+        float xpPointsToTake;
+        if (self.isInCreatingNewCharacterMod) {
+            if (!self.proccessingTap) {
+                self.proccessingTap = true;
                 if ([self.operationStack valueForKey:node.skill.skillTemplate.name]) {
                     NSMutableArray *skillStack = [self.operationStack valueForKey:node.skill.skillTemplate.name];
                     NSNumber *lastPoints = skillStack.lastObject;
@@ -638,8 +638,9 @@ static NSString *emptyParentKey = @"emptyParent";
                     }
                 }
                 NSLog(@"%@",self.operationStack);
+                self.proccessingTap = false;
             }
-            self.proccessingTap = false;
+            
         }
         else {
             [[SkillManager sharedInstance] removeXpPoints:1.0f toSkill:node.skill];
@@ -650,9 +651,10 @@ static NSString *emptyParentKey = @"emptyParent";
 -(void)didSwipNodeUp:(NodeViewController *)node
 {
     if (!node.skill.skillTemplate.isMediator) {
-        if (!self.proccessingTap) {
-            self.proccessingTap = true;
-            if (self.isInCreatingNewCharacterMod) {
+        
+        if (self.isInCreatingNewCharacterMod) {
+            if (!self.proccessingTap) {
+                self.proccessingTap = true;
                 if (self.xpPointsLeft > 0) {
                     float xpPointsToGive;
                     xpPointsToGive = [[SkillManager sharedInstance] countXpNeededForNextLevel:node.skill];
@@ -678,11 +680,9 @@ static NSString *emptyParentKey = @"emptyParent";
                     [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
                 }
                 NSLog(@"%@",self.operationStack);
+                self.proccessingTap = false;
             }
-            self.proccessingTap = false;
-            
         }
-
         else {
             [[SkillManager sharedInstance] addXpPoints:1.0f toSkill:node.skill];
         }
