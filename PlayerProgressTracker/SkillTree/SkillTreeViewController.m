@@ -10,7 +10,6 @@
 #import "SkillTemplate.h"
 #import "SkillManager.h"
 #import "DefaultSkillTemplates.h"
-#import "StatViewController.h"
 #import "TipViewController.h"
 #import "CustomPopoverViewController.h"
 #import "PointsCountLeftController.h"
@@ -42,7 +41,6 @@ static NSString *emptyParentKey = @"emptyParent";
 @property (nonatomic) long treeHeight;
 @property (nonatomic) NSMutableArray *allExistingNodes;
 @property (nonatomic) NSMutableDictionary *operationStack;
-@property (nonatomic) StatViewController *statHeaderController;
 @property (nonatomic) PointsCountLeftController *pointsLeftController;
 @property (nonatomic) float xpPointsLeft;
 
@@ -278,22 +276,6 @@ static NSString *emptyParentKey = @"emptyParent";
     return _nodeIndexesForSkillNames;
 }
 
--(StatViewController *)statHeaderController
-{
-    if (!_statHeaderController) {
-        
-        _statHeaderController = [StatViewController getInstanceFromStoryboardWithFrame:CGRectMake(
-                                                                                                  0,
-                                                                                                  0 + self.customHeaderStatLayoutY,
-                                                                                                  self.scrollView.frame.size.width,
-                                                                                                  [StatViewController headerHeight])];
-        _statHeaderController.delegate = self;
-        [self.view addSubview:_statHeaderController.view];
-    }
-    
-    return _statHeaderController;
-}
-
 -(PointsCountLeftController *)pointsLeftController
 {
     if (!_pointsLeftController) {
@@ -318,22 +300,6 @@ static NSString *emptyParentKey = @"emptyParent";
 }
 
 #pragma mark -
-
--(void)updateStatHeader
-{
-    Skill *toughnessSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].toughness withCharacter:self.character];
-    Skill *strenghtSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].strength withCharacter:self.character];
-    Skill *physiqueSkill = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].physique withCharacter:self.character];
-    Skill *perception = [[SkillManager sharedInstance] getOrAddSkillWithTemplate:[DefaultSkillTemplates sharedInstance].perception withCharacter:self.character];
-
-    int percFloat = [[SkillManager sharedInstance] countUsableLevelValueForSkill:perception] / 2;
-    self.statHeaderController.initiativeLabel.text = [NSString stringWithFormat:@"%d",percFloat ? percFloat : 1];
-    self.statHeaderController.movementLabel.text = [NSString stringWithFormat:@"%d",self.character.pace + physiqueSkill.currentLevel];
-    self.statHeaderController.healthCurrentLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 2];
-    self.statHeaderController.healthMaxLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:toughnessSkill] * 2];
-    self.statHeaderController.inventoryCurrentLabel.text = [NSString stringWithFormat:@"%d",0];
-    self.statHeaderController.inventoryMaxLabel.text = [NSString stringWithFormat:@"%d",[[SkillManager sharedInstance] countUsableLevelValueForSkill:strenghtSkill] * 3];
-}
 
 -(void)updateScrollViewZoomAnimated:(BOOL)animated
 {
@@ -525,7 +491,6 @@ static NSString *emptyParentKey = @"emptyParent";
             }
             treeMargin += thisTreeGreatestSectionMargin + minimalMarginBetweenTrees;
         }
-        [self updateStatHeader];
     }
 }
 
@@ -543,8 +508,6 @@ static NSString *emptyParentKey = @"emptyParent";
         }
         [node updateInterface];
     }
-    
-    [self updateStatHeader];
 
 }
 
@@ -563,16 +526,16 @@ static NSString *emptyParentKey = @"emptyParent";
         [UIView animateWithDuration:0.2 animations:^{
             self.customHeaderStatLayoutY = newYLayout;
             [self centerScrollViewContents];
-            CGRect newHeaderFrame = self.statHeaderController.view.frame;
-            newHeaderFrame.origin.y = 0 + newYLayout;
-            self.statHeaderController.view.frame = newHeaderFrame;
+            //CGRect newHeaderFrame = self.statHeaderController.view.frame;
+            //newHeaderFrame.origin.y = 0 + newYLayout;
+            //self.statHeaderController.view.frame = newHeaderFrame;
         }];
     }
     self.customHeaderStatLayoutY = newYLayout;
     [self centerScrollViewContents];
-    CGRect newHeaderFrame = self.statHeaderController.view.frame;
-    newHeaderFrame.origin.y = 0 + newYLayout;
-    self.statHeaderController.view.frame = newHeaderFrame;
+    //CGRect newHeaderFrame = self.statHeaderController.view.frame;
+    //newHeaderFrame.origin.y = 0 + newYLayout;
+    //self.statHeaderController.view.frame = newHeaderFrame;
 }
 
 
@@ -724,7 +687,6 @@ static NSString *emptyParentKey = @"emptyParent";
             [self checkForUpdateSubskillsOf:subSkill];
         }
     }
-    [self updateStatHeader];
 }
 
 
@@ -741,34 +703,7 @@ static NSString *emptyParentKey = @"emptyParent";
     }
 }
 
-#pragma mark StatSet protocol
--(void)didTapHealth;
-{
-    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:[DefaultSkillTemplates sharedInstance].toughness.name];
-    [self centerScrollViewOnNode:node];
-    [node lightUp];
-}
 
--(void)didTapInventory;
-{
-    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:[DefaultSkillTemplates sharedInstance].strength.name];
-    [self centerScrollViewOnNode:node];
-    [node lightUp];
-}
-
--(void)didTapMovement;
-{
-    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:[DefaultSkillTemplates sharedInstance].physique.name];
-    [self centerScrollViewOnNode:node];
-    [node lightUp];
-}
-
--(void)didTapInitiative;
-{
-    NodeViewController *node = [self.nodeIndexesForSkillNames objectForKey:[DefaultSkillTemplates sharedInstance].perception.name];
-    [self centerScrollViewOnNode:node];
-    [node lightUp];
-}
 
 -(void)centerScrollViewOnNode:(NodeViewController *)node
 {

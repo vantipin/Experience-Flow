@@ -10,6 +10,9 @@
 #import "Constants.h"
 #import "Skill.h"
 #import "SkillManager.h"
+#import "DefaultSkillTemplates.h"
+#import "SkillSet.h"
+#import "Character.h"
 
 @interface TipViewController ()
 
@@ -50,6 +53,53 @@
                        NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14]};
         [string appendAttributedString:[[NSAttributedString alloc] initWithString:description attributes:[attributes copy]]];
         
+        
+        BOOL needToAddAdditionalInfo = false;
+        //process certain skills info dynamicly start
+        NSArray *controlGroup = @[[DefaultSkillTemplates sharedInstance].crashing.name,
+                                  [DefaultSkillTemplates sharedInstance].cutting.name,
+                                  [DefaultSkillTemplates sharedInstance].piercing.name];
+        if ([controlGroup indexOfObject:skill.skillTemplate.name] != NSNotFound) {
+            int usableLevels = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
+            needToAddAdditionalInfo = true;
+            int numberOfAttacks = (usableLevels > 4) ? (usableLevels - 4) / 2 + 1 : 1;
+            description = [NSString stringWithFormat:@"\n\nYou have %d Action Point(s) during round, using %@ attacks.",numberOfAttacks, skill.skillTemplate.nameForDisplay];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].toughness.name]) {
+            int currentHitPoints = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] * 2;
+            needToAddAdditionalInfo = true;
+            description = [NSString stringWithFormat:@"\n\nYou have maximum %d Hit Points.\nYou can perform hard work %d rounds in a row, without receiving penalties.",currentHitPoints, currentHitPoints / 2];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].strength.name]) {
+            int currentEnc = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] * 3;
+            needToAddAdditionalInfo = true;
+            description = [NSString stringWithFormat:@"\n\nYou can hold items with overall cost up to %d Encumbrance Points.\nYou can accumulate up to %d points of adrenalin.",currentEnc, currentEnc / 3];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].physique.name]) {
+            int movement = skill.skillSet.character.pace + skill.currentLevel;
+            needToAddAdditionalInfo = true;
+            description = [NSString stringWithFormat:@"\n\nYou normally move up to %d meters per round.\nYou can sprint up to %d meters per round.",movement, movement*2];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].perception.name]) {
+            int percFloat = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] / 2;
+            needToAddAdditionalInfo = true;
+            description = [NSString stringWithFormat:@"\n\nYour initiative during battle is %d.",percFloat];
+        }
+        else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].control.name]) {
+            int mentalPoints = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] * 2;
+            needToAddAdditionalInfo = true;
+            description = [NSString stringWithFormat:@"\n\nYou have maximum %d Mental Points.",mentalPoints];
+        }
+        
+        if (needToAddAdditionalInfo) {
+            attributes = @{NSForegroundColorAttributeName : kRGB(37, 67, 37, 1),
+                           NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14]};
+            [string appendAttributedString:[[NSAttributedString alloc] initWithString:description attributes:[attributes copy]]];
+        }
+        //process certain skills info dynamicly end
+        
+        
+        
         if (skill.skillTemplate.skillDescription) {
             description = [NSString stringWithFormat:@"\n\n%@",skill.skillTemplate.skillDescription];
             attributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor],
@@ -68,6 +118,7 @@
                            NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14]};
             [string appendAttributedString:[[NSAttributedString alloc] initWithString:description attributes:[attributes copy]]];
         }
+            
         
         [self.tipTextView setAttributedText:string];
         //[self.tipTextView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:(isiPad ? 16 : 12)]];

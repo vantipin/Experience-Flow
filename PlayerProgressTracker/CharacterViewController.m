@@ -23,10 +23,12 @@
 #import "PicManager.h"
 #import "CustomPopoverViewController.h"
 #import "Pic.h"
+#import "CardsController.h"
 
 static const float HEADER_LAYOUT_HIDDEN = 20;
 static const float HEADER_LAYOUT_SHOWN = 100;
 static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
+static const float CARDS_BUTTON_DEFAULT_ICON = 10;
 
 @interface CharacterViewController ()
 
@@ -39,6 +41,7 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
 @property (nonatomic) IBOutlet UIView *characterSheetView;
 @property (nonatomic) IBOutlet UIView *statViewContainer;
 @property (nonatomic) IBOutlet UIView *headerView;
+@property (nonatomic) IBOutlet UIButton *cardsButton;
 
 @property (nonatomic,strong) ClassesDropViewController *classesDropController;
 @property (nonatomic,strong) NSMutableArray *raceNames;
@@ -242,6 +245,8 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
         self.skillTreeController.isInCreatingNewCharacterMod = self.isNewCharacterMode;
         float newLayout = self.isNewCharacterMode ? (isiPad ? HEADER_LAYOUT_SHOWN : HEADER_LAYOUT_SHOWN_iPHONE) : HEADER_LAYOUT_HIDDEN;
         [self.skillTreeController changeYStatLayout:newLayout animated:false];
+        self.cardsButton.frame = CGRectMake(self.cardsButton.frame.origin.x, CARDS_BUTTON_DEFAULT_ICON + newLayout, self.cardsButton.frame.size.width, self.cardsButton.frame.size.height);
+        self.cardsButton.alpha = self.isNewCharacterMode ? 0 : 1;
     }];
 }
 
@@ -394,6 +399,25 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
     }
 }
 
+-(IBAction)changePlayerIconTap:(id)sender
+{
+    CharacterImagePickerViewController *picker = [CharacterImagePickerViewController getInstanceFromStoryboardWithStaringName:self.character.icon.picId];
+    picker.delegate = self;
+    self.currentPopover = [[CustomPopoverViewController alloc] initWithContentViewController:picker];
+    self.currentPopover.popoverContentSize = CGSizeMake(picker.view.bounds.size.width, picker.view.bounds.size.height);
+    
+    [self.currentPopover presentPopoverInView:self.view];
+}
+
+-(IBAction)cardsTap:(id)sender
+{
+    CardsController *picker = [CardsController getInstanceFromStoryboard];
+    self.currentPopover = [[CustomPopoverViewController alloc] initWithContentViewController:picker];
+    self.currentPopover.popoverContentSize = CGSizeMake(picker.view.bounds.size.width, picker.view.bounds.size.height);
+    
+    [self.currentPopover presentPopoverInView:self.view];
+}
+
 #pragma mark -
 #pragma mark alert delegate
 
@@ -520,27 +544,6 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
     }
 }
 
-
--(IBAction)changePlayerIconTap:(id)sender
-{
-//    CustomImagePickerViewController * picker = [[CustomImagePickerViewController alloc] init];
-//    picker.view.frame = self.view.bounds;
-//    
-//	picker.delegate = self;
-//    
-//    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-//
-//	[self presentViewController:picker animated:true completion:^{
-//        
-//    }];
-    CharacterImagePickerViewController *picker = [CharacterImagePickerViewController getInstanceFromStoryboardWithStaringName:self.character.icon.picId];
-    picker.delegate = self;
-    self.currentPopover = [[CustomPopoverViewController alloc] initWithContentViewController:picker];
-    self.currentPopover.popoverContentSize = CGSizeMake(picker.view.bounds.size.width, picker.view.bounds.size.height);
-    
-    [self.currentPopover presentPopoverInView:self.view];
-}
-
 #pragma mark CharacterImagePickerProtocol
 -(void)didPickImageNamed:(NSString *)name
 {
@@ -599,25 +602,4 @@ static const float HEADER_LAYOUT_SHOWN_iPHONE = 55;
         });
     }];
 }
-
--(IBAction)tapHealthArea:(id)sender
-{
-    [self.skillTreeController didTapHealth];
-}
-
--(IBAction)tapInventoryArea:(id)sender
-{
-    [self.skillTreeController didTapInventory];
-}
-
--(IBAction)tapMovementArea:(id)sender
-{
-    [self.skillTreeController didTapMovement];
-}
-
--(IBAction)tapInitiativeArea:(id)sender
-{
-    [self.skillTreeController didTapInitiative];
-}
-
 @end

@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "NodeViewController.h"
 #import "Character.h"
-#import "StatViewController.h"
 
 
-@interface SkillTreeViewController : UIViewController <UIScrollViewDelegate, NodeViewControllerProtocol, SkillChangeProtocol, StatViewProtocol>
+@interface SkillTreeViewController : UIViewController <UIScrollViewDelegate, NodeViewControllerProtocol, SkillChangeProtocol>
 
 @property (nonatomic) Character *character;
 @property (nonatomic) float customHeaderStatLayoutY;
@@ -33,11 +32,5 @@
 -(void)changeYStatLayout:(float)newYLayout animated:(BOOL)animated;
 
 -(void)resetPointsLeftProgress;
-
-//Focus scrollView methods
--(void)didTapHealth;
--(void)didTapInventory;
--(void)didTapMovement;
--(void)didTapInitiative;
 
 @end

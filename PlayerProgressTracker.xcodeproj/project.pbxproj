@@ -72,6 +72,10 @@
 		DF3C0EE9198824240016AFF2 /* icloudAvailable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */; };
 		DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */; };
 		DF3C0EEB198824240016AFF2 /* icloudIsntAvailible@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */; };
+		DF50A6FB1A1E6C610024E8EC /* CardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF50A6FA1A1E6C610024E8EC /* CardsController.m */; };
+		DF50A6FD1A1E6C8B0024E8EC /* Cards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF50A6FC1A1E6C8B0024E8EC /* Cards.storyboard */; };
+		DF50A7001A1F43F90024E8EC /* cardsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF50A6FE1A1F43F90024E8EC /* cardsIcon.png */; };
+		DF50A7011A1F43F90024E8EC /* cardsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF50A6FF1A1F43F90024E8EC /* cardsIcon@2x.png */; };
 		DF755CD71A1127E10061E3D6 /* agility.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C8F1A1127E10061E3D6 /* agility.png */; };
 		DF755CD81A1127E10061E3D6 /* agility@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C901A1127E10061E3D6 /* agility@2x.png */; };
 		DF755CD91A1127E10061E3D6 /* alchemy.png in Resources */ = {isa = PBXBuildFile; fileRef = DF755C911A1127E10061E3D6 /* alchemy.png */; };
@@ -382,6 +386,11 @@
 		DF3C0EE5198824240016AFF2 /* icloudAvailable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icloudAvailable@2x.png"; sourceTree = "<group>"; };
 		DF3C0EE6198824240016AFF2 /* icloudIsntAvailible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icloudIsntAvailible.png; sourceTree = "<group>"; };
 		DF3C0EE7198824240016AFF2 /* icloudIsntAvailible@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icloudIsntAvailible@2x.png"; sourceTree = "<group>"; };
+		DF50A6F91A1E6C610024E8EC /* CardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsController.h; sourceTree = "<group>"; };
+		DF50A6FA1A1E6C610024E8EC /* CardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsController.m; sourceTree = "<group>"; };
+		DF50A6FC1A1E6C8B0024E8EC /* Cards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Cards.storyboard; sourceTree = "<group>"; };
+		DF50A6FE1A1F43F90024E8EC /* cardsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardsIcon.png; sourceTree = "<group>"; };
+		DF50A6FF1A1F43F90024E8EC /* cardsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cardsIcon@2x.png"; sourceTree = "<group>"; };
 		DF755C8F1A1127E10061E3D6 /* agility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agility.png; sourceTree = "<group>"; };
 		DF755C901A1127E10061E3D6 /* agility@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "agility@2x.png"; sourceTree = "<group>"; };
 		DF755C911A1127E10061E3D6 /* alchemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alchemy.png; sourceTree = "<group>"; };
@@ -800,6 +809,21 @@
 			path = iCloud;
 			sourceTree = "<group>";
 		};
+		DF50A6F81A1E66BD0024E8EC /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				DFDA01EC19632C1E005D3703 /* TipViewController.h */,
+				DFDA01ED19632C1E005D3703 /* TipViewController.m */,
+				DF8CEDE31A0411BD008504A9 /* CharacterImagePickerViewController.h */,
+				DF8CEDE41A0411BD008504A9 /* CharacterImagePickerViewController.m */,
+				DF8CEDE71A0412D0008504A9 /* CharacterImagePicker.storyboard */,
+				DF50A6F91A1E6C610024E8EC /* CardsController.h */,
+				DF50A6FA1A1E6C610024E8EC /* CardsController.m */,
+				DF50A6FC1A1E6C8B0024E8EC /* Cards.storyboard */,
+			);
+			name = Content;
+			sourceTree = "<group>";
+		};
 		DF755C8E1A1127E10061E3D6 /* skillIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -886,6 +910,8 @@
 			children = (
 				DFDA01C01961CE7F005D3703 /* bulk.png */,
 				DFDA01C11961CE7F005D3703 /* bulk@2x.png */,
+				DF296448198C095A0024E070 /* initiative.png */,
+				DF296449198C095A0024E070 /* initiative@2x.png */,
 				DFDA01B41961C7BA005D3703 /* health.png */,
 				DFDA01B51961C7BA005D3703 /* health@2x.png */,
 				DFDA01B61961C7BA005D3703 /* inventoryIcon.png */,
@@ -898,8 +924,8 @@
 				DF8CEE6B1A07F0DA008504A9 /* arrowLeft@2x.png */,
 				DF8CEE6C1A07F0DA008504A9 /* arrowRight.png */,
 				DF8CEE6D1A07F0DA008504A9 /* arrowRight@2x.png */,
-				DF296448198C095A0024E070 /* initiative.png */,
-				DF296449198C095A0024E070 /* initiative@2x.png */,
+				DF50A6FE1A1F43F90024E8EC /* cardsIcon.png */,
+				DF50A6FF1A1F43F90024E8EC /* cardsIcon@2x.png */,
 			);
 			name = buttons;
 			sourceTree = "<group>";
@@ -957,16 +983,6 @@
 				DFD0F79B19C8B42F0097933A /* skillNodeMediator@2x.png */,
 			);
 			name = mediator;
-			sourceTree = "<group>";
-		};
-		DF8CEDE61A041282008504A9 /* CharacterImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				DF8CEDE31A0411BD008504A9 /* CharacterImagePickerViewController.h */,
-				DF8CEDE41A0411BD008504A9 /* CharacterImagePickerViewController.m */,
-				DF8CEDE71A0412D0008504A9 /* CharacterImagePicker.storyboard */,
-			);
-			name = CharacterImagePicker;
 			sourceTree = "<group>";
 		};
 		DF8CEDEC1A041AF3008504A9 /* characterPics */ = {
@@ -1074,7 +1090,6 @@
 		DFAED105186309B40039D17B /* PlayerProgressTracker */ = {
 			isa = PBXGroup;
 			children = (
-				DF8CEDE61A041282008504A9 /* CharacterImagePicker */,
 				DF3C0EDC19881F5C0016AFF2 /* iCloud */,
 				DF2900EB197D8E2A00861A4F /* Experience Flow.entitlements */,
 				DFDA01EB19632BF8005D3703 /* PopoverControllers */,
@@ -1082,8 +1097,6 @@
 				DF1F5C79195B432D002D7EF2 /* SkillTree */,
 				DF1F5C82195B432D002D7EF2 /* DropDownControllers */,
 				DF24B1291874B75900B57855 /* Constants.h */,
-				DFDA01EC19632C1E005D3703 /* TipViewController.h */,
-				DFDA01ED19632C1E005D3703 /* TipViewController.m */,
 				DFD6CD29197D010500046218 /* CustomImagePickerViewController.h */,
 				DFD6CD2A197D010500046218 /* CustomImagePickerViewController.m */,
 				DF2215091999372900E1DC90 /* Main_iPhone.storyboard */,
@@ -1167,6 +1180,7 @@
 		DFDA01EB19632BF8005D3703 /* PopoverControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF50A6F81A1E66BD0024E8EC /* Content */,
 				DF22FB7F19F825A400E4EE47 /* CustomPopoverViewController.h */,
 				DF22FB8019F825A400E4EE47 /* CustomPopoverViewController.m */,
 			);
@@ -1258,6 +1272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF8CEDE81A0412D0008504A9 /* CharacterImagePicker.storyboard in Resources */,
+				DF50A7011A1F43F90024E8EC /* cardsIcon@2x.png in Resources */,
 				DF8CEE4C1A041AF3008504A9 /* av_warrior3.png in Resources */,
 				DF755D191A1127E10061E3D6 /* swim.png in Resources */,
 				DF8CEE521A041AF3008504A9 /* av_warrior6.png in Resources */,
@@ -1298,6 +1313,7 @@
 				DF755D091A1127E10061E3D6 /* range.png in Resources */,
 				DF1F5C92195B432D002D7EF2 /* NodeView.storyboard in Resources */,
 				DF755CF91A1127E10061E3D6 /* inner circle.png in Resources */,
+				DF50A6FD1A1E6C8B0024E8EC /* Cards.storyboard in Resources */,
 				DF8CEE511A041AF3008504A9 /* av_warrior5@2x.png in Resources */,
 				DF8CEE331A041AF3008504A9 /* av_laughingman.png in Resources */,
 				DF755CED1A1127E10061E3D6 /* disguise.png in Resources */,
@@ -1414,6 +1430,7 @@
 				DF8CEE3A1A041AF3008504A9 /* av_rogue2@2x.png in Resources */,
 				DF8CEE2E1A041AF3008504A9 /* av_baron@2x.png in Resources */,
 				DF755D011A1127E10061E3D6 /* meele.png in Resources */,
+				DF50A7001A1F43F90024E8EC /* cardsIcon.png in Resources */,
 				DF755CE51A1127E10061E3D6 /* craft.png in Resources */,
 				DF755D1C1A1127E10061E3D6 /* thrown@2x.png in Resources */,
 				DF8CEE601A041AF3008504A9 /* av_wizard4.png in Resources */,
@@ -1488,6 +1505,7 @@
 				DF1F5CCA195B43A1002D7EF2 /* MainContextObject.m in Sources */,
 				DF1F5C5A195B431E002D7EF2 /* WeaponRanged.m in Sources */,
 				DF1F5C61195B431E002D7EF2 /* PietySkill.m in Sources */,
+				DF50A6FB1A1E6C610024E8EC /* CardsController.m in Sources */,
 				DF1F5C56195B431E002D7EF2 /* Insanity.m in Sources */,
 				DF1F5C57195B431E002D7EF2 /* CoreDataClass.m in Sources */,
 				DF1F5C65195B431E002D7EF2 /* SkillSet.m in Sources */,

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="V83-41-BCy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="V83-41-BCy">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
@@ -184,48 +185,20 @@
                                             </button>
                                         </subviews>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Un7-kK-eeH">
-                                        <rect key="frame" x="0.0" y="112" width="105" height="43"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tapHealthArea:" destination="ntv-du-Lpc" eventType="touchUpInside" id="q1L-3D-PZX"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cvd-5B-1Uf">
-                                        <rect key="frame" x="113" y="112" width="91" height="43"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tapInventoryArea:" destination="ntv-du-Lpc" eventType="touchUpInside" id="MZI-rJ-bpi"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yoY-a3-eEy">
-                                        <rect key="frame" x="218" y="112" width="89" height="43"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tapMovementArea:" destination="ntv-du-Lpc" eventType="touchUpInside" id="Zin-HW-NPh"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jOu-9c-jRb">
-                                        <rect key="frame" x="315" y="112" width="109" height="43"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tapInitiativeArea:" destination="ntv-du-Lpc" eventType="touchUpInside" id="ybY-vY-7WX"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ScC-bp-teY">
+                                <rect key="frame" x="10" y="114" width="95" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.40000000000000002" green="0.59999999999999998" blue="0.80000000000000004" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="cardsIcon.png">
+                                    <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted" image="cardsIcon.png"/>
+                                <connections>
+                                    <action selector="cardsTap:" destination="ntv-du-Lpc" eventType="touchUpInside" id="M3j-DU-3Bf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <gestureRecognizers/>
                     </view>
@@ -249,6 +222,7 @@
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="cardsButton" destination="ScC-bp-teY" id="wxf-lh-L2a"/>
                         <outlet property="headerView" destination="ZBt-Mc-L83" id="i0g-Dh-Vp3"/>
                         <outlet property="icon" destination="SOK-oW-wtN" id="v67-6a-SJB"/>
                         <outlet property="nameTextField" destination="Mwc-Yv-Loc" id="hoT-LA-nKl"/>
@@ -281,6 +255,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cardsIcon.png" width="76" height="56"/>
         <image name="headerClouds.png" width="1024" height="150"/>
         <image name="icloudAvailable.png" width="20" height="14"/>
         <image name="noCharacterIcon.png" width="134" height="134"/>
