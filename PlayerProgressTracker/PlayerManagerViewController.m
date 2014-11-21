@@ -93,9 +93,8 @@ const float CONTAINER_HEIGHT_CREATE_CH_iPHONE = 266;
     else {
         [self.iclouavailabilityIcon setImage:[UIImage imageWithContentsOfFile:filePathWithName(@"icloudIsntAvailible.png")]];
     }
-    iCloud *icloudManager = [iCloud sharedCloud];
-    icloudManager.delegate = self;
-    icloudManager.verboseLogging = true; // We want detailed feedback about what's going on with iCloud, this is OFF by default
+    [iCloud sharedCloud].delegate = self;
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iCloudIsReady) name:@"iCloud Ready" object:nil];
     //
     

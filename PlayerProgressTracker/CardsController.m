@@ -40,19 +40,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imageSource = @[@"noCharacterIcon.png",
-                        @"av_rogue2.png",
-                        @"av_barbarian.png",
-                        @"av_baron.png",
-                        @"av_illthinker.png",
-                        @"av_laughingman.png"];
+    self.imageSource = @[@"card_block",
+                         @"card_dodge",
+                         @"card_evaluate",
+                         @"card_shot",
+                         @"card_grab",
+                         @"card_push",
+                         @"card_crush",
+                         @"card_blow",
+                         @"card_stunt",
+                         @"card_magic"];
     
-    self.backImageSource = @[@"av_warrior7.png",
-                             @"av_warrior8.png",
-                             @"av_wizard.png",
-                             @"av_travaler.png",
-                             @"av_warrior4.png",
-                             @"av_warrior5.png"];
+    self.backImageSource = @[@"card_block_back",
+                             @"card_dodge_back",
+                             @"card_evaluate_back",
+                             @"card_shot_back",
+                             @"card_grab_back",
+                             @"card_push_back",
+                             @"card_crush_back",
+                             @"card_blow_back",
+                             @"card_stunt_back",
+                             @"card_magic_back"];
     
     self.iCarouselView.type = iCarouselTypeCylinder;
     self.iCarouselView.vertical = false;
@@ -85,11 +93,11 @@
         
         card.frontView = [[UIImageView alloc] initWithFrame:card.bounds];
         [card addSubview:card.frontView];
-        card.frontView.contentMode = UIViewContentModeScaleAspectFill;
+        card.frontView.contentMode = UIViewContentModeScaleAspectFit;
         card.backView = [[UIImageView alloc] initWithFrame:card.bounds];
         [card addSubview:card.backView];
         card.backView.hidden = true;
-        card.backView.contentMode = UIViewContentModeScaleAspectFill;
+        card.backView.contentMode = UIViewContentModeScaleAspectFit;
         //card.backgroundColor = [UIColor redColor];
     }
     else {

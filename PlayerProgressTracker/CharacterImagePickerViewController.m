@@ -197,7 +197,7 @@
 
 -(IBAction)leftTap:(id)sender
 {
-    if (self.iCarouselView.currentItemIndex) {
+    if (self.iCarouselView.currentItemIndex || self.iCarouselView.wrapEnabled) {
         [self.iCarouselView scrollToItemAtIndex:self.iCarouselView.currentItemIndex - 1 animated:true];
     }
     
@@ -205,7 +205,7 @@
 
 -(IBAction)rightTap:(id)sender
 {
-    if (self.iCarouselView.currentItemIndex < self.imageSource.count) {
+    if (self.iCarouselView.currentItemIndex < self.imageSource.count || self.iCarouselView.wrapEnabled) {
         [self.iCarouselView scrollToItemAtIndex:self.iCarouselView.currentItemIndex + 1 animated:true];
     }
 }

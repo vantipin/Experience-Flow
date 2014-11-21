@@ -266,6 +266,46 @@
 		DFDA01E919632507005D3703 /* headerCreatingCharacter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E719632507005D3703 /* headerCreatingCharacter@2x.png */; };
 		DFDA01EA19632507005D3703 /* headerCreatingCharacter.png in Resources */ = {isa = PBXBuildFile; fileRef = DFDA01E819632507005D3703 /* headerCreatingCharacter.png */; };
 		DFDA01EE19632C1E005D3703 /* TipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDA01ED19632C1E005D3703 /* TipViewController.m */; };
+		DFF2D7231A1FBF4F005CD6FB /* card_block.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D6FB1A1FBF4F005CD6FB /* card_block.png */; };
+		DFF2D7241A1FBF4F005CD6FB /* card_block@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D6FC1A1FBF4F005CD6FB /* card_block@2x.png */; };
+		DFF2D7251A1FBF4F005CD6FB /* card_block_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D6FD1A1FBF4F005CD6FB /* card_block_back.png */; };
+		DFF2D7261A1FBF4F005CD6FB /* card_block_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D6FE1A1FBF4F005CD6FB /* card_block_back@2x.png */; };
+		DFF2D7271A1FBF4F005CD6FB /* card_blow.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D6FF1A1FBF4F005CD6FB /* card_blow.png */; };
+		DFF2D7281A1FBF4F005CD6FB /* card_blow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7001A1FBF4F005CD6FB /* card_blow@2x.png */; };
+		DFF2D7291A1FBF4F005CD6FB /* card_blow_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7011A1FBF4F005CD6FB /* card_blow_back.png */; };
+		DFF2D72A1A1FBF4F005CD6FB /* card_blow_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7021A1FBF4F005CD6FB /* card_blow_back@2x.png */; };
+		DFF2D72B1A1FBF4F005CD6FB /* card_crush.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7031A1FBF4F005CD6FB /* card_crush.png */; };
+		DFF2D72C1A1FBF4F005CD6FB /* card_crush@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7041A1FBF4F005CD6FB /* card_crush@2x.png */; };
+		DFF2D72D1A1FBF4F005CD6FB /* card_crush_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7051A1FBF4F005CD6FB /* card_crush_back.png */; };
+		DFF2D72E1A1FBF4F005CD6FB /* card_crush_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7061A1FBF4F005CD6FB /* card_crush_back@2x.png */; };
+		DFF2D72F1A1FBF4F005CD6FB /* card_dodge.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7071A1FBF4F005CD6FB /* card_dodge.png */; };
+		DFF2D7301A1FBF4F005CD6FB /* card_dodge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7081A1FBF4F005CD6FB /* card_dodge@2x.png */; };
+		DFF2D7311A1FBF4F005CD6FB /* card_dodge_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7091A1FBF4F005CD6FB /* card_dodge_back.png */; };
+		DFF2D7321A1FBF4F005CD6FB /* card_dodge_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D70A1A1FBF4F005CD6FB /* card_dodge_back@2x.png */; };
+		DFF2D7331A1FBF4F005CD6FB /* card_evaluate.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D70B1A1FBF4F005CD6FB /* card_evaluate.png */; };
+		DFF2D7341A1FBF4F005CD6FB /* card_evaluate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D70C1A1FBF4F005CD6FB /* card_evaluate@2x.png */; };
+		DFF2D7351A1FBF4F005CD6FB /* card_evaluate_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D70D1A1FBF4F005CD6FB /* card_evaluate_back.png */; };
+		DFF2D7361A1FBF4F005CD6FB /* card_evaluate_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D70E1A1FBF4F005CD6FB /* card_evaluate_back@2x.png */; };
+		DFF2D7371A1FBF4F005CD6FB /* card_grab.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D70F1A1FBF4F005CD6FB /* card_grab.png */; };
+		DFF2D7381A1FBF4F005CD6FB /* card_grab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7101A1FBF4F005CD6FB /* card_grab@2x.png */; };
+		DFF2D7391A1FBF4F005CD6FB /* card_grab_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7111A1FBF4F005CD6FB /* card_grab_back.png */; };
+		DFF2D73A1A1FBF4F005CD6FB /* card_grab_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7121A1FBF4F005CD6FB /* card_grab_back@2x.png */; };
+		DFF2D73B1A1FBF4F005CD6FB /* card_magic.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7131A1FBF4F005CD6FB /* card_magic.png */; };
+		DFF2D73C1A1FBF4F005CD6FB /* card_magic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7141A1FBF4F005CD6FB /* card_magic@2x.png */; };
+		DFF2D73D1A1FBF4F005CD6FB /* card_magic_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7151A1FBF4F005CD6FB /* card_magic_back.png */; };
+		DFF2D73E1A1FBF4F005CD6FB /* card_magic_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7161A1FBF4F005CD6FB /* card_magic_back@2x.png */; };
+		DFF2D73F1A1FBF4F005CD6FB /* card_push.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7171A1FBF4F005CD6FB /* card_push.png */; };
+		DFF2D7401A1FBF4F005CD6FB /* card_push@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7181A1FBF4F005CD6FB /* card_push@2x.png */; };
+		DFF2D7411A1FBF4F005CD6FB /* card_push_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7191A1FBF4F005CD6FB /* card_push_back.png */; };
+		DFF2D7421A1FBF4F005CD6FB /* card_push_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D71A1A1FBF4F005CD6FB /* card_push_back@2x.png */; };
+		DFF2D7431A1FBF4F005CD6FB /* card_shot.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D71B1A1FBF4F005CD6FB /* card_shot.png */; };
+		DFF2D7441A1FBF4F005CD6FB /* card_shot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D71C1A1FBF4F005CD6FB /* card_shot@2x.png */; };
+		DFF2D7451A1FBF4F005CD6FB /* card_shot_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D71D1A1FBF4F005CD6FB /* card_shot_back.png */; };
+		DFF2D7461A1FBF4F005CD6FB /* card_shot_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D71E1A1FBF4F005CD6FB /* card_shot_back@2x.png */; };
+		DFF2D7471A1FBF4F005CD6FB /* card_stunt.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D71F1A1FBF4F005CD6FB /* card_stunt.png */; };
+		DFF2D7481A1FBF4F005CD6FB /* card_stunt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7201A1FBF4F005CD6FB /* card_stunt@2x.png */; };
+		DFF2D7491A1FBF4F005CD6FB /* card_stunt_back.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7211A1FBF4F005CD6FB /* card_stunt_back.png */; };
+		DFF2D74A1A1FBF4F005CD6FB /* card_stunt_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFF2D7221A1FBF4F005CD6FB /* card_stunt_back@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -593,6 +633,46 @@
 		DFDA01E819632507005D3703 /* headerCreatingCharacter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerCreatingCharacter.png; sourceTree = "<group>"; };
 		DFDA01EC19632C1E005D3703 /* TipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipViewController.h; sourceTree = "<group>"; };
 		DFDA01ED19632C1E005D3703 /* TipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipViewController.m; sourceTree = "<group>"; };
+		DFF2D6FB1A1FBF4F005CD6FB /* card_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_block.png; sourceTree = "<group>"; };
+		DFF2D6FC1A1FBF4F005CD6FB /* card_block@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_block@2x.png"; sourceTree = "<group>"; };
+		DFF2D6FD1A1FBF4F005CD6FB /* card_block_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_block_back.png; sourceTree = "<group>"; };
+		DFF2D6FE1A1FBF4F005CD6FB /* card_block_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_block_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D6FF1A1FBF4F005CD6FB /* card_blow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_blow.png; sourceTree = "<group>"; };
+		DFF2D7001A1FBF4F005CD6FB /* card_blow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_blow@2x.png"; sourceTree = "<group>"; };
+		DFF2D7011A1FBF4F005CD6FB /* card_blow_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_blow_back.png; sourceTree = "<group>"; };
+		DFF2D7021A1FBF4F005CD6FB /* card_blow_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_blow_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D7031A1FBF4F005CD6FB /* card_crush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_crush.png; sourceTree = "<group>"; };
+		DFF2D7041A1FBF4F005CD6FB /* card_crush@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_crush@2x.png"; sourceTree = "<group>"; };
+		DFF2D7051A1FBF4F005CD6FB /* card_crush_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_crush_back.png; sourceTree = "<group>"; };
+		DFF2D7061A1FBF4F005CD6FB /* card_crush_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_crush_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D7071A1FBF4F005CD6FB /* card_dodge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_dodge.png; sourceTree = "<group>"; };
+		DFF2D7081A1FBF4F005CD6FB /* card_dodge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_dodge@2x.png"; sourceTree = "<group>"; };
+		DFF2D7091A1FBF4F005CD6FB /* card_dodge_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_dodge_back.png; sourceTree = "<group>"; };
+		DFF2D70A1A1FBF4F005CD6FB /* card_dodge_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_dodge_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D70B1A1FBF4F005CD6FB /* card_evaluate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_evaluate.png; sourceTree = "<group>"; };
+		DFF2D70C1A1FBF4F005CD6FB /* card_evaluate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_evaluate@2x.png"; sourceTree = "<group>"; };
+		DFF2D70D1A1FBF4F005CD6FB /* card_evaluate_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_evaluate_back.png; sourceTree = "<group>"; };
+		DFF2D70E1A1FBF4F005CD6FB /* card_evaluate_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_evaluate_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D70F1A1FBF4F005CD6FB /* card_grab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_grab.png; sourceTree = "<group>"; };
+		DFF2D7101A1FBF4F005CD6FB /* card_grab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_grab@2x.png"; sourceTree = "<group>"; };
+		DFF2D7111A1FBF4F005CD6FB /* card_grab_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_grab_back.png; sourceTree = "<group>"; };
+		DFF2D7121A1FBF4F005CD6FB /* card_grab_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_grab_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D7131A1FBF4F005CD6FB /* card_magic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_magic.png; sourceTree = "<group>"; };
+		DFF2D7141A1FBF4F005CD6FB /* card_magic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_magic@2x.png"; sourceTree = "<group>"; };
+		DFF2D7151A1FBF4F005CD6FB /* card_magic_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_magic_back.png; sourceTree = "<group>"; };
+		DFF2D7161A1FBF4F005CD6FB /* card_magic_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_magic_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D7171A1FBF4F005CD6FB /* card_push.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_push.png; sourceTree = "<group>"; };
+		DFF2D7181A1FBF4F005CD6FB /* card_push@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_push@2x.png"; sourceTree = "<group>"; };
+		DFF2D7191A1FBF4F005CD6FB /* card_push_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_push_back.png; sourceTree = "<group>"; };
+		DFF2D71A1A1FBF4F005CD6FB /* card_push_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_push_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D71B1A1FBF4F005CD6FB /* card_shot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_shot.png; sourceTree = "<group>"; };
+		DFF2D71C1A1FBF4F005CD6FB /* card_shot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_shot@2x.png"; sourceTree = "<group>"; };
+		DFF2D71D1A1FBF4F005CD6FB /* card_shot_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_shot_back.png; sourceTree = "<group>"; };
+		DFF2D71E1A1FBF4F005CD6FB /* card_shot_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_shot_back@2x.png"; sourceTree = "<group>"; };
+		DFF2D71F1A1FBF4F005CD6FB /* card_stunt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_stunt.png; sourceTree = "<group>"; };
+		DFF2D7201A1FBF4F005CD6FB /* card_stunt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_stunt@2x.png"; sourceTree = "<group>"; };
+		DFF2D7211A1FBF4F005CD6FB /* card_stunt_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_stunt_back.png; sourceTree = "<group>"; };
+		DFF2D7221A1FBF4F005CD6FB /* card_stunt_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_stunt_back@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -751,6 +831,7 @@
 		DF1F5C99195B4338002D7EF2 /* ImagesResources */ = {
 			isa = PBXGroup;
 			children = (
+				DFF2D6FA1A1FBF4F005CD6FB /* cards */,
 				DF755D2C1A1129460061E3D6 /* skillSkin */,
 				DF755D2B1A1128330061E3D6 /* buttons */,
 				DF755C8E1A1127E10061E3D6 /* skillIcons */,
@@ -1187,6 +1268,53 @@
 			name = PopoverControllers;
 			sourceTree = "<group>";
 		};
+		DFF2D6FA1A1FBF4F005CD6FB /* cards */ = {
+			isa = PBXGroup;
+			children = (
+				DFF2D6FB1A1FBF4F005CD6FB /* card_block.png */,
+				DFF2D6FC1A1FBF4F005CD6FB /* card_block@2x.png */,
+				DFF2D6FD1A1FBF4F005CD6FB /* card_block_back.png */,
+				DFF2D6FE1A1FBF4F005CD6FB /* card_block_back@2x.png */,
+				DFF2D6FF1A1FBF4F005CD6FB /* card_blow.png */,
+				DFF2D7001A1FBF4F005CD6FB /* card_blow@2x.png */,
+				DFF2D7011A1FBF4F005CD6FB /* card_blow_back.png */,
+				DFF2D7021A1FBF4F005CD6FB /* card_blow_back@2x.png */,
+				DFF2D7031A1FBF4F005CD6FB /* card_crush.png */,
+				DFF2D7041A1FBF4F005CD6FB /* card_crush@2x.png */,
+				DFF2D7051A1FBF4F005CD6FB /* card_crush_back.png */,
+				DFF2D7061A1FBF4F005CD6FB /* card_crush_back@2x.png */,
+				DFF2D7071A1FBF4F005CD6FB /* card_dodge.png */,
+				DFF2D7081A1FBF4F005CD6FB /* card_dodge@2x.png */,
+				DFF2D7091A1FBF4F005CD6FB /* card_dodge_back.png */,
+				DFF2D70A1A1FBF4F005CD6FB /* card_dodge_back@2x.png */,
+				DFF2D70B1A1FBF4F005CD6FB /* card_evaluate.png */,
+				DFF2D70C1A1FBF4F005CD6FB /* card_evaluate@2x.png */,
+				DFF2D70D1A1FBF4F005CD6FB /* card_evaluate_back.png */,
+				DFF2D70E1A1FBF4F005CD6FB /* card_evaluate_back@2x.png */,
+				DFF2D70F1A1FBF4F005CD6FB /* card_grab.png */,
+				DFF2D7101A1FBF4F005CD6FB /* card_grab@2x.png */,
+				DFF2D7111A1FBF4F005CD6FB /* card_grab_back.png */,
+				DFF2D7121A1FBF4F005CD6FB /* card_grab_back@2x.png */,
+				DFF2D7131A1FBF4F005CD6FB /* card_magic.png */,
+				DFF2D7141A1FBF4F005CD6FB /* card_magic@2x.png */,
+				DFF2D7151A1FBF4F005CD6FB /* card_magic_back.png */,
+				DFF2D7161A1FBF4F005CD6FB /* card_magic_back@2x.png */,
+				DFF2D7171A1FBF4F005CD6FB /* card_push.png */,
+				DFF2D7181A1FBF4F005CD6FB /* card_push@2x.png */,
+				DFF2D7191A1FBF4F005CD6FB /* card_push_back.png */,
+				DFF2D71A1A1FBF4F005CD6FB /* card_push_back@2x.png */,
+				DFF2D71B1A1FBF4F005CD6FB /* card_shot.png */,
+				DFF2D71C1A1FBF4F005CD6FB /* card_shot@2x.png */,
+				DFF2D71D1A1FBF4F005CD6FB /* card_shot_back.png */,
+				DFF2D71E1A1FBF4F005CD6FB /* card_shot_back@2x.png */,
+				DFF2D71F1A1FBF4F005CD6FB /* card_stunt.png */,
+				DFF2D7201A1FBF4F005CD6FB /* card_stunt@2x.png */,
+				DFF2D7211A1FBF4F005CD6FB /* card_stunt_back.png */,
+				DFF2D7221A1FBF4F005CD6FB /* card_stunt_back@2x.png */,
+			);
+			path = cards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1275,6 +1403,7 @@
 				DF50A7011A1F43F90024E8EC /* cardsIcon@2x.png in Resources */,
 				DF8CEE4C1A041AF3008504A9 /* av_warrior3.png in Resources */,
 				DF755D191A1127E10061E3D6 /* swim.png in Resources */,
+				DFF2D7471A1FBF4F005CD6FB /* card_stunt.png in Resources */,
 				DF8CEE521A041AF3008504A9 /* av_warrior6.png in Resources */,
 				DF8CEE2A1A041AF3008504A9 /* av_aristocracyFem@2x.png in Resources */,
 				DFDA01C21961CE7F005D3703 /* bulk.png in Resources */,
@@ -1286,7 +1415,11 @@
 				DF99F82E1A000C7100D17A34 /* noCharacterIcon.png in Resources */,
 				DF755CE21A1127E10061E3D6 /* climb@2x.png in Resources */,
 				DF8CEE3D1A041AF3008504A9 /* av_scolar@2x.png in Resources */,
+				DFF2D72A1A1FBF4F005CD6FB /* card_blow_back@2x.png in Resources */,
 				DF8CEE291A041AF3008504A9 /* av_aristocracyFem.png in Resources */,
+				DFF2D72F1A1FBF4F005CD6FB /* card_dodge.png in Resources */,
+				DFF2D7311A1FBF4F005CD6FB /* card_dodge_back.png in Resources */,
+				DFF2D7371A1FBF4F005CD6FB /* card_grab.png in Resources */,
 				DFAED118186309B40039D17B /* Images.xcassets in Resources */,
 				DF755D261A1127FD0061E3D6 /* skillNodeNeckless@2x.png in Resources */,
 				DF8CEE611A041AF3008504A9 /* av_wizard4@2x.png in Resources */,
@@ -1297,13 +1430,18 @@
 				DF1F57271954C0E4002D7EF2 /* appIcon@2x.png in Resources */,
 				DF1F57261954C0E4002D7EF2 /* appIcon.png in Resources */,
 				DFDA01E51963245A005D3703 /* headerClouds.png in Resources */,
+				DFF2D7411A1FBF4F005CD6FB /* card_push_back.png in Resources */,
 				DF755CDB1A1127E10061E3D6 /* apprise.png in Resources */,
+				DFF2D7451A1FBF4F005CD6FB /* card_shot_back.png in Resources */,
+				DFF2D73F1A1FBF4F005CD6FB /* card_push.png in Resources */,
 				DF8CEE4A1A041AF3008504A9 /* av_warrior2.png in Resources */,
 				DF755CF01A1127E10061E3D6 /* escape artist@2x.png in Resources */,
 				DF755CF81A1127E10061E3D6 /* heal@2x.png in Resources */,
 				DF755CE81A1127E10061E3D6 /* crushing@2x.png in Resources */,
+				DFF2D7241A1FBF4F005CD6FB /* card_block@2x.png in Resources */,
 				DF22154A199A80D900E1DC90 /* PointCountLeft_iphone.storyboard in Resources */,
 				DF755D0E1A1127E10061E3D6 /* ride@2x.png in Resources */,
+				DFF2D7291A1FBF4F005CD6FB /* card_blow_back.png in Resources */,
 				DF8CEE591A041AF3008504A9 /* av_whitebearded.png in Resources */,
 				DF8CEE631A041AF3008504A9 /* av_wizard5@2x.png in Resources */,
 				DF755D021A1127E10061E3D6 /* meele@2x.png in Resources */,
@@ -1318,12 +1456,14 @@
 				DF8CEE331A041AF3008504A9 /* av_laughingman.png in Resources */,
 				DF755CED1A1127E10061E3D6 /* disguise.png in Resources */,
 				DFDA01BC1961C7BA005D3703 /* inventoryIcon.png in Resources */,
+				DFF2D7281A1FBF4F005CD6FB /* card_blow@2x.png in Resources */,
 				DF755CE41A1127E10061E3D6 /* control@2x.png in Resources */,
 				DF3C0EE9198824240016AFF2 /* icloudAvailable@2x.png in Resources */,
 				DF8CEE441A041AF3008504A9 /* av_travaler.png in Resources */,
 				DF755CF41A1127E10061E3D6 /* hack devices@2x.png in Resources */,
 				DF755CF51A1127E10061E3D6 /* handle animal.png in Resources */,
 				DFCE2A89196F10BE00A9F4C9 /* saveIcon@2x.png in Resources */,
+				DFF2D72C1A1FBF4F005CD6FB /* card_crush@2x.png in Resources */,
 				DF755D1D1A1127E10061E3D6 /* toughness.png in Resources */,
 				DF8CEE3C1A041AF3008504A9 /* av_scolar.png in Resources */,
 				DF8CEE571A041AF3008504A9 /* av_warrior8@2x.png in Resources */,
@@ -1334,6 +1474,7 @@
 				DFDA01EA19632507005D3703 /* headerCreatingCharacter.png in Resources */,
 				DF8CEE621A041AF3008504A9 /* av_wizard5.png in Resources */,
 				DF755D071A1127E10061E3D6 /* piercing.png in Resources */,
+				DFF2D7301A1FBF4F005CD6FB /* card_dodge@2x.png in Resources */,
 				DFDA01E61963245A005D3703 /* headerClouds@2x.png in Resources */,
 				DF755CEF1A1127E10061E3D6 /* escape artist.png in Resources */,
 				DFD0F7A819C9F9100097933A /* skillNodeUndeveloped.png in Resources */,
@@ -1344,6 +1485,7 @@
 				DF755CF11A1127E10061E3D6 /* firearm.png in Resources */,
 				DF755CDF1A1127E10061E3D6 /* bluff.png in Resources */,
 				DF755CFF1A1127E10061E3D6 /* knavery.png in Resources */,
+				DFF2D73C1A1FBF4F005CD6FB /* card_magic@2x.png in Resources */,
 				DF755CD71A1127E10061E3D6 /* agility.png in Resources */,
 				DF8CEE2D1A041AF3008504A9 /* av_baron.png in Resources */,
 				DF755CD81A1127E10061E3D6 /* agility@2x.png in Resources */,
@@ -1376,37 +1518,50 @@
 				DF22150A1999372900E1DC90 /* Main_iPhone.storyboard in Resources */,
 				DF8CEE301A041AF3008504A9 /* av_firewizard@2x.png in Resources */,
 				DF755D171A1127E10061E3D6 /* survival.png in Resources */,
+				DFF2D7401A1FBF4F005CD6FB /* card_push@2x.png in Resources */,
 				DF8CEE2C1A041AF3008504A9 /* av_barbarian@2x.png in Resources */,
 				DF8CEE431A041AF3008504A9 /* av_tragicman@2x.png in Resources */,
 				DF755CF61A1127E10061E3D6 /* handle animal@2x.png in Resources */,
 				DF755D331A112A420061E3D6 /* skillNodeHighlited.png in Resources */,
+				DFF2D73E1A1FBF4F005CD6FB /* card_magic_back@2x.png in Resources */,
 				DF755CF71A1127E10061E3D6 /* heal.png in Resources */,
 				DF755D001A1127E10061E3D6 /* knavery@2x.png in Resources */,
 				DF755CD91A1127E10061E3D6 /* alchemy.png in Resources */,
 				DF8CEE551A041AF3008504A9 /* av_warrior7@2x.png in Resources */,
 				DFDA01BD1961C7BA005D3703 /* inventoryIcon@2x.png in Resources */,
+				DFF2D72E1A1FBF4F005CD6FB /* card_crush_back@2x.png in Resources */,
 				DFD0F79E19C8B42F0097933A /* skillNodeMediator.png in Resources */,
 				DF0995D8196460C70025A76A /* cloudBackground@2x.png in Resources */,
 				DF755D1A1A1127E10061E3D6 /* swim@2x.png in Resources */,
+				DFF2D7361A1FBF4F005CD6FB /* card_evaluate_back@2x.png in Resources */,
+				DFF2D7251A1FBF4F005CD6FB /* card_block_back.png in Resources */,
 				DF8CEE4B1A041AF3008504A9 /* av_warrior2@2x.png in Resources */,
 				DF755D311A112A420061E3D6 /* skillNode.png in Resources */,
 				DF755D251A1127FD0061E3D6 /* skillNodeNeckless.png in Resources */,
 				DFAED10A186309B40039D17B /* InfoPlist.strings in Resources */,
 				DFAED113186309B40039D17B /* Main.storyboard in Resources */,
+				DFF2D7491A1FBF4F005CD6FB /* card_stunt_back.png in Resources */,
 				DF755D0A1A1127E10061E3D6 /* range@2x.png in Resources */,
+				DFF2D7271A1FBF4F005CD6FB /* card_blow.png in Resources */,
 				DF755D131A1127E10061E3D6 /* stealth.png in Resources */,
 				DF0995D4196460900025A76A /* headerCharacterStats.png in Resources */,
+				DFF2D7391A1FBF4F005CD6FB /* card_grab_back.png in Resources */,
 				DF755D051A1127E10061E3D6 /* physique.png in Resources */,
+				DFF2D74A1A1FBF4F005CD6FB /* card_stunt_back@2x.png in Resources */,
 				DF8CEE381A041AF3008504A9 /* av_rogue.png in Resources */,
 				DF755D101A1127E10061E3D6 /* ritual magic@2x.png in Resources */,
 				DF755D181A1127E10061E3D6 /* survival@2x.png in Resources */,
 				DF755CE31A1127E10061E3D6 /* control.png in Resources */,
+				DFF2D7461A1FBF4F005CD6FB /* card_shot_back@2x.png in Resources */,
 				DF755D341A112A420061E3D6 /* skillNodeHighlited@2x.png in Resources */,
 				DF1F5C8A195B432D002D7EF2 /* AddSkillViewCellTableViewCell.xib in Resources */,
 				DF755D161A1127E10061E3D6 /* strength@2x.png in Resources */,
+				DFF2D72D1A1FBF4F005CD6FB /* card_crush_back.png in Resources */,
 				DF99F82F1A000C7100D17A34 /* noCharacterIcon@2x.png in Resources */,
 				DF755CE71A1127E10061E3D6 /* crushing.png in Resources */,
 				DF755CDA1A1127E10061E3D6 /* alchemy@2x.png in Resources */,
+				DFF2D7341A1FBF4F005CD6FB /* card_evaluate@2x.png in Resources */,
+				DFF2D7431A1FBF4F005CD6FB /* card_shot.png in Resources */,
 				DF755CFC1A1127E10061E3D6 /* intellegence@2x.png in Resources */,
 				DF8CEE341A041AF3008504A9 /* av_laughingman@2x.png in Resources */,
 				DF1F5CC7195B4338002D7EF2 /* xpAura@2x.png in Resources */,
@@ -1414,20 +1569,27 @@
 				DF1F5C94195B432D002D7EF2 /* SkillLinkView.storyboard in Resources */,
 				DF755CE01A1127E10061E3D6 /* bluff@2x.png in Resources */,
 				DF755CFB1A1127E10061E3D6 /* intellegence.png in Resources */,
+				DFF2D73B1A1FBF4F005CD6FB /* card_magic.png in Resources */,
 				DF755CFA1A1127E10061E3D6 /* inner circle@2x.png in Resources */,
 				DF755D041A1127E10061E3D6 /* perception@2x.png in Resources */,
 				DF8CEE481A041AF3008504A9 /* av_warlock_m@2x.png in Resources */,
+				DFF2D73D1A1FBF4F005CD6FB /* card_magic_back.png in Resources */,
 				DF755CEB1A1127E10061E3D6 /* diplomacy.png in Resources */,
+				DFF2D7441A1FBF4F005CD6FB /* card_shot@2x.png in Resources */,
+				DFF2D7261A1FBF4F005CD6FB /* card_block_back@2x.png in Resources */,
 				DF8CEE4D1A041AF3008504A9 /* av_warrior3@2x.png in Resources */,
+				DFF2D7381A1FBF4F005CD6FB /* card_grab@2x.png in Resources */,
 				DFDA01BE1961C7BA005D3703 /* movement.png in Resources */,
 				DF755CDE1A1127E10061E3D6 /* azure magic@2x.png in Resources */,
 				DF8CEE361A041AF3008504A9 /* av_pirat@2x.png in Resources */,
+				DFF2D73A1A1FBF4F005CD6FB /* card_grab_back@2x.png in Resources */,
 				DF755CEE1A1127E10061E3D6 /* disguise@2x.png in Resources */,
 				DF8CEE641A041AF3008504A9 /* av_wizard@2x.png in Resources */,
 				DF755CFD1A1127E10061E3D6 /* intimidate.png in Resources */,
 				DF29644B198C095A0024E070 /* initiative@2x.png in Resources */,
 				DF755D0B1A1127E10061E3D6 /* reason.png in Resources */,
 				DF8CEE3A1A041AF3008504A9 /* av_rogue2@2x.png in Resources */,
+				DFF2D7331A1FBF4F005CD6FB /* card_evaluate.png in Resources */,
 				DF8CEE2E1A041AF3008504A9 /* av_baron@2x.png in Resources */,
 				DF755D011A1127E10061E3D6 /* meele.png in Resources */,
 				DF50A7001A1F43F90024E8EC /* cardsIcon.png in Resources */,
@@ -1454,20 +1616,26 @@
 				DF22154C199A81F300E1DC90 /* StatViewController_iphone.storyboard in Resources */,
 				DF8CEE561A041AF3008504A9 /* av_warrior8.png in Resources */,
 				DF755D0D1A1127E10061E3D6 /* ride.png in Resources */,
+				DFF2D7421A1FBF4F005CD6FB /* card_push_back@2x.png in Resources */,
 				DF3C0EEA198824240016AFF2 /* icloudIsntAvailible.png in Resources */,
 				DF755D291A1127FD0061E3D6 /* skillNodeNecklessUndeveloped.png in Resources */,
 				DF8CEE3E1A041AF3008504A9 /* av_shooter.png in Resources */,
 				DFD0F7A919C9F9100097933A /* skillNodeUndeveloped@2x.png in Resources */,
+				DFF2D7321A1FBF4F005CD6FB /* card_dodge_back@2x.png in Resources */,
 				DFD0F79F19C8B42F0097933A /* skillNodeMediator@2x.png in Resources */,
 				DFDA01BB1961C7BA005D3703 /* health@2x.png in Resources */,
+				DFF2D7351A1FBF4F005CD6FB /* card_evaluate_back.png in Resources */,
 				DF755CDC1A1127E10061E3D6 /* apprise@2x.png in Resources */,
 				DF8CEE371A041AF3008504A9 /* av_ranger@x.png in Resources */,
+				DFF2D7231A1FBF4F005CD6FB /* card_block.png in Resources */,
 				DF0995D9196460C70025A76A /* cloudBackground.png in Resources */,
+				DFF2D7481A1FBF4F005CD6FB /* card_stunt@2x.png in Resources */,
 				DF755CE11A1127E10061E3D6 /* climb.png in Resources */,
 				DF8CEE4E1A041AF3008504A9 /* av_warrior4.png in Resources */,
 				DF755D2A1A1127FD0061E3D6 /* skillNodeNecklessUndeveloped@2x.png in Resources */,
 				DF755D1E1A1127E10061E3D6 /* toughness@2x.png in Resources */,
 				DF8CEE471A041AF3008504A9 /* av_warlock_m.png in Resources */,
+				DFF2D72B1A1FBF4F005CD6FB /* card_crush.png in Resources */,
 				DF755D321A112A420061E3D6 /* skillNode@2x.png in Resources */,
 				DFDA01BA1961C7BA005D3703 /* health.png in Resources */,
 				DF3611001993F8EC00B6B78A /* PointCountLeft.storyboard in Resources */,
@@ -1666,7 +1834,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Evgeny Mikhalkov (9MMMNMSQM9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Evgeny Mikhalkov (9MMMNMSQM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";
@@ -1684,7 +1852,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "PlayerProgressTracker/Experience Flow.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YAUHEN MIKHALKOU (AXT7HT56A4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YAUHEN MIKHALKOU (AXT7HT56A4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlayerProgressTracker/PlayerProgressTracker-Prefix.pch";

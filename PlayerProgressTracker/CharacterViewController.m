@@ -538,8 +538,7 @@ static const float CARDS_BUTTON_DEFAULT_ICON = 10;
         NSLog(@"%@", family);
         
         for (NSString* name in [UIFont fontNamesForFamilyName: family]) {
-            NSString *fontName = name;
-            NSLog(@"  %@", fontName);
+            NSLog(@"  %@", name);
         }
     }
 }

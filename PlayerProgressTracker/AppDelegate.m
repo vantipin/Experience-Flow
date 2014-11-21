@@ -46,6 +46,8 @@
 {
     
     NSManagedObjectContext *context = [[MainContextObject sharedInstance] managedObjectContext];
+    [iCloud sharedCloud].verboseAvailabilityLogging = false;
+    [iCloud sharedCloud].verboseLogging = false;
     
     if ([[iCloud sharedCloud] checkCloudAvailability]) {
         
