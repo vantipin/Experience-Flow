@@ -20,8 +20,7 @@
     NSString *storyboardName = isiPad ? @"PointCountLeft" : @"PointCountLeft_iphone";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     PointsCountLeftController *controller = [storyboard instantiateInitialViewController];
-    controller.view.frame =  frame;
-    
+    controller.view.frame = frame;
     return controller;
 }
 

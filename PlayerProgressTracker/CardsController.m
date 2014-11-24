@@ -40,27 +40,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imageSource = @[@"card_block",
-                         @"card_dodge",
-                         @"card_evaluate",
-                         @"card_shot",
-                         @"card_grab",
-                         @"card_push",
-                         @"card_crush",
-                         @"card_blow",
-                         @"card_stunt",
-                         @"card_magic"];
+    self.imageSource = @[@"card_block.jpg",
+                         @"card_dodge.jpg",
+                         @"card_evaluate.jpg",
+                         @"card_blow.jpg",
+                         @"card_grab.jpg",
+                         @"card_push.jpg",
+                         @"card_crush.jpg",
+                         @"card_stunt.jpg",
+                         @"card_magic.jpg",
+                         @"card_shot.jpg"];
     
-    self.backImageSource = @[@"card_block_back",
-                             @"card_dodge_back",
-                             @"card_evaluate_back",
-                             @"card_shot_back",
-                             @"card_grab_back",
-                             @"card_push_back",
-                             @"card_crush_back",
-                             @"card_blow_back",
-                             @"card_stunt_back",
-                             @"card_magic_back"];
+    self.backImageSource = @[@"card_block_back.jpg",
+                             @"card_dodge_back.jpg",
+                             @"card_evaluate_back.jpg",
+                             @"card_blow_back.jpg",
+                             @"card_grab_back.jpg",
+                             @"card_push_back.jpg",
+                             @"card_crush_back.jpg",
+                             @"card_stunt_back.jpg",
+                             @"card_magic_back.jpg",
+                             @"card_shot_back.jpg"];
     
     self.iCarouselView.type = iCarouselTypeCylinder;
     self.iCarouselView.vertical = false;

@@ -51,7 +51,8 @@
     
     controller.prevLevel = -1;
     [controller.skillLevelLabel setFont:[UIFont fontWithName:BodoniSvtyTwoITCTTBold size:isiPad ? 22 : 13]];
-    [controller.skillName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:isiPad ? 21 : 12]];
+    //[controller.skillName setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:isiPad ? 21 : 12]];
+    controller.skillName.hidden = true;
     controller.skillButton.exclusiveTouch = true;
     
     return controller;
@@ -70,8 +71,8 @@
 {
     [super viewDidLoad];
     
-    [self.skillButton setBackgroundImage:[UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeHighlited")] forState:UIControlStateHighlighted];
-    self.xpAuraImageView.image = [UIImage imageWithContentsOfFile:filePathWithName(@"xpAura")];
+    [self.skillButton setBackgroundImage:[UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeHighlited.png")] forState:UIControlStateHighlighted];
+    self.xpAuraImageView.image = [UIImage imageWithContentsOfFile:filePathWithName(@"xpAura.png")];
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,7 +121,7 @@
     if (_skill != skill && skill) {
         self.skillName.text = skill.skillTemplate.nameForDisplay;
         if (skill.skillTemplate.icon && skill.skillTemplate.icon.picId) {
-            self.iconView.image = [UIImage imageWithContentsOfFile:filePathWithName(skill.skillTemplate.icon.picId)];
+            self.iconView.image = [UIImage imageWithContentsOfFile:filePathWithName([skill.skillTemplate.icon.picId stringByAppendingString:@".png"])];
         }
         else {
             self.iconView.image = nil;
@@ -210,19 +211,19 @@
     if (level != self.prevLevel) {
         
         if (self.skill.skillTemplate.isMediator) {
-            UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeMediator")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped")];
+            UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeMediator.png")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped.png")];
             [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
             self.skillLevelLabel.hidden = true;
             self.skillNeckless.hidden = true;
         }
         else {
-            UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNode")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped")];
-            UIImage *imageNeckless = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped")];
+            UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNode.png")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped.png")];
+            UIImage *imageNeckless = self.isDeveloped ? [UIImage imageNamed:@"skillNodeNeckless.png"] : [UIImage imageNamed:@"skillNodeNecklessUndeveloped.png"];
             [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
             self.skillNeckless.image = imageNeckless;
+            self.skillLevelLabel.textColor = self.isDeveloped ? healthyNodeShiningColor : undevelopedNodeShiningColor;
             self.skillLevelLabel.hidden = false;
             self.skillNeckless.hidden = false;
-            self.skillLevelLabel.textColor = self.isDeveloped ? healthyNodeShiningColor : undevelopedNodeShiningColor;
         }
         
         [self processLinkVisibility];
@@ -256,12 +257,12 @@
 
 -(IBAction)didButtonUp:(id)sender
 {
-    self.skillNeckless.image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped")];
+    self.skillNeckless.image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNeckless.png")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessUndeveloped.png")];
 }
 
 -(IBAction)didButtonDown:(id)sender
 {
-    self.skillNeckless.image = [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessHighlited")];
+    self.skillNeckless.image = [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeNecklessHighlited.png")];
 }
 
 - (IBAction)pan:(UIPanGestureRecognizer *)gestureRecognizer

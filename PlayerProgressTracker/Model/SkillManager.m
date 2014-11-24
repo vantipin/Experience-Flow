@@ -265,9 +265,39 @@ static SkillManager *instance = nil;
 {
     //TODO allCoreSkillTemplates replaced with allSkillTemplates
     NSArray *coreSkillTemplates = [DefaultSkillTemplates sharedInstance].allSkillTemplates;
+
+    //clean up deprecated skills
+    //block
+    if (character.skillSet) {
+        NSMutableSet *deprecatedSkills = [NSMutableSet new];
+        NSMutableSet *deprecatedTemplates = [NSMutableSet new];
+        for (Skill *skill in character.skillSet.skills) {
+            if (![coreSkillTemplates containsObject:skill.skillTemplate]) {
+                [deprecatedSkills addObject:skill];
+                if (skill.skillTemplate) {
+                    [deprecatedTemplates addObject:skill.skillTemplate];
+                }
+                
+            }
+        }
+        [character.skillSet removeSkills:deprecatedSkills];
+        NSUInteger count = deprecatedTemplates.count;
+        for (int i = 0; i < count; i ++) {
+            [self.context deleteObject:[deprecatedTemplates allObjects][i]];
+            
+        }
+        count = deprecatedSkills.count;
+        for (int i = 0; i < count; i ++) {
+            [self.context deleteObject:[deprecatedSkills allObjects][i]];
+        }
+        
+    }
+    //block
+    
     for (SkillTemplate *skillTemplate in coreSkillTemplates) {
         [self getOrAddSkillWithTemplate:skillTemplate withCharacter:character];
     }
+    
     [character saveCharacterWithContext:self.context];
 }
 

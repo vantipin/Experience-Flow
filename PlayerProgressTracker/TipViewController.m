@@ -66,14 +66,16 @@
             description = [NSString stringWithFormat:@"\n\nYou have %d Action Point(s) during round, using %@ attacks.",numberOfAttacks, skill.skillTemplate.nameForDisplay];
         }
         else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].toughness.name]) {
-            int currentHitPoints = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] * 2;
+            int currentEndurance = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
+            int currentHitPoints = currentEndurance * 2 + skill.skillSet.character.bulk * 4;
+            
             needToAddAdditionalInfo = true;
-            description = [NSString stringWithFormat:@"\n\nYou have maximum %d Hit Points.\nYou can perform hard work %d rounds in a row, without receiving penalties.",currentHitPoints, currentHitPoints / 2];
+            description = [NSString stringWithFormat:@"\n\nYou have maximum %d Hit Points.\nYou can perform hard work %d rounds in a row, without receiving penalties.",currentHitPoints, currentEndurance];
         }
         else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].strength.name]) {
-            int currentEnc = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] * 3;
+            int currentEnc = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] * 2;
             needToAddAdditionalInfo = true;
-            description = [NSString stringWithFormat:@"\n\nYou can hold items with overall cost up to %d Encumbrance Points.\nYou can accumulate up to %d points of adrenalin.",currentEnc, currentEnc / 3];
+            description = [NSString stringWithFormat:@"\n\nYou can hold items with overall cost up to %d Encumbrance Points.\nYou can accumulate up to %d points of adrenalin.",currentEnc, currentEnc / 2];
         }
         else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].physique.name]) {
             int movement = skill.skillSet.character.pace + skill.currentLevel;

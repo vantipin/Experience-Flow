@@ -38,6 +38,7 @@ static int expectedMinLevelForOtherAdvanced = 4;
 @property (nonatomic) SkillTemplate *ride;
 @property (nonatomic) SkillTemplate *knavery;
 @property (nonatomic) SkillTemplate *escapeArtist;
+@property (nonatomic) SkillTemplate *fly;
 
 @property (nonatomic) SkillTemplate *senseMotive;
 @property (nonatomic) SkillTemplate *disguise;

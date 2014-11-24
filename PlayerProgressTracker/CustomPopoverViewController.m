@@ -88,6 +88,7 @@
         _popupWindow = [UIApplication sharedApplication].keyWindow;
         [_popupWindow.rootViewController.view addSubview:self.view];
         [_popupWindow.rootViewController addChildViewController:self];
+        self.view.frame = _popupWindow.rootViewController.view.bounds;
     }
     
     return _popupWindow;

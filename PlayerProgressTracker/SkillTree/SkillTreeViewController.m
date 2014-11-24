@@ -142,7 +142,6 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    //NSLog(@"%d",toInterfaceOrientation);
     [self updateScrollViewZoomAnimated:true];
 }
 
@@ -280,8 +279,9 @@ static NSString *emptyParentKey = @"emptyParent";
 {
     if (!_pointsLeftController) {
         
+        float margin = SYSTEM_VERSION_LESS_THAN(@"8.0") ? self.view.bounds.size.width : self.view.bounds.size.height;
         _pointsLeftController = [PointsCountLeftController getInstanceFromStoryboardWithFrame:CGRectMake(0,
-                                                                                                         self.view.bounds.size.height - [PointsCountLeftController sizeHeightPointsLeft],
+                                                                                                         margin - [PointsCountLeftController sizeHeightPointsLeft],
                                                                                                          [PointsCountLeftController sizeWidthPointsLeft],
                                                                                                          [PointsCountLeftController sizeHeightPointsLeft])];
         [self.view addSubview:_pointsLeftController.view];
@@ -320,9 +320,6 @@ static NSString *emptyParentKey = @"emptyParent";
     float scrollViewRealWidth = self.scrollView.frame.size.width;
     float scrollViewRealHeight = self.scrollView.frame.size.height;
     
-//    NSLog(@"width  %f",scrollViewRealWidth);
-//    NSLog(@"height %f",scrollViewRealHeight);
-    
     float scaleWidth = scrollViewRealWidth / self.scrollView.contentSize.width;
     float scaleHeight = scrollViewRealHeight / self.scrollView.contentSize.height;
     CGFloat minScale = MIN(scaleWidth, scaleHeight);
@@ -333,8 +330,6 @@ static NSString *emptyParentKey = @"emptyParent";
     self.scrollView.minimumZoomScale = minScale;
     self.scrollView.maximumZoomScale = 1.0f;
     [self.scrollView setZoomScale:currentScale  animated:animated];
-    
-    //NSLog(@"\nmin %f \nmax %f",self.scrollView.minimumZoomScale,self.scrollView.maximumZoomScale);
 }
 
 #pragma mark -
@@ -600,7 +595,6 @@ static NSString *emptyParentKey = @"emptyParent";
                         [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
                     }
                 }
-                NSLog(@"%@",self.operationStack);
                 self.proccessingTap = false;
             }
             
@@ -642,7 +636,6 @@ static NSString *emptyParentKey = @"emptyParent";
                     [[SkillManager sharedInstance] addXpPoints:xpPointsToGive toSkill:node.skill];
                     [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
                 }
-                NSLog(@"%@",self.operationStack);
                 self.proccessingTap = false;
             }
         }
@@ -654,7 +647,6 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)didTapNode:(NodeViewController *)node
 {
-    //NSLog(@"did tap node %@",node.skill.skillTemplate.name);
     TipViewController *tipController = [[TipViewController alloc] initWithSkillTemplate:node.skill];
     CustomPopoverViewController *popover = [[CustomPopoverViewController alloc] initWithContentViewController:tipController];
     popover.popoverContentSize = CGSizeMake(self.view.frame.size.width * 0.7, self.view.frame.size.height * 0.7);
@@ -665,7 +657,6 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)didTapNodeLevel:(NodeViewController *)node
 {
-    //NSLog(@"did tap level of node %@",node.skill.skillTemplate.name);
 }
 
 
