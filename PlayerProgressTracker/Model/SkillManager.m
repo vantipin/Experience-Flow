@@ -266,33 +266,33 @@ static SkillManager *instance = nil;
     //TODO allCoreSkillTemplates replaced with allSkillTemplates
     NSArray *coreSkillTemplates = [DefaultSkillTemplates sharedInstance].allSkillTemplates;
 
-    //clean up deprecated skills
-    //block
-    if (character.skillSet) {
-        NSMutableSet *deprecatedSkills = [NSMutableSet new];
-        NSMutableSet *deprecatedTemplates = [NSMutableSet new];
-        for (Skill *skill in character.skillSet.skills) {
-            if (![coreSkillTemplates containsObject:skill.skillTemplate]) {
-                [deprecatedSkills addObject:skill];
-                if (skill.skillTemplate) {
-                    [deprecatedTemplates addObject:skill.skillTemplate];
-                }
-                
-            }
-        }
-        [character.skillSet removeSkills:deprecatedSkills];
-        NSUInteger count = deprecatedTemplates.count;
-        for (int i = 0; i < count; i ++) {
-            [self.context deleteObject:[deprecatedTemplates allObjects][i]];
-            
-        }
-        count = deprecatedSkills.count;
-        for (int i = 0; i < count; i ++) {
-            [self.context deleteObject:[deprecatedSkills allObjects][i]];
-        }
-        
-    }
-    //block
+//    //clean up deprecated skills
+//    //block
+//    if (character.skillSet) {
+//        NSMutableSet *deprecatedSkills = [NSMutableSet new];
+//        NSMutableSet *deprecatedTemplates = [NSMutableSet new];
+//        for (Skill *skill in character.skillSet.skills) {
+//            if (![coreSkillTemplates containsObject:skill.skillTemplate]) {
+//                [deprecatedSkills addObject:skill];
+//                if (skill.skillTemplate) {
+//                    [deprecatedTemplates addObject:skill.skillTemplate];
+//                }
+//                
+//            }
+//        }
+//        [character.skillSet removeSkills:deprecatedSkills];
+//        NSUInteger count = deprecatedTemplates.count;
+//        for (int i = 0; i < count; i ++) {
+//            [self.context deleteObject:[deprecatedTemplates allObjects][i]];
+//            
+//        }
+//        count = deprecatedSkills.count;
+//        for (int i = 0; i < count; i ++) {
+//            [self.context deleteObject:[deprecatedSkills allObjects][i]];
+//        }
+//        
+//    }
+//    //block
     
     for (SkillTemplate *skillTemplate in coreSkillTemplates) {
         [self getOrAddSkillWithTemplate:skillTemplate withCharacter:character];
@@ -489,7 +489,7 @@ static SkillManager *instance = nil;
 
 
 
--(void)setSkill:(Skill *)skill toLevel:(float)level;
+-(void)setSkill:(Skill *)skill toLevel:(float)level ignoreDefaultLevel:(BOOL)ignoreMinLevel;
 {
     float xpPoints = [self xpPointsToSetSkill:skill toLevel:level];
     skill.currentProgress = xpPoints;
@@ -497,7 +497,7 @@ static SkillManager *instance = nil;
         [self calculateAddingXpPointsForSkill:skill];
     }
     else if (xpPoints < 0) {
-        [self calculateRemovingXpPointsForSkill:skill];
+        [self calculateRemovingXpPointsForSkill:skill ignoreDefaultLevel:ignoreMinLevel];
     }
 }
 
@@ -588,35 +588,37 @@ static SkillManager *instance = nil;
 }
 
 -(void)removeXpPoints:(float)xpPoints
-              toSkill:(Skill *)skill;
+              toSkill:(Skill *)skill
+   ignoreDefaultLevel:(BOOL)ignoreMinLevel;
 {
     BOOL isLevelContainAnyXpToRemove = (skill.currentProgress || skill.currentLevel);
     if (xpPoints && isLevelContainAnyXpToRemove)
     {
-        [self changeRemoveXpPoints:xpPoints toSkill:skill];
+        [self changeRemoveXpPoints:xpPoints toSkill:skill ignoreDefaultLevel:ignoreMinLevel];
         [Skill saveContext:self.context];
         [self didFinishChangingExperiencePointsForSkill:skill];
     }
 }
 
 -(void)changeRemoveXpPoints:(float)xpPoints
-                    toSkill:(Skill *)skill;
+                    toSkill:(Skill *)skill
+         ignoreDefaultLevel:(BOOL)ignoreMinLevel;
 {
     if (skill.skillTemplate.levelGrowthGoesToBasicSkill != 0 && skill.basicSkill) {
-        [self changeRemoveXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill];
+        [self changeRemoveXpPoints:[self xpPoints:xpPoints forBasicSkillOfSkill:skill] toSkill:skill.basicSkill ignoreDefaultLevel:ignoreMinLevel];
     }
     
     skill.currentProgress -= [self xpPoints:xpPoints forSkill:skill];
-    skill = [self calculateRemovingXpPointsForSkill:skill];
+    skill = [self calculateRemovingXpPointsForSkill:skill ignoreDefaultLevel:ignoreMinLevel];
     skill.dateXpAdded = [[NSDate date] timeIntervalSince1970];
     
     //[self.delegateSkillChange didChangeExperiencePointsForSkill:skill];
     [self didChangeExperiencePointsForSkill:skill];
 }
 
--(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill
+-(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill ignoreDefaultLevel:(BOOL)ignoreMinLevel
 {
-    if (skill.currentLevel == skill.skillTemplate.defaultLevel) {
+    if ((skill.currentLevel == skill.skillTemplate.defaultLevel && !ignoreMinLevel) || !skill.currentLevel) {
         skill.currentProgress = (skill.currentProgress < 0) ? 0 : skill.currentProgress;
         return skill;
     }
@@ -627,7 +629,7 @@ static SkillManager *instance = nil;
         [self didChangeSkillLevel:skill];
         float xpPrevLvl = [self countXpNeededForNextLevel:skill];
         skill.currentProgress += xpPrevLvl;
-        [self calculateRemovingXpPointsForSkill:skill];
+        [self calculateRemovingXpPointsForSkill:skill ignoreDefaultLevel:ignoreMinLevel];
     }
     
     Character *character = skill.skillSet.character;

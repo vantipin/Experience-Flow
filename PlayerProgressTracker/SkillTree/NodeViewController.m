@@ -50,7 +50,7 @@
     controller.isLightUp = false;
     
     controller.prevLevel = -1;
-    [controller.skillLevelLabel setFont:[UIFont fontWithName:BodoniSvtyTwoITCTTBold size:isiPad ? 22 : 13]];
+    [controller.skillLevelLabel setFont:[UIFont fontWithName:HelveticaNeueThin size:isiPad ? 20 : 10]];
     //[controller.skillName setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:isiPad ? 21 : 12]];
     controller.skillName.hidden = true;
     controller.skillButton.exclusiveTouch = true;
@@ -211,20 +211,20 @@
     if (level != self.prevLevel) {
         
         if (self.skill.skillTemplate.isMediator) {
-            UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeMediator.png")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped.png")];
-            [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
             self.skillLevelLabel.hidden = true;
             self.skillNeckless.hidden = true;
         }
         else {
-            UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNode.png")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped.png")];
+
             UIImage *imageNeckless = self.isDeveloped ? [UIImage imageNamed:@"skillNodeNeckless.png"] : [UIImage imageNamed:@"skillNodeNecklessUndeveloped.png"];
-            [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
             self.skillNeckless.image = imageNeckless;
             self.skillLevelLabel.textColor = self.isDeveloped ? healthyNodeShiningColor : undevelopedNodeShiningColor;
             self.skillLevelLabel.hidden = false;
             self.skillNeckless.hidden = false;
         }
+        
+        UIImage *image = self.isDeveloped ? [UIImage imageWithContentsOfFile:filePathWithName(@"skillNode.png")] : [UIImage imageWithContentsOfFile:filePathWithName(@"skillNodeUndeveloped.png")];
+        [self.skillButton setBackgroundImage:image forState:UIControlStateNormal];
         
         [self processLinkVisibility];
     }

@@ -86,7 +86,6 @@ static const float CARDS_BUTTON_DEFAULT_ICON = 10;
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.view.autoresizesSubviews = true;
     
-    
     self.classesDropController.delegateDropDown = self;
     self.classesDropController.delegateDeleteStatSet = self;
     [self.view addSubview:self.classesDropController.view];

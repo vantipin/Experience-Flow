@@ -24,7 +24,10 @@ static NSString *SHOULD_SAVE_TO_ICLOUD      = @"SHOULD_SAVE_TO_ICLOUD";
 
 #define BodoniSvtyTwoOSITCTTBook  @"BodoniSvtyTwoOSITCTT-Book"
 #define BodoniSvtyTwoITCTTBold @"BodoniSvtyTwoITCTT-Bold"
+#define HelveticaNeueThin       @"HelveticaNeue-Thin"
+#define HelveticaNeueStdLight      @"HelveticaNeueLTStd-Lt"
 #define defaultFont      [UIFont fontWithName:@"Bodoni 72 Smallcaps" size:17]
+
 
 #define lightBodyColor   kRGB(225., 225., 235.,0.8)//kRGB(255., 249., 239.,1.)
 #define bodyColor        kRGB(209., 219., 219.,1.)

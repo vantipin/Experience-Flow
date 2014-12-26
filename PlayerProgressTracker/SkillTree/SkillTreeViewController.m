@@ -77,7 +77,7 @@ static NSString *emptyParentKey = @"emptyParent";
     minimalMarginBetweenNodesX = isiPad ? 40 : 25;
     minimalMarginBetweenNodesY = isiPad ? 90 : 55;
     borderSize = isiPad ? 80 : 50;
-    nodeDiameter = isiPad ? 170 : 100;
+    nodeDiameter = isiPad ? 166 : 88;
     
     
     [super viewDidLoad];
@@ -579,9 +579,9 @@ static NSString *emptyParentKey = @"emptyParent";
 
 -(void)didSwipNodeDown:(NodeViewController *)node
 {
-    if (!node.skill.skillTemplate.isMediator) {
-        float xpPointsToTake;
-        if (self.isInCreatingNewCharacterMod) {
+    float xpPointsToTake;
+    if (self.isInCreatingNewCharacterMod) {
+        if (!node.skill.skillTemplate.isMediator) {
             if (!self.proccessingTap) {
                 self.proccessingTap = true;
                 if ([self.operationStack valueForKey:node.skill.skillTemplate.name]) {
@@ -591,25 +591,25 @@ static NSString *emptyParentKey = @"emptyParent";
                         xpPointsToTake = lastPoints.floatValue;
                         [skillStack removeObject:lastPoints];
                         self.xpPointsLeft = self.xpPointsLeft + xpPointsToTake;
-                        [[SkillManager sharedInstance] removeXpPoints:xpPointsToTake toSkill:node.skill];
+                        [[SkillManager sharedInstance] removeXpPoints:xpPointsToTake
+                                                              toSkill:node.skill
+                                                   ignoreDefaultLevel:NO];
                         [UserDefaultsHelper setPointsLeft:self.xpPointsLeft andOperationStack:self.operationStack forCharacterWithId:self.character.characterId];
                     }
                 }
                 self.proccessingTap = false;
             }
-            
         }
-        else {
-            [[SkillManager sharedInstance] removeXpPoints:1.0f toSkill:node.skill];
-        }
+    }
+    else {
+        [[SkillManager sharedInstance] removeXpPoints:1.0f toSkill:node.skill ignoreDefaultLevel:YES];
     }
 }
 
 -(void)didSwipNodeUp:(NodeViewController *)node
 {
-    if (!node.skill.skillTemplate.isMediator) {
-        
-        if (self.isInCreatingNewCharacterMod) {
+    if (self.isInCreatingNewCharacterMod) {
+        if (!node.skill.skillTemplate.isMediator) {
             if (!self.proccessingTap) {
                 self.proccessingTap = true;
                 if (self.xpPointsLeft > 0) {
@@ -639,10 +639,11 @@ static NSString *emptyParentKey = @"emptyParent";
                 self.proccessingTap = false;
             }
         }
-        else {
-            [[SkillManager sharedInstance] addXpPoints:1.0f toSkill:node.skill];
-        }
     }
+    else {
+        [[SkillManager sharedInstance] addXpPoints:1.0f toSkill:node.skill];
+    }
+
 }
 
 -(void)didTapNode:(NodeViewController *)node

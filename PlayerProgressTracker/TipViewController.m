@@ -68,14 +68,17 @@
         else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].toughness.name]) {
             int currentEndurance = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
             int currentHitPoints = currentEndurance * 2 + skill.skillSet.character.bulk * 4;
+            int percentageToRestore = (currentEndurance * 0.1) < 1 ? 1 : (currentEndurance * 0.1);
+            int percentageToRestoreExtra = (currentEndurance * 0.2) < 2 ? 2 : (currentEndurance * 0.2);
             
             needToAddAdditionalInfo = true;
-            description = [NSString stringWithFormat:@"\n\nYou have maximum %d Hit Points.\nYou can perform hard work %d rounds in a row, without receiving penalties.",currentHitPoints, currentEndurance];
+            description = [NSString stringWithFormat:@"\n\nYou have maximum %d Hit Points.\nYou normaly can restore %d hit points per rest.\nYou can restore %d hit points in a good rest.",currentHitPoints, percentageToRestore, percentageToRestoreExtra];
         }
         else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].strength.name]) {
-            int currentEnc = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] * 2;
+            int currentEnc = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
+            
             needToAddAdditionalInfo = true;
-            description = [NSString stringWithFormat:@"\n\nYou can hold items with overall cost up to %d Encumbrance Points.\nYou can accumulate up to %d points of adrenalin.",currentEnc, currentEnc / 2];
+            description = [NSString stringWithFormat:@"\n\nYou can hold items with overall cost up to %d Encumbrance Points.\nYou can accumulate up to %d points of adrenalin.\nHolding weapon in both hands give you +%0.0f Strength for normal handle and +%0.0f for long handle.",currentEnc * 2, currentEnc, currentEnc * 0.25, currentEnc * 0.5];
         }
         else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].physique.name]) {
             int movement = skill.skillSet.character.pace + skill.currentLevel;
@@ -88,9 +91,11 @@
             description = [NSString stringWithFormat:@"\n\nYour initiative during battle is %d.",percFloat];
         }
         else if ([skill.skillTemplate.name isEqualToString:[DefaultSkillTemplates sharedInstance].control.name]) {
-            int mentalPoints = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill] * 2;
+            int mentalPoints = [[SkillManager sharedInstance] countUsableLevelValueForSkill:skill];
+            int percentageToRestore = (mentalPoints * 0.1) < 1 ? 1 : (mentalPoints * 0.1);
+            int percentageToRestoreExtra = (mentalPoints * 0.2) < 2 ? 2 : (mentalPoints * 0.2);
             needToAddAdditionalInfo = true;
-            description = [NSString stringWithFormat:@"\n\nYou have maximum %d Mental Points.",mentalPoints];
+            description = [NSString stringWithFormat:@"\n\nYou have maximum %d Mental Points.\nYou normaly can restore %d mental points per rest.\nYou can restore %d mental points in a good rest.",mentalPoints * 3, percentageToRestore, percentageToRestoreExtra];
         }
         
         if (needToAddAdditionalInfo) {

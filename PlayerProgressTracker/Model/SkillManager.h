@@ -72,13 +72,14 @@
 -(void)addXpPoints:(float)xpPoints
            toSkill:(Skill *)skill;
 -(void)removeXpPoints:(float)xpPoints
-              toSkill:(Skill *)skill;
+              toSkill:(Skill *)skill
+   ignoreDefaultLevel:(BOOL)ignoreMinLevel;
 
 /**
  Add xp points without counting parent skills. Use for archiving.
  */
 -(Skill *)calculateAddingXpPointsForSkill:(Skill *)skill;
--(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill;
+-(Skill *)calculateRemovingXpPointsForSkill:(Skill *)skill ignoreDefaultLevel:(BOOL)ignoreMinLevel;
 
 
 //FETCH
