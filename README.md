@@ -1,9 +1,9 @@
-# Summary:
+#### Summary:
 
 iOS app for checking and updating progress of Pathfider-like tree skill system. 
 
 
-# Description:
+#### Description:
 
 SKILL SYSTEM consist of core skills (Physique, Intelligence) and secondary skills (Swimming, Acrobatics, Sneaking, Strength, Agility etc.). Any skill may have parent/child relationship with another skill. Core skills are always parents, secondary skills can be both parents and children. Any secondary skill take bonus from parent skill. Developing (adding XP) any skill also automatically develop it parent skill.
 
