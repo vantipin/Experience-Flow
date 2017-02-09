@@ -45,7 +45,7 @@ Supports iphone/ipad.
 
 ## Project structure
 - DataArchiver category. Convert Player data for iCloud sync.
-- SkillManager.h Is a singleton class for managing Graphs data.
+- `SkillManager.h` Is a singleton class for managing Graphs data.
 - SkillTree category responsible for managing Graphs data visualisation.
 
 
