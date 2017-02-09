@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)]()
 [![Language](https://img.shields.io/badge/language-objc-green.svg)]()
 
-playerProgressTracker aka Experience Flow is an app for checking and updating progress of board RPG. [Pathfider](https://en.wikipedia.org/wiki/Pathfinder_Roleplaying_Game)-like tree skill system. 
+playerProgressTracker (aka Experience Flow) is an app for checking and updating progress of board RPG. [Pathfider](https://en.wikipedia.org/wiki/Pathfinder_Roleplaying_Game)-like tree skill system. 
 
 - [x] Client-side application
 - [x] iCloud sync
